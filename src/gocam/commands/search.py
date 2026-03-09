@@ -317,7 +317,99 @@ def _display(
 # Save
 # ---------------------------------------------------------------------------
 
-def _try_save(
+def _build_markdown(
+    gene: str,
+    species_label: str,
+    taxon_id: str,
+    uniprot: dict,
+    quickgo: list[dict],
+    ols: list[dict],
+) -> str:
+    """Render search results as a human-readable Markdown document."""
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+    uid = uniprot.get("uniprot_id", "—")
+    pname = uniprot.get("protein_name", "—")
+    gnames = " / ".join(uniprot.get("gene_names", [gene])) or "—"
+    func = uniprot.get("function", "")
+
+    lines: list[str] = [
+        f"# Search: {gene.upper()}",
+        f"",
+        f"**Species:** {species_label} (taxon:{taxon_id})  ",
+        f"**Date:** {ts}  ",
+        f"**UniProt ID:** [{uid}](https://www.uniprot.org/uniprotkb/{uid})  ",
+        f"**Protein name:** {pname}  ",
+        f"**Gene names:** {gnames}",
+        f"",
+    ]
+
+    if func:
+        lines += ["## Function", "", func, ""]
+
+    # GO annotations from UniProt
+    go_mf = uniprot.get("go_mf", [])
+    go_bp = uniprot.get("go_bp", [])
+    go_cc = uniprot.get("go_cc", [])
+    total_go = len(go_mf) + len(go_bp) + len(go_cc)
+
+    if total_go:
+        lines += [f"## GO Annotations from UniProt ({total_go} total)", ""]
+
+        def _go_section(entries: list[dict], heading: str) -> None:
+            if not entries:
+                return
+            lines.append(f"### {heading}")
+            lines.append("")
+            lines.append("| GO ID | Term | Evidence |")
+            lines.append("|-------|------|----------|")
+            for e in entries:
+                go_id = e.get("id", "")
+                link = f"[{go_id}](https://www.ebi.ac.uk/QuickGO/term/{go_id})"
+                lines.append(f"| {link} | {e.get('term', '')} | {e.get('evidence', '')} |")
+            lines.append("")
+
+        _go_section(go_mf, "Molecular Function (MF)")
+        _go_section(go_bp, "Biological Process (BP)")
+        _go_section(go_cc, "Cellular Component (CC)")
+
+    # QuickGO annotations
+    valid_qgo = [a for a in quickgo if "error" not in a]
+    if valid_qgo:
+        lines += [f"## QuickGO Annotations ({len(valid_qgo)} total)", ""]
+        lines.append("| GO ID | Term | Aspect | Evidence | Reference |")
+        lines.append("|-------|------|--------|----------|-----------|")
+        for ann in valid_qgo[:50]:
+            go_id = ann.get("go_id", "")
+            link = f"[{go_id}](https://www.ebi.ac.uk/QuickGO/term/{go_id})"
+            aspect = ann.get("aspect", "")[:2].upper()
+            lines.append(
+                f"| {link} | {ann.get('go_name', '')} | {aspect} "
+                f"| {ann.get('evidence_code', '')} | {ann.get('reference', '')} |"
+            )
+        if len(valid_qgo) > 50:
+            lines.append(f"| … | *{len(valid_qgo) - 50} more — see {gene.lower()}.json* | | | |")
+        lines.append("")
+
+    # OLS4 terms
+    valid_ols = [t for t in ols if "error" not in t and t.get("label")]
+    if valid_ols:
+        lines += ["## Related GO Terms from OLS4", ""]
+        lines.append("| GO ID | Label | Description |")
+        lines.append("|-------|-------|-------------|")
+        for term in valid_ols[:10]:
+            go_id = term.get("id", "")
+            link = f"[{go_id}](https://www.ebi.ac.uk/QuickGO/term/{go_id})" if go_id else "—"
+            desc = term.get("description", "")
+            if len(desc) > 100:
+                desc = desc[:97] + "…"
+            lines.append(f"| {link} | {term.get('label', '')} | {desc} |")
+        lines.append("")
+
+    return "\n".join(lines)
+
+
+def _save_results(
+    searches_dir: Path,
     gene: str,
     taxon_id: str,
     species_label: str,
@@ -325,19 +417,19 @@ def _try_save(
     quickgo: list[dict],
     ols: list[dict],
 ) -> None:
-    """Save result JSON to active process searches/ dir if a process is active."""
-    if not PROCESSES_DIR.exists():
-        return
-    candidates = sorted(
-        p for p in PROCESSES_DIR.iterdir()
-        if p.is_dir() and (p / "meta.json").exists()
-    )
-    if len(candidates) != 1:
-        return  # ambiguous or none — don't save silently
-
-    searches_dir = candidates[0] / "searches"
+    """Write <gene>.md (readable) and <gene>.json (full data) to searches_dir."""
     searches_dir.mkdir(exist_ok=True)
-    out = searches_dir / f"{gene.lower()}.json"
+    stem = gene.lower()
+
+    # Human-readable Markdown
+    md_out = searches_dir / f"{stem}.md"
+    md_out.write_text(
+        _build_markdown(gene, species_label, taxon_id, uniprot, quickgo, ols),
+        encoding="utf-8",
+    )
+
+    # Full JSON for programmatic use
+    json_out = searches_dir / f"{stem}.json"
     payload = {
         "gene": gene,
         "taxon_id": taxon_id,
@@ -347,8 +439,33 @@ def _try_save(
         "quickgo_annotations": quickgo,
         "ols4_terms": ols,
     }
-    write_json(out, payload)
-    print_info(f"Saved → {out}")
+    write_json(json_out, payload)
+
+    print_info(f"Saved → {md_out.name}  {json_out.name}")
+
+
+def _try_save(
+    gene: str,
+    taxon_id: str,
+    species_label: str,
+    uniprot: dict,
+    quickgo: list[dict],
+    ols: list[dict],
+) -> None:
+    """Auto-save to the active process searches/ dir when exactly one process exists."""
+    if not PROCESSES_DIR.exists():
+        return
+    candidates = sorted(
+        p for p in PROCESSES_DIR.iterdir()
+        if p.is_dir() and (p / "meta.json").exists()
+    )
+    if len(candidates) != 1:
+        return  # ambiguous or none — don't save silently
+
+    _save_results(
+        candidates[0] / "searches",
+        gene, taxon_id, species_label, uniprot, quickgo, ols,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -375,8 +492,9 @@ def search_command(gene: str, species: str, process: str | None) -> None:
     report of existing GO annotations, protein function, and related GO
     term suggestions.
 
-    Results are saved to processes/<active>/searches/<gene>.json when
-    a single active process can be auto-detected.
+    Results are saved to processes/<active>/searches/ as <gene>.md
+    (human-readable) and <gene>.json (full data) when a single active
+    process can be auto-detected.
 
     \b
     EXAMPLES
@@ -400,24 +518,13 @@ def search_command(gene: str, species: str, process: str | None) -> None:
 
     _display(gene, species_label, uniprot, quickgo, ols)
 
-    # Save if a process is active
+    # Save results
     if process:
-        from gocam.config import PROCESSES_DIR as PD
-        process_dir = PD / process
+        process_dir = PROCESSES_DIR / process
         if process_dir.exists():
-            searches_dir = process_dir / "searches"
-            searches_dir.mkdir(exist_ok=True)
-            out = searches_dir / f"{gene.lower()}.json"
-            payload = {
-                "gene": gene,
-                "taxon_id": taxon_id,
-                "species": species_label,
-                "timestamp": datetime.now().isoformat(timespec="seconds"),
-                "uniprot": uniprot,
-                "quickgo_annotations": quickgo,
-                "ols4_terms": ols,
-            }
-            write_json(out, payload)
-            print_info(f"Saved → {out}")
+            _save_results(
+                process_dir / "searches",
+                gene, taxon_id, species_label, uniprot, quickgo, ols,
+            )
     else:
         _try_save(gene, taxon_id, species_label, uniprot, quickgo, ols)
