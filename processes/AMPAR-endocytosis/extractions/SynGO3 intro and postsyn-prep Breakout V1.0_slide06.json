@@ -1,0 +1,155 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide06",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:22:17",
+  "visual_description": "A list of molecular interactions involving the GluA2 subunit, highlighting regulatory mechanisms including binding partners (NSF, PICK, GRIP, TARP, BRAG2), phosphorylation (PKA/PKC/CamKII), and endocytic recruitment.",
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DAG",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ca2+",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARPg2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CamkII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "PSD (Postsynaptic Density)",
+    "Endocytic zone"
+  ],
+  "gaps": [],
+  "questions_for_expert": [
+    "Is the 'MF' label on the slide intended to be the final GO Molecular Function node, or is it a placeholder for interaction evidence?",
+    "Regarding the 'CamkII/ PP' line: Does CamkII directly promote endocytosis of GluA2, or is this mediated by a change in TARP binding?",
+    "Confirm if S880 phosphorylation is a PKC or PKA mediated event in this specific context."
+  ]
+}

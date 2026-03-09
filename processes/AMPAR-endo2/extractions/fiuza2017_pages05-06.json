@@ -1,0 +1,106 @@
+{
+  "source": "fiuza2017_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:43:54",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "promotes dynamin polymerization"
+      ],
+      "context": "Neurons, HEK293 cells",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "dynamin",
+      "gene_symbol": "DNM1",
+      "mentioned_activities": [
+        "catalyze the fission of clathrin-coated vesicles",
+        "polymerization"
+      ],
+      "context": "Neurons, HEK293 cells",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": "AP2A1",
+      "mentioned_activities": [],
+      "context": "Neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": "GRIN1",
+      "mentioned_activities": [],
+      "context": "Neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [
+        "regulates PICK1–AP2 and PICK1–dynamin interactions"
+      ],
+      "context": "Neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "clathrin",
+      "gene_symbol": "CLTA",
+      "mentioned_activities": [],
+      "context": "Neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "dynamin",
+      "described_action": "promotes dynamin polymerization",
+      "quote": "PICK1 promotes dynamin polymerization.",
+      "figure": "Fig. 4E",
+      "assay_described": "dynamin polymerization assay (centrifugation)",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct physical promotion of polymerization observed in an in vitro biochemical assay."
+    },
+    {
+      "source_entity": "calcineurin",
+      "target_entity": "PICK1-AP2/dynamin interactions",
+      "described_action": "required for the NMDA-induced increase in interaction",
+      "quote": "Calcineurin activity is required for the NMDA-induced increase in PICK1–AP2 and PICK1–dynamin interactions.",
+      "figure": "Fig. 5C",
+      "assay_described": "Co-immunoprecipitation in neurons treated with cyclosporin A",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The requirement of calcineurin activity suggests an indirect mechanism likely involving dephosphorylation, but the specific molecular targets are not identified."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 and AP2 — molecular function unknown.",
+    "Only binding described for PICK1 and dynamin interaction (distinct from the polymerization activity) — molecular function unknown.",
+    "The specific downstream substrates of calcineurin that lead to increased PICK1-dynamin/AP2 affinity are not identified."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 act as a scaffold to stabilize the dynamin polymer, or does it enzymatically alter the polymerisation state?",
+    "Is the calcineurin-dependent regulation of PICK1 interactions mediated by direct dephosphorylation of PICK1, or via its binding partners?",
+    "Does the interaction between PICK1 and the GTPase domain of dynamin (Fig 4C) have a known regulatory effect on dynamin's GTPase activity?"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "source": "fiuza2017_p2",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T17:01:07",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PACSIN1",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Transferrin receptor",
+      "gene_symbol": "TFRC",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": "ARPC3",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Endocytic Zone (EZ)",
+    "Clathrin-coated pit (CCP) neck"
+  ],
+  "gaps": [
+    "The precise biochemical target(s) of calcineurin (i.e., whether PICK1 itself is dephosphorylated or an intermediate) is not fully resolved.",
+    "The competitive mechanism between GluA2 and AP2 for the PICK1 BAR domain requires further structural mapping."
+  ],
+  "questions_for_expert": [
+    "Is PICK1 a direct substrate of calcineurin, or does calcineurin act on a partner protein that modulates the PICK1-AP2/dynamin interface?",
+    "Does the inhibitory effect of PICK1 on Arp2/3 suggest a specific role in restricting actin polymerization exclusively to the CCP neck vs. the broader dendritic spine architecture?"
+  ]
+}

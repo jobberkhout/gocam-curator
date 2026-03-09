@@ -1,0 +1,72 @@
+{
+  "source": "ncomms3759_p2",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T17:01:26",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AP-3A",
+      "gene_symbol": "AP3S1/AP3B2/AP3M1/AP3D1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cathepsin B",
+      "gene_symbol": "CTSB",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Rab4",
+      "gene_symbol": "RAB4A",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Rab7",
+      "gene_symbol": "RAB7A",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Postsynaptic density",
+    "Endocytic zone",
+    "Early endosome",
+    "Late endosome",
+    "Lysosome"
+  ],
+  "gaps": [
+    "The mechanism by which STG is recycled or dissociated from AP-3A on late endosomes remains undefined.",
+    "The identity of the adaptor/chaperone, if any, that facilitates the recycling pathway when the STG-AP-3A interaction is disrupted is unknown.",
+    "It is unclear how the relative stoichiometry of AP-2 versus AP-3A competition for STG binding is regulated in the short time windows (3-10 min) post-NMDA."
+  ],
+  "questions_for_expert": [
+    "Is the 'sequential' binding of STG to AP-2 and then AP-3A strictly dependent on the differential affinity of the dephosphorylated STG for these adaptors, or is it driven by the physical maturation of the endosomal compartment?",
+    "Does the 'high-mobility' form of STG observed in brain lysates correspond strictly to the dephosphorylated state, or is there an intermediate species not captured by current blotting?"
+  ]
+}

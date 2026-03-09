@@ -1,0 +1,249 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide09",
+  "source_type": "slide",
+  "timestamp": "2026-03-07T12:27:10",
+  "extraction_pass": 1,
+  "visual_description": "A diagram depicting signaling pathways associated with metabotropic glutamate receptors (mGluRs). Panel A: mGluR2-mediated signaling involving Gi/o, Gβγ, AC, PKA, GIRK, and VGCCs affecting synaptic transmission and LTD. Panel B: mGluR7 signaling involving ELFN1/2, Gβγ, AC, PKA, PLC, and Munc13-2/RIM1a. Panel C: mGluR5-mediated signaling involving Gq, β-arrestin2, PLC, MEK/ERK, and Homer/mTOR pathways. The slide header discusses challenges in mGluR signaling research.",
+  "entities": [
+    {
+      "name": "mGluR2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR7",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR5",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Gi/o",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Gβγ",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GIRK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "VGCC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ERK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Munc18-1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PLC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ELFN1/2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Munc13-2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "RIM1a",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Gq",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "β-arrestin2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "MEK1/2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ERK1/2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Homer",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PIKE-L",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mTOR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TRPC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "IP3R",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "plasma membrane",
+    "endoplasmic reticulum (ER)",
+    "synaptic cleft"
+  ],
+  "gaps": [
+    "The diagram uses arrows without specifying enzymatic vs. physical interaction (e.g., Gβγ to ERK or VGCC).",
+    "The relationship between NMDAR and mGluR5 is represented by a dashed double-headed arrow, which is ambiguous."
+  ],
+  "questions_for_expert": [
+    "Is the Gβγ-to-VGCC interaction a direct physical block or a downstream signaling effect?",
+    "What is the specific mechanistic role of NMDAR in the mGluR5 signaling complex shown in Panel C?"
+  ]
+}

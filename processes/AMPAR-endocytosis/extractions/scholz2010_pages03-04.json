@@ -1,0 +1,113 @@
+{
+  "source": "scholz2010_pages03-04",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:11:56",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "interaction with BRAG2",
+        "stimulates the exchange activity of BRAG2",
+        "target for src family kinase-dependent phosphorylation"
+      ],
+      "context": "postsynaptic density, hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "GEF for Arf6",
+        "catalytic Sec7 domain activates Arf6"
+      ],
+      "context": "postsynaptic density, synaptic vesicles",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "Arf6",
+      "mentioned_activities": [
+        "undergoes GDP/GTP exchange"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "src family kinase",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "phosphorylates GluA2 at Y876"
+      ],
+      "context": "neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA2",
+      "target_entity": "BRAG2",
+      "described_action": "stimulates catalytic activity of BRAG2",
+      "quote": "the bacterially expressed GluA2-CT increased the catalytic activity of BRAG2 on Arf6 about 5-fold in vitro",
+      "figure": "Fig. 3A",
+      "assay_described": "nucleotide exchange assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct stimulation of GEF activity demonstrated in vitro using purified proteins."
+    },
+    {
+      "source_entity": "src family kinase",
+      "target_entity": "GluA2",
+      "described_action": "phosphorylates Y876",
+      "quote": "The GluA2 3Y motif has been shown to be a target for a src family kinase-dependent phosphorylation in vivo, most likely at Y876",
+      "figure": "Fig. S1",
+      "assay_described": "in vitro phosphorylation with recombinant src kinase; anti-phosphotyrosine antibody",
+      "causal_type": "DIRECT",
+      "confidence_note": "Enzymatic phosphorylation evidenced by site-specific antibody and in vitro assay."
+    },
+    {
+      "source_entity": "GluA2 (Y876-P)",
+      "target_entity": "BRAG2",
+      "described_action": "inhibits stimulation of BRAG2",
+      "quote": "the increase in the catalytic activity of the BRAG2 Sec7 domain by GluA2-CT was blocked by prior in vitro phosphorylation with recombinant src kinase",
+      "figure": "Fig. 3D",
+      "assay_described": "in vitro nucleotide exchange assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Phosphorylation state directly modulates the stimulatory effect of GluA2 on BRAG2."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "catalyzes GDP/GTP exchange",
+      "quote": "BRAG2... functions as a GEF for the small GTPase Arf6",
+      "figure": "Fig. 3A",
+      "assay_described": "GTPg35S binding assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Canonical enzymatic GEF activity."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic vesicle",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "The specific structural mechanism by which GluA2-CT binding to the Sec7-PH region of BRAG2 enhances its catalytic activity is unknown.",
+    "Only binding described for GluA2 and BRAG2 interaction initiation — structural details unknown.",
+    "Upstream signaling pathway leading to src family kinase activation in this specific context is not fully detailed."
+  ],
+  "questions_for_expert": [
+    "Does GluA2 binding to BRAG2 induce a conformational change in the Sec7 domain, or does it primarily function to recruit BRAG2 to the membrane?",
+    "Is the inhibition by pY876 steric or allosteric?",
+    "Are there other proteins in the PSD that compete with GluA2 for BRAG2 binding?"
+  ]
+}

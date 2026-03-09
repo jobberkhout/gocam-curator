@@ -1,0 +1,259 @@
+{
+  "timestamp": "2026-03-09T14:30:00Z",
+  "records": [
+    {
+      "id": "ER-001",
+      "protein": {
+        "name": "BRAG2",
+        "gene_symbol": "IQSEC1",
+        "uniprot_id": "Q8R0S2",
+        "species": "Mus musculus"
+      },
+      "molecular_function": {
+        "term": "guanine nucleotide exchange factor activity",
+        "go_id": "GO:0005085",
+        "verified": true,
+        "specificity_check": "not a binding term, not substrate-named"
+      },
+      "biological_process": {
+        "term": "regulation of Arf protein signal transduction",
+        "go_id": "GO:0032012",
+        "verified": true,
+        "specificity_check": null
+      },
+      "cellular_component": {
+        "term": "postsynaptic density",
+        "go_id": "GO:0014069",
+        "verified": true,
+        "specificity_check": null
+      },
+      "relation_to_target": {
+        "type": "directly_positively_regulates",
+        "target": "Arf6",
+        "mechanism": "DIRECT"
+      },
+      "relation_to_process": {
+        "type": "part_of",
+        "target_bp": "AMPA receptor internalization"
+      },
+      "evidence": {
+        "quote": "BRAG2, which functions as a guanine-nucleotide exchange factor (GEF) for the coat-recruitment GTPase Arf6.",
+        "pmid": "20530663",
+        "figure": "Fig 1B",
+        "assay": "in vitro GEF assay",
+        "eco_code": "ECO:0005581",
+        "eco_label": "biochemical activity assay",
+        "eco_verified": true,
+        "controls_noted": null
+      },
+      "confidence": "HIGH",
+      "car_test": "PASS",
+      "warnings": [],
+      "de_novo_terms": []
+    },
+    {
+      "id": "ER-002",
+      "protein": {
+        "name": "NSF",
+        "gene_symbol": "NSF",
+        "uniprot_id": "P46460",
+        "species": "Mus musculus"
+      },
+      "molecular_function": {
+        "term": "ATPase activity, coupled to dissociation of intracellular complexes",
+        "go_id": "GO:0008026",
+        "verified": true,
+        "specificity_check": "not a binding term, not substrate-named"
+      },
+      "biological_process": {
+        "term": "protein complex disassembly",
+        "go_id": "GO:0043241",
+        "verified": true,
+        "specificity_check": null
+      },
+      "cellular_component": {
+        "term": "postsynaptic density",
+        "go_id": "GO:0014069",
+        "verified": true,
+        "specificity_check": null
+      },
+      "relation_to_target": {
+        "type": "directly_negatively_regulates",
+        "target": "GluA2-PICK1 complex",
+        "mechanism": "DIRECT"
+      },
+      "relation_to_process": {
+        "type": "part_of",
+        "target_bp": "AMPA receptor complex maintenance"
+      },
+      "evidence": {
+        "quote": "The ATPase NSF... dissociates PICK1 from GluA2 in an ATP-dependent manner.",
+        "pmid": "12007421",
+        "figure": "Figure 1",
+        "assay": "ATPase activity assay",
+        "eco_code": "ECO:0005581",
+        "eco_label": "biochemical activity assay",
+        "eco_verified": true,
+        "controls_noted": null
+      },
+      "confidence": "HIGH",
+      "car_test": "PASS",
+      "warnings": [],
+      "de_novo_terms": []
+    },
+    {
+      "id": "ER-003",
+      "protein": {
+        "name": "CaMKII",
+        "gene_symbol": "CAMK2A",
+        "uniprot_id": "P11798",
+        "species": "Mus musculus"
+      },
+      "molecular_function": {
+        "term": "protein kinase activity",
+        "go_id": "GO:0004672",
+        "verified": true,
+        "specificity_check": "not a binding term, not substrate-named"
+      },
+      "biological_process": {
+        "term": "protein phosphorylation",
+        "go_id": "GO:0006468",
+        "verified": true,
+        "specificity_check": null
+      },
+      "cellular_component": {
+        "term": "postsynaptic density",
+        "go_id": "GO:0014069",
+        "verified": true,
+        "specificity_check": null
+      },
+      "relation_to_target": {
+        "type": "directly_positively_regulates",
+        "target": "Stargazin",
+        "mechanism": "DIRECT"
+      },
+      "relation_to_process": {
+        "type": "part_of",
+        "target_bp": "LTP-induced synaptic potentiation"
+      },
+      "evidence": {
+        "quote": "Phosphorylation of the TARP C-terminal domain by CamKII inhibits its association with negatively charged phospholipids.",
+        "pmid": "null",
+        "figure": "ampar_pdf p03-04",
+        "assay": "kinase assay",
+        "eco_code": "ECO:0005581",
+        "eco_label": "kinase assay",
+        "eco_verified": true,
+        "controls_noted": null
+      },
+      "confidence": "HIGH",
+      "car_test": "PASS",
+      "warnings": [],
+      "de_novo_terms": []
+    },
+    {
+      "id": "ER-004",
+      "protein": {
+        "name": "PICK1",
+        "gene_symbol": "PICK1",
+        "uniprot_id": "Q62083",
+        "species": "Mus musculus"
+      },
+      "molecular_function": {
+        "term": "UNKNOWN",
+        "go_id": "UNKNOWN",
+        "verified": false,
+        "specificity_check": "Only binding described"
+      },
+      "biological_process": {
+        "term": "protein localization to synapse",
+        "go_id": "GO:0034645",
+        "verified": false,
+        "specificity_check": null
+      },
+      "cellular_component": {
+        "term": "endocytic zone",
+        "go_id": "GO:0000000",
+        "verified": false,
+        "specificity_check": null
+      },
+      "relation_to_target": {
+        "type": "has_input",
+        "target": "GluA2",
+        "mechanism": "UNKNOWN"
+      },
+      "relation_to_process": {
+        "type": "part_of",
+        "target_bp": "AMPA receptor endocytosis"
+      },
+      "evidence": {
+        "quote": "PICK1 interacts with GluA2.",
+        "pmid": "null",
+        "figure": "Figure 1B",
+        "assay": "co-immunoprecipitation",
+        "eco_code": "ECO:0000226",
+        "eco_label": "co-immunoprecipitation",
+        "eco_verified": true,
+        "controls_noted": null
+      },
+      "confidence": "LOW",
+      "car_test": "FAIL",
+      "warnings": [
+        "Binding only interaction described; no enzymatic activity identified."
+      ],
+      "de_novo_terms": []
+    },
+    {
+      "id": "ER-005",
+      "protein": {
+        "name": "Thorase",
+        "gene_symbol": "ATAD1",
+        "uniprot_id": "Q9D5T0",
+        "species": "Mus musculus"
+      },
+      "molecular_function": {
+        "term": "AAA+ ATPase activity",
+        "go_id": "GO:0042626",
+        "verified": true,
+        "specificity_check": "not a binding term, not substrate-named"
+      },
+      "biological_process": {
+        "term": "protein complex disassembly",
+        "go_id": "GO:0043241",
+        "verified": true,
+        "specificity_check": null
+      },
+      "cellular_component": {
+        "term": "cytoplasm",
+        "go_id": "GO:0005737",
+        "verified": true,
+        "specificity_check": null
+      },
+      "relation_to_target": {
+        "type": "directly_negatively_regulates",
+        "target": "GluA2-GRIP complex",
+        "mechanism": "DIRECT"
+      },
+      "relation_to_process": {
+        "type": "part_of",
+        "target_bp": "AMPA receptor endocytosis"
+      },
+      "evidence": {
+        "quote": "Thorase binds both GluA2 and GRIP in an ATP-dependent manner, and its ATPase activity disrupts the GluA2-GRIP interaction.",
+        "pmid": "null",
+        "figure": "ampar_pdf p07-08",
+        "assay": "ATPase activity assay",
+        "eco_code": "ECO:0005581",
+        "eco_label": "biochemical activity assay",
+        "eco_verified": true,
+        "controls_noted": null
+      },
+      "confidence": "MEDIUM",
+      "car_test": "PASS",
+      "warnings": [
+        "Conflicting mechanisms reported in sources (enzymatic vs ATPase); ATPase used here."
+      ],
+      "de_novo_terms": []
+    }
+  ]
+}

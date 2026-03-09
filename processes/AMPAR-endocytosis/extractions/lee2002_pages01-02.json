@@ -1,0 +1,131 @@
+{
+  "source": "lee2002_pages01-02",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:16:11",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "binds to AP2 complex",
+        "binds to NSF",
+        "binds to GRIP/ABP",
+        "binds to PICK-1"
+      ],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "binds to AP2 complex"
+      ],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR3",
+      "gene_symbol": "GRIA3",
+      "mentioned_activities": [
+        "binds to AP2 complex",
+        "binds to GRIP/ABP"
+      ],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "binds to GluR2",
+        "binds to GluR1",
+        "promotes clathrin coat assembly"
+      ],
+      "context": "clathrin adaptor complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "binds to GluR2",
+        "involved in membrane fusion"
+      ],
+      "context": "hexameric ATPase",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [
+        "binds to GluR2",
+        "binds to GluR3"
+      ],
+      "context": "PDZ domain-containing protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": "DNM1",
+      "mentioned_activities": [
+        "involved in clathrin-mediated endocytosis"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "AP2 complex",
+      "target_entity": "GluR2",
+      "described_action": "associates with the membrane-proximal region of the GluR2 cytoplasmic tail",
+      "quote": "Here we show that AP2 associates with a region of GluR2 that closely overlaps with the NSF binding site",
+      "figure": "Figure 1A",
+      "assay_described": "GST pull-down assay",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "The interaction is described as an association/binding event without specified catalytic mechanism."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluR2",
+      "described_action": "associates with a membrane-proximal region of the GluR2 cytoplasmic tail",
+      "quote": "a membrane-proximal region of the GluR2 cytoplasmic tail interacts with NSF",
+      "figure": "Figure 1C",
+      "assay_described": "coimmunoprecipitation",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "The interaction is described as binding/association; mechanistic role in maintenance is proposed but not experimentally proven as direct regulation."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic membrane",
+    "synapse",
+    "synaptosome"
+  ],
+  "gaps": [
+    "Only binding described for GluR2-AP2 — molecular function unknown.",
+    "Only binding described for GluR2-NSF — molecular function unknown.",
+    "Mechanism for how NSF prevents internalization is proposed but not explicitly defined as a direct biochemical function.",
+    "Interaction between AP2 and GluR2 is described as 'associates', but the precise functional consequence (beyond clathrin recruitment) remains elusive."
+  ],
+  "questions_for_expert": [
+    "Does the association of AP2 with GluR2 imply a specific enzymatic recruitment or just structural tethering?",
+    "Is the 'run-down' of EPSCs observed with peptide interference due to loss of surface receptors, or a failure to recycle?"
+  ]
+}

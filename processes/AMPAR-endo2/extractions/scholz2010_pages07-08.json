@@ -1,0 +1,121 @@
+{
+  "source": "scholz2010_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T16:58:22",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "BRAG2",
+      "gene_symbol": "Iqsec1",
+      "mentioned_activities": [
+        "catalytic activity",
+        "Arf6 activation"
+      ],
+      "context": "CA1 neurons, hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "AMPAR subunit",
+        "interacts with BRAG2 via 3Y motif"
+      ],
+      "context": "CA1 neurons, surface expression",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "Arf6",
+      "mentioned_activities": [
+        "GTPase activity (implied by T44N mutant)"
+      ],
+      "context": "CA1 neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "ligand binding"
+      ],
+      "context": "CA1 neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cadherin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Loading control",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "BRAG2 mediates Arf6 activation",
+      "quote": "BRAG2-mediated Arf6 activation is necessary for DHPG-induced endocytosis of GluA2.",
+      "figure": "Figure 6F",
+      "assay_described": "reversible surface biotinylation",
+      "causal_type": "DIRECT",
+      "confidence_note": "BRAG2 is a known GEF (Guanine nucleotide exchange factor) for Arf6, and the text refers to its catalytic activity and Arf6 activation."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "GluA2",
+      "described_action": "BRAG2 is necessary for DHPG-induced internalization of GluA2",
+      "quote": "DHPG-triggered long-term reduction of surface GluA2 is mediated by BRAG2.",
+      "figure": "Figure 6A, 6B",
+      "assay_described": "cell ELISA, surface biotinylation",
+      "causal_type": "INDIRECT",
+      "confidence_note": "BRAG2 acts as a GEF for Arf6; the internalization of GluA2 is a downstream consequence of this signaling cascade."
+    },
+    {
+      "source_entity": "AMPAR",
+      "target_entity": "BRAG2",
+      "described_action": "AMPAR ligand binding is necessary for DHPG-triggered long-term removal of surface GluA2",
+      "quote": "AMPA receptor ligand binding is necessary for DHPG-triggered long-term removal of surface GluA2.",
+      "figure": "Figure 6E",
+      "assay_described": "pharmacological blockade with NBQX",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Ligand binding is an upstream requirement for the signaling process, but the mechanistic link is not explicitly stated as a direct enzymatic interaction."
+    },
+    {
+      "source_entity": "GluA2",
+      "target_entity": "BRAG2",
+      "described_action": "GluA2 binds to BRAG2 via 3Y motif",
+      "quote": "These experiments indicate that the relevant effect of the active 3Y peptide is interference with BRAG2 binding.",
+      "figure": "Figure 7C",
+      "assay_described": "peptide competition",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The interaction via the 3Y motif is described as necessary for the signaling complex to function, implying a structural requirement for BRAG2 recruitment to the receptor site."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "synaptic membrane",
+    "CA1 neurons"
+  ],
+  "gaps": [
+    "The biochemical link between AMPA receptor ligand binding and BRAG2 recruitment/activation is not detailed.",
+    "Only binding described for GluA2 and BRAG2 — molecular function of the interaction unknown beyond recruitment.",
+    "The mechanism by which Arf6-GTP leads to endocytosis of GluA2 is not explicitly detailed."
+  ],
+  "questions_for_expert": [
+    "Is BRAG2 physically recruited to the AMPA receptor complex upon ligand binding, or is there an intermediate adaptor protein?",
+    "Does the 3Y motif of GluA2 regulate the GEF activity of BRAG2 allosterically, or does it simply tether it to the membrane?",
+    "What are the specific downstream effectors of Arf6 that lead to the physical removal of GluA2 from the membrane?"
+  ]
+}

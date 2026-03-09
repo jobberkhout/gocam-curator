@@ -1,0 +1,145 @@
+{
+  "source": "lee2002_pages11-12",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:45:45",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "recruit to AMPA receptors",
+        "promote assembly of the clathrin coat",
+        "promote endocytosis of AMPA receptors"
+      ],
+      "context": "postsynaptic membrane, synaptic endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "interact with AP2",
+        "interact with NSF",
+        "undergo rapid cycling"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "promote delivery/recycling of GluR2-containing AMPA receptors to the postsynaptic membrane",
+        "restrain receptor internalization by sterically blocking AP2"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin (PP2B)",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [
+        "dephosphorylate proteins involved in endocytosis including AP2"
+      ],
+      "context": "NMDA receptor signaling cascade",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP1",
+      "gene_symbol": "PPP1CA",
+      "mentioned_activities": [
+        "dephosphorylate proteins involved in endocytosis including AP2"
+      ],
+      "context": "NMDA receptor signaling cascade",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR3",
+      "gene_symbol": "GRIA3",
+      "mentioned_activities": [],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "trigger a calcium signaling cascade"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NMDA receptor",
+      "target_entity": "Calcineurin/PP1",
+      "described_action": "opening triggers a calcium signaling cascade that activates calcineurin and PP1",
+      "quote": "one possibility is that opening of NMDA receptors triggers a calcium signaling cascade that activates calcineurin and PP1",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The activation of phosphatases is described as a downstream result of a calcium cascade triggered by NMDARs."
+    },
+    {
+      "source_entity": "Calcineurin/PP1",
+      "target_entity": "AP2",
+      "described_action": "dephosphorylate AP2",
+      "quote": "dephosphorylation of AP2 and its recruitment to AMPA receptors.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The text explicitly links phosphatase activity to the dephosphorylation of AP2."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluR2",
+      "described_action": "restrain receptor internalization by sterically blocking the association of AP2",
+      "quote": "NSF might act to restrain receptor internalization by sterically blocking the association of AP2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The model proposes a direct physical mechanism of steric hindrance."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic membrane",
+    "synaptic vesicle"
+  ],
+  "gaps": [
+    "Only binding described for AP2 and AMPA receptors - molecular function unknown.",
+    "The mechanism by which NSF dissociation is stimulated by NMDA receptor activity is unknown.",
+    "The identity of potential intermediary proteins linking AP2 to AMPA receptors during AMPA-induced endocytosis is unknown."
+  ],
+  "questions_for_expert": [
+    "Is there mechanistic evidence (e.g. in vitro assays) confirming that dephosphorylated AP2 has an increased affinity for AMPA receptors?",
+    "Does the steric competition between NSF and AP2 involve specific residues beyond the cluster of basic amino acids mentioned?",
+    "Is the 'calcium signaling cascade' sufficiently mapped to name the specific intermediate sensors?"
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "source": "ampar_pdf_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:18:32",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "binds directly to the actin-nucleating Arp2/3 complex",
+        "inhibits Arp2/3-mediated actin polymerization",
+        "recruit inactive Arp2/3 to the sites of endocytosis"
+      ],
+      "context": "neuronal endocytosis, LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin-nucleating",
+        "actin polymerization"
+      ],
+      "context": "neuronal endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": "ARF1",
+      "mentioned_activities": [
+        "associates with PICK1 in its GTP-bound state",
+        "blocks the interaction with Arp2/3"
+      ],
+      "context": "signaling pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GIT1",
+      "gene_symbol": "GIT1",
+      "mentioned_activities": [
+        "Arf GAP"
+      ],
+      "context": "regulates Arf1 GTP/GDP state",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "binds GRIP",
+        "binds PICK1",
+        "phosphorylation at Serine 880",
+        "phosphorylation at Tyr 876"
+      ],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [
+        "binds GluA2",
+        "scaffold protein"
+      ],
+      "context": "AMPAR trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [
+        "disrupts the GluA2-GRIP interaction",
+        "binds GluA2 and GRIP"
+      ],
+      "context": "ATP-dependent regulation of AMPAR endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "disassembles the AMPA receptor-PICK1 complex",
+        "molecular chaperone for the SNARE complex"
+      ],
+      "context": "ATP-dependent regulation of AMPAR endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "alpha-SNAP",
+      "gene_symbol": "NAPA",
+      "mentioned_activities": [
+        "stimulates GluA2-PICK1 dissociation by NSF"
+      ],
+      "context": "cofactor for NSF",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "beta-SNAP",
+      "gene_symbol": "NAPB",
+      "mentioned_activities": [
+        "inhibits GluA2-PICK1 dissociation by NSF"
+      ],
+      "context": "cofactor for NSF",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "Arf1-GTP",
+      "target_entity": "PICK1",
+      "described_action": "blocks the interaction of PICK1 with Arp2/3",
+      "quote": "Arf1, which associates with PICK1 in its GTP-bound state and blocks the interaction with Arp2/3",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct association and mechanistic blockade described."
+    },
+    {
+      "source_entity": "Thorase",
+      "target_entity": "GluA2-GRIP interaction",
+      "described_action": "disrupts the GluA2-GRIP interaction",
+      "quote": "its ATPase activity disrupts the GluA2-GRIP interaction to facilitate AMPAR endocytosis",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Enzymatic (ATPase) activity explicitly linked to the disruption of the interaction."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluA2-PICK1 interaction",
+      "described_action": "disassembles/dissociates the complex",
+      "quote": "NSF ATPase and α-/β-SNAPs disassemble the AMPA receptor-PICK1 complex",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Enzymatic chaperone activity described."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "plasma membrane",
+    "synaptic membrane",
+    "postsynaptic density"
+  ],
+  "gaps": [
+    "Only binding described for PICK1/Arp2/3 — molecular function of PICK1 on Arp2/3 (other than inhibition) remains debated.",
+    "The kinase responsible for GluA2 S880 phosphorylation in hippocampal LTD is unknown.",
+    "The regulatory mechanism of Thorase association/activity by NMDAR is unknown."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have a catalytic activity, or is it purely a scaffolding/inhibitory protein regarding Arp2/3?",
+    "Should 'binding' events be modeled as purely RO relations or does the literature imply a 'recruitment' molecular function?",
+    "Is there mechanistic evidence that the myosin motor mentioned by Madasu et al. (2015) is directly linked to AMPAR cargo?"
+  ]
+}

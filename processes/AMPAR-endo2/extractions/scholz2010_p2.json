@@ -1,0 +1,69 @@
+{
+  "source": "scholz2010_p2",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T17:01:35",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "src family tyrosine kinases",
+      "gene_symbol": "SRC",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tyrosine phosphatases",
+      "gene_symbol": "UNKNOWN",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6-GDP",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA3",
+      "gene_symbol": "GRIA3",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA4short",
+      "gene_symbol": "GRIA4",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Postsynaptic Density (PSD)",
+    "Synaptic vesicle-enriched fractions",
+    "Plasma membrane"
+  ],
+  "gaps": [
+    "Specific identity of the tyrosine phosphatase responsible for Y876 dephosphorylation during mGluR-LTD is unknown.",
+    "The exact conformational change in GluA2 C-tail upon ligand binding that initiates BRAG2 catalysis is unknown."
+  ],
+  "questions_for_expert": [
+    "Does the interaction with the PH domain of BRAG2 suggest that it functions as a scaffold even in the absence of nucleotide exchange activity?",
+    "Given that NMDAR-LTD is independent of Y876 dephosphorylation, are there other phosphorylation sites or mechanisms (e.g., BRAG2 serine/threonine phosphorylation) that bridge GluA2 and BRAG2 during NMDAR-LTD?"
+  ]
+}

@@ -1,0 +1,1522 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_summary",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:24:48",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "SAP97",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaN",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "μ2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "σ2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "α",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "β2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DAG",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ca2+",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARPg2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CamkII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DAG",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ca2+",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARPg2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CamkII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PI(4,5)P2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EPS",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2-mu2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR7",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR5",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "G-protein (Gi/o, Gq, Gby)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AC (Adenylate cyclase)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PLC (Phospholipase C)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ERK1/2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "MEK1/2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mTOR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "VGCC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GIRK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TRPC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "IP3R",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Munc18-1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Munc13-2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "RIM1a",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Homer",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PIKE-L",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Profilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Drebrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cofilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Capping protein",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cortactin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP-2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "WAVE",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Alpha-actinin-2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Actin monomer",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Myosin Vb",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arg",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Myosin IIb",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EphA RTK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EphB RTK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "N-Cadherin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ephexin5",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cdk5",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ephexin1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Rho-GTP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Rac-GTP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Kal7",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Tiam1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Par3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Trio-9",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "RasGRF2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DOCK10",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DOCK180",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ELM01",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2-containing AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Endophilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Actin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP (gamma2, gamma8)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CNIH (CNIH-2, CNIH-3)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CKAMP/Shisa (Shisa6, Shisa7, Shisa9)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GSG1L",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "FRRS1L",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPT1c",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Prrt1/SynDIG4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Noelin1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Glutamate",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ER",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Golgi",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Microtubules",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Postsynapse",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Stargazin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor ATD binding protein",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Recycling endosome",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Exocytic domain",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Dendritic spine (Head and Neck)",
+    "Plasma membrane",
+    "ER",
+    "Post-synaptic density (PSD)",
+    "Presynapse",
+    "Postsynaptic density",
+    "Axon terminal",
+    "Endocytic zone",
+    "Endoplasmic reticulum (ER)",
+    "PSD (Postsynaptic Density)",
+    "Perisynaptic area",
+    "Presynaptic membrane",
+    "Endoplasmic reticulum",
+    "Recycling endosome",
+    "Golgi",
+    "Dendrite",
+    "Postsynapse",
+    "Presynaptic terminal",
+    "Postsynaptic density (PSD)",
+    "endocytic zone",
+    "Postsynaptic membrane"
+  ],
+  "gaps": [
+    "The role of the individual phosphorylation sites (e.g., S831 vs S845) in specific long-term potentiation (LTP) versus long-term depression (LTD) outcomes is depicted but the regulatory mechanism for the kinase choice is not fully detailed.",
+    "The exact biochemical mechanism by which 'Arc' recruits the endocytic machinery is generalized.",
+    "The diagram implies a recruitment order for Nedd4 and Eps15, but the mechanism of recruitment is not explicitly defined in the schematic.",
+    "The text description mentions many proteins (PICK1, GRIP, NSF, etc.) that are NOT represented in the slide diagram, creating a discrepancy between the provided text scrape and the visual content.",
+    "The slide uses 'MF' to label interactions (e.g., 'NSF binds GluA2'). Per curator rules, these 'binding' labels are interactions, not Molecular Functions. The intrinsic catalytic or mechanistic activities (e.g., ATPase activity of NSF, phosphorylation by PKC) are omitted.",
+    "Contradiction: Slide mentions 'PKA' as a header for a bullet point, but the text says 'PKC phosphorylates S880 GluA2'.",
+    "Mechanism of 'BRAG2 binds GluA2' is unclear regarding whether it involves GEF activity or scaffolding.",
+    "The diagram implies LTD is a process, but the direct molecular function that executes LTD is not explicitly defined in the nodes.",
+    "The specific interaction mechanism between Gby and VGCC is drawn as an inhibitory line, but the molecular mechanism (e.g., pore blocking vs. conformational change) is unknown.",
+    "The diagram shows 'Actin remodeling' as a node, but the specific molecular mechanism (e.g., polymerization vs. depolymerization) is not specified.",
+    "The causal link from N-Cadherin to Kal7/Tiam1 is depicted with a line that does not specify if it is direct or indirect.",
+    "Ephexin5 is shown as both a target of EphB and a regulator, but the nature of the 'P' (phosphorylation) impact is implied but not explicitly defined as inhibitory or activating.",
+    "The text mentions an 'unknown mechanism, possibly involving Hippocalcin' for GluA2-AP2 interaction; the diagram does not illustrate this.",
+    "The diagram labels Arp2/3 as 'inactive' when associated with PICK1, but the mechanism of Arp2/3 activation/inactivation is not fully detailed in the visual logic.",
+    "The role of Epsin/Eps15 is mentioned in text (C) but the visual representation of the ubiquitin-dependent binding is simplified."
+  ],
+  "questions_for_expert": [
+    "Are the arrows representing 'endocytosis' specifically targeting receptor internalization or the removal of scaffolding components?",
+    "Does the slide imply direct physical interaction between Arc and AP2, or is it mediated by intermediate proteins?",
+    "Is 'TARP' used as a generic term here for stargazin/gamma-2, or does it refer to the entire family of auxiliary proteins?",
+    "Does the interaction between GluA1 and AP2 μ2 subunit in the basal pathway occur directly, or is it mediated by an adapter not shown in the diagram?",
+    "Is Nedd4 recruited to the GluA1 tail via a specific phosphosite, or does it recognize the tail constitutively?",
+    "Does the slide imply that GluA1 is ubiquitinated at site S868, or is the ubiquitin tag located elsewhere on the GluA1 intracellular domain?",
+    "Is the 'MF' label on the slide intended to be the final GO Molecular Function node, or is it a placeholder for interaction evidence?",
+    "Regarding the 'CamkII/ PP' line: Does CamkII directly promote endocytosis of GluA2, or is this mediated by a change in TARP binding?",
+    "Confirm if S880 phosphorylation is a PKC or PKA mediated event in this specific context.",
+    "Is PKA or PKC the primary kinase for GluA2 S880 phosphorylation in this model?",
+    "Does NSF possess ATPase activity that facilitates the dissociation of PICK, or is the binding purely a steric/competitive event?",
+    "Should BRAG2 be modeled as a Guanine Nucleotide Exchange Factor (GEF) for ARF6, or specifically as an adaptor for GluA2?",
+    "Regarding BRAG2, what is its specific molecular function (e.g., guanyl-nucleotide exchange factor activity) that affects ARF6?",
+    "Regarding Nedd4, is the 'binds GluA2 at S880' interaction dependent on the phosphorylation state of S880?",
+    "Could you clarify the identity of 'EPS' (Epsin vs Eps15) to ensure accurate mapping to the correct GO term?",
+    "Does 'recruits receptor to endocytic zone' represent a specific molecular function (e.g., cargo adapter activity)?",
+    "Are the arrows leading to 'LTD' and 'synaptic transmission' representing the sum of the pathway activity, or should these be modeled as specific biological processes (BPs) linked to the signaling molecules?",
+    "Is the inhibition of VGCC by Gby considered a direct physical interaction or a downstream signaling event?",
+    "Does the 'Actin remodeling' node encompass distinct processes like polymerization, depolymerization, and cross-linking?",
+    "For the phosphorylation events (e.g., Ephexin5-P, Tiam1-P), are these activating or inhibitory for the subsequent Rac/Rho activation?",
+    "Should 'Actin remodeling' be modeled as a specific Biological Process (BP) or broken down into the specific biochemical activities shown in the pathway?",
+    "Is the 'deactivation of Arf1' a direct causal link to PICK1-Arp2/3 interaction, or is it an indirect observation of the state of the complex?",
+    "Does the model imply that Calcineurin-mediated enhancement of PICK1-dynamin is a mechanism to facilitate endocytic scission?",
+    "Should we categorize the protein-protein interactions mentioned here as 'binding' (edge) or is there an enzymatic activity associated with any of these regulatory steps (e.g., BRAG2 GEF activity) that should be prioritized for GO-CAM nodes?",
+    "Does the 'associates with' relationship in this diagram imply a stable complex formation that should be modeled as 'part_of' or 'has_part' in the GO-CAM, or is it a transient interaction?",
+    "Should 'trafficking' and 'lateral diffusion' be modeled as distinct biological processes or as modifiers of the 'protein transport' process?",
+    "Is there a distinction intended between the different Shisa/CNIH isoforms in terms of their specific trafficking roles, or are they functionally redundant in this model?",
+    "Does the 'AMPA receptor ATD binding protein' represent a specific known protein like Nlgn or a general class?",
+    "Is the step 4 transition from recycling endosome to PSD meant to represent direct delivery or a different trafficking pathway?",
+    "How should we handle the temporal dependency mentioned in the slide text—should this be captured as a sequence of events or separate GO-CAM models?"
+  ]
+}

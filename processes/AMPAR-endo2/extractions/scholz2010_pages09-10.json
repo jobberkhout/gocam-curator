@@ -1,0 +1,121 @@
+{
+  "source": "scholz2010_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T16:59:19",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "Arf6 activation",
+        "GEF (guanine nucleotide exchange factor) activity"
+      ],
+      "context": "hippocampal CA1 neurons, postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "GTPase activity"
+      ],
+      "context": "postsynaptic, associated with BRAG2",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "ligand binding",
+        "channel opening"
+      ],
+      "context": "postsynaptic, hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tyrosine phosphatase",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "tyrosine dephosphorylation"
+      ],
+      "context": "hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "activates Arf6",
+      "quote": "increased BRAG2-dependent Arf6 activation in the presence of AMPAR ligands",
+      "figure": "Figure 4A, 4B",
+      "assay_described": "in vitro activation assay in HEK293 cells",
+      "causal_type": "DIRECT",
+      "confidence_note": "BRAG2 is characterized as an Arf6-GEF; the activation is described as dependent on BRAG2."
+    },
+    {
+      "source_entity": "AMPAR",
+      "target_entity": "BRAG2",
+      "described_action": "triggers BRAG2 catalysis",
+      "quote": "ligand binding to unphosphorylated AMPARs can trigger BRAG2 catalysis",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The exact molecular mechanism by which ligand binding at the extracellular domain translates to C-tail activation of BRAG2 is not yet determined."
+    },
+    {
+      "source_entity": "GluA2 (dephosphorylated Y876)",
+      "target_entity": "BRAG2",
+      "described_action": "enables BRAG2 activation",
+      "quote": "the combination of AMPAR ligand binding and dephosphorylation of GluA2 Y876 triggers BRAG2-mediated Arf6 activation",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The interaction is described as a regulatory constraint; phosphorylation interferes with the signal, while dephosphorylation facilitates it."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "AMPAR",
+      "described_action": "triggers AMPAR internalization",
+      "quote": "Arf6 activation, which in turn triggers AMPAR internalization for persistent synaptic depression.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "BRAG2 activates Arf6, which is an intermediate step in the clathrin-mediated endocytosis process."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synapse"
+  ],
+  "gaps": [
+    "Only binding described for GluA2 and BRAG2 — molecular function (interaction mechanism) unknown.",
+    "The physical mechanism by which glutamate binding (extracellular) alters the C-terminal tail of GluA2 to activate BRAG2 is unknown.",
+    "Mechanism of BRAG2 activation in NMDAR-LTD (which does not require acute tyrosine dephosphorylation) is unknown."
+  ],
+  "questions_for_expert": [
+    "Does 'Arf6 activation' represent the molecular function 'guanine nucleotide exchange factor activity' for BRAG2?",
+    "Is the binding of the GluA2 C-tail to the BRAG2 Sec7-PH domain considered a direct regulation of catalytic activity, or is it a structural requirement for BRAG2 to exist in a permissive conformation?",
+    "Should 'AMPAR internalization' be modeled as a biological process downstream of BRAG2-mediated Arf6 activation?"
+  ]
+}

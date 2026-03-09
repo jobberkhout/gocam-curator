@@ -1,0 +1,818 @@
+{
+  "source": "ampar_pdf_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-05T14:58:32",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "down-regulation",
+        "trafficking",
+        "cycling",
+        "mediated synaptic transmission",
+        "synaptic surface accumulation",
+        "endocytosis",
+        "intracellular sorting",
+        "degradation",
+        "synaptic incorporation",
+        "removal",
+        "receptor-dependent synaptic plasticity"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Pick1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "inhibition of the Arp2/3 complex",
+        "regulates neuronal morphology",
+        "regulates AMPA receptor endocytosis",
+        "regulates synaptic strength",
+        "regulates AMPA receptor subunit composition"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "clathrin adaptor complex AP-2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PDZ domains",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "play distinct roles in AMPA receptor trafficking",
+        "play distinct roles in hippocampal LTD",
+        "required for the synaptic incorporation and removal of AMPA receptors"
+      ],
+      "context": "hippocampal LTD, cerebellar long-term depression",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": "EPS15",
+      "mentioned_activities": [
+        "involved in the trafficking of ubiquitinated α-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid receptors"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "CPG2",
+      "mentioned_activities": [
+        "recruits endophilin B2 to the cytoskeleton"
+      ],
+      "context": "activity-dependent endocytosis of synaptic glutamate receptors",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "endophilin B2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "cytoskeleton",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "contribution to the internalization of AMPA receptors"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "dynamin-3",
+      "gene_symbol": "DNM3",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Homer",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ABP/GRIP",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "Arp2/3-mediated actin polymerization"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "amphiphysin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 complex α-appendage",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "accessory proteins",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": "ARF1",
+      "mentioned_activities": [
+        "modulates Arp2/3-mediated actin polymerization"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "actin polymerization",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "BRAG2",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "ubiquitination of GluA1"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP1",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [
+        "directly steers kinesin to dendrites"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "kinesin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc/Arg3.1",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [
+        "mediates homeostatic synaptic scaling of AMPA receptors"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NEEP21",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "synaptic removal",
+        "ubiquitination of GluA2"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "dephosphorylation",
+        "phosphorylation"
+      ],
+      "context": "Purkinje cells",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN1",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [
+        "regulates the dynamics of AMPA receptor trafficking"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "regulates interactions"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tyrosine phosphatase STEP",
+      "gene_symbol": "PTPN5",
+      "mentioned_activities": [
+        "mediates AMPA receptor endocytosis"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "metabotropic glutamate receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "stimulation"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AAA+ ATPase Thorase",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "regulates AMPA receptor-dependent synaptic plasticity",
+        "regulates behavior"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "calcium",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Hippocalcin",
+      "gene_symbol": "HPCA",
+      "mentioned_activities": [
+        "functions as a calcium sensor"
+      ],
+      "context": "hippocampal LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "hippocampal long-term depression",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "inhibitor-1 phosphatase",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "hippocampal long-term depression",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "stargazin-like TARPs",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "phosphorylation"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2-containing AMPA receptors",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluR2/3",
+      "target_entity": "Pick1",
+      "described_action": "interacts with",
+      "quote": "AMPAR down-regulation involves interaction of the carboxyl terminus of GluR2/3 with Pick1.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The interaction is described as 'involving' down-regulation, implying a complex pathway rather than a direct mechanistic step of Pick1."
+    },
+    {
+      "source_entity": "AMPA receptor",
+      "target_entity": "clathrin adaptor complex AP-2",
+      "described_action": "interacts with",
+      "quote": "Molecular determinants for the interaction between AMPA receptors and the clathrin adaptor complex AP-2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Only the interaction is mentioned, with no specified outcome or direct molecular consequence."
+    },
+    {
+      "source_entity": "GluR2/3",
+      "target_entity": "PDZ domains",
+      "described_action": "interacts with",
+      "quote": "Interaction of the AMPA receptor subunit GluR2/3 with PDZ domains regulates hippocampal long-term depression.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The interaction 'regulates' LTD, which is a complex biological process, not a direct molecular action."
+    },
+    {
+      "source_entity": "clathrin adaptor AP2",
+      "target_entity": "GluR2",
+      "described_action": "interacts with",
+      "quote": "Clathrin adaptor AP2 and NSF interact with overlapping sites of GluR2",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Only the interaction is stated, without describing a specific molecular action or direct consequence."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluR2",
+      "described_action": "interacts with",
+      "quote": "Clathrin adaptor AP2 and NSF interact with overlapping sites of GluR2",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Only the interaction is stated, without describing a specific molecular action or direct consequence."
+    },
+    {
+      "source_entity": "clathrin adaptor AP2",
+      "target_entity": "AMPA receptor trafficking",
+      "described_action": "plays a role in",
+      "quote": "play distinct roles in AMPA receptor trafficking and hippocampal LTD.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Playing a 'role' in trafficking implies a complex process with intermediate steps, not a direct molecular action."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "AMPA receptor trafficking",
+      "described_action": "plays a role in",
+      "quote": "play distinct roles in AMPA receptor trafficking and hippocampal LTD.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Playing a 'role' in trafficking implies a complex process with intermediate steps, not a direct molecular action."
+    },
+    {
+      "source_entity": "Eps15",
+      "target_entity": "ubiquitinated AMPA receptors",
+      "described_action": "involved in the trafficking of",
+      "quote": "Endocytic adaptor epidermal growth factor receptor substrate 15 (Eps15) is involved in the trafficking of ubiquitinated α-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid receptors.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Being 'involved in' trafficking implies a general contribution rather than a specific direct molecular interaction."
+    },
+    {
+      "source_entity": "CPG2",
+      "target_entity": "endophilin B2",
+      "described_action": "recruits to the cytoskeleton",
+      "quote": "CPG2 recruits endophilin B2 to the cytoskeleton for activity-dependent endocytosis of synaptic glutamate receptors.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Recruitment is a direct molecular action where CPG2 directly brings endophilin B2 to a location."
+    },
+    {
+      "source_entity": "PKA-dependent association with CPG2",
+      "target_entity": "glutamate receptor internalization",
+      "described_action": "mediates regulation of",
+      "quote": "Regulation of glutamate receptor internalization by the spine cytoskeleton is mediated by its PKA-dependent association with CPG2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The 'mediation' of regulation by an 'association' indicates a cascade of events rather than a single direct molecular step."
+    },
+    {
+      "source_entity": "dynamin-3",
+      "target_entity": "Homer",
+      "described_action": "physical coupling of dynamin-3 to Homer results in postsynaptic positioning of endocytic zones and AMPA receptor cycling",
+      "quote": "Postsynaptic positioning of endocytic zones and AMPA receptor cycling by physical coupling of dynamin-3 to Homer.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Physical coupling directly achieves positioning and cycling, indicating a direct structural or physical consequence."
+    },
+    {
+      "source_entity": "NSF-GluR2 interaction",
+      "target_entity": "AMPARs",
+      "described_action": "regulates",
+      "quote": "Hippocampal LTD expression involves a pool of AMPARs regulated by the NSF-GluR2 interaction.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "An 'interaction' that 'regulates' implies downstream signaling or a multi-step process, not a direct molecular action."
+    },
+    {
+      "source_entity": "clathrin-dependent receptor internalization",
+      "target_entity": "AMPA receptor-mediated synaptic transmission",
+      "described_action": "regulates",
+      "quote": "Regulation of AMPA receptor-mediated synaptic transmission by clathrin-dependent receptor internalization.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Internalization is a complex process, and its regulation of synaptic transmission is indirect."
+    },
+    {
+      "source_entity": "Stargazin",
+      "target_entity": "AMPA receptor trafficking",
+      "described_action": "regulates through adaptor protein complexes",
+      "quote": "Stargazin regulates AMPA receptor trafficking through adaptor protein complexes during long-term depression.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The regulation occurs 'through adaptor protein complexes,' indicating intermediate steps."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Arp2/3 complex",
+      "described_action": "inhibits",
+      "quote": "PICK1 inhibition of the Arp2/3 complex controls dendritic spine size and synaptic plasticity.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Explicit 'inhibition' is a direct molecular action."
+    },
+    {
+      "source_entity": "AP2 complex α-appendage",
+      "target_entity": "amphiphysin",
+      "described_action": "amphiphysin has binding motifs for",
+      "quote": "Solitary and repetitive binding motifs for the AP2 complex α-appendage in amphiphysin and other accessory proteins.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Only the existence of 'binding motifs' is described, not the consequence or mechanism of the interaction."
+    },
+    {
+      "source_entity": "AP2 complex α-appendage",
+      "target_entity": "accessory proteins",
+      "described_action": "accessory proteins have binding motifs for",
+      "quote": "Solitary and repetitive binding motifs for the AP2 complex α-appendage in amphiphysin and other accessory proteins.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Only the existence of 'binding motifs' is described, not the consequence or mechanism of the interaction."
+    },
+    {
+      "source_entity": "ABP/GRIP binding to GluR2",
+      "target_entity": "synaptic surface accumulation of the AMPA receptor",
+      "described_action": "has a role in",
+      "quote": "Mutagenesis reveals a role for ABP/GRIP binding to GluR2 in synaptic surface accumulation of the AMPA receptor.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The binding 'has a role in' accumulation, implying a facilitative or upstream role in a broader process rather than a direct, singular molecular action."
+    },
+    {
+      "source_entity": "Arf1",
+      "target_entity": "Arp2/3-mediated actin polymerization",
+      "described_action": "modulates via PICK1",
+      "quote": "The small GTPase Arf1 modulates Arp2/3-mediated actin polymerization via PICK1 to regulate synaptic plasticity.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Modulation 'via PICK1' means Arf1's action is not direct on Arp2/3-mediated actin polymerization, but through an intermediate."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Arp2/3-mediated actin polymerization",
+      "described_action": "inhibits",
+      "quote": "Inhibition of Arp2/3-mediated actin polymerization by PICK1 regulates neuronal morphology and AMPA receptor endocytosis.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Explicit 'inhibition' is a direct molecular action."
+    },
+    {
+      "source_entity": "AMPA receptor signaling",
+      "target_entity": "BRAG2 and Arf6",
+      "described_action": "occurs through",
+      "quote": "AMPA receptor signaling through BRAG2 and Arf6 critical for long-term synaptic depression.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Signaling 'through' other molecules indicates an indirect chain of events."
+    },
+    {
+      "source_entity": "ubiquitination of GluA1",
+      "target_entity": "AMPA receptor endocytosis and sorting pathway",
+      "described_action": "mediates",
+      "quote": "Activity-dependent ubiquitination of GluA1 mediates a distinct AMPA receptor endocytosis and sorting pathway.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "While ubiquitination is a direct modification, 'mediates a pathway' implies a more complex, indirect process for the outcome."
+    },
+    {
+      "source_entity": "GRIP1",
+      "target_entity": "kinesin",
+      "described_action": "directly steers to dendrites",
+      "quote": "Glutamate-receptor-interacting protein GRIP1 directly steers kinesin to dendrites.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The action 'directly steers' implies a direct physical guidance mechanism."
+    },
+    {
+      "source_entity": "Arc/Arg3.1",
+      "target_entity": "homeostatic synaptic scaling of AMPA receptors",
+      "described_action": "mediates",
+      "quote": "Arc/Arg3.1 mediates homeostatic synaptic scaling of AMPA receptors.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Mediation of a complex process like 'homeostatic synaptic scaling' indicates indirect action."
+    },
+    {
+      "source_entity": "Interactions between NEEP21, GRIP1 and GluR2",
+      "target_entity": "sorting and recycling of GluR2",
+      "described_action": "regulate",
+      "quote": "Interactions between NEEP21, GRIP1 and GluR2 regulate sorting and recycling of the glutamate receptor subunit GluR2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Interactions 'regulate' a complex process, implying indirect effects rather than a single direct molecular step."
+    },
+    {
+      "source_entity": "TARP phosphorylation",
+      "target_entity": "synaptic AMPA receptors",
+      "described_action": "regulates through lipid bilayers",
+      "quote": "TARP phosphorylation regulates synaptic AMPA receptors through lipid bilayers.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Regulation 'through lipid bilayers' indicates an indirect mechanism involving intermediate steps or changes in the membrane environment."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "synaptic strength",
+      "described_action": "regulates",
+      "quote": "Regulation of synaptic strength and AMPA receptor subunit composition by PICK1.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Regulation of a high-level physiological process like 'synaptic strength' is typically indirect at the molecular level."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AMPA receptor subunit composition",
+      "described_action": "regulates",
+      "quote": "Regulation of synaptic strength and AMPA receptor subunit composition by PICK1.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Regulation of 'subunit composition' implies a process with multiple steps, not a single direct action."
+    },
+    {
+      "source_entity": "PKC",
+      "target_entity": "interactions between GluR2/3 and PDZ domain-containing proteins",
+      "described_action": "regulates",
+      "quote": "Cerebellar long-term depression requires PKC-regulated interactions between GluR2/3 and PDZ domain-containing proteins.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "PKC 'regulates interactions', which is an indirect effect on the interaction itself, rather than direct phosphorylation causing a change in the interaction."
+    },
+    {
+      "source_entity": "tyrosine phosphatase STEP",
+      "target_entity": "AMPA receptor endocytosis",
+      "described_action": "mediates",
+      "quote": "The tyrosine phosphatase STEP mediates AMPA receptor endocytosis after metabotropic glutamate receptor stimulation.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "A phosphatase directly mediates a process like endocytosis through its enzymatic activity on a target protein (implied AMPA receptor)."
+    },
+    {
+      "source_entity": "AAA+ ATPase Thorase",
+      "target_entity": "AMPA receptor-dependent synaptic plasticity",
+      "described_action": "regulates",
+      "quote": "The AAA+ ATPase Thorase regulates AMPA receptor-dependent synaptic plasticity and behavior.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Regulation of a complex biological phenomenon like 'synaptic plasticity' is indirect at the molecular level."
+    },
+    {
+      "source_entity": "AAA+ ATPase Thorase",
+      "target_entity": "behavior",
+      "described_action": "regulates",
+      "quote": "The AAA+ ATPase Thorase regulates AMPA receptor-dependent synaptic plasticity and behavior.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Regulation of 'behavior' is a high-level physiological outcome and inherently indirect from a single protein's action."
+    },
+    {
+      "source_entity": "cytoskeleton",
+      "target_entity": "internalization of AMPA receptors",
+      "described_action": "contributes to",
+      "quote": "Contribution of cytoskeleton to the internalization of AMPA receptors.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The cytoskeleton provides structural support necessary for internalization, classifying it as a structural prerequisite."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic sites",
+    "dendrites",
+    "synaptic sites"
+  ],
+  "gaps": [
+    "The precise molecular function of PICK1 beyond 'interaction' with GluR2/3 in AMPAR down-regulation is not detailed.",
+    "The direct molecular function or consequence of AMPA receptor interaction with clathrin adaptor complex AP-2 is not specified.",
+    "The direct molecular function or consequence of GluR2/3 interaction with PDZ domains is not specified beyond 'regulating LTD'.",
+    "The direct molecular function or consequence of AP2 interaction with GluR2 is not specified.",
+    "The direct molecular function or consequence of NSF interaction with GluR2 is not specified.",
+    "The specific mechanism by which Eps15 is 'involved in' trafficking of ubiquitinated AMPARs is not explained.",
+    "The specific molecular mechanism by which PKA-dependent association with CPG2 'mediates' regulation of glutamate receptor internalization is not detailed.",
+    "The precise molecular function of ABP/GRIP binding to GluR2 in synaptic surface accumulation is not detailed.",
+    "The specific molecular consequence of amphiphysin and accessory proteins having 'binding motifs' for AP2 complex α-appendage is not described.",
+    "The exact molecular mechanism of Arf1 'modulating' Arp2/3-mediated actin polymerization via PICK1 is not detailed.",
+    "The specific molecular steps by which AMPA receptor 'signaling through' BRAG2 and Arf6 is critical for LTD are not described.",
+    "The upstream enzyme responsible for 'ubiquitination of GluA1' is not named.",
+    "The intermediate steps by which Arc/Arg3.1 'mediates' homeostatic synaptic scaling of AMPA receptors are not detailed.",
+    "The specific molecular mechanisms of 'interactions between NEEP21, GRIP1 and GluR2' that regulate sorting and recycling of GluR2 are not provided.",
+    "The enzyme responsible for 'TARP phosphorylation' is not identified.",
+    "The specific molecular mechanisms by which PICK1 'regulates' synaptic strength and AMPA receptor subunit composition are not described.",
+    "The specific target of PKC's regulation of interactions between GluR2/3 and PDZ domain-containing proteins is not explicitly stated (i.e., is PKC directly phosphorylating GluR2/3 or PDZ domain proteins to affect the interaction?).",
+    "The specific target on the AMPA receptor for tyrosine phosphatase STEP's mediation of endocytosis is not named.",
+    "The mechanism by which AAA+ ATPase Thorase 'regulates' synaptic plasticity and behavior is not specified.",
+    "The specific 'tyrosine phosphatases' involved in regulating AMPA receptor trafficking are not named.",
+    "The specific components of the 'calcineurin/inhibitor-1 phosphatase cascade' and their direct targets are not detailed.",
+    "The specific 'stargazin-like TARPs' are not named, and the upstream kinase for their phosphorylation is not identified.",
+    "The specific upstream ubiquitination enzymes for GluA1 and GluA2 are not identified.",
+    "The specific mechanism of PACSIN1 'regulating the dynamics' of AMPA receptor trafficking is not detailed.",
+    "The specific 'adaptor protein complexes' through which Stargazin regulates AMPA receptor trafficking are not named."
+  ],
+  "questions_for_expert": [
+    "What is the direct molecular function of PICK1 when it interacts with GluR2/3, leading to AMPAR down-regulation?",
+    "What is the specific molecular function of the interaction between AMPA receptors and clathrin adaptor complex AP-2?",
+    "What is the direct molecular outcome of the interaction between GluR2/3 and PDZ domains that regulates hippocampal LTD?",
+    "Can you specify the molecular function performed by AP2 and NSF when they interact with GluR2?",
+    "What is the specific mechanistic role of Eps15 in the trafficking of ubiquitinated AMPA receptors?",
+    "Could you elaborate on the PKA-dependent association between the spine cytoskeleton and CPG2, and how it directly regulates glutamate receptor internalization?",
+    "What is the molecular function of ABP/GRIP when it binds to GluR2 to promote synaptic surface accumulation of the AMPA receptor?",
+    "What are the specific molecular functions or consequences of amphiphysin and other accessory proteins binding to the AP2 complex α-appendage?",
+    "How exactly does Arf1 modulate Arp2/3-mediated actin polymerization via PICK1? Is PICK1 a direct target of Arf1?",
+    "Can you describe the direct molecular interactions and events that constitute AMPA receptor signaling 'through' BRAG2 and Arf6?",
+    "Which specific E3 ligase(s) are responsible for the activity-dependent ubiquitination of GluA1?",
+    "What are the intermediate molecular steps through which Arc/Arg3.1 mediates homeostatic synaptic scaling of AMPA receptors?",
+    "What are the precise molecular functions of NEEP21 and GRIP1 in their interactions with GluR2 that regulate sorting and recycling?",
+    "Which kinase phosphorylates TARP, and how does this phosphorylation directly lead to the regulation of synaptic AMPA receptors through lipid bilayers?",
+    "What are the direct molecular mechanisms by which PICK1 regulates synaptic strength and AMPA receptor subunit composition?",
+    "Which specific kinase activity of PKC directly regulates the interactions between GluR2/3 and PDZ domain-containing proteins?",
+    "What is the specific target on the AMPA receptor that tyrosine phosphatase STEP dephosphorylates to mediate endocytosis?",
+    "What are the direct molecular targets and mechanisms by which AAA+ ATPase Thorase regulates synaptic plasticity and behavior?",
+    "Can the specific tyrosine phosphatases involved in regulating AMPA receptor trafficking be identified?",
+    "Can the specific components and their direct interactions within the calcineurin/inhibitor-1 phosphatase cascade be detailed?",
+    "Are 'stargazin', 'stargazin-like TARPs', and 'TARP' referring to the same protein or a family? Which specific kinases phosphorylate them?",
+    "Which specific E3 ligases are responsible for the activity-dependent ubiquitination of GluA1 and GluA2?",
+    "What is the exact molecular mechanism by which PACSIN1 regulates the dynamics of AMPA receptor trafficking?",
+    "What are the specific adaptor protein complexes through which Stargazin regulates AMPA receptor trafficking?"
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide07",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:22:22",
+  "visual_description": "A list of molecular interactions involving GluA2 (AMPA receptor subunit) and its interactors (NSF, PICK, AP2, PKA/PKC, GRIP, TARP, BRAG2) regulating receptor trafficking and anchoring.",
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DAG",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ca2+",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARPg2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CamkII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "PSD (Postsynaptic Density)",
+    "Endocytic zone"
+  ],
+  "gaps": [
+    "The slide uses 'MF' to label interactions (e.g., 'NSF binds GluA2'). Per curator rules, these 'binding' labels are interactions, not Molecular Functions. The intrinsic catalytic or mechanistic activities (e.g., ATPase activity of NSF, phosphorylation by PKC) are omitted.",
+    "Contradiction: Slide mentions 'PKA' as a header for a bullet point, but the text says 'PKC phosphorylates S880 GluA2'.",
+    "Mechanism of 'BRAG2 binds GluA2' is unclear regarding whether it involves GEF activity or scaffolding."
+  ],
+  "questions_for_expert": [
+    "Is PKA or PKC the primary kinase for GluA2 S880 phosphorylation in this model?",
+    "Does NSF possess ATPase activity that facilitates the dissociation of PICK, or is the binding purely a steric/competitive event?",
+    "Should BRAG2 be modeled as a Guanine Nucleotide Exchange Factor (GEF) for ARF6, or specifically as an adaptor for GluA2?"
+  ]
+}

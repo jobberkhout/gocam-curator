@@ -1,0 +1,138 @@
+{
+  "source": "lee2002_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:45:26",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic, involved in AMPA receptor endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic, involved in synaptic expression of AMPA receptors",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "synaptic expression",
+        "surface expression",
+        "internalization"
+      ],
+      "context": "postsynaptic, hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "ion channel activity"
+      ],
+      "context": "postsynaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "pep-R845A",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "NSF-blocking"
+      ],
+      "context": "peptide inhibitor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "pep2m",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "NSF and AP2 binding"
+      ],
+      "context": "peptide inhibitor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "pep-K844A",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "peptide inhibitor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "pep-ΔA849-Q853",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "peptide inhibitor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NSF",
+      "target_entity": "AMPA receptor",
+      "described_action": "important for synaptic expression of AMPA receptors",
+      "quote": "These electrophysiological results imply that NSF is important for the synaptic expression, but not for total surface expression, of AMPA receptors.",
+      "figure": "Figure 7D, 7H",
+      "assay_described": "electrophysiological recordings (EPSC run-down, exogenous AMPA puffing)",
+      "causal_type": "INDIRECT",
+      "confidence_note": "NSF-blocking peptides cause loss of synaptic AMPA receptors, but the mechanism (e.g., stabilizing at synapse vs trafficking) is not explicitly defined as a direct biochemical action."
+    },
+    {
+      "source_entity": "AP2",
+      "target_entity": "AMPA receptor",
+      "described_action": "mediates NMDA receptor-dependent internalization",
+      "quote": "the AP2-blocking peptide prevents the expression of LTD by blocking NMDA receptor-dependent internalization of AMPA receptors",
+      "figure": null,
+      "assay_described": "electrophysiological recordings of LTD",
+      "causal_type": "INDIRECT",
+      "confidence_note": "AP2 is implied to mediate the internalization process, but the direct molecular mechanism (e.g., vesicle recruitment) is inferred from the blocking effect on LTD."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "synapse",
+    "extrasynaptic",
+    "soma"
+  ],
+  "gaps": [
+    "Only binding described for pep2m to NSF and AP2 — molecular function unknown.",
+    "Only binding described for GluR2 to NSF — molecular function unknown.",
+    "The exact cellular mechanism by which NSF facilitates synaptic expression of AMPA receptors is not described."
+  ],
+  "questions_for_expert": [
+    "Does NSF have a known enzymatic activity in the context of AMPA receptor trafficking, or is its function purely chaperone/scaffolding?",
+    "Is the 'synaptic expression' attributed to NSF a result of receptor exocytosis, stabilization, or inhibition of lateral diffusion?",
+    "Should 'AP2-mediated internalization' be modeled as a recruitment activity or a vesicle budding activity?"
+  ]
+}

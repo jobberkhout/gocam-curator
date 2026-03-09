@@ -1,0 +1,79 @@
+{
+  "source": "dierig2019_pages29-30",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:43:13",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic density / synaptic surface",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "exocytosis"
+      ],
+      "context": "surface pools during LTP",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "endocytosis"
+      ],
+      "context": "surface pools during LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA1-containing AMPARs",
+      "target_entity": "surface pools",
+      "described_action": "activity-dependent exocytosis enriches surface pools with GluA1-containing AMPARs during LTP",
+      "quote": "During LTP, surface pools are locally enriched with GluA1-containing AMPARs through activity-dependent exocytosis",
+      "figure": "Fig. 2",
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text describes the process of enrichment but does not specify the direct molecular machinery responsible for the exocytosis."
+    },
+    {
+      "source_entity": "GluA2-containing AMPARs",
+      "target_entity": "surface AMPARs",
+      "described_action": "endocytosis depletes surface AMPARs during LTD",
+      "quote": "whereas during LTD surface AMPARs are locally depleted through endocytosis of GluA2-containing receptors.",
+      "figure": "Fig. 2",
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text describes the depletion process but does not specify the molecular mechanism of endocytosis."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "extracellular slots",
+    "cell-surface"
+  ],
+  "gaps": [
+    "Only binding/interaction mentioned for AMPAR post-translational modifications (Fig 1C) — molecular function unknown.",
+    "Mechanism of 'activity-dependent exocytosis' for GluA1 is not defined.",
+    "Mechanism of 'endocytosis' for GluA2 is not defined.",
+    "Specific identity of 'PSD slots' remains abstract."
+  ],
+  "questions_for_expert": [
+    "Does the 'slot' hypothesis refer to specific scaffold proteins (e.g., PSD-95), and if so, are these placeholders for protein-protein interactions rather than enzymatic activities?",
+    "Can you clarify if the 'post-translational modifications' mentioned in Fig 1B are intended for GO-CAM mapping, or are they descriptive labels for regulatory states?",
+    "Regarding 'activity-dependent exocytosis', are there specific SNARE-mediated processes or regulatory kinases/phosphatases the expert wants to model as the direct drivers?"
+  ]
+}

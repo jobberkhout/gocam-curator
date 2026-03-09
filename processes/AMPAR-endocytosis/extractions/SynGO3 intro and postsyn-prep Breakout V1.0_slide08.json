@@ -1,0 +1,101 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide08",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:22:39",
+  "visual_description": "A diagram describing the recruitment and regulation of GluA2 AMPA receptor subunits during endocytosis, specifically involving PICK, AP2, BRAG2, ARF6, Nedd4, and EPS15 (implied) at specific phosphorylation sites S819 and S880.",
+  "entities": [
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PI(4,5)P2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EPS",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2-mu2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "endocytic zone"
+  ],
+  "gaps": [],
+  "questions_for_expert": [
+    "Regarding BRAG2, what is its specific molecular function (e.g., guanyl-nucleotide exchange factor activity) that affects ARF6?",
+    "Regarding Nedd4, is the 'binds GluA2 at S880' interaction dependent on the phosphorylation state of S880?",
+    "Could you clarify the identity of 'EPS' (Epsin vs Eps15) to ensure accurate mapping to the correct GO term?",
+    "Does 'recruits receptor to endocytic zone' represent a specific molecular function (e.g., cargo adapter activity)?"
+  ]
+}

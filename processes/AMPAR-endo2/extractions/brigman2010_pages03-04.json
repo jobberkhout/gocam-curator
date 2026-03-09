@@ -1,0 +1,111 @@
+{
+  "source": "brigman2010_pages03-04",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:30:27",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluN2B",
+      "gene_symbol": "Grin2b",
+      "mentioned_activities": [],
+      "context": "NMDAR subunit, neocortex, hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN2A",
+      "gene_symbol": "Grin2a",
+      "mentioned_activities": [],
+      "context": "NMDAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN1",
+      "gene_symbol": "Grin1",
+      "mentioned_activities": [],
+      "context": "NMDAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKIIα",
+      "gene_symbol": "Camk2a",
+      "mentioned_activities": [],
+      "context": "NMDAR binding partner",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKIIβ",
+      "gene_symbol": "Camk2b",
+      "mentioned_activities": [],
+      "context": "NMDAR binding partner",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "synaptic currents",
+        "LTP",
+        "LTD"
+      ],
+      "context": "CA1 pyramidal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "CaMKII",
+      "described_action": "binding partners",
+      "quote": "To perform a more complete analysis of protein levels of NMDAR subunits and their CaMKII isoform binding partners",
+      "figure": null,
+      "assay_described": "Western blot",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text refers to them as 'binding partners' without describing the specific molecular function or the nature of the interaction mechanism."
+    },
+    {
+      "source_entity": "NMDAR",
+      "target_entity": "eEPSC",
+      "described_action": "mediates synaptic currents",
+      "quote": "NMDAR-mediated evoked EPSC (eEPSC) amplitude and decay time constant were measured",
+      "figure": null,
+      "assay_described": "whole-cell patch-clamp electrophysiology",
+      "causal_type": "DIRECT",
+      "confidence_note": "NMDARs are ion channels that directly generate excitatory postsynaptic currents."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "neocortex",
+    "dorsal CA1",
+    "ventral CA1",
+    "CA3",
+    "dentate gyrus",
+    "striatum",
+    "olfactory bulbs",
+    "amygdalan nuclei",
+    "CA1 hippocampal pyramidal neurons",
+    "stratum radiatum"
+  ],
+  "gaps": [
+    "Only 'binding' mentioned for GluN2B and CaMKII isoforms; no specific enzymatic or mechanistic activity defined.",
+    "The text identifies GluN2B as an NMDAR subunit, but the stoichiometry or assembly mechanism is not detailed.",
+    "LTD induction involves tPDC, a glutamate transporter inhibitor, but the specific NMDAR-dependent signaling pathway downstream of this is not elucidated."
+  ],
+  "questions_for_expert": [
+    "Is there evidence in this study or cited literature that GluN2B directly regulates CaMKII activity beyond simple physical association?",
+    "Should the GluN2B-CaMKII association be modeled as a 'has_input' or 'interacts_with' edge in the absence of a defined molecular function?"
+  ]
+}

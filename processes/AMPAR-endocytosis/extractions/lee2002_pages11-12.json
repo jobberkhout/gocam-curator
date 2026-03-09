@@ -1,0 +1,125 @@
+{
+  "source": "lee2002_pages11-12",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:17:05",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "recruitment to AMPA receptors",
+        "assembly of the endocytic protein complex"
+      ],
+      "context": "postsynaptic membrane, hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "internalization",
+        "recycling to the postsynaptic membrane"
+      ],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "maintains synaptic strength",
+        "promoting delivery/recycling of GluR2-containing AMPA receptors to the postsynaptic membrane",
+        "incorporation of AMPA receptors into the synapse"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin (PP2B)",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [
+        "dephosphorylate proteins involved in endocytosis including AP2"
+      ],
+      "context": "NMDA receptor signaling pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP1",
+      "gene_symbol": "PPP1CA",
+      "mentioned_activities": [
+        "dephosphorylate proteins involved in endocytosis including AP2"
+      ],
+      "context": "NMDA receptor signaling pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "activation leads to recruitment of AP2 complex to AMPA receptors"
+      ],
+      "context": "synaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NMDA receptor",
+      "target_entity": "AP2",
+      "described_action": "NMDA receptor activation triggers a calcium signaling cascade that activates calcineurin and PP1, which leads to recruitment of AP2 to AMPA receptors",
+      "quote": "Thus, one possibility is that opening of NMDA receptors triggers a calcium signaling cascade that activates calcineurin and PP1, which in turn leads to dephosphorylation of AP2 and its recruitment to AMPA receptors.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The effect involves an intermediate calcium signaling cascade and multiple phosphatase steps."
+    },
+    {
+      "source_entity": "Calcineurin/PP1",
+      "target_entity": "AP2",
+      "described_action": "dephosphorylates AP2",
+      "quote": "These protein phosphatases have been shown to dephosphorylate proteins involved in endocytosis including AP2",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Text refers to established biochemical dephosphorylation."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluR2",
+      "described_action": "maintains synaptic strength by promoting delivery/recycling of GluR2-containing AMPA receptors",
+      "quote": "NSF maintains synaptic strength by promoting the delivery/recycling of GluR2-containing AMPA receptors to the postsynaptic membrane.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "NSF is described as required for receptor incorporation into the synapse; its removal leads to run-down."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic membrane",
+    "synapse"
+  ],
+  "gaps": [
+    "Only binding/association described for AP2 to GluR2; specific molecular mechanism of recruitment remains unknown.",
+    "The identity of the 'intermediary proteins' that might link AP2 to AMPA receptors during AMPA-induced endocytosis is unknown.",
+    "The precise mechanism of AMPA-induced internalization in neurons is not fully understood beyond that it is independent of the AP2-binding site on GluR2."
+  ],
+  "questions_for_expert": [
+    "Is the interaction between AP2 and GluR2 considered an enzymatic activity or a structural recruitment? The text only mentions 'association'.",
+    "Are there any identified proteins that serve as the 'intermediary' for AP2 recruitment during AMPA-induced endocytosis, or is this still purely hypothetical?",
+    "Does 'dephosphorylation of AP2' directly trigger recruitment, or is it a permissive step for assembly?"
+  ]
+}

@@ -1,0 +1,665 @@
+{
+  "source": "ampar_pdf_summary",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:18:36",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPA receptor core subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": "DLG4",
+      "mentioned_activities": [],
+      "context": "Postsynaptic density scaffold",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [],
+      "context": "AMPA receptor associated protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [],
+      "context": "AMPA receptor associated protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [],
+      "context": "AMPA receptor associated protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [],
+      "context": "AMPA receptor associated protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [],
+      "context": "Small GTPase",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [],
+      "context": "AMPA receptor associated protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Actin cytoskeleton",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Clathrin adaptor complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": "EPS15",
+      "mentioned_activities": [],
+      "context": "Endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [],
+      "context": "Endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [],
+      "context": "Endocytic regulator",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "SYNE1",
+      "mentioned_activities": [],
+      "context": "Endocytic regulator",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Endophilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "lateral mobility",
+        "endocytosis"
+      ],
+      "context": "synapse, plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": "DLG4",
+      "mentioned_activities": [
+        "maintaining the number of AMPARs at that synapse"
+      ],
+      "context": "postsynaptic density (PSD)",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP (Stargazin)",
+      "gene_symbol": "CACNG2",
+      "mentioned_activities": [
+        "regulates AMPAR trafficking",
+        "association with phospholipids"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CamKII",
+      "gene_symbol": "CAMK2A",
+      "mentioned_activities": [
+        "phosphorylation of TARP C-terminal domain"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP1",
+      "gene_symbol": "PPP1CA",
+      "mentioned_activities": [
+        "dephosphorylation of TARP C-terminal domain"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "recruit and concentrate cargo",
+        "clustering at PI(4,5)P2-rich regions"
+      ],
+      "context": "nascent clathrin-coated pits",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Hippocalcin",
+      "gene_symbol": "HPCA",
+      "mentioned_activities": [],
+      "context": "Ca2+ sensing",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "prevents PICK1 binding to GluA2"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [
+        "disrupts GluA2-GRIP"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [
+        "enhances AP2(alpha)-PICK1",
+        "enhances PICK1-dynamin"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "activates Arf6",
+        "increases PI(4,5)P2 concentration"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "binds C-terminal tail of GluA2",
+        "binds AP2",
+        "binds dynamin",
+        "senses membrane curvature"
+      ],
+      "context": "neuronal dendrites, endocytic pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "binds PICK1",
+        "binds BRAG2"
+      ],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "binds alpha-adaptin (subunit)",
+        "binds PI(4,5)P2",
+        "recruits cargo"
+      ],
+      "context": "clathrin-coated pit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [
+        "phosphatase activity"
+      ],
+      "context": "NMDAR-dependent signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "fission of endocytic vesicle",
+        "GTPase activity"
+      ],
+      "context": "CCP neck",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "GEF for Arf6"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "recruit lipid kinases"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": "EPS15",
+      "mentioned_activities": [
+        "binds ubiquitinated cargo"
+      ],
+      "context": "endocytic adaptor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": "NEDD4",
+      "mentioned_activities": [
+        "E3 ubiquitin ligase"
+      ],
+      "context": "cytosol",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [
+        "binds PICK1",
+        "induce/stabilize membrane curvature"
+      ],
+      "context": "F-BAR protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [
+        "binds endophilin"
+      ],
+      "context": "immediate early gene",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "SYNE1",
+      "mentioned_activities": [
+        "binds endophilin",
+        "binds actin"
+      ],
+      "context": "synaptic protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "binds directly to the actin-nucleating Arp2/3 complex",
+        "inhibits Arp2/3-mediated actin polymerization",
+        "recruit inactive Arp2/3 to the sites of endocytosis"
+      ],
+      "context": "neuronal endocytosis, LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin-nucleating",
+        "actin polymerization"
+      ],
+      "context": "neuronal endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": "ARF1",
+      "mentioned_activities": [
+        "associates with PICK1 in its GTP-bound state",
+        "blocks the interaction with Arp2/3"
+      ],
+      "context": "signaling pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GIT1",
+      "gene_symbol": "GIT1",
+      "mentioned_activities": [
+        "Arf GAP"
+      ],
+      "context": "regulates Arf1 GTP/GDP state",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "binds GRIP",
+        "binds PICK1",
+        "phosphorylation at Serine 880",
+        "phosphorylation at Tyr 876"
+      ],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [
+        "binds GluA2",
+        "scaffold protein"
+      ],
+      "context": "AMPAR trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [
+        "disrupts the GluA2-GRIP interaction",
+        "binds GluA2 and GRIP"
+      ],
+      "context": "ATP-dependent regulation of AMPAR endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "disassembles the AMPA receptor-PICK1 complex",
+        "molecular chaperone for the SNARE complex"
+      ],
+      "context": "ATP-dependent regulation of AMPAR endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "alpha-SNAP",
+      "gene_symbol": "NAPA",
+      "mentioned_activities": [
+        "stimulates GluA2-PICK1 dissociation by NSF"
+      ],
+      "context": "cofactor for NSF",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "beta-SNAP",
+      "gene_symbol": "NAPB",
+      "mentioned_activities": [
+        "inhibits GluA2-PICK1 dissociation by NSF"
+      ],
+      "context": "cofactor for NSF",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "inhibition of the Arp2/3 complex",
+        "regulates synaptic plasticity",
+        "controls dendritic spine size",
+        "implicated in organelle motility"
+      ],
+      "context": "Neuronal, synaptic, often associated with GluR2/3",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin polymerization"
+      ],
+      "context": "Cytoskeleton, actin dynamics",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc/Arg3.1",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [
+        "reduces AMPA receptor-mediated synaptic transmission",
+        "mediates homeostatic synaptic scaling"
+      ],
+      "context": "Immediate-early gene",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "SYNE1",
+      "mentioned_activities": [
+        "recruits endophilin B2 to the cytoskeleton",
+        "regulation of glutamate receptor internalization"
+      ],
+      "context": "Spine cytoskeleton",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [
+        "regulates AMPA receptor-dependent synaptic plasticity"
+      ],
+      "context": "AAA+ ATPase",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "clathrin-coated pit",
+    "postsynaptic density",
+    "synaptic membrane",
+    "plasma membrane",
+    "clathrin-coated pits",
+    "Postsynaptic Density",
+    "PI(4,5)P2 enriched membrane",
+    "synaptic sites",
+    "Endocytic zone",
+    "early endosomes",
+    "dendritic spine",
+    "synaptic vesicle"
+  ],
+  "gaps": [
+    "Only binding/association described for all entities — molecular functions (e.g. catalytic activities) are unknown.",
+    "The specific mechanistic role of Thorase in AMPAR regulation is not defined in the text beyond association.",
+    "The functional link between PICK1 and the Arp2/3 complex is suggested in the diagram but not explicitly described as a direct regulatory activity.",
+    "Only binding described for AP2 to GluA2/GluA3/Stargazin — molecular function unknown.",
+    "Mechanism of AP2-Hippocalcin complex formation and interaction with GluA2 is speculative.",
+    "Upstream signaling pathways defining specific phosphorylation patterns on Stargazin remain unclear.",
+    "Stage of endocytosis affected by TARP-AP2 disruption is unclear.",
+    "Only binding described for PICK1-GluA2, PICK1-AP2, PICK1-dynamin, and Arc-endophilin; molecular functions unknown.",
+    "Substrate for Calcineurin in the PICK1-AP2 regulation mechanism is unknown.",
+    "Precise temporal details of accessory protein recruitment to AMPAR-containing CCPs are not known.",
+    "Only binding described for PICK1/Arp2/3 — molecular function of PICK1 on Arp2/3 (other than inhibition) remains debated.",
+    "The kinase responsible for GluA2 S880 phosphorylation in hippocampal LTD is unknown.",
+    "The regulatory mechanism of Thorase association/activity by NMDAR is unknown.",
+    "Many references mention 'interactions' between proteins (e.g., PICK1 and GluR2/3, AP2 and GluR2) without defining the molecular function of those interactions. Molecular functions for these binding events are unknown.",
+    "The exact mechanism by which Thorase regulates AMPA receptor-dependent plasticity is not described in the snippet."
+  ],
+  "questions_for_expert": [
+    "What is the precise biochemical activity of Thorase (e.g., ATPase, chaperone) in the context of AMPAR trafficking?",
+    "Does PICK1 have a direct enzymatic role in actin remodeling, or is it merely a scaffold?",
+    "Is the association between BRAG2 and Arf6 a guanine nucleotide exchange activity? The diagram implies it, but can this be confirmed as direct?",
+    "Are the interactions shown in the figures intended to represent stable complexes or transient signaling events?",
+    "Does AP2 have a characterized molecular function other than 'binding' (e.g., conformational change induction) that can be modeled in GO-CAM?",
+    "Is 'recruitment' to the membrane considered a Molecular Function, or should it be modeled as a Biological Process?",
+    "For the interaction between NSF and PICK1, is this a direct physical inhibition of the binding site?",
+    "Does PICK1 perform a specific catalytic activity, or is it purely a structural scaffold/tether?",
+    "Is the Calcineurin-mediated increase in PICK1-AP2 binding a result of direct dephosphorylation of PICK1 or AP2?",
+    "Is there evidence for a catalytic role of PICK1 beyond BAR-domain mediated curvature sensing?",
+    "Does PICK1 have a catalytic activity, or is it purely a scaffolding/inhibitory protein regarding Arp2/3?",
+    "Should 'binding' events be modeled as purely RO relations or does the literature imply a 'recruitment' molecular function?",
+    "Is there mechanistic evidence that the myosin motor mentioned by Madasu et al. (2015) is directly linked to AMPAR cargo?",
+    "Are the binding interactions mentioned (e.g., PICK1-GluR2, AP2-GluR2) meant to be modeled as functional regulation or simply as part of a complex assembly?",
+    "Does 'recruitment' of endophilin B2 by CPG2 imply a specific enzymatic activity or a scaffolding/tethering activity?"
+  ]
+}

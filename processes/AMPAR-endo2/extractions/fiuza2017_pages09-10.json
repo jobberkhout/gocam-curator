@@ -1,0 +1,151 @@
+{
+  "source": "fiuza2017_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:44:14",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "interacts directly with the α-adaptin appendage domain of AP2",
+        "interacts with the dynamin GTPase domain",
+        "stimulate dynamin polymerization"
+      ],
+      "context": "Neurons, Hippocampal cultures",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Endocytic machinery, Clathrin-coated pits",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN/syndapin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "polymerization"
+      ],
+      "context": "Endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2-containing AMPARs",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "Plasma membrane, Endosomal compartments",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "activation"
+      ],
+      "context": "Synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "increases PICK1-AP2 binding",
+        "increases PICK1-dynamin binding"
+      ],
+      "context": "Signaling pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Transferrin receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NMDAR",
+      "target_entity": "PICK1–GluA2 interaction",
+      "described_action": "causes a rapid increase in binding",
+      "quote": "NMDAR activation causes a rapid increase in PICK1–GluA2 binding",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Signaling cascade step; mechanism between NMDAR and binding is not defined."
+    },
+    {
+      "source_entity": "Calcineurin",
+      "target_entity": "PICK1–AP2 binding",
+      "described_action": "increases binding",
+      "quote": "followed by a calcineurin-dependent increase in PICK1–AP2 binding",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Defined as calcineurin-dependent, suggesting enzymatic modification."
+    },
+    {
+      "source_entity": "PACSIN/syndapin",
+      "target_entity": "PICK1–dynamin binding",
+      "described_action": "required for increase in binding",
+      "quote": "depletion of PACSIN/syndapin blocked the NMDA-induced increase in PICK1–dynamin binding",
+      "figure": "Fig. S5 C",
+      "assay_described": "shRNA knockdown and molecular replacement",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "Knockdown blocks interaction, suggesting it is a prerequisite for the assembly of the complex."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Dynamin",
+      "described_action": "stimulate polymerization via direct interaction",
+      "quote": "can subsequently stimulate dynamin polymerization via direct interaction between the BAR domain and dynamin",
+      "figure": null,
+      "assay_described": "heterologous cells and in vitro experiments",
+      "causal_type": "DIRECT",
+      "confidence_note": "Stated as direct interaction and stimulation of activity."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic vesicle",
+    "endocytic sites",
+    "CCP neck",
+    "clathrin coat"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 and AP2 — molecular function unknown.",
+    "Only binding described for PICK1 and GluA2 — molecular function unknown.",
+    "Mechanism of calcineurin-dependent increase in binding is not explicitly detailed."
+  ],
+  "questions_for_expert": [
+    "Does 'stimulate dynamin polymerization' imply a specific enzyme activity (e.g., GTPase activator) or a physical scaffolding function?",
+    "Is the 'calcineurin-dependent increase in binding' a result of direct dephosphorylation of PICK1 or AP2?"
+  ]
+}

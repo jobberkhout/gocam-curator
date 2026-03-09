@@ -1,0 +1,174 @@
+{
+  "source": "sample.txt",
+  "source_type": "text",
+  "timestamp": "2026-03-05T11:54:55",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "CaMKII",
+      "gene_symbol": "CAMK2",
+      "mentioned_activities": [
+        "phosphorylates GluA1 at Ser831",
+        "enzymatic activity"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptors",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Kinase-dead CaMKII",
+      "gene_symbol": "CAMK2",
+      "mentioned_activities": [
+        "showed no phosphorylation"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "binds GluA2 via its PDZ domain"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PDZ domain",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "part of PICK1",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "ATPase activity",
+        "disassembles the GluA2-PICK1 complex"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2-PICK1 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Plasma membrane",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "CaMKII",
+      "target_entity": "GluA1",
+      "described_action": "phosphorylates GluA1 at Ser831",
+      "quote": "CaMKII phosphorylates GluA1 at Ser831",
+      "figure": "Fig. 3B",
+      "assay_described": "in vitro kinase assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Kinase-dead CaMKII showed no phosphorylation, confirming direct enzymatic activity."
+    },
+    {
+      "source_entity": "GluA1 (phosphorylated at Ser831)",
+      "target_entity": "AMPA receptors (single-channel conductance)",
+      "described_action": "increasing single-channel conductance of AMPA receptors",
+      "quote": "increasing single-channel conductance of AMPA receptors",
+      "figure": "Fig. 3B",
+      "assay_described": "electrophysiology implied by effect on conductance",
+      "causal_type": "DIRECT",
+      "confidence_note": "Phosphorylation is described as directly increasing the biophysical property (conductance) of the receptor."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "GluA2",
+      "described_action": "binds GluA2 via its PDZ domain",
+      "quote": "PICK1 binds GluA2 via its PDZ domain.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text explicitly states 'The functional consequence of this interaction is unclear from the current data.'"
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluA2-PICK1 complex",
+      "described_action": "disassembles the GluA2-PICK1 complex",
+      "quote": "NSF ATPase activity disassembles the GluA2-PICK1 complex",
+      "figure": "Fig. 5A",
+      "assay_described": "co-immunoprecipitation",
+      "causal_type": "DIRECT",
+      "confidence_note": "NSF's 'ATPase activity' is directly linked to the disassembly, implying a mechanistic role."
+    },
+    {
+      "source_entity": "GluA2-PICK1 complex disassembly",
+      "target_entity": "AMPA receptor recycling to the plasma membrane",
+      "described_action": "promoting AMPA receptor recycling to the plasma membrane",
+      "quote": "promoting AMPA receptor recycling to the plasma membrane",
+      "figure": "Fig. 5A",
+      "assay_described": "co-immunoprecipitation (likely used to infer outcome)",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The disassembly 'promotes' recycling, suggesting an enabling or facilitating role through intermediate steps rather than a direct mechanistic action by the disassembly event itself."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 and GluA2 — specific molecular function of PICK1 in this context is unknown as per text.",
+    "Functional consequence of PICK1-GluA2 interaction is explicitly stated as unclear."
+  ],
+  "questions_for_expert": [
+    "What is the functional consequence of PICK1 binding GluA2, if any?",
+    "What assay was used to demonstrate PICK1 binding to GluA2?",
+    "What assay was used to measure AMPA receptor recycling to the plasma membrane?",
+    "What are the precise intermediate steps or mechanisms by which the disassembly of the GluA2-PICK1 complex promotes AMPA receptor recycling?"
+  ]
+}

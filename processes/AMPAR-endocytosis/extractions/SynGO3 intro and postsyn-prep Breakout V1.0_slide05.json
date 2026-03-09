@@ -1,0 +1,103 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide05",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:21:38",
+  "visual_description": "A schematic diagram showing two pathways of AMPA receptor (GluA1) endocytosis: 'Basal Endocytosis' leading to receptor recycling, and 'Ubiquitin-dependent Endocytosis' leading to receptor degradation. The diagram depicts interactions between GluA1, AP2 complex (subunits μ2, σ2, α), Clathrin, Eps15, and the E3 ubiquitin ligase Nedd4.",
+  "entities": [
+    {
+      "name": "GluA1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "μ2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "σ2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "α",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "β2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Plasma membrane"
+  ],
+  "gaps": [
+    "The diagram implies a recruitment order for Nedd4 and Eps15, but the mechanism of recruitment is not explicitly defined in the schematic.",
+    "The text description mentions many proteins (PICK1, GRIP, NSF, etc.) that are NOT represented in the slide diagram, creating a discrepancy between the provided text scrape and the visual content."
+  ],
+  "questions_for_expert": [
+    "Does the interaction between GluA1 and AP2 μ2 subunit in the basal pathway occur directly, or is it mediated by an adapter not shown in the diagram?",
+    "Is Nedd4 recruited to the GluA1 tail via a specific phosphosite, or does it recognize the tail constitutively?",
+    "Does the slide imply that GluA1 is ubiquitinated at site S868, or is the ubiquitin tag located elsewhere on the GluA1 intracellular domain?"
+  ]
+}

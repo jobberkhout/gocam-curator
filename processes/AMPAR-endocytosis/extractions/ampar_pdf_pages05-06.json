@@ -1,0 +1,207 @@
+{
+  "source": "ampar_pdf_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:18:26",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "binds C-terminal tail of GluA2",
+        "binds AP2",
+        "binds dynamin",
+        "senses membrane curvature"
+      ],
+      "context": "neuronal dendrites, endocytic pathway",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "binds PICK1",
+        "binds BRAG2"
+      ],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "binds alpha-adaptin (subunit)",
+        "binds PI(4,5)P2",
+        "recruits cargo"
+      ],
+      "context": "clathrin-coated pit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [
+        "phosphatase activity"
+      ],
+      "context": "NMDAR-dependent signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "fission of endocytic vesicle",
+        "GTPase activity"
+      ],
+      "context": "CCP neck",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "GEF for Arf6"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "recruit lipid kinases"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": "EPS15",
+      "mentioned_activities": [
+        "binds ubiquitinated cargo"
+      ],
+      "context": "endocytic adaptor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": "NEDD4",
+      "mentioned_activities": [
+        "E3 ubiquitin ligase"
+      ],
+      "context": "cytosol",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [
+        "binds PICK1",
+        "induce/stabilize membrane curvature"
+      ],
+      "context": "F-BAR protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [
+        "binds endophilin"
+      ],
+      "context": "immediate early gene",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "SYNE1",
+      "mentioned_activities": [
+        "binds endophilin",
+        "binds actin"
+      ],
+      "context": "synaptic protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "GluA2",
+      "described_action": "PICK1 PDZ domain binds GluA2 C-tail; promotes internalization",
+      "quote": "The PICK1 PDZ domain binds the C-terminal tail of AMPAR subunit GluA2",
+      "figure": "1B",
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text describes binding interaction, not specific molecular function."
+    },
+    {
+      "source_entity": "Calcineurin",
+      "target_entity": "PICK1-AP2 complex",
+      "described_action": "Calcineurin activation increases PICK1-AP2 binding",
+      "quote": "the NMDAR-dependent increase in AP2-PICK1 binding requires activation of the Ca2+-dependent phosphatase Calcineurin",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Text explicitly states the substrate for Calcineurin is unknown, implying an indirect mechanism."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "GEF activity for Arf6",
+      "quote": "BRAG2-GEF 2... a GEF for Arf6, binds directly to GluA2",
+      "figure": "1B",
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "GEF (Guanine nucleotide exchange factor) activity is a well-defined mechanistic function."
+    },
+    {
+      "source_entity": "Nedd4",
+      "target_entity": "GluA1",
+      "described_action": "Ubiquitination of GluA1 C-terminal domain",
+      "quote": "ubiquitination of the GluA1 C-terminal domain by the E3 ligase Nedd4",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "E3 ligase activity is a specific catalytic mechanism."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "clathrin-coated pit",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Only binding described for PICK1-GluA2, PICK1-AP2, PICK1-dynamin, and Arc-endophilin; molecular functions unknown.",
+    "Substrate for Calcineurin in the PICK1-AP2 regulation mechanism is unknown.",
+    "Precise temporal details of accessory protein recruitment to AMPAR-containing CCPs are not known."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 perform a specific catalytic activity, or is it purely a structural scaffold/tether?",
+    "Is the Calcineurin-mediated increase in PICK1-AP2 binding a result of direct dephosphorylation of PICK1 or AP2?",
+    "Is there evidence for a catalytic role of PICK1 beyond BAR-domain mediated curvature sensing?"
+  ]
+}

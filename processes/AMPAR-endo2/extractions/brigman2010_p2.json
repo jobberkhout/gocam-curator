@@ -1,0 +1,24 @@
+{
+  "source": "brigman2010_p2",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T17:00:45",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Extrasynaptic membrane (inferred via tPDC glutamate spillover effect)",
+    "Apical dendrites (CA1)"
+  ],
+  "gaps": [
+    "Mechanism of reduced GluN1 protein upon GluN2B deletion (likely increased degradation of non-synaptic pool).",
+    "Whether the increased spine length (trend) is a compensatory response or a direct consequence of GluN2B absence.",
+    "Interaction between GluN2B and actin cytoskeleton proteins regulating spine maintenance."
+  ],
+  "questions_for_expert": [
+    "Does the loss of GluN1 in the mutants reflect a failure in trafficking to the membrane, or purely post-translational degradation of the unassembled pool?",
+    "Given that tPDC application alone induces LTD in controls but not mutants, can we define the 'Molecular Function' of GluN2B in responding to extrasynaptic glutamate?",
+    "Is the 'tonic synaptic depression' observed in GluN2B-deficient neurons a result of altered calcium influx kinetics or a loss of signaling scaffolds?"
+  ]
+}

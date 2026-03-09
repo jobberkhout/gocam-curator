@@ -1,0 +1,24 @@
+{
+  "source": "dierig2019_p2",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T17:00:56",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Recycling endosomes",
+    "Peri-synaptic region",
+    "Post-synaptic density (PSD) slots"
+  ],
+  "gaps": [
+    "Function of specific phosphatase isoforms (e.g., PP1/PP2A vs Calcineurin) in dephosphorylating T840 and S845 sites in different neuronal populations",
+    "Specific mechanical trigger for the transition of endocytic zones to clathrin-coated pits"
+  ],
+  "questions_for_expert": [
+    "Does the interaction between 4.1N and GluA1 constitute a 'scaffold-based' regulation of exocytosis or does it provide a direct enzymatic activation?",
+    "Is the role of AKAP5 in scaling-up entirely dependent on PKA localization, or does it also modulate PKA's intrinsic activity towards GluA1-S845?",
+    "Is the recruitment of USP8 to AMPARs constitutive or induced by specific synaptic activity patterns (e.g., LTD vs LTP)?"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "source": "scholz2010_pages11-12",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T16:59:23",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "interacts with BRAG2",
+        "binds AP2",
+        "activates Arf6"
+      ],
+      "context": "postsynaptic density, hippocampus CA1 neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "Iqsec1",
+      "mentioned_activities": [
+        "Arf6 activation",
+        "guanine nucleotide exchange factor activity"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "Arf6",
+      "mentioned_activities": [
+        "triggers increase in PtdIns(4,5)P2",
+        "interacts with AP2"
+      ],
+      "context": "synaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "recruitment to plasma membrane",
+        "binds GluA2",
+        "binds GTP-bound Arf6"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "Gria1",
+      "mentioned_activities": [],
+      "context": "homomeric receptors in CA1 neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA2",
+      "target_entity": "BRAG2",
+      "described_action": "Cargo-mediated stimulation of selected Sec7-domain-containing exchange factors",
+      "quote": "The direct cooperation between cargo and Arf6-GEF, which we identiﬁed here, ensures tight spatial and temporal control over Arf6-mediated coat recruitment.",
+      "figure": null,
+      "assay_described": "Nucleotide exchange assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "The text describes this as a direct cooperation and catalytic stimulation."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "Arf6 activation",
+      "quote": "Our data identify BRAG2-mediated Arf6 activation as a critical step in DHPG-induced AMPAR endocytosis",
+      "figure": null,
+      "assay_described": "Arf6GTP-specific pull-down assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "GEF activity on ARFs is a canonical direct enzymatic reaction."
+    },
+    {
+      "source_entity": "Arf6",
+      "target_entity": "PtdIns(4,5)P2",
+      "described_action": "triggering a local increase in PtdIns(4,5)P2",
+      "quote": "It does so by triggering a local increase in phosphatidylinositol (4,5)-bisphosphate [PtdIns(4,5)P2]",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Describes Arf6-mediated activation of a kinase (PIP5K) resulting in increased PI(4,5)P2."
+    },
+    {
+      "source_entity": "AP2",
+      "target_entity": "GluA2",
+      "described_action": "direct binding",
+      "quote": "AP2 can directly bind to GluA2-CT",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text describes a binding interaction; molecular function of the interaction beyond recruitment is not specified."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "plasma membrane",
+    "synaptic membrane"
+  ],
+  "gaps": [
+    "Only binding is described for AP2 to GluA2-CT; molecular function of this interaction is unknown.",
+    "The specific mechanism by which Arf6-GTP endows nascent coats with protein composition is not detailed."
+  ],
+  "questions_for_expert": [
+    "Does the 'direct cooperation' between GluA2 and BRAG2 imply physical binding, or an allosteric activation mechanism?",
+    "Is the role of Arf6 in actin remodeling considered a parallel process to AP2-mediated endocytosis, or a requirement for it?"
+  ]
+}

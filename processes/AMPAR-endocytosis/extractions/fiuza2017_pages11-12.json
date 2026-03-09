@@ -1,0 +1,163 @@
+{
+  "source": "fiuza2017_pages11-12",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:20:01",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "inhibits the interaction with AP2",
+        "binds GluA2",
+        "binds dynamin",
+        "binds AP2",
+        "binds Arp2/3 complex",
+        "inhibits Arp2/3 complex",
+        "promotes dynamin polymerization"
+      ],
+      "context": "Synaptic endocytosis, AMPAR trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Endocytic adaptor complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "polymerization"
+      ],
+      "context": "Endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN/syndapin",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [
+        "binds dynamin"
+      ],
+      "context": "BAR and SH3 domain-containing protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [],
+      "context": "Multi-PDZ domain protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin polymerization"
+      ],
+      "context": "Actin cytoskeleton regulation",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Protein phosphatase",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "GluA2",
+      "described_action": "binds",
+      "quote": "We show that PICK1–GluA2 binding is enhanced markedly earlier than interactions between PICK1 and the endocytic machinery.",
+      "figure": null,
+      "assay_described": "biochemical approach",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text only describes binding interaction."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AP2",
+      "described_action": "binds",
+      "quote": "PICK1–AP2 binding is unaffected by PAC​SIN/syndapin",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text only describes binding interaction."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Dynamin",
+      "described_action": "binds",
+      "quote": "We show that PICK1 binds dynamin directly",
+      "figure": null,
+      "assay_described": "direct binding assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Text explicitly states direct binding."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Arp2/3 complex",
+      "described_action": "inhibits",
+      "quote": "PICK1 binds and inhibits the Arp2/3 complex",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Text describes an inhibitory function on the complex."
+    },
+    {
+      "source_entity": "Calcineurin",
+      "target_entity": "PICK1–AP2 / PICK1–dynamin complexes",
+      "described_action": "required for increase",
+      "quote": "Our results indicate that the NMDA-dependent increases in both the PICK1–AP2 and PICK1–dynamin complexes require calcineurin activity.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Mechanism is unknown (could be scaffolding or direct dephosphorylation)."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "endosomal compartments",
+    "plasma membrane",
+    "synaptic spines"
+  ],
+  "gaps": [
+    "Only binding described for PICK1-GluA2, PICK1-AP2, and PICK1-GRIP — molecular function unknown.",
+    "The specific mechanism by which calcineurin regulates PICK1-AP2/dynamin interactions is unknown (scaffold vs substrate).",
+    "The exact role of PACSIN in PICK1-dynamin interaction is unclear."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have a catalytic activity, or is it purely a mechanical adaptor/scaffold?",
+    "Is the inhibition of Arp2/3 by PICK1 stoichiometric or catalytic?",
+    "Should 'binding' of PICK1 to cargo be modeled as a molecular function, or purely as a 'has_input' relation to a recruitment process?"
+  ]
+}

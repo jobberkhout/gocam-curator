@@ -1,0 +1,129 @@
+{
+  "source": "fiuza2017_pages01-02",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:43:37",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "stimulates dynamin polymerization"
+      ],
+      "context": "neuronal dendrites, endocytic zones",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "clusters at PI(4,5)P2-rich domains",
+        "binds cargo proteins",
+        "binds clathrin"
+      ],
+      "context": "plasma membrane, endocytic zones",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "polymerizes around the neck of the CCP",
+        "mediates scission of the endocytic vesicle via GTP hydrolysis"
+      ],
+      "context": "neck of the clathrin-coated pit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "AMPA receptor subunit"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "clathrin-coated pit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Homer",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "alpha-adaptin",
+      "gene_symbol": "AP2A1",
+      "mentioned_activities": [],
+      "context": "part of AP2 complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AP2",
+      "described_action": "direct interaction",
+      "quote": "PICK1 makes direct, NMDAR-dependent interactions with the core endocytic proteins AP2 and dynamin.",
+      "figure": "Fig. 2B",
+      "assay_described": "co-immunoprecipitation",
+      "causal_type": "DIRECT",
+      "confidence_note": "Text explicitly states interaction is direct."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "dynamin",
+      "described_action": "stimulates polymerization",
+      "quote": "We further show that PICK1 stimulates dynamin polymerization by directly binding to dynamin’s GTPase domain.",
+      "figure": "Fig. 4E",
+      "assay_described": "in vitro sedimentation assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "The interaction with the GTPase domain is stated as direct, leading to stimulation of polymerization."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "GluA2",
+      "described_action": "interaction",
+      "quote": "PICK1 is a PDZ and BAR domain–containing protein that interacts with the AMPAR subunit GluA2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text describes interaction but does not clarify the mechanism of this interaction relative to CME."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "endocytic zone",
+    "postsynaptic density",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 and GluA2 — molecular function unknown.",
+    "The downstream signaling pathway between NMDAR activation and the increase in PICK1-AP2/PICK1-dynamin interactions is not detailed."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have a catalytic function, or is it purely a scaffold/adaptor protein that recruits other factors?",
+    "Is the 'stimulation of dynamin polymerization' a result of direct conformational change or simply recruitment to the membrane neck?"
+  ]
+}

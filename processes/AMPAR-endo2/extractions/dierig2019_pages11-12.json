@@ -1,0 +1,149 @@
+{
+  "source": "dierig2019_pages11-12",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:41:45",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "phosphorylation at S845",
+        "dephosphorylation at S845"
+      ],
+      "context": "Hippocampal CA1 neurons, synaptic recruitment",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "phosphorylation at S880",
+        "tyrosine phosphorylation at Y876",
+        "dephosphorylation at Y876",
+        "ubiquitination at K870 and K882"
+      ],
+      "context": "Cerebellar and hippocampal LTD, PSD anchorage",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP1/2",
+      "gene_symbol": "GRIP1/GRIP2",
+      "mentioned_activities": [
+        "anchoring receptors in the PSD"
+      ],
+      "context": "Interacts with GluA2/3 C-terminal tail",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "promote invagination of the plasma membrane",
+        "direct GluA2 to regions of invagination"
+      ],
+      "context": "Postsynaptic density, endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "guanine nucleotide exchange factor activity"
+      ],
+      "context": "Hippocampal mGluR-LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "driving GluA2 endocytosis"
+      ],
+      "context": "Downstream of BRAG2",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Src family kinases",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "tyrosine phosphorylation of GluA2 Y876"
+      ],
+      "context": "Synaptic signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PTPMEG",
+      "gene_symbol": "PTPN4",
+      "mentioned_activities": [
+        "dephosphorylation of GluA2 Y876"
+      ],
+      "context": "Cerebellar Purkinje neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA2 S880 phosphorylation",
+      "target_entity": "GRIP1/2",
+      "described_action": "prevents GRIP1/2 binding to GluA2",
+      "quote": "Phosphorylation of GluA2 S880 prevents GRIP1/2 binding and promotes the interaction of the GluA2 PDZ ligand with PICK1",
+      "figure": "Figure 1",
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct mechanistic inhibition of interaction via phosphorylation."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "activates Arf6",
+      "quote": "stimulates BRAG2 GEF activity, leading to activation of Arf6",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "GEF activity is a direct enzymatic activation mechanism."
+    },
+    {
+      "source_entity": "PTPMEG",
+      "target_entity": "GluA2 Y876",
+      "described_action": "dephosphorylates GluA2 Y876",
+      "quote": "Dephosphorylation of GluA2 Y876 by tyrosine phosphatase PTPMEG was necessary for S880 phosphorylation",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct enzymatic removal of phosphate group."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "cell-surface",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Only binding described for BRAG2 and GluA2 Y-rich region — molecular function of BRAG2 interaction is unknown beyond GEF activity.",
+    "Target site of ubiquitination for GluA3 not identified.",
+    "Role of AMPAR ubiquitination in LTD remains undetermined."
+  ],
+  "questions_for_expert": [
+    "Is 'anchoring' a molecular function, or is it a process (localization) resulting from an interaction?",
+    "Should BRAG2's role be modeled as 'GEF activity' with Arf6 as the input?"
+  ]
+}

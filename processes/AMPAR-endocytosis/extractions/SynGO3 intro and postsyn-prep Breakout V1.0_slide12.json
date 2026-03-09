@@ -1,0 +1,149 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide12",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:23:56",
+  "visual_description": "A pathway diagram showing the assembly and trafficking of AMPA receptors with various auxiliary subunits (TARPs, CNIHs, Shisas, etc.) from the ER/Golgi through the dendrite to the postsynaptic membrane.",
+  "entities": [
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP (gamma2, gamma8)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CNIH (CNIH-2, CNIH-3)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CKAMP/Shisa (Shisa6, Shisa7, Shisa9)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GSG1L",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "FRRS1L",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPT1c",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Prrt1/SynDIG4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Noelin1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Glutamate",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ER",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Golgi",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Microtubules",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Postsynapse",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "ER",
+    "Golgi",
+    "Dendrite",
+    "Postsynapse",
+    "Presynapse"
+  ],
+  "gaps": [],
+  "questions_for_expert": [
+    "Does the 'associates with' relationship in this diagram imply a stable complex formation that should be modeled as 'part_of' or 'has_part' in the GO-CAM, or is it a transient interaction?",
+    "Should 'trafficking' and 'lateral diffusion' be modeled as distinct biological processes or as modifiers of the 'protein transport' process?",
+    "Is there a distinction intended between the different Shisa/CNIH isoforms in terms of their specific trafficking roles, or are they functionally redundant in this model?"
+  ]
+}

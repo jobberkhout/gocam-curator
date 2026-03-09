@@ -1,0 +1,198 @@
+{
+  "source": "dierig2019_pages25-26",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:42:56",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "BRAG2",
+      "gene_symbol": "BRAG2",
+      "mentioned_activities": [],
+      "context": "AMPA receptor signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [],
+      "context": "AMPA receptor signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4-1",
+      "gene_symbol": "NEDD4",
+      "mentioned_activities": [
+        "activity-dependent regulation of synaptic strength"
+      ],
+      "context": "synaptic strength control",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "USP8",
+      "gene_symbol": "USP8",
+      "mentioned_activities": [
+        "activity-dependent regulation of synaptic strength"
+      ],
+      "context": "synaptic strength control",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "phosphorylation",
+        "S-nitrosylation",
+        "ubiquitination"
+      ],
+      "context": "hippocampus, synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "sorting",
+        "recycling",
+        "ubiquitination",
+        "O-GlcNAcylation"
+      ],
+      "context": "synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NP1",
+      "gene_symbol": "NPTX1",
+      "mentioned_activities": [],
+      "context": "GluR4 synaptic recruitment",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Inhibitor-2",
+      "gene_symbol": "PPP1R2",
+      "mentioned_activities": [
+        "regulation of protein phosphatase-1"
+      ],
+      "context": "synaptic scaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Protein phosphatase-1",
+      "gene_symbol": "PPP1CA",
+      "mentioned_activities": [
+        "synaptic scaling"
+      ],
+      "context": "synaptic scaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [],
+      "context": "cerebellar long-term depression",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NEEP21",
+      "gene_symbol": "NSG1",
+      "mentioned_activities": [
+        "regulate sorting and recycling of GluR2"
+      ],
+      "context": "GluR2 trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP1",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [
+        "regulate sorting and recycling of GluR2"
+      ],
+      "context": "GluR2 trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARP gamma-7",
+      "gene_symbol": "CACNG7",
+      "mentioned_activities": [
+        "enhances synaptic expression of calcium-permeable AMPARs"
+      ],
+      "context": "synaptic expression",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "Inhibitor-2",
+      "target_entity": "Protein phosphatase-1",
+      "described_action": "regulation of protein phosphatase-1",
+      "quote": "An essential role for inhibitor-2 regulation of protein phosphatase-1 in synaptic scaling.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text mentions 'regulation' but provides no mechanistic detail on how this occurs."
+    },
+    {
+      "source_entity": "NEEP21",
+      "target_entity": "GluR2",
+      "described_action": "regulate sorting and recycling",
+      "quote": "Interactions between NEEP21, GRIP1 and GluR2 regulate sorting and recycling of the glutamate receptor subunit GluR2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Interactions are cited, but specific molecular mechanism of regulation is not specified in the snippet."
+    },
+    {
+      "source_entity": "TARP gamma-7",
+      "target_entity": "calcium-permeable AMPARs",
+      "described_action": "selectively enhances synaptic expression",
+      "quote": "TARP gamma-7 selectively enhances synaptic expression of calcium-permeable AMPARs.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "The term 'enhances' is vague regarding whether it is direct trafficking or structural stabilization."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic vesicle",
+    "hippocampus",
+    "cerebellum"
+  ],
+  "gaps": [
+    "Only binding/interaction described for NEEP21 and GRIP1 with GluR2 — molecular function unknown.",
+    "Mechanism of Nedd4-1 and USP8 regulation of synaptic strength is not described.",
+    "The specific action of Inhibitor-2 on Protein phosphatase-1 is not defined.",
+    "Binding of NP1 to GluR4 is described, but recruitment mechanism is unknown."
+  ],
+  "questions_for_expert": [
+    "For interactions described as 'regulatory' in these abstracts, are there established catalytic or transport functions for these proteins, or are they functioning as scaffolds?",
+    "Does 'enhancement of synaptic expression' by TARPs imply a direct role in vesicle trafficking or a stabilization role at the plasma membrane?"
+  ]
+}

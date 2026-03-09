@@ -1,0 +1,110 @@
+{
+  "source": "lee2002_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:16:25",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "internalization",
+        "surface expression"
+      ],
+      "context": "hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "ATPase activity"
+      ],
+      "context": "synaptic transmission",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "endocytosis"
+      ],
+      "context": "clathrin-mediated trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "receptor stimulation"
+      ],
+      "context": "synaptic signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "receptor stimulation"
+      ],
+      "context": "synaptic signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluR2",
+      "target_entity": "AP2",
+      "described_action": "AP2 required for NMDA-induced internalization of GluR2",
+      "quote": "the data suggest that an interaction with AP2 (but not NSF) is required for the internalization of GluR2 induced by NMDA receptor activation.",
+      "figure": "Figure 5",
+      "assay_described": "fluorescence-based antibody feeding assay",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The interaction is required for the process of internalization, but the mechanism of recruitment is not defined beyond the requirement for the physical interaction."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluR2",
+      "described_action": "NSF binding influences basal synaptic transmission",
+      "quote": "blocking the NSF interaction leads to EPSC run-down but does not abolish subsequent LTD.",
+      "figure": "Figure 7",
+      "assay_described": "electrophysiological recording of EPSCs",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "Blocking NSF causes EPSC run-down, suggesting it maintains synaptic integrity/surface expression levels."
+    },
+    {
+      "source_entity": "AP2",
+      "target_entity": "GluR2",
+      "described_action": "AP2 interaction is required for LTD",
+      "quote": "blocking the GluR2-AP2 interaction results in loss of LTD but no run-down",
+      "figure": "Figure 7",
+      "assay_described": "LFS-induced LTD recording",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Blocking the interaction prevents the physiological outcome (LTD) without affecting basal receptor stability, implying a regulatory role in activity-dependent trafficking."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic membrane"
+  ],
+  "gaps": [
+    "Only binding described for GluR2-NSF and GluR2-AP2 — molecular function of these complexes in the trafficking pathway is unknown.",
+    "The biochemical activity of the GluR2 cytoplasmic tail in recruiting AP2 is unknown beyond the physical interaction."
+  ],
+  "questions_for_expert": [
+    "Is the GluR2-AP2 interaction considered a direct recruitment of the endocytic machinery, or are there adaptor proteins involved?",
+    "Does the 'run-down' caused by NSF inhibition represent loss of surface GluR2, or is it an effect on channel conductance?",
+    "How does NMDA receptor activation trigger the AP2-dependent internalization specifically?"
+  ]
+}

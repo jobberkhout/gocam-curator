@@ -1,0 +1,125 @@
+{
+  "source": "scholz2010_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:12:11",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "Arf6 activation",
+        "catalytic activity"
+      ],
+      "context": "hippocampal CA1 neurons, postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "GTPase activity (implied by GEF-mediated activation)"
+      ],
+      "context": "synaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR (GluA2)",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "ligand binding",
+        "endocytosis (trafficking)"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "induces LTD"
+      ],
+      "context": "hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "induces LTD"
+      ],
+      "context": "hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "BRAG2 mediates Arf6 activation",
+      "quote": "increased BRAG2-dependent Arf6 activation",
+      "figure": "Figure 4A, 4B",
+      "assay_described": "HEK293 cell expression assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "GEF-to-GTPase activation is a standard biochemical catalytic mechanism."
+    },
+    {
+      "source_entity": "AMPAR (GluA2)",
+      "target_entity": "BRAG2",
+      "described_action": "Ligand binding to AMPAR triggers BRAG2 catalytic activity",
+      "quote": "The binding of the tyrosine-rich sequence motif of AMPARs to the Sec7-PH module of BRAG2 resulted in a strong augmentation of the catalytic activity of BRAG2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The text describes an allosteric/conformational change resulting in enzymatic activation."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "AMPAR internalization",
+      "described_action": "BRAG2 activation triggers AMPAR internalization",
+      "quote": "Arf6 activation, which in turn triggers AMPAR internalization for persistent synaptic depression.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Arf6 activation leads to endocytosis through multiple downstream intermediate steps."
+    },
+    {
+      "source_entity": "GluA2 Y876 phosphorylation",
+      "target_entity": "BRAG2",
+      "described_action": "Phosphorylation of Y876 in GluA2 interferes with signal transduction to BRAG2",
+      "quote": "our data reveal that phosphorylation of this tyrosine residue interferes with the signal transduction from GluA2 to BRAG2.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Post-translational modification directly modulates the protein-protein interface/regulatory mechanism."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic membrane",
+    "hippocampus",
+    "CA1 neurons"
+  ],
+  "gaps": [
+    "The exact mechanism of how glutamate binding at the extracellular site of AMPAR translates into conformational changes at the C-terminal tail to activate BRAG2 remains unknown.",
+    "Only 'binding' of AMPARs to BRAG2 is mentioned; the physical nature of this interaction (scaffolding vs transient) requires more functional characterization.",
+    "The specific activation mechanism of BRAG2 during NMDAR-LTD (independent of tyrosine phosphatase) remains unresolved.",
+    "Binding-only descriptions: Text states 'BRAG2 binds and affects primarily synaptic AMPARs' - explicit MF is not defined beyond the GEF activity."
+  ],
+  "questions_for_expert": [
+    "Is the 'binding' between GluA2 and BRAG2 strictly a regulatory interaction, or does it serve a structural scaffolding purpose for the receptor?",
+    "How does NMDAR-LTD bypass the requirement for tyrosine phosphatase activation of the GluA2-BRAG2 complex?",
+    "Are there identified substrates of Arf6 in the postsynaptic density that directly facilitate the endocytic machinery, or is this interaction largely through unknown intermediaries?"
+  ]
+}

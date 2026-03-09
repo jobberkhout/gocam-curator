@@ -1,0 +1,175 @@
+{
+  "source": "ampar_pdf_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:29:40",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "binds directly to the actin-nucleating Arp2/3 complex",
+        "inhibits Arp2/3-mediated actin polymerization"
+      ],
+      "context": "neuronal endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin-nucleating",
+        "actin polymerization"
+      ],
+      "context": "neuronal endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": "ARF1",
+      "mentioned_activities": [
+        "associates with PICK1 in its GTP-bound state",
+        "blocks the interaction with Arp2/3"
+      ],
+      "context": "signaling mechanism regulating PICK1-Arp2/3 interaction",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GIT1",
+      "gene_symbol": "GIT1",
+      "mentioned_activities": [
+        "Arf GAP"
+      ],
+      "context": "NMDAR-dependent signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "binds GRIP",
+        "binds PICK1",
+        "binds Thorase",
+        "binds NSF"
+      ],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "scaffold protein"
+      ],
+      "context": "AMPAR trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [
+        "ATPase activity",
+        "disrupts the GluA2-GRIP interaction"
+      ],
+      "context": "AMPAR endocytosis and LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "ATPase activity",
+        "dissociates PICK1 from GluA2"
+      ],
+      "context": "AMPAR endocytosis and LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "alpha-SNAP",
+      "gene_symbol": "SNAPA",
+      "mentioned_activities": [
+        "stimulates GluA2-PICK1 dissociation by NSF"
+      ],
+      "context": "modulator of NSF activity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "beta-SNAP",
+      "gene_symbol": "SNAPB",
+      "mentioned_activities": [
+        "inhibits GluA2-PICK1 dissociation by NSF"
+      ],
+      "context": "modulator of NSF activity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "Arf1",
+      "target_entity": "PICK1",
+      "described_action": "associates with PICK1 in its GTP-bound state",
+      "quote": "The signaling mechanism that mediates this NMDAR-dependent increase in binding involves the small GTPase Arf1, which associates with PICK1 in its GTP-bound state and blocks the interaction with Arp2/3 (Rocca et al., 2013).",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Text explicitly describes the physical association and functional blocking."
+    },
+    {
+      "source_entity": "Thorase",
+      "target_entity": "GluA2-GRIP complex",
+      "described_action": "disrupts the GluA2-GRIP interaction",
+      "quote": "Thorase binds both GluA2 and GRIP in an ATP-dependent manner, and its ATPase activity disrupts the GluA2-GRIP interaction to facilitate AMPAR endocytosis.",
+      "figure": null,
+      "assay_described": "ATP-dependent mechanism",
+      "causal_type": "DIRECT",
+      "confidence_note": "Describes enzymatic/mechanistic action of the ATPase on a complex."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluA2-PICK1 complex",
+      "described_action": "dissociates PICK1 from GluA2",
+      "quote": "The ATPase NSF, well-characterized as a molecular chaperone for the SNARE complex, dissociates PICK1 from GluA2 in an ATP-dependent manner to limit AMPAR internalization (Hanley et al., 2002).",
+      "figure": null,
+      "assay_described": "ATPase activity",
+      "causal_type": "DIRECT",
+      "confidence_note": "Describes the enzymatic mechanism of complex dissociation."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "plasma membrane",
+    "synaptic membrane"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 and Arp2/3 — molecular function of PICK1 beyond inhibition is unknown.",
+    "Molecular mechanisms of S880 phosphorylation are described (NMDAR activation), but the specific kinase for hippocampal LTD is unknown.",
+    "The regulation of Thorase by NMDAR activity is hypothesized but not identified.",
+    "The mechanism of vesicle motility via an undefined myosin motor protein is mentioned as an alternative report (Madasu et al., 2015)."
+  ],
+  "questions_for_expert": [
+    "Is 'inhibition of actin polymerization' a sufficient description for a Molecular Function, or should we describe the specific interaction with Arp2/3?",
+    "How should we model the 'switch' between GluA2-GRIP and GluA2-PICK1 in a GO-CAM, given they are mutually exclusive?",
+    "Should Thorase be annotated with ATPase activity, given it disrupts a protein complex?"
+  ]
+}

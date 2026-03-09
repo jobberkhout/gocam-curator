@@ -1,0 +1,199 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide10",
+  "source_type": "slide",
+  "timestamp": "2026-03-07T12:27:19",
+  "extraction_pass": 1,
+  "visual_description": "Two diagrams depicting the regulation of actin remodeling in dendritic spines. Image 1 shows the localization of actin-regulatory proteins (e.g., Profilin, Drebrin, Cofilin, Arp2/3) and myosin motors within a dendritic spine and its post-synaptic density (PSD). Image 2 illustrates a complex signaling pathway connecting surface receptors (EphA, EphB, N-Cadherin, NMDAR) to downstream GTPases (Rho, Rac, Cdc42) that regulate actin remodeling and spine morphogenesis, involving various kinases and GEFs (e.g., Cdk5, CaMKII, Kal7, Tiam1, DOCK180).",
+  "entities": [
+    {
+      "name": "Profilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Drebrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cofilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Actin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Myosin Vb",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Myosin IIb",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EphA RTK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EphB RTK",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "N-Cadherin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cdk5",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Rho-GTP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Rac-GTP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cdc42-GTP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Tiam1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Kal7",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DOCK180",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Dendritic Spine",
+    "Spine Head",
+    "Spine Neck",
+    "Post-synaptic Density (PSD)",
+    "Axon Terminal"
+  ],
+  "gaps": [
+    "Mechanism of action for DOCK10 and RasGRF2 is implied as upstream but not linked to specific receptors.",
+    "Relationship between 'Stable Core' and individual actin regulators is spatially indicated but not mechanistically defined.",
+    "Potential conflict: Slide text notes challenges with 'harsh' manipulations vs. reality of signaling pathways; the diagram represents an idealized pathway that may not capture the 'stimulus-dependence' mentioned in the text."
+  ],
+  "questions_for_expert": [
+    "Does the 'Stable Core' represent a distinct biochemical pool of actin compared to the peripheral actin filaments?",
+    "Is the phosphorylation of Ephexin5 by EphB-RTK acting as a direct inhibitory mechanism or a destabilization event?",
+    "How does the diagram account for the 'stimulus-dependence' mentioned in the text if these pathways are shown as constitutively linked?"
+  ]
+}

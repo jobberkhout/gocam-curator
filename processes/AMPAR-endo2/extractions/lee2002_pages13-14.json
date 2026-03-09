@@ -1,0 +1,114 @@
+{
+  "source": "lee2002_pages13-14",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:45:54",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "interacts with PDZ domains",
+        "interacts with NSF"
+      ],
+      "context": "hippocampal synapses, AMPA receptors",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR3",
+      "gene_symbol": "GRIA3",
+      "mentioned_activities": [
+        "interacts with PDZ domains"
+      ],
+      "context": "AMPA receptors",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "interacts with GluR2"
+      ],
+      "context": "hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP-2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "clathrin adaptor"
+      ],
+      "context": "endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKC",
+      "gene_symbol": "PRKCA",
+      "mentioned_activities": [
+        "regulates AMPA receptors"
+      ],
+      "context": "hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "internalization",
+        "endocytosis"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PKC",
+      "target_entity": "AMPA receptor",
+      "described_action": "PKC-dependent regulation of AMPA receptors",
+      "quote": "PDZ proteins interacting with C-terminal GluR2/3 are involved in a PKC-dependent regulation of AMPA receptors at hippocampal synapses.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "The text states regulation is 'PKC-dependent' but does not specify the direct molecular mechanism of how PKC affects the receptor."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluR2",
+      "described_action": "NSF-GluR2 interaction regulates synaptic transmission",
+      "quote": "NSF binding to GluR2 regulates synaptic transmission.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Interaction is described as binding/recruitment, but the specific biochemical activity on the receptor is not defined in this text."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic membrane"
+  ],
+  "gaps": [
+    "Only binding described for NSF and GluR2/3 — molecular function of these interactions remains unknown.",
+    "The specific mechanistic steps of 'PKC-dependent regulation' of AMPA receptors are not detailed.",
+    "The role of AP-2 in AMPA receptor endocytosis is mentioned as a subject of study, but the direct molecular triggers are not specified in the text."
+  ],
+  "questions_for_expert": [
+    "Does NSF have a catalytic function (e.g., ATPase activity) in this context, or is it purely acting as a scaffold for the AMPA receptor?",
+    "How exactly does PKC regulate the GluR2/3-PDZ interaction? Does it phosphorylate the receptor or the PDZ protein?",
+    "Can we confirm if AP-2 directly facilitates AMPA receptor internalization, or does it require an intermediary?"
+  ]
+}

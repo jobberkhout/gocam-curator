@@ -1,0 +1,134 @@
+{
+  "source": "scholz2010_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:12:01",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "AMPAR subunit",
+        "tyrosine phosphorylated at Y876"
+      ],
+      "context": "neuronal cultures, Schaffer collateral",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "catalytic stimulation",
+        "Arf6 activation"
+      ],
+      "context": "in vitro and cultured hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "ARF6",
+      "mentioned_activities": [
+        "GTP-binding",
+        "endocytic transport regulation"
+      ],
+      "context": "cell surface",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "group I mGluRs",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "agonist-dependent signaling"
+      ],
+      "context": "synaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tyrosine phosphatase",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "dephosphorylation of GluA2 Y876"
+      ],
+      "context": "mGluR-LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Src family kinases",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "phosphorylation of GluA2 Y876"
+      ],
+      "context": "neuronal activity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "group I mGluRs",
+      "target_entity": "GluA2",
+      "described_action": "trigger dephosphorylation of Y876",
+      "quote": "DHPG, a selective agonist of group I mGluRs, strongly reduced pY876",
+      "figure": "Figure 5B",
+      "assay_described": "immunoprecipitation with anti-pY876",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The interaction is mediated through intermediate signaling steps (tyrosine phosphatase) not fully defined here."
+    },
+    {
+      "source_entity": "tyrosine phosphatase",
+      "target_entity": "GluA2",
+      "described_action": "dephosphorylates Y876",
+      "quote": "our data identify Y876 as a residue in GluA2 targeted by a tyrosine phosphatase during mGluR-LTD.",
+      "figure": "Figure 5C",
+      "assay_described": "pharmacological inhibition with OV/PAO",
+      "causal_type": "DIRECT",
+      "confidence_note": "Implied mechanistic target; pharmacological evidence shows necessity."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "activates Arf6 (nucleotide-binding state)",
+      "quote": "suppression of BRAG2 expression by RNA interference ... prevented the DHPG effect ... Therefore, BRAG2 is required for Arf6 activation",
+      "figure": "Figure 5D",
+      "assay_described": "Arf6GTP-specific pull-down assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "BRAG2 is a known GEF; the text describes it as mediating Arf6 activation."
+    },
+    {
+      "source_entity": "Arf6",
+      "target_entity": "GluA2",
+      "described_action": "mediates endocytosis",
+      "quote": "Arf6 is a well-known regulator of endocytic transport at the cell surface",
+      "figure": "Figure 6",
+      "assay_described": "surface GluA2 expression assay",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Arf6 regulates the process (endocytosis) that leads to GluA2 internalization, but is not the direct catalytic partner of GluA2."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic membrane",
+    "cell surface"
+  ],
+  "gaps": [
+    "Molecular identity of the specific tyrosine phosphatase(s) acting on GluA2 Y876 is unknown.",
+    "Only binding/interaction described for mGluR and AMPAR signaling — molecular function of the mGluR-to-phosphatase link is unknown.",
+    "Exact mechanistic link between dephosphorylated GluA2 and BRAG2 stimulation needs further characterization."
+  ],
+  "questions_for_expert": [
+    "Is the tyrosine phosphatase acting on GluA2 considered a direct regulator or does it function as part of a larger complex?",
+    "Does the 'direct triggering' of BRAG2 catalysis by AMPARs imply a physical binding event between GluA2 and BRAG2?"
+  ]
+}

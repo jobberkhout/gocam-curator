@@ -1,0 +1,96 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_p2",
+  "source_type": "slide",
+  "timestamp": "2026-03-07T12:16:03",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PACSIN",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "N-WASP",
+      "gene_symbol": "WASL",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Endophilin",
+      "gene_symbol": "SH3GL2",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": "EPS15",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Hippocalcin",
+      "gene_symbol": "HPCA",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NEDD4",
+      "gene_symbol": "NEDD4",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": "ACTR2/ACTR3",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Clathrin-coated pit (CCP) neck",
+    "Post-synaptic density"
+  ],
+  "gaps": [
+    "Mechanism of Hippocalcin-mediated GluA2-AP2 interaction is unknown.",
+    "Role of PACSIN in CCP formation is noted but catalytic mechanism is underspecified."
+  ],
+  "questions_for_expert": [
+    "Is Hippocalcin a direct scaffold for the GluA2-AP2 interaction or a regulator of the local lipid environment?",
+    "Does NEDD4-mediated ubiquitination of GluA2 act as a sorting signal for endocytosis or a degradation tag?",
+    "Is the PICK1-Arp2/3 complex inhibition by N-WASP the primary mechanism for regulating actin at the synapse during endocytosis?"
+  ]
+}

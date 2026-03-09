@@ -1,0 +1,121 @@
+{
+  "source": "scholz2010_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:12:06",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "BRAG2",
+      "gene_symbol": "Iqsec1",
+      "mentioned_activities": [
+        "catalytic activity",
+        "Arf6 activation"
+      ],
+      "context": "CA1 neurons, hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "binding to BRAG2"
+      ],
+      "context": "postsynaptic membrane, AMPA receptor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "Arf6",
+      "mentioned_activities": [
+        "active Arf6 is required for GluA2 removal"
+      ],
+      "context": "intracellular signaling",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "mGluR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "metabotropic glutamate receptor",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NBQX",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "AMPA receptor antagonist"
+      ],
+      "context": "pharmacological intervention",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Kynurenic acid",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "broad-spectrum ionotropic glutamate receptor antagonist"
+      ],
+      "context": "pharmacological intervention",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "GluA2",
+      "described_action": "BRAG2 binds to GluA2, and this interaction is necessary for mGluR-LTD",
+      "quote": "We found that inclusion of the active 3Y peptide fused to GST (GST-3Y) in the patch pipette blocked mGluR-LTD expression... These experiments indicate that the relevant effect of the active 3Y peptide is interference with BRAG2 binding.",
+      "figure": "Figure 7C",
+      "assay_described": "peptide competition / patch pipette infusion",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The interaction is described as necessary for the process, but the mechanistic consequence of the binding itself is not stated as a direct enzymatic modification of GluA2."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "Arf6",
+      "described_action": "BRAG2 mediates Arf6 activation",
+      "quote": "BRAG2-mediated Arf6 activation is necessary for DHPG-induced endocytosis of GluA2.",
+      "figure": "Figure 6F",
+      "assay_described": "reversible surface biotinylation",
+      "causal_type": "DIRECT",
+      "confidence_note": "BRAG2 is identified as a GEF (implied by 'catalytic activity' and 'Arf6 activation'), suggesting direct enzymatic regulation."
+    },
+    {
+      "source_entity": "Arf6",
+      "target_entity": "GluA2",
+      "described_action": "Active Arf6 is required for long-term removal of surface GluA2",
+      "quote": "DHPG-triggered long-term removal of surface GluA2 requires active Arf6.",
+      "figure": "Figure 6D",
+      "assay_described": "surface biotinylation",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Arf6 activity is necessary for the endocytosis process, but the specific molecular mechanism linking Arf6 to GluA2 internalization is not explicitly detailed."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic membrane",
+    "CA1 neurons"
+  ],
+  "gaps": [
+    "Only binding described for BRAG2 and GluA2 — molecular function of the binding event remains unknown.",
+    "The downstream pathway from Arf6 to the physical internalization of GluA2 is not detailed.",
+    "The mechanism by which mGluR stimulation triggers the BRAG2-GluA2-Arf6 signaling axis is not fully defined beyond the requirement for AMPAR ligand binding."
+  ],
+  "questions_for_expert": [
+    "Is BRAG2 acting purely as a GEF for Arf6 in this context, or does it have an additional scaffold function independent of its catalytic domain?",
+    "Does GluA2 binding to BRAG2 induce a conformational change in BRAG2 to activate its GEF domain, or is the binding purely a localization mechanism?",
+    "Is the requirement for AMPAR ligand binding (as shown with NBQX/Kyn) indicative of a direct conformational signaling from the AMPAR to BRAG2?"
+  ]
+}

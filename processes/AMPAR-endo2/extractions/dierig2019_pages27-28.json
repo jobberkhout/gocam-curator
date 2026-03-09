@@ -1,0 +1,100 @@
+{
+  "source": "dierig2019_pages27-28",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:43:03",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "perisynaptic AMPA receptors",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "phosphorylation"
+      ],
+      "context": "synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "HCN channels",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "presynaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR4",
+      "gene_symbol": "GRIA4",
+      "mentioned_activities": [],
+      "context": "synaptic potentiation",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NMDA receptor",
+      "target_entity": "AMPA receptor",
+      "described_action": "NMDA receptor-dependent AMPA receptor synaptic plasticity",
+      "quote": "Visualization of NMDA receptor-dependent AMPA receptor synaptic plasticity in vivo.",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The text describes the process as 'NMDA receptor-dependent', which implies a causal dependency but does not specify the mechanistic steps."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic membrane",
+    "synapse",
+    "presynaptic"
+  ],
+  "gaps": [
+    "The text mentions 'protein binding partners' for AMPARs but does not specify which proteins, nor their specific functions.",
+    "The text mentions 'posttranslational modifications' of AMPARs in a general sense without detailing the specific enzymes (e.g., kinases) or the functional effect of these modifications."
+  ],
+  "questions_for_expert": [
+    "The text refers to 'combinatorial molecular codes' formed by AMPAR binding partners; could the expert identify specific interactions that are known to regulate AMPAR trafficking versus stabilization?",
+    "Regarding GluA1 phosphorylation: which specific kinases are the primary regulators mentioned in the cited literature (Zhang et al. 2016)?"
+  ]
+}

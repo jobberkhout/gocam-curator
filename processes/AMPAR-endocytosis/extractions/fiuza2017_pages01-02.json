@@ -1,0 +1,137 @@
+{
+  "source": "fiuza2017_pages01-02",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:19:34",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "interacts with the AMPAR subunit GluA2",
+        "associates with CCPs",
+        "stimulates dynamin polymerization",
+        "interacts with AP2"
+      ],
+      "context": "neuronal dendrites, clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "clusters at PI(4,5)P2-rich domains",
+        "binds cargo proteins",
+        "binds clathrin"
+      ],
+      "context": "clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "polymerizes around the neck of the CCP",
+        "mediates scission of the endocytic vesicle via GTP hydrolysis"
+      ],
+      "context": "clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "AMPAR subunit",
+        "internalized from the neuronal plasma membrane"
+      ],
+      "context": "neuronal plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "clathrin-coated pit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Amphiphysin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "recruits dynamin"
+      ],
+      "context": "clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "SNX9",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "recruits dynamin"
+      ],
+      "context": "clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AP2",
+      "described_action": "direct interaction via FxDxF and DxF motifs",
+      "quote": "PICK1 makes direct, NMDAR-dependent interactions with the core endocytic proteins AP2 and dynamin.",
+      "figure": "Fig. 2B",
+      "assay_described": "co-immunoprecipitations",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct biochemical interaction described via specific motif consensus sequences."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Dynamin",
+      "described_action": "stimulates polymerization via direct binding to GTPase domain",
+      "quote": "promotes dynamin polymerization by directly binding to dynamin’s GTPase domain.",
+      "figure": "Fig. 4E, 4F",
+      "assay_described": "in vitro polymerization assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Mechanistic stimulation of polymerization via direct binding to the GTPase domain."
+    },
+    {
+      "source_entity": "NMDA receptor",
+      "target_entity": "PICK1",
+      "described_action": "stimulates PICK1 interaction with endocytic machinery",
+      "quote": "These novel interactions are increased as a result of NMDAR stimulation and are essential for NMDAR-stimulated AMPAR internalization.",
+      "figure": "Fig. 5B",
+      "assay_described": "co-immunoprecipitation in neurons post-NMDA stimulation",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Signaling cascade effect; the NMDAR effect is clearly downstream through multiple signaling steps."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "dendrites",
+    "clathrin-coated pit",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Exact signal transduction pathway from NMDAR activation to the enhancement of the PICK1-AP2/dynamin interaction remains partially characterized.",
+    "Potential role of calcium in the NMDAR-dependent increase in interaction stability."
+  ],
+  "questions_for_expert": [
+    "Does the 'stimulation' of dynamin polymerization by PICK1 directly increase the rate of scission, or does it primarily stabilize the polymer?",
+    "Is the PICK1-AP2 interaction strictly dependent on the FxDxF/DxF motifs, or are other domains involved?"
+  ]
+}

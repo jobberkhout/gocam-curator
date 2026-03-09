@@ -1,0 +1,50 @@
+{
+  "source": "lee2002_p2",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T17:01:14",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "protein phosphatase 1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "KIF1A",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic membrane",
+    "intracellular pool"
+  ],
+  "gaps": [
+    "The specific subunit of AP2 that directly binds to the GluR2 cytoplasmic tail basic motif is not yet identified.",
+    "The mechanism for AMPA-induced endocytosis (independent of the NSF/AP2 site) remains unknown."
+  ],
+  "questions_for_expert": [
+    "Is there evidence for an intermediary protein that recruits AP2 to AMPARs during AMPA-induced endocytosis, given that it occurs independently of the NSF/AP2 binding site?",
+    "Could the dephosphorylation of AP2 be a regulatory gate that allows competition between NSF and AP2 at the GluR2 cytoplasmic tail?"
+  ]
+}

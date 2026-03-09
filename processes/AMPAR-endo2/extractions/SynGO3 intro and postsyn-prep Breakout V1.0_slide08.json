@@ -1,0 +1,101 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide08",
+  "source_type": "slide",
+  "timestamp": "2026-03-07T12:26:57",
+  "extraction_pass": 1,
+  "visual_description": "A list of molecular interactions and recruitment events related to the endocytosis of the GluA2 subunit, involving PICK, AP2, BRAG2, ARF6, Nedd4, and EPS15 (implied by EPS).",
+  "entities": [
+    {
+      "name": "AP2 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARF6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PI(4,5)P2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Nedd4",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "EPS15",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2-mu2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "endocytic zone"
+  ],
+  "gaps": [],
+  "questions_for_expert": [
+    "Regarding BRAG2: Does it function specifically as a Guanine Nucleotide Exchange Factor (GEF) for ARF6 in this context?",
+    "Regarding Nedd4: Is there specific evidence for E3 ubiquitin ligase activity toward GluA2 at S880?",
+    "Regarding 'recruits receptor to endocytic zone': Can we define the molecular function for PICK1 and AP2? Are they acting as structural adaptors?"
+  ]
+}

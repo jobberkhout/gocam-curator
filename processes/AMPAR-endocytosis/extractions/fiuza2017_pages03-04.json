@@ -1,0 +1,124 @@
+{
+  "source": "fiuza2017_pages03-04",
+  "source_type": "pdf",
+  "timestamp": "2026-03-06T16:19:38",
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "dimerization",
+        "binds lipid membranes",
+        "binds F-actin",
+        "binds Arp2/3 complex",
+        "binds AP2 complex",
+        "binds dynamin"
+      ],
+      "context": "Neurons and dynamin TKO mouse embryonic fibroblasts",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Clathrin-coated pits",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "α-adaptin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Subunit of AP2 complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "membrane-remodeling GTPase"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Endophilin-A2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "CCP necks",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "Clathrin-coated pits",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AP2 complex",
+      "described_action": "PICK1 binds directly to the AP2 complex (specifically the α-adaptin appendage domain)",
+      "quote": "Importantly, this experiment also demonstrated that PICK1 binds directly to the AP2 complex.",
+      "figure": "Fig. 2C",
+      "assay_described": "GST pulldown",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text only describes binding, not the mechanistic effect of the interaction."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Dynamin",
+      "described_action": "PICK1 binds directly to dynamin",
+      "quote": "Furthermore, purified HA-tagged dynamin 2 bound directly to GST-PICK1",
+      "figure": "Fig. 4B",
+      "assay_described": "In vitro binding assay",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text only describes physical interaction."
+    },
+    {
+      "source_entity": "AP2 complex",
+      "target_entity": "PICK1",
+      "described_action": "AP2 binding is required for PICK1 recruitment to CCPs",
+      "quote": "To investigate whether the localization of PICK1 at CCPs depends on its binding to AP2, we cotransfected dynamin TKO fibroblasts with GFP-DDAA-PICK1... The colocalization of PICK1 with CCPs was abolished by this mutation",
+      "figure": "Fig. 3C",
+      "assay_described": "Colocalization imaging in dynamin TKO fibroblasts",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The interaction is required for the localization/scaffolding of PICK1 to the CCP."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic vesicle",
+    "clathrin-coated pits (CCPs)",
+    "CCP necks",
+    "cytoplasm",
+    "juxtanuclear compartment",
+    "early endosome",
+    "recycling endosome"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 to AP2 — molecular function unknown.",
+    "Only binding described for PICK1 to dynamin — molecular function unknown.",
+    "Mechanistic consequence of PICK1/dynamin interaction not defined beyond in vitro observation."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have any enzymatic activity toward dynamin, or is it purely a scaffolding interaction?",
+    "Is the 'recruitment' of PICK1 to CCPs considered a functional regulation of the endocytic process, or is PICK1 a passenger?",
+    "Does the interaction with the GTPase domain of dynamin influence its GTPase activity?"
+  ]
+}

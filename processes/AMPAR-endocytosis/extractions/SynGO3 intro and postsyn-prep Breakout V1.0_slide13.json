@@ -1,0 +1,103 @@
+{
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide13",
+  "source_type": "slide",
+  "timestamp": "2026-03-06T16:24:01",
+  "visual_description": "A schematic diagram of an excitatory synapse detailing the trafficking and regulation of AMPA receptors (AMPAR) during High-Frequency Stimulation (HFS)-induced potentiation. The diagram labels steps (1-5) corresponding to exocytosis, trafficking to the PSD, and structural stabilization within nanodomains involving CaMKII, Stargazin, and PSD-95. A graph shows EPSP amplitude over time post-HFS.",
+  "entities": [
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Stargazin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor ATD binding protein",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Recycling endosome",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Exocytic domain",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Presynaptic terminal",
+    "Postsynaptic density (PSD)",
+    "Plasma membrane",
+    "Recycling endosome"
+  ],
+  "gaps": [],
+  "questions_for_expert": [
+    "Does the 'AMPA receptor ATD binding protein' represent a specific known protein like Nlgn or a general class?",
+    "Is the step 4 transition from recycling endosome to PSD meant to represent direct delivery or a different trafficking pathway?",
+    "How should we handle the temporal dependency mentioned in the slide text—should this be captured as a sequence of events or separate GO-CAM models?"
+  ]
+}

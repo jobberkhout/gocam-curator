@@ -1,0 +1,89 @@
+{
+  "source": "Ampar_endocytosis_p2",
+  "source_type": "image",
+  "timestamp": "2026-03-07T17:00:20",
+  "extraction_pass": 2,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "Arp2/3",
+      "gene_symbol": "ARPC2/ACTR2/ACTR3",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PACSIN",
+      "gene_symbol": "PACSIN1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": "EPS15",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 core",
+      "gene_symbol": "AP2A1/AP2B1/AP2M1/AP2S1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Endophilin",
+      "gene_symbol": "SH3GL2",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "SYNE1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Actin",
+      "gene_symbol": "ACTB",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [],
+  "compartments_shown": [
+    "Postsynaptic Density",
+    "Endocytic zone",
+    "PI(4,5)P2 enriched membrane"
+  ],
+  "gaps": [
+    "The image shows Actin filaments in panel D, but does not specify if they are polymerizing or depolymerizing at the neck.",
+    "The functional link between the Arf6/BRAG2/Thorase complex and the downstream clathrin coat assembly is visually depicted but mechanistically abstract.",
+    "The role of the AP2 core (panel B/C) as a recruiter is shown, but the regulatory switch (e.g., phosphorylation) is not depicted."
+  ],
+  "questions_for_expert": [
+    "Does the inhibition of Arp2/3 by PICK1 prevent actin-mediated vesicle scission or vesicle movement?",
+    "Does Arc function as a competitive scaffold that displaces other adaptor proteins from Endophilin?",
+    "Is the spatial organization of CPG2 dependent on Endophilin, or does CPG2 recruit Endophilin to the endocytic zone?"
+  ]
+}

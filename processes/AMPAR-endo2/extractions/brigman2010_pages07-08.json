@@ -1,0 +1,96 @@
+{
+  "source": "brigman2010_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T12:30:41",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluN2B",
+      "gene_symbol": "GRIN2B",
+      "mentioned_activities": [],
+      "context": "CA1 hippocampal principal neurons, neocortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN1",
+      "gene_symbol": "GRIN1",
+      "mentioned_activities": [],
+      "context": "NMDAR complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": "CAMK2A/CAMK2B",
+      "mentioned_activities": [],
+      "context": "NMDAR complex anchoring",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "calcium entry",
+        "synaptic current"
+      ],
+      "context": "CA1 hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "NMDAR",
+      "described_action": "contributes to NMDAR kinetics",
+      "quote": "together affirm the contribution of GluN2B to NMDAR kinetics but not overall NMDAR-mediated synaptic function",
+      "figure": null,
+      "assay_described": "electrophysiological recording",
+      "causal_type": "DIRECT",
+      "confidence_note": "Evidence links subunit composition directly to channel kinetic properties."
+    },
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "GluN1",
+      "described_action": "stability/association",
+      "quote": "absent the normal association with GluN2B, the “free” intracellular pool of GluN1 subject to more rapid degradation may be greater.",
+      "figure": null,
+      "assay_described": "in situ hybridization and protein homogenate analysis",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The presence of GluN2B is required for the stability of the GluN1 subunit; without it, GluN1 is degraded."
+    },
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "CaMKII",
+      "described_action": "anchoring to the NMDAR complex",
+      "quote": "disruption of the anchoring of CaMKII to the NMDAR complex, an interaction that has been shown to modulate NMDAR activity",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "Text describes this as an anchoring interaction, which is structural."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "dendritic spine",
+    "CA1 pyramidal neuron"
+  ],
+  "gaps": [
+    "Molecular mechanism by which GluN2B deletion increases LTP threshold is hypothesized but not confirmed.",
+    "Only structural anchoring described for GluN2B-CaMKII; enzymatic regulatory activity (if any) is not specified.",
+    "Mechanism for NMDAR-dependent LTD loss in mutants is not fully elucidated beyond the role of NMDAR kinetics."
+  ],
+  "questions_for_expert": [
+    "Is the loss of LTD in GluN2B mutants primarily due to altered channel kinetics (decay time) or is there a downstream signaling deficit?",
+    "Does the 'anchoring' of CaMKII to the NMDAR explicitly facilitate kinase activation, or is it purely localized concentration?",
+    "Should 'NMDAR-dependent LTD' be modeled as a direct function of the NMDAR, or is it a system-level outcome?"
+  ]
+}

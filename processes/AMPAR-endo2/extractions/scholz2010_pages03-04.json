@@ -1,0 +1,133 @@
+{
+  "source": "scholz2010_pages03-04",
+  "source_type": "pdf",
+  "timestamp": "2026-03-07T16:58:02",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "ligand binding (glutamate)",
+        "interaction with BRAG2"
+      ],
+      "context": "mouse hippocampus, postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "mentioned_activities": [
+        "GEF for Arf6",
+        "GDP/GTP exchange on Arf6"
+      ],
+      "context": "synaptic membrane, postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": "Arf6",
+      "mentioned_activities": [
+        "vesicle coat protein recruitment"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "src kinase",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "phosphorylation of GluA2 at Y876"
+      ],
+      "context": "neuronal, in vivo and in vitro",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG1",
+      "gene_symbol": "IQSEC2",
+      "mentioned_activities": [
+        "GEF activity"
+      ],
+      "context": "synaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "ARNO",
+      "gene_symbol": "CYTH2",
+      "mentioned_activities": [
+        "GEF activity"
+      ],
+      "context": "in vitro",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA2",
+      "target_entity": "BRAG2",
+      "described_action": "Increases catalytic activity of BRAG2 GEF domain toward Arf6",
+      "quote": "Indeed, the bacterially expressed GluA2-CT increased the catalytic activity of BRAG2 on Arf6 about 5-fold in vitro",
+      "figure": "Fig. 3A",
+      "assay_described": "in vitro nucleotide exchange assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct stimulation observed in a purified system with recombinant proteins."
+    },
+    {
+      "source_entity": "src kinase",
+      "target_entity": "GluA2",
+      "described_action": "Phosphorylation of Y876 residue",
+      "quote": "The GluA2 3Y motif has been shown to be a target for a src family kinase-dependent phosphorylation in vivo, most likely at Y876",
+      "figure": "Fig. S1",
+      "assay_described": "in vitro phosphorylation / immunoblotting",
+      "causal_type": "DIRECT",
+      "confidence_note": "Kinase-substrate relationship supported by site-specific phosphorylation and mutation data."
+    },
+    {
+      "source_entity": "phospho-Y876 GluA2",
+      "target_entity": "BRAG2",
+      "described_action": "Inhibits/blocks the ability of GluA2 to stimulate BRAG2 GEF activity",
+      "quote": "the increase in the catalytic activity of the BRAG2 Sec7 domain by GluA2-CT was blocked by prior in vitro phosphorylation with recombinant src kinase",
+      "figure": "Fig. 3D",
+      "assay_described": "in vitro GEF activity assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Mechanism demonstrated by comparing phosphorylated vs. non-phosphorylatable mutants in GEF assays."
+    },
+    {
+      "source_entity": "Glutamate (ligand)",
+      "target_entity": "GluA2/BRAG2/Arf6",
+      "described_action": "Stimulates Arf6 activation via GluA2-BRAG2 interaction",
+      "quote": "Brief stimulation of HEK293 cells coexpressing GluA2, BRAG2, and Arf6 with L-glutamate led to increased Arf6 activity",
+      "figure": "Fig. 4A",
+      "assay_described": "Arf6GTP-specific pull-down assay",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Stimulation requires ligand binding to receptor, but effect on GEF is likely mediated by conformational changes in GluA2-CT."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic vesicle",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Molecular basis for how glutamate binding to the extracellular domain of GluA2 propagates to the cytoplasmic C-terminus to modulate BRAG2 is not fully defined.",
+    "Interaction between GluA2 and BRAG2 is described as a 'binding' event (GluA2-CT binds Sec7-PH region of BRAG2) but the physical binding interface mechanism is not fully characterized."
+  ],
+  "questions_for_expert": [
+    "Is the increase in Arf6 activity upon PP2 treatment purely due to lack of GluA2 phosphorylation, or are there other targets of src that modulate the GEF complex?",
+    "Does the 'binding' of GluA2 to the Sec7-PH region of BRAG2 imply a structural scaffolding role, or is it exclusively an allosteric regulator of the catalytic domain?"
+  ]
+}
