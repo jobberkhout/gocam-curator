@@ -1,0 +1,192 @@
+{
+  "source": "dierig2019_pages23-24",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:00:50",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluR1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "phosphorylation"
+      ],
+      "context": "hippocampus CA1, synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPA receptor trafficking",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR3",
+      "gene_symbol": "GRIA3",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": "AP2A1",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "4.1N",
+      "gene_symbol": "EPB41L1",
+      "mentioned_activities": [
+        "regulation of extrasynaptic insertion"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": "CAMK2A",
+      "mentioned_activities": [
+        "phosphorylation",
+        "regulation of synaptic targeting"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Casein kinase 2",
+      "gene_symbol": "CSNK2A1",
+      "mentioned_activities": [
+        "phosphorylation"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "KIBRA",
+      "gene_symbol": "WWC1",
+      "mentioned_activities": [
+        "regulation of AMPA receptor function"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "TARPgamma-8",
+      "gene_symbol": "CACNG8",
+      "mentioned_activities": [
+        "phosphorylation"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AKAP150",
+      "gene_symbol": "AKAP5",
+      "mentioned_activities": [
+        "anchoring of PKA and Calcineurin"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": "PRKACA",
+      "mentioned_activities": [
+        "phosphorylation"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "CaMKII",
+      "target_entity": "GluR1",
+      "described_action": "phosphorylates GluR1 and regulates its synaptic targeting",
+      "quote": "Synaptic targeting of AMPA receptors is regulated by a CaMKII site in the first intracellular loop of GluA1.",
+      "pmid": "21135237",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Kinase-substrate relationships are typically direct enzymatic modifications."
+    },
+    {
+      "source_entity": "Casein kinase 2",
+      "target_entity": "GluR1",
+      "described_action": "phosphorylates GluA1 and regulates its surface expression",
+      "quote": "Casein kinase 2 phosphorylates GluA1 and regulates its surface expression.",
+      "pmid": "24712994",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Kinase-substrate relationships are typically direct enzymatic modifications."
+    },
+    {
+      "source_entity": "CaMKII",
+      "target_entity": "TARPgamma-8",
+      "described_action": "CaMKII Phosphorylation of TARPgamma-8 Is a Mediator of LTP and Learning and Memory",
+      "quote": "CaMKII Phosphorylation of TARPgamma-8 Is a Mediator of LTP and Learning and Memory.",
+      "pmid": "27667007",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Kinase-substrate relationships are typically direct enzymatic modifications."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "synapse",
+    "extrasynaptic",
+    "postsynaptic density"
+  ],
+  "gaps": [
+    "The text lists citations but does not describe the specific biochemical mechanism (other than phosphorylation) for most interactions.",
+    "Only binding described for AP2/NSF and GluR2 — molecular function unknown."
+  ],
+  "questions_for_expert": [
+    "Does the phosphorylation of GluR1 by CaMKII change the structural scaffolding of the receptor, or does it directly trigger trafficking?",
+    "For interactions where only 'regulation' is mentioned (e.g., KIBRA), what is the specific mechanistic activity (e.g., scaffolding, recruitment, enzymatic)?"
+  ]
+}

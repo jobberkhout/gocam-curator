@@ -1,0 +1,106 @@
+{
+  "source": "brigman2010_pages01-02",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:24:22",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluN2B",
+      "gene_symbol": "Grin2b",
+      "mentioned_activities": [
+        "mediator of synaptic plasticity",
+        "forms heteromeric assemblies with GluN1",
+        "contains NMDAR channel"
+      ],
+      "context": "CA1 hippocampal and cortical pyramidal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN1",
+      "gene_symbol": "Grin1",
+      "mentioned_activities": [
+        "obligatory subunit of NMDAR complexes"
+      ],
+      "context": "CA1 hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN2A",
+      "gene_symbol": "Grin2a",
+      "mentioned_activities": [
+        "subunit of NMDAR complexes"
+      ],
+      "context": "Adult cortex and hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "mediates synaptic plasticity",
+        "mediates synaptic learning",
+        "heteromeric assemblies"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": "Camk2a",
+      "mentioned_activities": [
+        "promoter-driven Cre recombinase expression"
+      ],
+      "context": "CA1 hippocampal and cortical pyramidal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "NMDAR",
+      "described_action": "GluN2B is a subunit of NMDAR complexes",
+      "quote": "NMDAR complexes are heteromers composed of an obligatory GluN1 subunit and one or more GluN2 (GluN2A–GluN2D) subunits.",
+      "pmid": "20357113",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "GluN2B is explicitly described as a constitutive subunit of the NMDAR complex."
+    },
+    {
+      "source_entity": "GluN1",
+      "target_entity": "NMDAR",
+      "described_action": "GluN1 is an obligatory subunit of NMDAR complexes",
+      "quote": "NMDAR complexes are heteromers composed of an obligatory GluN1 subunit and one or more GluN2 (GluN2A–GluN2D) subunits.",
+      "pmid": "20357113",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "GluN1 is described as obligatory for NMDAR complex formation."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "cortex",
+    "CA1 subregion of hippocampus",
+    "synapse"
+  ],
+  "gaps": [
+    "The text describes GluN2B as a subunit but does not describe a molecular function beyond 'mediator' and channel kinetics. Molecular function (e.g., ion channel activity) remains to be explicitly assigned to the NMDAR complex as a whole.",
+    "Interaction between NMDAR and downstream signaling molecules involved in LTP/LTD is implied but not mechanistically detailed."
+  ],
+  "questions_for_expert": [
+    "Should we model GluN2B/GluN1 as 'protein complex subunits' or should we assign the NMDAR complex the molecular function of 'ion channel activity'?",
+    "Is the 'faster decaying' NMDAR-mediated EPSC in mutants a direct result of subunit stoichiometry change or a secondary effect of altered receptor density?"
+  ]
+}

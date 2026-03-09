@@ -1,0 +1,133 @@
+{
+  "source": "dierig2019_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:56:36",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA1",
+      "gene_symbol": "Gria1",
+      "mentioned_activities": [
+        "synaptic recruitment",
+        "synapse targeting",
+        "synapse retention"
+      ],
+      "context": "hippocampal LTP",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "constitutive synapse recruitment",
+        "endosomal sequestration (via PICK1)"
+      ],
+      "context": "hippocampal LTP",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA3",
+      "gene_symbol": "Gria3",
+      "mentioned_activities": [
+        "constitutive synapse recruitment",
+        "channel opening"
+      ],
+      "context": "hippocampal and cerebellar LTP",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA4",
+      "gene_symbol": "Gria4",
+      "mentioned_activities": [
+        "synapse delivery",
+        "synapse retention",
+        "phosphorylation by PKA"
+      ],
+      "context": "early postnatal life",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "Pick1",
+      "mentioned_activities": [
+        "sequester GluA2-containing receptors within endosomes"
+      ],
+      "context": "early phase of LTP",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": "Prkaca",
+      "mentioned_activities": [
+        "phosphorylates GluA4 S842"
+      ],
+      "context": "early postnatal life",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "neuronal pentraxins",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "mediates GluA4 clustering"
+      ],
+      "context": "excitatory synapses onto parvalbumin-positive interneurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PKA",
+      "target_entity": "GluA4",
+      "described_action": "phosphorylates GluA4 S842",
+      "quote": "GluA4 S842 is phosphorylated by PKA (Esteban et al., 2003).",
+      "pmid": "31648074",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct enzymatic phosphorylation is a well-established molecular mechanism."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "GluA2",
+      "described_action": "sequesters GluA2-containing receptors within endosomes",
+      "quote": "PICK1 is important during the early phase of LTP where it acts to sequester GluA2-containing receptors within endosomes",
+      "pmid": "31648074",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Sequestration is a complex cellular trafficking event resulting from multiple molecular interactions."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synapse",
+    "endosomes",
+    "cell surface"
+  ],
+  "gaps": [
+    "Only binding described for GluA2/3 and GRIP1/2 or PICK1; molecular function unknown.",
+    "Only binding described for neuronal pentraxins and GluA4; molecular function unknown.",
+    "Mechanism of cAMP-dependent enhancement of GluA3 open-probability is mentioned but the specific protein effectors are not defined."
+  ],
+  "questions_for_expert": [
+    "Is the 'cAMP-dependent pathway' that regulates GluA3 channel gating understood to involve direct phosphorylation of the GluA3 subunit?",
+    "Does 'sequestering' by PICK1 represent a direct physical interaction or an indirect effect of a larger complex?",
+    "Are the 'neuronal pentraxins' acting as a physical cross-linker (scaffold) or an enzymatic regulator of GluA4?"
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "source": "fiuza2017_pages15-16",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:36:38",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "calcium sensor",
+        "inhibition of Arp2/3-mediated actin polymerization",
+        "binding to calcineurin B",
+        "modulates NFAT activity",
+        "lipid binding"
+      ],
+      "context": "neuronal synapses, PC12 cells",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPAR (AMPA receptor)",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "synaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPA receptor subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin polymerization"
+      ],
+      "context": "neuronal cytoskeleton",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": "ARF1",
+      "mentioned_activities": [
+        "modulates Arp2/3-mediated actin polymerization via PICK1"
+      ],
+      "context": "synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "dephosphorylation"
+      ],
+      "context": "synaptic vesicle endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "membrane-remodelling GTPase"
+      ],
+      "context": "clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Arp2/3 complex",
+      "described_action": "Inhibition of Arp2/3-mediated actin polymerization",
+      "quote": "Inhibition of Arp2/3-mediated actin polymerization by PICK1 regulates neuronal morphology and AMPA receptor endocytosis.",
+      "pmid": "18264104",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The interaction is described as direct inhibition of the complex's polymerization activity."
+    },
+    {
+      "source_entity": "Arf1",
+      "target_entity": "Arp2/3 complex",
+      "described_action": "modulates Arp2/3-mediated actin polymerization via PICK1",
+      "quote": "The small GTPase Arf1 modulates Arp2/3-mediated actin polymerization via PICK1 to regulate synaptic plasticity.",
+      "pmid": "23791196",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Text explicitly states Arf1 acts 'via' PICK1, implying an intermediate."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "calcineurin B",
+      "described_action": "PICK1 binds to calcineurin B",
+      "quote": "PICK1 binds to calcineurin B and modulates the NFAT activity in PC12 cells.",
+      "pmid": "18793645",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text only describes binding; no functional consequence regarding the mechanism of modulation is detailed here."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "synaptic membrane",
+    "dendritic spine"
+  ],
+  "gaps": [
+    "Only binding described for PICK1 and calcineurin B — molecular function unknown.",
+    "Mechanism of PICK1-mediated AMPA receptor endocytosis remains abstract in the cited text.",
+    "Lack of clear distinction between physical interaction and catalytic modulation in cited abstracts."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have an intrinsic enzymatic activity, or does it exclusively function as a scaffold/inhibitor of existing protein complexes?",
+    "Is the 'inhibition' of Arp2/3 by PICK1 a competitive binding mechanism or a conformational regulation?",
+    "Does the 'calcium-sensing' property of PICK1 imply a change in its ability to bind target proteins or a change in its own catalytic state?"
+  ]
+}

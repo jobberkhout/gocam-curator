@@ -1,0 +1,117 @@
+{
+  "source": "fiuza2017_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:34:53",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "interacts with dynamin",
+        "interacts with AP2",
+        "promotes dynamin polymerization"
+      ],
+      "context": "neuronal lysate, HEK293 cells, hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "dynamin",
+      "gene_symbol": "DNM1/DNM2/DNM3",
+      "mentioned_activities": [
+        "undergoes polymerization",
+        "catalyzes fission of clathrin-coated vesicles"
+      ],
+      "context": "plasma membrane, endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": "AP2A1/AP2A2/AP2B1/AP2M1/AP2S1",
+      "mentioned_activities": [
+        "interacts with PICK1"
+      ],
+      "context": "endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": "GRIN1/GRIN2A/GRIN2B",
+      "mentioned_activities": [
+        "stimulation causes transient increase in PICK1 interaction with AP2 and dynamin"
+      ],
+      "context": "hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": "PPP3CA/PPP3CB/PPP3CC",
+      "mentioned_activities": [
+        "activity required for NMDA-induced increase in PICK1-AP2 and PICK1-dynamin interactions"
+      ],
+      "context": "hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "clathrin",
+      "gene_symbol": "CLTC",
+      "mentioned_activities": [
+        "colocalization with PICK1"
+      ],
+      "context": "dendrites",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "dynamin",
+      "described_action": "promotes dynamin polymerization",
+      "quote": "PICK1 promotes dynamin polymerization.",
+      "pmid": null,
+      "figure": "Fig. 4E",
+      "assay_described": "in vitro polymerization assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct regulation demonstrated via in vitro polymerization assay with purified proteins."
+    },
+    {
+      "source_entity": "Calcineurin",
+      "target_entity": "PICK1-AP2 interaction",
+      "described_action": "required for the NMDA-induced increase in interaction",
+      "quote": "Calcineurin activity is required for the NMDA-induced increase in PICK1–AP2 and PICK1–dynamin interactions.",
+      "pmid": null,
+      "figure": "Fig. 5C",
+      "assay_described": "immunoprecipitation following cyclosporin A treatment",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Requirement of phosphatase activity for interaction modulation indicates an indirect regulatory step."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "plasma membrane",
+    "dendrites"
+  ],
+  "gaps": [
+    "Only binding described for PICK1-AP2 interaction; molecular mechanism (function) of PICK1 regarding AP2 is unknown.",
+    "Molecular mechanism by which calcineurin regulates the PICK1-dynamin/AP2 interaction remains unidentified.",
+    "Directness of the physical interaction vs functional regulation for the DDAA-PICK1 mutant."
+  ],
+  "questions_for_expert": [
+    "Does the 'promotion of dynamin polymerization' imply a catalytic effect or a scaffolding/templating effect that qualifies as a Molecular Function?",
+    "Is the increase in interaction following NMDAR stimulation mediated by dephosphorylation of PICK1 or dynamin/AP2?",
+    "Is 'dynamin polymerization' the primary activity that should be modeled, or is it a downstream process?"
+  ]
+}

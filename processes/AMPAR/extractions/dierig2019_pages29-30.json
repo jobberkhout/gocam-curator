@@ -1,0 +1,91 @@
+{
+  "source": "dierig2019_pages29-30",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:34:14",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "added or subtracted from PSD/extracellular slots",
+        "lateral diffusion"
+      ],
+      "context": "synaptic plasticity, PSD slots",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [],
+      "context": "GluA1-containing AMPARs, locally enriched during LTP through activity-dependent exocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "GluA2-containing AMPARs, locally depleted during LTD through endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD slots",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "have affinity for AMPARs"
+      ],
+      "context": "postsynaptic density (PSD)",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA1",
+      "target_entity": "PSD slots",
+      "described_action": "locally enriched through activity-dependent exocytosis during LTP",
+      "quote": "During LTP, surface pools are locally enriched with GluA1-containing AMPARs through activity-dependent exocytosis",
+      "pmid": "2019",
+      "figure": "Figure 2",
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The text describes an outcome (enrichment) resulting from a process (exocytosis) during a state (LTP), which involves multiple molecular steps not explicitly detailed."
+    },
+    {
+      "source_entity": "GluA2",
+      "target_entity": "PSD slots",
+      "described_action": "locally depleted through endocytosis during LTD",
+      "quote": "whereas during LTD surface AMPARs are locally depleted through endocytosis of GluA2-containing receptors.",
+      "pmid": "2019",
+      "figure": "Figure 2",
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "The text describes the removal of the receptor from the surface via endocytosis, but the specific molecular mechanism triggering this for GluA2 is not defined."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density (PSD)",
+    "extra-synaptic pools",
+    "cell-surface"
+  ],
+  "gaps": [
+    "The molecular mechanism of 'PSD slots' is not defined; it is unclear if these are proteins or structural domains.",
+    "The 'affinity' of AMPARs for PSD slots is mentioned but the molecular nature of this binding is not described.",
+    "The mechanism of 'activity-dependent exocytosis' of GluA1 is not detailed.",
+    "Only generic interaction/trafficking described for GluA2 endocytosis — molecular function unknown."
+  ],
+  "questions_for_expert": [
+    "Can the 'PSD slots' be mapped to a known protein complex (e.g., PSD-95/stargazin complex)?",
+    "Is 'affinity for PSD slots' a proxy for protein-protein binding interactions that should be modeled as 'has_input' relationships?",
+    "Does 'activity-dependent exocytosis' imply a specific signaling pathway we should look for in other sections?"
+  ]
+}

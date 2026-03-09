@@ -1,0 +1,107 @@
+{
+  "source": "lee2002_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:38:04",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "AMPA receptor endocytosis"
+      ],
+      "context": "postsynaptic neuron, hippocampal slice",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [
+        "synaptic expression of AMPA receptors"
+      ],
+      "context": "postsynaptic neuron",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "pep-R845A",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "NSF-blocking"
+      ],
+      "context": "exogenously introduced peptide",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "postsynaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "AP2",
+      "target_entity": "AMPA receptor",
+      "described_action": "mediates NMDA receptor-dependent internalization of AMPA receptors",
+      "quote": "the AP2-blocking peptide prevents the expression of LTD by blocking NMDA receptor-dependent internalization of AMPA receptors",
+      "pmid": null,
+      "figure": "Supplemental Figure S1C",
+      "assay_described": "electrophysiological recording of LTD",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The interaction is inferred from the effect of a blocking peptide on a physiological process (LTD), not a direct binding assay."
+    },
+    {
+      "source_entity": "NSF",
+      "target_entity": "AMPA receptor",
+      "described_action": "maintains synaptic expression of AMPA receptors",
+      "quote": "These electrophysiological results imply that NSF is important for the synaptic expression, but not for total surface expression, of AMPA receptors.",
+      "pmid": null,
+      "figure": "Figure 7D, Figure 7H",
+      "assay_described": "electrophysiology (EPSC recording and exogenous AMPA response)",
+      "causal_type": "INDIRECT",
+      "confidence_note": "NSF-blocking peptides cause loss of synaptic AMPA receptors; the molecular mechanism (e.g., stabilizing vs. trafficking) is not defined."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "synapse",
+    "extrasynaptic membrane",
+    "postsynaptic density"
+  ],
+  "gaps": [
+    "Only binding described for NSF/AP2 and peptides — specific molecular mechanism of NSF interaction with AMPA receptors is unknown.",
+    "The biochemical mechanism by which AP2 mediates endocytosis in this specific context is not described."
+  ],
+  "questions_for_expert": [
+    "Does NSF directly bind the AMPA receptor, or does it regulate a trafficking component that in turn interacts with the receptor?",
+    "Is there mechanistic evidence for how AP2 is coupled to NMDA receptor-dependent signaling pathways, or is this entirely indirect?"
+  ]
+}

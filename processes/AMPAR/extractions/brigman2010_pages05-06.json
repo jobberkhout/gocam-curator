@@ -1,0 +1,149 @@
+{
+  "source": "brigman2010_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:25:14",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluN2B",
+      "gene_symbol": "Grin2b",
+      "mentioned_activities": [],
+      "context": "dorsal CA1 hippocampal subregion, neocortex, entorhinal cortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN1",
+      "gene_symbol": "Grin1",
+      "mentioned_activities": [],
+      "context": "neocortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN2A",
+      "gene_symbol": "Grin2a",
+      "mentioned_activities": [],
+      "context": "neocortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKIIalpha",
+      "gene_symbol": "Camk2a",
+      "mentioned_activities": [],
+      "context": "neocortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKIIbeta",
+      "gene_symbol": "Camk2b",
+      "mentioned_activities": [],
+      "context": "neocortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "synaptic transmission",
+        "eEPSC"
+      ],
+      "context": "CA1 hippocampus synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Ro 25-6981",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "inhibition"
+      ],
+      "context": "GluN2B antagonist",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DL-AP-5",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "inhibition"
+      ],
+      "context": "subunit-nonselective NMDAR antagonist",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tPDC",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "glutamate transporter block"
+      ],
+      "context": "LTD induction",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "Ro 25-6981",
+      "target_entity": "NMDAR",
+      "described_action": "produced a modest but significant inhibition in controls",
+      "quote": "Ro 25-6981 produced a modest but significant inhibition in controls (t = 4.00, df = 13, p < 0.01) as a result of sensitivity in a subpopulation of the cells",
+      "pmid": "20357113",
+      "figure": "Fig. 2C",
+      "assay_described": "eEPSC recordings",
+      "causal_type": "DIRECT",
+      "confidence_note": "Pharmacological inhibition of a receptor is a direct mechanism."
+    },
+    {
+      "source_entity": "DL-AP-5",
+      "target_entity": "NMDAR",
+      "described_action": "inhibited eEPSCs",
+      "quote": "DL-AP-5 inhibited eEPSCs to a similar extent in mutants and controls",
+      "pmid": "20357113",
+      "figure": "Fig. 2C",
+      "assay_described": "eEPSC recordings",
+      "causal_type": "DIRECT",
+      "confidence_note": "Pharmacological inhibition of a receptor is a direct mechanism."
+    },
+    {
+      "source_entity": "tPDC",
+      "target_entity": "glutamate transporter",
+      "described_action": "blocker",
+      "quote": "LFS (1 Hz/s) combined with the glutamate transporter blocker tPDC application produced LTD",
+      "pmid": "20357113",
+      "figure": "Fig. 3C",
+      "assay_described": "field potential recordings (fEPSPs)",
+      "causal_type": "DIRECT",
+      "confidence_note": "Pharmacological blockade of a transporter is a direct mechanism."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "dorsal CA1 hippocampal subregion",
+    "neocortex",
+    "entorhinal cortex",
+    "Schaffer collateral/commissural fibers"
+  ],
+  "gaps": [
+    "The mechanism by which GluN2B deletion results in faster NMDAR-eEPSC decay time is not explicitly defined, only observed.",
+    "Only inhibition described for Ro 25-6981 and DL-AP-5 — molecular function of the drugs is clear, but exact binding sites on NMDAR are not detailed."
+  ],
+  "questions_for_expert": [
+    "Does the 'faster decaying NMDAR-mediated eEPSC' in mutants imply a switch in subunit composition (e.g., compensation by GluN2A) or a direct effect of GluN2B loss on channel kinetics?",
+    "Is the loss of LTD in mutants (Fig 3C) directly caused by GluN2B loss, or is it an indirect consequence of altered synaptic transmission properties?"
+  ]
+}

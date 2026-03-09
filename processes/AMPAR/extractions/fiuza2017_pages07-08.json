@@ -1,0 +1,144 @@
+{
+  "source": "fiuza2017_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:35:03",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "stimulate dynamin polymerization"
+      ],
+      "context": "neuronal dendrites, endocytic machinery",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": "DNM1",
+      "mentioned_activities": [
+        "polymerization"
+      ],
+      "context": "neuronal endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "endocytic adaptor complex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "AMPAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Calcineurin",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "dephosphorylation"
+      ],
+      "context": "neuronal, LTD",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [],
+      "context": "control",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Grb2",
+      "gene_symbol": "GRB2",
+      "mentioned_activities": [
+        "promote dynamin polymerization"
+      ],
+      "context": "dynamin-binding protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "SNX9",
+      "gene_symbol": "SNX9",
+      "mentioned_activities": [
+        "promote dynamin polymerization"
+      ],
+      "context": "dynamin-binding protein",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Dynamin",
+      "described_action": "stimulates dynamin polymerization",
+      "quote": "These experiments demonstrate that the PICK1 BAR domain binds dynamin directly to stimulate dynamin polymerization.",
+      "pmid": null,
+      "figure": "Fig. 4E",
+      "assay_described": "high-speed sedimentation assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct stimulation of polymerization demonstrated via in vitro assay with purified proteins."
+    },
+    {
+      "source_entity": "Calcineurin",
+      "target_entity": "PICK1-AP2/PICK1-dynamin interactions",
+      "described_action": "enhances interaction",
+      "quote": "Treating neuronal cultures with the specific calcineurin inhibitors... blocked the NMDA-stimulated increase in PICK1–AP2 and PICK1–dynamin interactions, demonstrating that calcineurin activity is required for this effect.",
+      "pmid": null,
+      "figure": "Fig. 5C",
+      "assay_described": "co-IP",
+      "causal_type": "INDIRECT",
+      "confidence_note": "Effect is dependent on calcineurin phosphatase activity, likely through dephosphorylation of an intermediate."
+    },
+    {
+      "source_entity": "AP2",
+      "target_entity": "PICK1-GluA2 interaction",
+      "described_action": "disrupts interaction",
+      "quote": "AP2 binding to PICK1 directly disrupts the interaction between GluA2 and PICK1.",
+      "pmid": null,
+      "figure": "Fig. 6E",
+      "assay_described": "competition assay using purified proteins",
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct competition demonstrated in vitro."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "neuronal dendrites",
+    "PSD",
+    "CCPs",
+    "EZs"
+  ],
+  "gaps": [
+    "Molecular function of PICK1 beyond BAR-domain mediated dynamin polymerization is not defined.",
+    "Specific phosphosite(s) on PICK1 or endocytic proteins targeted by calcineurin are not identified.",
+    "Only binding described for PICK1–AP2; the intrinsic molecular function of this complex is not described.",
+    "Only binding described for PICK1–GluA2; the intrinsic molecular function is unknown."
+  ],
+  "questions_for_expert": [
+    "Is 'dynamin polymerization' the only intrinsic activity of PICK1, or does it act as a structural scaffold?",
+    "What is the specific biochemical mechanism (other than binding) that allows PICK1 to stabilize GluA2 at EZs?",
+    "Does the 'disruption' of GluA2 binding by AP2 imply a conformational change in the PICK1 BAR domain?"
+  ]
+}

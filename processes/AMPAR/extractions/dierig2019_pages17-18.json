@@ -1,0 +1,84 @@
+{
+  "source": "dierig2019_pages17-18",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:58:44",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "accumulated at potentiated synapses",
+        "inserted into the dendritic shaft from intracellular recycling endosomes"
+      ],
+      "context": "postsynaptic density, dendritic shaft, recycling endosomes",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "spontaneous and constitutive exocytosis",
+        "directly interact with AP-2 clathrin adapter complex"
+      ],
+      "context": "plasma membrane, synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP-2 clathrin adapter complex",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "interact with GluA2"
+      ],
+      "context": "plasma membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD slots",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "biased affinity towards certain AMPAR variants"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA2",
+      "target_entity": "AP-2 clathrin adapter complex",
+      "described_action": "directly interact",
+      "quote": "GluA2 can directly interact with AP-2 clathrin adapter complex, which allows GluA2-containing receptors to be rapidly depleted from the cell-surface",
+      "pmid": "31652431",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The text explicitly states 'directly interact', which provides a mechanistic link facilitating removal."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "dendritic shaft",
+    "intracellular recycling endosomes",
+    "plasma membrane"
+  ],
+  "gaps": [
+    "Molecular functions for GluA1 and GluA2 are not defined beyond trafficking/binding.",
+    "Only binding/interaction described for GluA2 and AP-2 complex — molecular function unknown.",
+    "Mechanism of 'PSD slot' affinity increase is not defined at a molecular level."
+  ],
+  "questions_for_expert": [
+    "The text mentions 'PSD slots' as a regulatory mechanism; is this a structural scaffold complex or a hypothetical construct that requires a specific GO-CAM representation?",
+    "For the interaction between GluA2 and AP-2, does this facilitate recruitment to a clathrin-coated pit, and should that be modeled as an 'endocytosis' process node?"
+  ]
+}

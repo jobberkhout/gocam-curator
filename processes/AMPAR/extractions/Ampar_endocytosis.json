@@ -1,0 +1,219 @@
+{
+  "source": "Ampar_endocytosis.png",
+  "source_type": "image",
+  "timestamp": "2026-03-09T15:20:48",
+  "extraction_pass": 1,
+  "visual_description": "A four-part panel (A-D) illustrating the molecular mechanisms of AMPA receptor endocytosis, showing the transition from stable PSD anchoring (A) to the recruitment of endocytic machinery (B-C) and vesicle scission (D).",
+  "entities": [
+    {
+      "name": "GluA2-containing AMPAR",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "GluA2-containing AMPAR",
+      "position_in_diagram": "Transmembrane",
+      "implied_activity": "Transmembrane receptor cargo"
+    },
+    {
+      "name": "TARP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "TARP",
+      "position_in_diagram": "Transmembrane, complexed with AMPAR",
+      "implied_activity": "Auxiliary subunit/scaffold"
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "PSD-95",
+      "position_in_diagram": "Cytosolic, attached to TARP",
+      "implied_activity": "Scaffold"
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "NSF",
+      "position_in_diagram": "Cytosolic, attached to GluA2",
+      "implied_activity": "ATPase/chaperone"
+    },
+    {
+      "name": "GRIP",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "GRIP",
+      "position_in_diagram": "Cytosolic",
+      "implied_activity": "Scaffold"
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Thorase",
+      "position_in_diagram": "Cytosolic, near GluA2/TARP",
+      "implied_activity": "AAA+ ATPase"
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "BRAG2",
+      "position_in_diagram": "Cytosolic",
+      "implied_activity": "GEF"
+    },
+    {
+      "name": "Arf6",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Arf6",
+      "position_in_diagram": "Cytosolic, near BRAG2",
+      "implied_activity": "GTPase"
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "AP2",
+      "position_in_diagram": "Cytosolic, membrane-associated",
+      "implied_activity": "Adaptor protein"
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "PICK1",
+      "position_in_diagram": "Cytosolic",
+      "implied_activity": "Scaffold/BAR domain protein"
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Arp2/3",
+      "position_in_diagram": "Cytosolic",
+      "implied_activity": "Actin nucleator"
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Arf1",
+      "position_in_diagram": "Cytosolic, complexed with PICK1",
+      "implied_activity": "GTPase"
+    },
+    {
+      "name": "Eps15",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Eps15",
+      "position_in_diagram": "Cytosolic, membrane-associated",
+      "implied_activity": "Endocytic scaffold"
+    },
+    {
+      "name": "PACSIN",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "PACSIN",
+      "position_in_diagram": "Cytosolic, membrane-associated",
+      "implied_activity": "F-BAR domain protein"
+    },
+    {
+      "name": "Dynamin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Dynamin",
+      "position_in_diagram": "Neck of budding vesicle",
+      "implied_activity": "GTPase/scission factor"
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Arc",
+      "position_in_diagram": "Cytosolic, at budding vesicle",
+      "implied_activity": "Endocytic regulator"
+    },
+    {
+      "name": "Endophilin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "Endophilin",
+      "position_in_diagram": "Cytosolic, at budding vesicle",
+      "implied_activity": "BAR domain protein"
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": "CPG2",
+      "position_in_diagram": "Cytosolic, at budding vesicle",
+      "implied_activity": "Endocytic scaffold"
+    }
+  ],
+  "interactions": [],
+  "connections_shown": [
+    {
+      "from_entity": "Thorase",
+      "to_entity": "GluA2-containing AMPAR",
+      "arrow_type": "dashed arrow",
+      "implied_relation": "disassembly of AMPAR/TARP complex",
+      "note": null
+    },
+    {
+      "from_entity": "PICK1",
+      "to_entity": "Arp2/3",
+      "arrow_type": "solid arrow",
+      "implied_relation": "activation/recruitment",
+      "note": null
+    },
+    {
+      "from_entity": "actin",
+      "to_entity": "budding vesicle membrane",
+      "arrow_type": "solid arrow",
+      "implied_relation": "mechanical force/membrane invagination",
+      "note": null
+    },
+    {
+      "from_entity": "Arf1",
+      "to_entity": "PICK1",
+      "arrow_type": "solid line",
+      "implied_relation": "physical association",
+      "note": null
+    }
+  ],
+  "compartments_shown": [
+    "Postsynaptic Density",
+    "Endocytic zone",
+    "PI(4,5)P2 enriched membrane",
+    "Budding vesicle"
+  ],
+  "gaps": [
+    "The transition from panel A (PSD) to B (Endocytic zone) implies lateral diffusion, but the mechanism of release from PSD-95 is not explicitly detailed.",
+    "The arrow from PICK1 to Arp2/3 is unlabeled, suggesting but not confirming a regulatory relationship.",
+    "The role of Arc, Endophilin, and CPG2 in vesicle scission is shown spatially, but the precise causality is not defined."
+  ],
+  "questions_for_expert": [
+    "Does Thorase directly catalyze the dissociation of the AMPAR-TARP complex, or does it act on a different component?",
+    "Is the association between PICK1 and Arp2/3 verified as direct activation in the context of synaptic endocytosis?",
+    "Does CPG2 act as an obligate scaffold for Dynamin/Endophilin, or is it a facilitator?",
+    "What is the specific role of Arf1 versus Arf6 in this pathway?"
+  ]
+}

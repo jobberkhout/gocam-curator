@@ -1,0 +1,142 @@
+{
+  "source": "ampar_pdf_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:22:53",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "inhibition of the Arp2/3 complex",
+        "regulates neuronal morphology",
+        "regulates AMPA receptor endocytosis"
+      ],
+      "context": "dendritic spine, synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arp2/3",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "actin polymerization"
+      ],
+      "context": "dendritic spine",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arf1",
+      "gene_symbol": "ARF1",
+      "mentioned_activities": [
+        "modulates Arp2/3-mediated actin polymerization via PICK1"
+      ],
+      "context": "synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluR2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "internalization",
+        "endocytosis"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Arc",
+      "gene_symbol": "ARC",
+      "mentioned_activities": [
+        "reduces AMPA receptor-mediated synaptic transmission",
+        "mediates homeostatic synaptic scaling"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Thorase",
+      "gene_symbol": "ATAD1",
+      "mentioned_activities": [
+        "regulates AMPA receptor-dependent synaptic plasticity"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CPG2",
+      "gene_symbol": "SYNE1",
+      "mentioned_activities": [
+        "recruits endophilin B2",
+        "PKA-dependent association"
+      ],
+      "context": "spine cytoskeleton",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "Arp2/3",
+      "described_action": "inhibition of the Arp2/3 complex",
+      "quote": "PICK1 inhibition of the Arp2/3 complex controls dendritic spine size and synaptic plasticity.",
+      "pmid": "21239634",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Text explicitly describes inhibition, likely implying a direct molecular interaction on the complex."
+    },
+    {
+      "source_entity": "Arf1",
+      "target_entity": "Arp2/3",
+      "described_action": "modulates Arp2/3-mediated actin polymerization via PICK1",
+      "quote": "The small GTPase Arf1 modulates Arp2/3-mediated actin polymerization via PICK1 to regulate synaptic plasticity.",
+      "pmid": "23830598",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "INDIRECT",
+      "confidence_note": "Arf1 acts through the intermediate PICK1."
+    },
+    {
+      "source_entity": "CPG2",
+      "target_entity": "endophilin B2",
+      "described_action": "recruits endophilin B2",
+      "quote": "CPG2 recruits endophilin B2 to the cytoskeleton for activity-dependent endocytosis of synaptic glutamate receptors.",
+      "pmid": "26830571",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Recruitment is stated, but the mechanistic basis (e.g., binding vs. catalytic) is not specified."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "dendritic spine",
+    "postsynaptic density",
+    "synapse",
+    "spine cytoskeleton"
+  ],
+  "gaps": [
+    "Molecular mechanism of CPG2-mediated endophilin B2 recruitment is undefined.",
+    "The specific catalytic activity of Thorase on AMPARs is not explicitly detailed beyond 'regulates'.",
+    "Many references mention protein-protein interactions (e.g., PICK1-GluR2, GRIP1-GluR2, AP2-GluR2) without defining the molecular function of the interaction."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have an intrinsic enzymatic function or is its role strictly scaffolding/inhibitory?",
+    "How does Thorase (AAA+ ATPase) physically influence AMPAR stability—is there evidence of disassembly or unfolding?"
+  ]
+}

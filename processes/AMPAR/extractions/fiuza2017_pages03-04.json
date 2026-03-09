@@ -1,0 +1,137 @@
+{
+  "source": "fiuza2017_pages03-04",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:34:43",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "dimerization",
+        "binds lipid membranes",
+        "binds F-actin",
+        "binds Arp2/3 complex",
+        "binds AP2 complex",
+        "binds alpha-adaptin",
+        "binds dynamin",
+        "promotes dynamin polymerization"
+      ],
+      "context": "neuronal dendrites, clathrin-coated pits (CCPs), dynamin TKO fibroblasts",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2 complex",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "clathrin-coated pits",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "alpha-adaptin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "AP2 complex subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "dynamin 2",
+      "gene_symbol": "DNM2",
+      "mentioned_activities": [
+        "membrane-remodeling GTPase"
+      ],
+      "context": "CCP neck, clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Endophilin-A2",
+      "gene_symbol": "SH3GL1",
+      "mentioned_activities": [],
+      "context": "CCP necks",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Clathrin",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "clathrin coat",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AP2 complex",
+      "described_action": "binds directly",
+      "quote": "Importantly, this experiment also demonstrated that PICK1 binds directly to the AP2 complex.",
+      "pmid": null,
+      "figure": "Fig. 2C",
+      "assay_described": "GST pulldown",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text states binding but does not describe a regulatory mechanism."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "alpha-adaptin",
+      "described_action": "binds directly to the alpha-adaptin appendage domain",
+      "quote": "These experiments identify PICK1 as a novel AP2-interacting protein via direct binding to the α-adaptin appendage domain",
+      "pmid": null,
+      "figure": "Fig. 2C",
+      "assay_described": "GST pulldown",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Molecular interaction described, but function of binding is not specified."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "dynamin 2",
+      "described_action": "promotes dynamin polymerization",
+      "quote": "PICK1 binds dynamin via BAR and GTPase domains and promotes dynamin polymerization in vitro",
+      "pmid": null,
+      "figure": null,
+      "assay_described": "in vitro assay",
+      "causal_type": "DIRECT",
+      "confidence_note": "Explicitly stated as promoting polymerization in vitro."
+    },
+    {
+      "source_entity": "AP2 complex",
+      "target_entity": "PICK1",
+      "described_action": "recruits PICK1 to CCPs",
+      "quote": "The colocalization of PICK1 with CCPs was abolished by this mutation [DDAA].",
+      "pmid": null,
+      "figure": "Fig. 3C",
+      "assay_described": "confocal microscopy in dynamin TKO fibroblasts",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "AP2 interaction is required for spatial localization (recruitment) of PICK1 to the CCP."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "clathrin-coated pit",
+    "CCP neck",
+    "early endosome",
+    "recycling endosome",
+    "cytoplasm"
+  ],
+  "gaps": [
+    "Only binding described for PICK1/AP2 and PICK1/alpha-adaptin — molecular function of these interactions unknown.",
+    "Mechanism for how PICK1 promotes dynamin polymerization is not defined beyond 'in vitro'."
+  ],
+  "questions_for_expert": [
+    "Does PICK1 have a catalytic role at the CCP or is its primary function acting as a scaffold/adaptor for dynamin?",
+    "Is the 'promotion of dynamin polymerization' a direct enzymatic effect, or does it involve recruiting other factors?"
+  ]
+}

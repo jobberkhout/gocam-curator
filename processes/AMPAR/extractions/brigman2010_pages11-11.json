@@ -1,0 +1,75 @@
+{
+  "source": "brigman2010_pages11-11",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:26:47",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "PSD-95",
+      "gene_symbol": "DLG4",
+      "mentioned_activities": [
+        "postsynaptic density destabilization"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [],
+      "context": "synaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluRepsilon2",
+      "gene_symbol": "GRIN2B",
+      "mentioned_activities": [],
+      "context": "synaptic",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NR2B",
+      "gene_symbol": "GRIN2B",
+      "mentioned_activities": [],
+      "context": "hippocampus / prefrontal cortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "PSD-95 serine 73 phosphorylation",
+      "target_entity": "postsynaptic density",
+      "described_action": "Destabilization of the postsynaptic density",
+      "quote": "Destabilization of the postsynaptic density by PSD-95 serine 73 phosphorylation inhibits spine growth and synaptic plasticity.",
+      "pmid": "19027525",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "The text describes phosphorylation as the direct mechanism for destabilization."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "dendritic spines",
+    "hippocampus",
+    "prefrontal cortex"
+  ],
+  "gaps": [
+    "The text lists citations but does not provide experimental details for most interactions (e.g., how GluRepsilon2 facilitates eyeblink conditioning).",
+    "The molecular mechanism linking NR2B to prefrontal LTP is not detailed in the provided bibliography snippet."
+  ],
+  "questions_for_expert": [
+    "Does the phosphorylation of PSD-95 at Ser73 act as a direct destabilizer, or is it a sign of a broader complex dissociation?",
+    "Should we annotate 'GluRepsilon2' exclusively as a synonym for GRIN2B for current model inputs?"
+  ]
+}

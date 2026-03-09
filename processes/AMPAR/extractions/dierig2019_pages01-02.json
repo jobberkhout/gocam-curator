@@ -1,0 +1,204 @@
+{
+  "source": "dierig2019_pages01-02",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:27:01",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [
+        "AMPA-type glutamate receptor subunit",
+        "undergoes phosphorylation, ubiquitination, palmitoylation, S-nitrosylation"
+      ],
+      "context": "postsynaptic membrane, synaptic plasticity",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [
+        "AMPA-type glutamate receptor subunit",
+        "undergoes phosphorylation, ubiquitination"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA3",
+      "gene_symbol": "GRIA3",
+      "mentioned_activities": [
+        "AMPA-type glutamate receptor subunit"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA4",
+      "gene_symbol": "GRIA4",
+      "mentioned_activities": [
+        "AMPA-type glutamate receptor subunit"
+      ],
+      "context": "postsynaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "4.1N",
+      "gene_symbol": "EPB41L1",
+      "mentioned_activities": [
+        "binding to GluA1"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "BRAG2",
+      "gene_symbol": "CYTH2",
+      "mentioned_activities": [
+        "GEF activity"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRIP1/2",
+      "gene_symbol": "GRIP1",
+      "mentioned_activities": [
+        "binding to GluA2/3"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "interaction with GluA2/3",
+        "promotes endocytosis"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PKA",
+      "gene_symbol": "PRKACA",
+      "mentioned_activities": [
+        "phosphorylation of GluA1 S845"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AKAP5",
+      "gene_symbol": "AKAP5",
+      "mentioned_activities": [
+        "recruitment of PKA to PSD"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "STEP61",
+      "gene_symbol": "PTPN5",
+      "mentioned_activities": [
+        "phosphatase activity"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PP1",
+      "gene_symbol": "PPP1CA",
+      "mentioned_activities": [
+        "phosphatase activity"
+      ],
+      "context": "postsynaptic density",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluA1 C811 palmitoylation",
+      "target_entity": "GluA1 S818 phosphorylation",
+      "described_action": "impairs phosphorylation",
+      "quote": "GluA1 C811 palmitoylation impairs S818 phosphorylation",
+      "pmid": "30364197",
+      "figure": "C",
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct modulation of a PTM site by another PTM."
+    },
+    {
+      "source_entity": "GluA1 C875 nitrosylation",
+      "target_entity": "GluA1 S831 phosphorylation",
+      "described_action": "enhances phosphorylation",
+      "quote": "GluA1 C875 nitrosylation enhances S831 phosphorylation",
+      "pmid": "30364197",
+      "figure": "C",
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct modulation of a PTM site by another PTM."
+    },
+    {
+      "source_entity": "GluA1 S845 phosphorylation",
+      "target_entity": "GluA1 K868 ubiquitination",
+      "described_action": "impairs ubiquitination",
+      "quote": "GluA1 S845 phosphorylation impairs K868 ubiquitination",
+      "pmid": "30364197",
+      "figure": "C",
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Direct inhibition of a PTM by phosphorylation."
+    },
+    {
+      "source_entity": "BRAG2",
+      "target_entity": "GluA2/3 Y876",
+      "described_action": "GEF activity",
+      "quote": "BRAG2 GEF activity",
+      "pmid": "30364197",
+      "figure": "C",
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "GEF enzymatic activity described in relation to the complex."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic membrane",
+    "post-synaptic density (PSD)",
+    "synaptic vesicle"
+  ],
+  "gaps": [
+    "Only binding described for 4.1N and GRIP1/2 — molecular function unknown.",
+    "Interaction between GluA2/3 phosphorylation and ubiquitination is labeled 'unknown'."
+  ],
+  "questions_for_expert": [
+    "Is the 'binding' of 4.1N or GRIP1/2 considered a regulatory activity or a structural/scaffolding role?",
+    "Does 'GEF activity' of BRAG2 directly regulate the phosphorylation state of Y876, or is the arrow in Fig 1C indicating a different mechanism?"
+  ]
+}

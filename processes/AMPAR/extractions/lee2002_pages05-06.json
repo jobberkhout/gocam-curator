@@ -1,0 +1,102 @@
+{
+  "source": "lee2002_pages05-06",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T16:37:19",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluR2",
+      "gene_symbol": "Gria2",
+      "mentioned_activities": [
+        "internalization"
+      ],
+      "context": "hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "Nsf",
+      "mentioned_activities": [
+        "binding to GluR2"
+      ],
+      "context": "synaptic protein interaction",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP2",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "binding to GluR2",
+        "internalization of cargo"
+      ],
+      "context": "clathrin-mediated endocytosis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AMPA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "internalization"
+      ],
+      "context": "synaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDA receptor",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "induces internalization of GluR2"
+      ],
+      "context": "synaptic membrane",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NMDA receptor",
+      "target_entity": "GluR2",
+      "described_action": "NMDA receptor activation induces internalization of GluR2",
+      "quote": "In particular, the data suggest that an interaction with AP2 (but not NSF) is required for the internalization of GluR2 induced by NMDA receptor activation.",
+      "pmid": null,
+      "figure": "Figure 5",
+      "assay_described": "fluorescence-based antibody feeding assay",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The interaction is described as induced by NMDA receptor activation, but the mechanism is downstream of the receptor activity."
+    },
+    {
+      "source_entity": "AP2",
+      "target_entity": "GluR2",
+      "described_action": "AP2 is required for GluR2 internalization",
+      "quote": "In particular, the data suggest that an interaction with AP2 (but not NSF) is required for the internalization of GluR2 induced by NMDA receptor activation.",
+      "pmid": null,
+      "figure": "Figure 5",
+      "assay_described": "fluorescence-based antibody feeding assay",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "AP2 is described as a requirement for the endocytic process, acting as a scaffold/adaptor."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "postsynaptic density",
+    "synaptic membrane"
+  ],
+  "gaps": [
+    "Only binding described for GluR2-NSF and GluR2-AP2 — molecular functions unknown (e.g., is NSF acting as an ATPase to disassemble complexes, or is it a tether?).",
+    "The biochemical mechanism of how NMDA receptor activation specifically triggers the GluR2-AP2 interaction is not described."
+  ],
+  "questions_for_expert": [
+    "Can the interaction between NSF and GluR2 be defined by a specific molecular function (e.g., chaperone-mediated protein complex dissociation) rather than just 'binding'?",
+    "Is the role of AP2 in GluR2 internalization considered a cargo-adaptor activity or a membrane-curvature generation activity in the context of this paper?"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "source": "brigman2010_pages09-10",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:26:38",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluN2B",
+      "gene_symbol": "Grin2b",
+      "mentioned_activities": [
+        "modulate an NMDAR-independent form of LTP",
+        "formation and/or long-term stability of dendritic spines"
+      ],
+      "context": "CA1 hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN2A",
+      "gene_symbol": "Grin2a",
+      "mentioned_activities": [],
+      "context": "hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "synaptic transmission",
+        "long-term depression (LTD)",
+        "long-term potentiation (LTP)"
+      ],
+      "context": "corticohippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "actin cytoskeleton",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "regulates the motility and maintenance of spines"
+      ],
+      "context": "dendritic spines",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tPDC",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "increase synaptic glutamate"
+      ],
+      "context": "synaptic cleft",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "AP-5",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "NMDAR antagonist"
+      ],
+      "context": "synapse",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "dendritic spines",
+      "described_action": "contribution to formation and/or long-term stability of dendritic spines",
+      "quote": "Collectively, these findings point to a significant contribution of GluN2B-containing NMDARs to either the formation and/or long-term stability of dendritic spines.",
+      "pmid": "20357116",
+      "figure": null,
+      "assay_described": "spine density measurements",
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The text suggests the protein is a requirement for maintaining spine structure, classifying it as a structural prerequisite."
+    },
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "LTD",
+      "described_action": "loss of GluN2B impairs LTD",
+      "quote": "This form of NMDAR-dependent LTD was absent in the GluN2B mutants, providing some of the clearest evidence to date that loss of GluN2B impairs LTD in the adult hippocampus",
+      "pmid": "20357116",
+      "figure": null,
+      "assay_described": "LFS (low frequency stimulation)",
+      "causal_type": "INDIRECT",
+      "confidence_note": "While essential, the effect is observed at the network/plasticity level following loss of a specific receptor subunit, implying intermediate signaling steps."
+    },
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "actin cytoskeleton",
+      "described_action": "functional interactions between GluN2B and actin cytoskeleton proteins that regulate the motility and maintenance of spines",
+      "quote": "it may reflect functional interactions between GluN2B and actin cytoskeleton proteins that regulate the motility and maintenance of spines.",
+      "pmid": "20357116",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "The text hypothesizes a 'functional interaction' but provides no mechanistic detail or direct evidence."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "dendritic spines",
+    "CA1 neurons",
+    "hippocampus",
+    "cortex"
+  ],
+  "gaps": [
+    "Only binding/functional interaction described for GluN2B and actin cytoskeleton — molecular mechanism unknown.",
+    "The downstream effectors of GluN2B in LTD are not explicitly defined beyond the role of the NMDAR complex.",
+    "The mechanism by which GluN2B deletion produces 'tonic synaptic depression' is not detailed."
+  ],
+  "questions_for_expert": [
+    "Does the 'functional interaction' between GluN2B and actin imply direct binding to actin or via scaffold proteins (e.g., PSD-95)?",
+    "Is the loss of LTD in GluN2B mutants due to a shift in NMDAR subunit stoichiometry or a specific signaling function of the GluN2B C-tail?",
+    "Does 'tonic synaptic depression' reflect a specific homeostatic set-point change or just an occluded capacity for further depression?"
+  ]
+}

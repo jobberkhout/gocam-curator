@@ -1,0 +1,136 @@
+{
+  "source": "brigman2010_pages07-08",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:25:27",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "GluN2B",
+      "gene_symbol": "Grin2b",
+      "mentioned_activities": [],
+      "context": "CA1 pyramidal neurons, neocortex",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluN1",
+      "gene_symbol": "Grin1",
+      "mentioned_activities": [],
+      "context": "NMDAR subunit",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NMDAR",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "mediated eEPSC",
+        "calcium entry"
+      ],
+      "context": "CA1 hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": "Camk2a/b",
+      "mentioned_activities": [
+        "anchoring to the NMDAR complex"
+      ],
+      "context": "hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "DL-AP-5",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "NMDAR antagonist",
+        "inhibited hippocampal eEPSCs"
+      ],
+      "context": "pharmacological intervention",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "tPDC",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "LTD induction"
+      ],
+      "context": "pharmacological intervention",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "GluN1",
+      "described_action": "deletion of GluN2B causes a loss of non-synaptic GluN1",
+      "quote": "deletion of GluN2B causes a loss of non-synaptic GluN1.",
+      "pmid": "20357134",
+      "figure": null,
+      "assay_described": "in situ hybridization, protein homogenates",
+      "causal_type": "INDIRECT",
+      "confidence_note": "The authors hypothesize the effect is due to protein stability of free intracellular pools."
+    },
+    {
+      "source_entity": "GluN2B",
+      "target_entity": "NMDAR",
+      "described_action": "contributes to NMDAR kinetics",
+      "quote": "affirm the contribution of GluN2B to NMDAR kinetics but not overall NMDAR-mediated synaptic function",
+      "pmid": "20357134",
+      "figure": null,
+      "assay_described": "electrophysiological recording",
+      "causal_type": "DIRECT",
+      "confidence_note": "The interaction is mechanistic based on NMDAR subunit composition defining channel decay kinetics."
+    },
+    {
+      "source_entity": "NMDAR",
+      "target_entity": "CaMKII",
+      "described_action": "anchoring of CaMKII to the NMDAR complex",
+      "quote": "disruption of the anchoring of CaMKII to the NMDAR complex",
+      "pmid": "20357134",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "STRUCTURAL_PREREQUISITE",
+      "confidence_note": "The text describes this as an anchoring interaction that modulates function."
+    },
+    {
+      "source_entity": "DL-AP-5",
+      "target_entity": "NMDAR",
+      "described_action": "markedly inhibited hippocampal eEPSCs",
+      "quote": "NMDAR antagonist DL-AP-5 markedly inhibited hippocampal eEPSCs",
+      "pmid": "20357134",
+      "figure": null,
+      "assay_described": "electrophysiological recording",
+      "causal_type": "DIRECT",
+      "confidence_note": "Competitive antagonism is a direct mechanism."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "CA1 pyramidal neurons",
+    "neocortex",
+    "dendritic spine",
+    "postsynaptic density"
+  ],
+  "gaps": [
+    "Mechanism for 'subsaturating' vs 'saturating' LTP threshold difference remains unclear.",
+    "Interaction between GluN2B and GluN1 stability: molecular mechanism for rapid degradation is proposed but not experimentally demonstrated in this paper.",
+    "Exact molecular mechanism by which GluN2B deletion increases LTP threshold is speculative (Ca2+ entry vs CaMKII anchoring)."
+  ],
+  "questions_for_expert": [
+    "Can we confirm if the 'anchoring' mentioned between CaMKII and NMDAR is considered a direct regulatory interaction or a structural requirement?",
+    "Is 'NMDAR-mediated LTD' a standard GO-BP term, or should it be decomposed into calcium-dependent signaling steps?",
+    "The paper mentions 'NMDAR kinetics'; is there a specific GO term for this modulation of decay time?"
+  ]
+}

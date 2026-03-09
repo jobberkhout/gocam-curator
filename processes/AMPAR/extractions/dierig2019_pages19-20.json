@@ -1,0 +1,200 @@
+{
+  "source": "dierig2019_pages19-20",
+  "source_type": "pdf",
+  "timestamp": "2026-03-09T15:59:10",
+  "extraction_pass": 1,
+  "visual_description": null,
+  "entities": [
+    {
+      "name": "NEEP21",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "regulates AMPA receptor-mediated synaptic transmission and plasticity"
+      ],
+      "context": "hippocampus",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "mentioned_activities": [],
+      "context": "synaptic homeostasis",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PICK1",
+      "gene_symbol": "PICK1",
+      "mentioned_activities": [
+        "occludes homeostatic synaptic scaling",
+        "regulates incorporation of calcium-permeable AMPA receptors",
+        "regulates AMPA receptor endocytosis"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "NSF",
+      "gene_symbol": "NSF",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "mentioned_activities": [],
+      "context": "hippocampal neurons",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "cAMP-dependent protein kinase (PKA)",
+      "gene_symbol": null,
+      "mentioned_activities": [
+        "control of GluR1 AMPA receptor function"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "CaMKII",
+      "gene_symbol": "CAMK2A",
+      "mentioned_activities": [
+        "regulatory phosphorylation of AMPA-type glutamate receptors",
+        "enhances channel conductance",
+        "mediates LTP and LTD"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Stargazin",
+      "gene_symbol": "CACNG2",
+      "mentioned_activities": [
+        "regulates AMPA receptor surface trafficking",
+        "regulates synaptic targeting"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "PSD-95",
+      "gene_symbol": "DLG4",
+      "mentioned_activities": [],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Cornichon2",
+      "gene_symbol": "CNIH2",
+      "mentioned_activities": [
+        "dictates the time course of excitatory transmission"
+      ],
+      "context": "hippocampal synapses",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "GRASP1",
+      "gene_symbol": "GRASP1",
+      "mentioned_activities": [
+        "regulates synaptic plasticity and learning",
+        "endosomal recycling of AMPA receptors"
+      ],
+      "context": null,
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    },
+    {
+      "name": "Homer1a",
+      "gene_symbol": "HOMER1",
+      "mentioned_activities": [
+        "drives homeostatic scaling-down of excitatory synapses"
+      ],
+      "context": "sleep",
+      "label_as_shown": null,
+      "position_in_diagram": null,
+      "implied_activity": null
+    }
+  ],
+  "interactions": [
+    {
+      "source_entity": "NSF",
+      "target_entity": "GluA2",
+      "described_action": "Plasma membrane insertion of the AMPA receptor GluA2 subunit is regulated by NSF binding",
+      "quote": "Plasma membrane insertion of the AMPA receptor GluA2 subunit is regulated by NSF binding and Q/R editing of the ion pore.",
+      "pmid": "20534470",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "UNKNOWN",
+      "confidence_note": "Text mentions 'NSF binding' but does not specify the mechanistic enzymatic or trafficking activity."
+    },
+    {
+      "source_entity": "PKA",
+      "target_entity": "GluR1",
+      "described_action": "control of GluR1 AMPA receptor function",
+      "quote": "Control of GluR1 AMPA receptor function by cAMP-dependent protein kinase.",
+      "pmid": "10627585",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "PKA is a known kinase and the title implies direct functional control."
+    },
+    {
+      "source_entity": "CaMKII",
+      "target_entity": "AMPA receptor",
+      "described_action": "enhances channel conductance",
+      "quote": "Ca2+/calmodulin-kinase II enhances channel conductance of alpha-amino-3-hydroxy-5-methyl-4-isoxazolepropionate type glutamate receptors.",
+      "pmid": "10077673",
+      "figure": null,
+      "assay_described": null,
+      "causal_type": "DIRECT",
+      "confidence_note": "Enzymatic phosphorylation leading to conductance change is a direct mechanism."
+    },
+    {
+      "source_entity": "PICK1",
+      "target_entity": "AP2 alpha-appendage",
+      "described_action": "regulates AMPA receptor endocytosis via direct interactions",
+      "quote": "PICK1 regulates AMPA receptor endocytosis via direct interactions with AP2 alpha-appendage and dynamin.",
+      "pmid": null,
+      "figure": null,
+      "assay_described": "direct interactions",
+      "causal_type": "UNKNOWN",
+      "confidence_note": "The interaction is direct, but 'regulates endocytosis' is a broad effect, not a specific enzymatic action."
+    }
+  ],
+  "connections_shown": [],
+  "compartments_shown": [
+    "hippocampus",
+    "plasma membrane",
+    "excitatory synapses",
+    "endosomal"
+  ],
+  "gaps": [
+    "Only binding described for NSF/GluA2 interaction — molecular function unknown.",
+    "The specific enzymatic activity or mechanical step by which PICK1 regulates endocytosis is not described beyond 'direct interactions'."
+  ],
+  "questions_for_expert": [
+    "Does NSF have a known enzymatic activity in the context of GluA2 trafficking, or is it purely a mechanical chaperoning event?",
+    "Is the 'regulation' of AMPA receptor trafficking by Stargazin better described as a scaffold requirement or a direct trafficking event?"
+  ]
+}
