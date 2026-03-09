@@ -371,7 +371,7 @@ def translate_command(process: str | None) -> None:
         }
 
     # -----------------------------------------------------------------------
-    # Single translate call
+    # Single translate call (with one retry if records < interactions)
     # -----------------------------------------------------------------------
     else:
         user_msg = _build_user_msg(process_name, species, report_text, raw_json_content, pmid_table=pmid_table)
@@ -385,6 +385,35 @@ def translate_command(process: str | None) -> None:
             except Exception as exc:
                 print_error(f"LLM call failed: {exc}")
                 raise SystemExit(1)
+
+        # Retry once if fewer records were produced than interactions in the report
+        n_produced = len(merged_raw.get("records", []) if isinstance(merged_raw, dict) else merged_raw)
+        if n_report_interactions and n_produced < n_report_interactions:
+            missing = n_report_interactions - n_produced
+            print_warning(
+                f"First pass produced only {n_produced}/{n_report_interactions} records — "
+                f"retrying with explicit interaction list to recover {missing} missing record(s)."
+            )
+            retry_header = (
+                f"IMPORTANT: Your previous response produced only {n_produced} records but the "
+                f"Interaction Map contains {n_report_interactions} interactions. "
+                f"You MUST produce exactly {n_report_interactions} records — one per interaction. "
+                f"Do NOT skip any interaction, even if evidence is weak.\n\n"
+                f"Interactions that appear to be missing (produce records for all of them):\n"
+            )
+            if interaction_lines:
+                # List all interactions so the model can see what it missed
+                retry_header += "\n".join(f"  {line}" for line in interaction_lines)
+            retry_msg = (
+                f"{retry_header}\n\n"
+                + _build_user_msg(process_name, species, report_text, raw_json_content, pmid_table=pmid_table)
+            )
+            with timed_status(f"Retry: translating all {n_report_interactions} interactions..."):
+                try:
+                    merged_raw = client.call_text("translate", retry_msg)
+                except Exception as exc:
+                    print_warning(f"Retry failed: {exc} — using first-pass results")
+                    # merged_raw already has the first-pass result; continue with it
 
     try:
         records_file = _parse_records(merged_raw, species)

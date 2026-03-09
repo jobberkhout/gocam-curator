@@ -1,5 +1,6 @@
-from pydantic import BaseModel
 from typing import Optional
+
+from pydantic import BaseModel, field_validator
 
 
 class GOTerm(BaseModel):
@@ -17,6 +18,18 @@ class ECOEvidence(BaseModel):
     quote: Optional[str] = None
     pmid: Optional[str] = None
     figure: Optional[str] = None
+
+    @field_validator("pmid", mode="before")
+    @classmethod
+    def reject_unknown_pmid(cls, v: object) -> str | None:
+        """Coerce "UNKNOWN" / empty strings to None — only real PMIDs (digits) are valid."""
+        if v is None:
+            return None
+        s = str(v).strip()
+        if not s or s.upper() in ("UNKNOWN", "NULL", "NONE", "N/A"):
+            return None
+        return s
+
     assay: Optional[str] = None
     eco_code: str = "UNKNOWN"
     eco_label: Optional[str] = None
