@@ -21,8 +21,9 @@ env/
 # Environment / secrets
 .env
 
-# Process data — results, extracted text, evidence records (not versioned)
+# Process data and search results — not versioned
 processes/
+searches/
 
 # macOS
 .DS_Store

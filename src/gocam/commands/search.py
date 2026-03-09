@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from gocam.config import PROCESSES_DIR
+from gocam.config import PROCESSES_DIR, SEARCHES_DIR
 from gocam.utils.display import console, print_error, print_info, print_warning
 from gocam.utils.io import write_json
 
@@ -444,7 +444,7 @@ def _save_results(
     print_info(f"Saved → {md_out.name}  {json_out.name}")
 
 
-def _try_save(
+def _auto_save(
     gene: str,
     taxon_id: str,
     species_label: str,
@@ -452,20 +452,8 @@ def _try_save(
     quickgo: list[dict],
     ols: list[dict],
 ) -> None:
-    """Auto-save to the active process searches/ dir when exactly one process exists."""
-    if not PROCESSES_DIR.exists():
-        return
-    candidates = sorted(
-        p for p in PROCESSES_DIR.iterdir()
-        if p.is_dir() and (p / "meta.json").exists()
-    )
-    if len(candidates) != 1:
-        return  # ambiguous or none — don't save silently
-
-    _save_results(
-        candidates[0] / "searches",
-        gene, taxon_id, species_label, uniprot, quickgo, ols,
-    )
+    """Always save to the global searches/ folder at the project root."""
+    _save_results(SEARCHES_DIR, gene, taxon_id, species_label, uniprot, quickgo, ols)
 
 
 # ---------------------------------------------------------------------------
@@ -492,9 +480,9 @@ def search_command(gene: str, species: str, process: str | None) -> None:
     report of existing GO annotations, protein function, and related GO
     term suggestions.
 
-    Results are saved to processes/<active>/searches/ as <gene>.md
-    (human-readable) and <gene>.json (full data) when a single active
-    process can be auto-detected.
+    Results are always saved to searches/<gene>.md (human-readable) and
+    searches/<gene>.json (full data) in the project root. Use --process
+    to also copy results into a specific process folder.
 
     \b
     EXAMPLES
@@ -518,7 +506,10 @@ def search_command(gene: str, species: str, process: str | None) -> None:
 
     _display(gene, species_label, uniprot, quickgo, ols)
 
-    # Save results
+    # Always save to global searches/ folder
+    _auto_save(gene, taxon_id, species_label, uniprot, quickgo, ols)
+
+    # Also save into a specific process folder if --process is given
     if process:
         process_dir = PROCESSES_DIR / process
         if process_dir.exists():
@@ -526,5 +517,3 @@ def search_command(gene: str, species: str, process: str | None) -> None:
                 process_dir / "searches",
                 gene, taxon_id, species_label, uniprot, quickgo, ols,
             )
-    else:
-        _try_save(gene, taxon_id, species_label, uniprot, quickgo, ols)

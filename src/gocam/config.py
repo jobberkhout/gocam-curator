@@ -17,6 +17,7 @@ PROJECT_ROOT: Path = _PACKAGE_DIR.parent.parent
 
 PROMPTS_DIR: Path = PROJECT_ROOT / "prompts"
 PROCESSES_DIR: Path = PROJECT_ROOT / "processes"
+SEARCHES_DIR: Path = PROJECT_ROOT / "searches"  # global search results (all processes)
 
 # ---------------------------------------------------------------------------
 # LLM provider selection
