@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-03-09T14:18:29",
+  "timestamp": "2026-03-09T16:06:58",
   "summary": {
-    "total_records": 5,
-    "go_terms_verified": 12,
+    "total_records": 7,
+    "go_terms_verified": 19,
     "go_terms_failed": 1,
-    "go_terms_obsolete": 1,
+    "go_terms_obsolete": 0,
     "go_terms_skipped": 1,
-    "go_terms_already_annotated": 7,
-    "uniprot_confirmed": 5,
+    "go_terms_already_annotated": 8,
+    "uniprot_confirmed": 7,
     "eco_verified": 5
   },
   "details": [
@@ -46,15 +46,36 @@
         ]
       },
       "go_bp": {
-        "suggested": "GO:0032012",
+        "suggested": "GO:0099638",
         "status": "VERIFIED",
-        "official_label": "regulation of ARF protein signal transduction",
-        "label_match": true,
+        "official_label": "endosome to plasma membrane protein transport",
+        "label_match": false,
         "aspect": "biological_process",
         "aspect_match": true,
-        "already_annotated": true,
+        "already_annotated": false,
         "error": null,
-        "alternative_suggestions": []
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:0031623",
+            "label": "receptor internalization"
+          },
+          {
+            "go_id": "GO:0099590",
+            "label": "neurotransmitter receptor internalization"
+          },
+          {
+            "go_id": "GO:0038017",
+            "label": "Wnt receptor internalization"
+          },
+          {
+            "go_id": "GO:0038016",
+            "label": "insulin receptor internalization"
+          },
+          {
+            "go_id": "GO:1990767",
+            "label": "prostaglandin receptor internalization"
+          }
+        ]
       },
       "go_cc": {
         "suggested": "GO:0014069",
@@ -211,34 +232,34 @@
     {
       "record_id": "ER-002",
       "go_mf": {
-        "suggested": "GO:0008026",
+        "suggested": "GO:0016887",
         "status": "VERIFIED",
-        "official_label": "helicase activity",
+        "official_label": "ATP hydrolysis activity",
         "label_match": false,
         "aspect": "molecular_function",
         "aspect_match": true,
-        "already_annotated": false,
+        "already_annotated": true,
         "error": null,
         "alternative_suggestions": [
           {
-            "go_id": "GO:0042626",
-            "label": "ATPase-coupled transmembrane transporter activity"
+            "go_id": "GO:1990833",
+            "label": "clathrin-uncoating ATPase activity"
           },
           {
-            "go_id": "GO:0044769",
-            "label": "ATPase activity, coupled to transmembrane movement of ions, rotational mechanism"
+            "go_id": "GO:0015450",
+            "label": "protein-transporting ATPase activity"
           },
           {
-            "go_id": "GO:0034040",
-            "label": "ATPase-coupled lipid transmembrane transporter activity"
+            "go_id": "GO:0008564",
+            "label": "protein-exporting ATPase activity"
           },
           {
-            "go_id": "GO:0042625",
-            "label": "ATPase-coupled ion transmembrane transporter activity"
+            "go_id": "GO:0008568",
+            "label": "microtubule severing ATPase activity"
           },
           {
-            "go_id": "GO:0042961",
-            "label": "ATPase-coupled antimonite transmembrane transporter activity"
+            "go_id": "GO:0030899",
+            "label": "calcium-dependent ATPase activity"
           }
         ]
       },
@@ -616,26 +637,68 @@
     {
       "record_id": "ER-003",
       "go_mf": {
-        "suggested": "GO:0004672",
+        "suggested": "GO:0016887",
         "status": "VERIFIED",
-        "official_label": "protein kinase activity",
-        "label_match": true,
+        "official_label": "ATP hydrolysis activity",
+        "label_match": false,
         "aspect": "molecular_function",
         "aspect_match": true,
         "already_annotated": true,
         "error": null,
-        "alternative_suggestions": []
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:1990833",
+            "label": "clathrin-uncoating ATPase activity"
+          },
+          {
+            "go_id": "GO:0015450",
+            "label": "protein-transporting ATPase activity"
+          },
+          {
+            "go_id": "GO:0008564",
+            "label": "protein-exporting ATPase activity"
+          },
+          {
+            "go_id": "GO:0008568",
+            "label": "microtubule severing ATPase activity"
+          },
+          {
+            "go_id": "GO:0030899",
+            "label": "calcium-dependent ATPase activity"
+          }
+        ]
       },
       "go_bp": {
-        "suggested": "GO:0006468",
+        "suggested": "GO:0043241",
         "status": "VERIFIED",
-        "official_label": "protein phosphorylation",
-        "label_match": true,
+        "official_label": "protein-containing complex disassembly",
+        "label_match": false,
         "aspect": "biological_process",
         "aspect_match": true,
-        "already_annotated": true,
+        "already_annotated": false,
         "error": null,
-        "alternative_suggestions": []
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:0032986",
+            "label": "protein-DNA complex disassembly"
+          },
+          {
+            "go_id": "GO:0043244",
+            "label": "regulation of protein-containing complex disassembly"
+          },
+          {
+            "go_id": "GO:0032988",
+            "label": "protein-RNA complex disassembly"
+          },
+          {
+            "go_id": "GO:0032984",
+            "label": "protein-containing complex disassembly"
+          },
+          {
+            "go_id": "GO:0043242",
+            "label": "negative regulation of protein-containing complex disassembly"
+          }
+        ]
       },
       "go_cc": {
         "suggested": "GO:0014069",
@@ -644,139 +707,34 @@
         "label_match": true,
         "aspect": "cellular_component",
         "aspect_match": true,
-        "already_annotated": true,
+        "already_annotated": false,
         "error": null,
         "alternative_suggestions": []
       },
       "uniprot": {
-        "query": "CAMK2A Mus musculus",
+        "query": "ATAD1 Mus musculus",
         "status": "FOUND",
-        "uniprot_id": "P11798",
+        "uniprot_id": "Q9D5T0",
         "existing_go_annotations": [
-          "GO:0030424",
-          "GO:0005954",
-          "GO:0005737",
-          "GO:0030425",
-          "GO:0032839",
-          "GO:0043197",
           "GO:0098978",
+          "GO:0005741",
           "GO:0005739",
-          "GO:0043005",
-          "GO:0043025",
-          "GO:0099524",
-          "GO:0014069",
-          "GO:0099523",
-          "GO:0098685",
-          "GO:0045202",
+          "GO:0005778",
+          "GO:0098794",
+          "GO:0045211",
           "GO:0005524",
-          "GO:0004683",
-          "GO:0005516",
-          "GO:0035254",
-          "GO:0032794"
+          "GO:0016887",
+          "GO:0140567",
+          "GO:0140570",
+          "GO:0007612",
+          "GO:0007613",
+          "GO:0051967",
+          "GO:0002092",
+          "GO:0099149"
         ],
         "quickgo_annotations": [
           {
-            "go_id": "GO:0110076",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0000082",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0002931",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0006816",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0007259",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0010666",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0018105",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0035458",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0046427",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0046777",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0046928",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0048168",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0048813",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0051928",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0071346",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:1902108",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0004672",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0004674",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0004683",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
             "go_id": "GO:0005515",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0005516",
             "label": null,
             "aspect": "molecular_function"
           },
@@ -786,112 +744,52 @@
             "aspect": "molecular_function"
           },
           {
-            "go_id": "GO:0016301",
+            "go_id": "GO:0016887",
             "label": null,
             "aspect": "molecular_function"
           },
           {
-            "go_id": "GO:0032794",
+            "go_id": "GO:0140567",
             "label": null,
             "aspect": "molecular_function"
           },
           {
-            "go_id": "GO:0035254",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0042802",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0042803",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0106310",
-            "label": null,
-            "aspect": "molecular_function"
-          },
-          {
-            "go_id": "GO:0006468",
+            "go_id": "GO:0002092",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0035235",
+            "go_id": "GO:0007612",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0038166",
+            "go_id": "GO:0007613",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0043123",
+            "go_id": "GO:0051967",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0060996",
+            "go_id": "GO:0099149",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0098696",
+            "go_id": "GO:0140570",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0098877",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0099148",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:1903076",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:1990443",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:2000124",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:2001222",
-            "label": null,
-            "aspect": "biological_process"
-          },
-          {
-            "go_id": "GO:0005737",
+            "go_id": "GO:0005741",
             "label": null,
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0014069",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0043005",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0098685",
+            "go_id": "GO:0098794",
             "label": null,
             "aspect": "cellular_component"
           },
@@ -901,57 +799,22 @@
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0099523",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0099524",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
             "go_id": "GO:0005739",
             "label": null,
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0030424",
+            "go_id": "GO:0005778",
             "label": null,
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0030425",
+            "go_id": "GO:0016020",
             "label": null,
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0032839",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0043025",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0043197",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0043226",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0045202",
-            "label": null,
-            "aspect": "cellular_component"
-          },
-          {
-            "go_id": "GO:0005954",
+            "go_id": "GO:0045211",
             "label": null,
             "aspect": "cellular_component"
           }
@@ -969,26 +832,68 @@
     {
       "record_id": "ER-004",
       "go_mf": {
-        "suggested": "UNKNOWN",
-        "status": "SKIPPED",
-        "official_label": null,
-        "label_match": null,
-        "aspect": null,
-        "aspect_match": null,
+        "suggested": "GO:0030833",
+        "status": "VERIFIED",
+        "official_label": "regulation of actin filament polymerization",
+        "label_match": false,
+        "aspect": "biological_process",
+        "aspect_match": false,
         "already_annotated": false,
         "error": null,
-        "alternative_suggestions": []
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:0051258",
+            "label": "protein polymerization"
+          },
+          {
+            "go_id": "GO:0032271",
+            "label": "regulation of protein polymerization"
+          },
+          {
+            "go_id": "GO:0046785",
+            "label": "microtubule polymerization"
+          },
+          {
+            "go_id": "GO:0019887",
+            "label": "protein kinase regulator activity"
+          },
+          {
+            "go_id": "GO:0019888",
+            "label": "protein phosphatase regulator activity"
+          }
+        ]
       },
       "go_bp": {
-        "suggested": "GO:0034645",
-        "status": "OBSOLETE",
-        "official_label": "obsolete cellular macromolecule biosynthetic process",
-        "label_match": null,
+        "suggested": "GO:0006897",
+        "status": "VERIFIED",
+        "official_label": "endocytosis",
+        "label_match": false,
         "aspect": "biological_process",
         "aspect_match": true,
         "already_annotated": false,
         "error": null,
-        "alternative_suggestions": []
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:0072583",
+            "label": "clathrin-dependent endocytosis"
+          },
+          {
+            "go_id": "GO:2000369",
+            "label": "regulation of clathrin-dependent endocytosis"
+          },
+          {
+            "go_id": "GO:2000370",
+            "label": "positive regulation of clathrin-dependent endocytosis"
+          },
+          {
+            "go_id": "GO:0075512",
+            "label": "clathrin-dependent endocytosis of virus by host cell"
+          },
+          {
+            "go_id": "GO:1900186",
+            "label": "negative regulation of clathrin-dependent endocytosis"
+          }
+        ]
       },
       "go_cc": {
         "suggested": "GO:0000000",
@@ -1342,51 +1247,72 @@
         "error": null
       },
       "eco": {
-        "suggested": "ECO:0000226",
-        "status": "VERIFIED",
-        "official_label": "chromatin immunoprecipitation evidence",
-        "eco_suggestions": [],
+        "suggested": "UNKNOWN",
+        "status": "SKIPPED",
+        "official_label": null,
+        "eco_suggestions": [
+          {
+            "eco_id": "ECO:0001155",
+            "label": "bromodeoxyuridine incorporation assay evidence used in manual assertion"
+          },
+          {
+            "eco_id": "ECO:0000288",
+            "label": "RNA protection assay evidence used in manual assertion"
+          },
+          {
+            "eco_id": "ECO:0001264",
+            "label": "terminal deoxynucleotidyl transferase dUTP nick end labeling assay evidence used in manual assertion"
+          },
+          {
+            "eco_id": "ECO:0007009",
+            "label": "radioligand binding assay evidence used in manual assertion"
+          },
+          {
+            "eco_id": "ECO:0000134",
+            "label": "transport assay evidence"
+          }
+        ],
         "error": null
       }
     },
     {
       "record_id": "ER-005",
       "go_mf": {
-        "suggested": "GO:0042626",
+        "suggested": "GO:0061247",
         "status": "VERIFIED",
-        "official_label": "ATPase-coupled transmembrane transporter activity",
+        "official_label": "mesonephric glomerular mesangium development",
         "label_match": false,
-        "aspect": "molecular_function",
-        "aspect_match": true,
+        "aspect": "biological_process",
+        "aspect_match": false,
         "already_annotated": false,
         "error": null,
         "alternative_suggestions": [
           {
-            "go_id": "GO:0036266",
-            "label": "Cdc48p-Npl4p-Vms1p AAA ATPase complex"
+            "go_id": "GO:0045010",
+            "label": "actin nucleation"
           },
           {
-            "go_id": "GO:0034098",
-            "label": "VCP-NPL4-UFD1 AAA ATPase complex"
+            "go_id": "GO:0070060",
+            "label": "'de novo' actin filament nucleation"
           },
           {
-            "go_id": "GO:1904210",
-            "label": "VCP-NPL4-UFD1 AAA ATPase complex assembly"
+            "go_id": "GO:0005884",
+            "label": "actin filament"
           },
           {
-            "go_id": "GO:1904239",
-            "label": "regulation of VCP-NPL4-UFD1 AAA ATPase complex assembly"
+            "go_id": "GO:0034314",
+            "label": "Arp2/3 complex-mediated actin nucleation"
           },
           {
-            "go_id": "GO:0031942",
-            "label": "i-AAA complex"
+            "go_id": "GO:0033275",
+            "label": "actin-myosin filament sliding"
           }
         ]
       },
       "go_bp": {
-        "suggested": "GO:0043241",
+        "suggested": "GO:0030036",
         "status": "VERIFIED",
-        "official_label": "protein-containing complex disassembly",
+        "official_label": "actin cytoskeleton organization",
         "label_match": false,
         "aspect": "biological_process",
         "aspect_match": true,
@@ -1394,77 +1320,142 @@
         "error": null,
         "alternative_suggestions": [
           {
-            "go_id": "GO:0032986",
-            "label": "protein-DNA complex disassembly"
+            "go_id": "GO:0030041",
+            "label": "actin filament polymerization"
           },
           {
-            "go_id": "GO:0043244",
-            "label": "regulation of protein-containing complex disassembly"
+            "go_id": "GO:0030833",
+            "label": "regulation of actin filament polymerization"
           },
           {
-            "go_id": "GO:0032988",
-            "label": "protein-RNA complex disassembly"
+            "go_id": "GO:0030837",
+            "label": "negative regulation of actin filament polymerization"
           },
           {
-            "go_id": "GO:0032984",
-            "label": "protein-containing complex disassembly"
+            "go_id": "GO:0030838",
+            "label": "positive regulation of actin filament polymerization"
           },
           {
-            "go_id": "GO:0043242",
-            "label": "negative regulation of protein-containing complex disassembly"
+            "go_id": "GO:0005884",
+            "label": "actin filament"
           }
         ]
       },
       "go_cc": {
-        "suggested": "GO:0005737",
+        "suggested": "GO:0043197",
         "status": "VERIFIED",
-        "official_label": "cytoplasm",
+        "official_label": "dendritic spine",
         "label_match": true,
         "aspect": "cellular_component",
         "aspect_match": true,
-        "already_annotated": false,
+        "already_annotated": true,
         "error": null,
         "alternative_suggestions": []
       },
       "uniprot": {
-        "query": "ATAD1 Mus musculus",
+        "query": "PICK1 Mus musculus",
         "status": "FOUND",
-        "uniprot_id": "Q9D5T0",
+        "uniprot_id": "Q62083",
         "existing_go_annotations": [
+          "GO:0005737",
+          "GO:0005856",
+          "GO:0005829",
+          "GO:0030425",
+          "GO:0043197",
+          "GO:0061846",
+          "GO:0060076",
           "GO:0098978",
-          "GO:0005741",
+          "GO:0005794",
           "GO:0005739",
-          "GO:0005778",
-          "GO:0098794",
-          "GO:0045211",
-          "GO:0005524",
-          "GO:0016887",
-          "GO:0140567",
-          "GO:0140570",
-          "GO:0007612",
-          "GO:0007613",
-          "GO:0051967",
-          "GO:0002092",
-          "GO:0099149"
+          "GO:0043005",
+          "GO:0048471",
+          "GO:0005886",
+          "GO:0014069",
+          "GO:0098843",
+          "GO:0099572",
+          "GO:0098831",
+          "GO:0042734",
+          "GO:0032991",
+          "GO:0045202"
         ],
         "quickgo_annotations": [
+          {
+            "go_id": "GO:0006605",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0001664",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005080",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005102",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005484",
+            "label": null,
+            "aspect": "molecular_function"
+          },
           {
             "go_id": "GO:0005515",
             "label": null,
             "aspect": "molecular_function"
           },
           {
-            "go_id": "GO:0005524",
+            "go_id": "GO:0005543",
             "label": null,
             "aspect": "molecular_function"
           },
           {
-            "go_id": "GO:0016887",
+            "go_id": "GO:0008092",
             "label": null,
             "aspect": "molecular_function"
           },
           {
-            "go_id": "GO:0140567",
+            "go_id": "GO:0019904",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0035255",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0035256",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0042802",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0051015",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0071933",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0140090",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0140318",
             "label": null,
             "aspect": "molecular_function"
           },
@@ -1474,17 +1465,97 @@
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0007612",
+            "go_id": "GO:0006468",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0007613",
+            "go_id": "GO:0006886",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0051967",
+            "go_id": "GO:0010629",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0015844",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0021782",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0034315",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0034316",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0035556",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0036294",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0042149",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0043113",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0050796",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0050803",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0060292",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0061025",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0097061",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0097062",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0097113",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0098737",
             "label": null,
             "aspect": "biological_process"
           },
@@ -1494,17 +1565,37 @@
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0140570",
+            "go_id": "GO:0106426",
             "label": null,
             "aspect": "biological_process"
           },
           {
-            "go_id": "GO:0005741",
+            "go_id": "GO:1904719",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0008021",
             "label": null,
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0098794",
+            "go_id": "GO:0014069",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0032588",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0043005",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0098843",
             "label": null,
             "aspect": "cellular_component"
           },
@@ -1514,12 +1605,37 @@
             "aspect": "cellular_component"
           },
           {
+            "go_id": "GO:0099572",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005737",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
             "go_id": "GO:0005739",
             "label": null,
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0005778",
+            "go_id": "GO:0005794",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005829",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005856",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005886",
             "label": null,
             "aspect": "cellular_component"
           },
@@ -1529,7 +1645,671 @@
             "aspect": "cellular_component"
           },
           {
-            "go_id": "GO:0045211",
+            "go_id": "GO:0030425",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0042734",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0043197",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0045202",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0048471",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0060076",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0061846",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0098831",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0032991",
+            "label": null,
+            "aspect": "cellular_component"
+          }
+        ],
+        "error": null
+      },
+      "eco": {
+        "suggested": "UNKNOWN",
+        "status": "SKIPPED",
+        "official_label": null,
+        "eco_suggestions": [
+          {
+            "eco_id": "ECO:0000020",
+            "label": "protein inhibition evidence"
+          },
+          {
+            "eco_id": "ECO:0007601",
+            "label": "viral hemagglutination inhibition assay evidence used in automatic assertion"
+          },
+          {
+            "eco_id": "ECO:0007030",
+            "label": "viral hemagglutination inhibition assay evidence used in manual assertion"
+          },
+          {
+            "eco_id": "ECO:0001155",
+            "label": "bromodeoxyuridine incorporation assay evidence used in manual assertion"
+          },
+          {
+            "eco_id": "ECO:0000288",
+            "label": "RNA protection assay evidence used in manual assertion"
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "record_id": "ER-006",
+      "go_mf": {
+        "suggested": "UNKNOWN",
+        "status": "SKIPPED",
+        "official_label": null,
+        "label_match": null,
+        "aspect": null,
+        "aspect_match": null,
+        "already_annotated": false,
+        "error": null,
+        "alternative_suggestions": []
+      },
+      "go_bp": {
+        "suggested": "GO:0006897",
+        "status": "VERIFIED",
+        "official_label": "endocytosis",
+        "label_match": false,
+        "aspect": "biological_process",
+        "aspect_match": true,
+        "already_annotated": false,
+        "error": null,
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:0072583",
+            "label": "clathrin-dependent endocytosis"
+          },
+          {
+            "go_id": "GO:2000369",
+            "label": "regulation of clathrin-dependent endocytosis"
+          },
+          {
+            "go_id": "GO:2000370",
+            "label": "positive regulation of clathrin-dependent endocytosis"
+          },
+          {
+            "go_id": "GO:0075512",
+            "label": "clathrin-dependent endocytosis of virus by host cell"
+          },
+          {
+            "go_id": "GO:1900186",
+            "label": "negative regulation of clathrin-dependent endocytosis"
+          }
+        ]
+      },
+      "go_cc": {
+        "suggested": "GO:0005886",
+        "status": "VERIFIED",
+        "official_label": "plasma membrane",
+        "label_match": true,
+        "aspect": "cellular_component",
+        "aspect_match": true,
+        "already_annotated": false,
+        "error": null,
+        "alternative_suggestions": []
+      },
+      "uniprot": {
+        "query": "AP2 Mus musculus",
+        "status": "FOUND",
+        "uniprot_id": "P04117",
+        "existing_go_annotations": [
+          "GO:0005737",
+          "GO:0005829",
+          "GO:0005811",
+          "GO:0005654",
+          "GO:0005634",
+          "GO:0005504",
+          "GO:0051427",
+          "GO:0060229",
+          "GO:0036041",
+          "GO:0005324",
+          "GO:0050873",
+          "GO:0071285",
+          "GO:0071356",
+          "GO:0042632",
+          "GO:0006631",
+          "GO:0015908",
+          "GO:0140042",
+          "GO:0015909",
+          "GO:0045892",
+          "GO:0008284"
+        ],
+        "quickgo_annotations": [
+          {
+            "go_id": "GO:0006469",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0009617",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0042632",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0045892",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0050729",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0050872",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0050873",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0071285",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0071356",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0140042",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0005324",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005504",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0008289",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0036041",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0051427",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0060229",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0006631",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0008284",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0015908",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0015909",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0019433",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0120162",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0005634",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005811",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005829",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005654",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005737",
+            "label": null,
+            "aspect": "cellular_component"
+          }
+        ],
+        "error": null
+      },
+      "eco": {
+        "suggested": "ECO:0000226",
+        "status": "VERIFIED",
+        "official_label": "chromatin immunoprecipitation evidence",
+        "eco_suggestions": [],
+        "error": null
+      }
+    },
+    {
+      "record_id": "ER-007",
+      "go_mf": {
+        "suggested": "GO:0004674",
+        "status": "VERIFIED",
+        "official_label": "protein serine/threonine kinase activity",
+        "label_match": true,
+        "aspect": "molecular_function",
+        "aspect_match": true,
+        "already_annotated": true,
+        "error": null,
+        "alternative_suggestions": []
+      },
+      "go_bp": {
+        "suggested": "GO:0050805",
+        "status": "VERIFIED",
+        "official_label": "negative regulation of synaptic transmission",
+        "label_match": false,
+        "aspect": "biological_process",
+        "aspect_match": true,
+        "already_annotated": false,
+        "error": null,
+        "alternative_suggestions": [
+          {
+            "go_id": "GO:0050806",
+            "label": "positive regulation of synaptic transmission"
+          },
+          {
+            "go_id": "GO:0051968",
+            "label": "positive regulation of synaptic transmission, glutamatergic"
+          },
+          {
+            "go_id": "GO:0060094",
+            "label": "positive regulation of synaptic transmission, glycinergic"
+          },
+          {
+            "go_id": "GO:0032230",
+            "label": "positive regulation of synaptic transmission, GABAergic"
+          },
+          {
+            "go_id": "GO:0032224",
+            "label": "positive regulation of synaptic transmission, cholinergic"
+          }
+        ]
+      },
+      "go_cc": {
+        "suggested": "GO:0014069",
+        "status": "VERIFIED",
+        "official_label": "postsynaptic density",
+        "label_match": true,
+        "aspect": "cellular_component",
+        "aspect_match": true,
+        "already_annotated": true,
+        "error": null,
+        "alternative_suggestions": []
+      },
+      "uniprot": {
+        "query": "CAMK2A Mus musculus",
+        "status": "FOUND",
+        "uniprot_id": "P11798",
+        "existing_go_annotations": [
+          "GO:0030424",
+          "GO:0005954",
+          "GO:0005737",
+          "GO:0030425",
+          "GO:0032839",
+          "GO:0043197",
+          "GO:0098978",
+          "GO:0005739",
+          "GO:0043005",
+          "GO:0043025",
+          "GO:0099524",
+          "GO:0014069",
+          "GO:0099523",
+          "GO:0098685",
+          "GO:0045202",
+          "GO:0005524",
+          "GO:0004683",
+          "GO:0005516",
+          "GO:0035254",
+          "GO:0032794"
+        ],
+        "quickgo_annotations": [
+          {
+            "go_id": "GO:0110076",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0000082",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0002931",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0006816",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0007259",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0010666",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0018105",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0035458",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0046427",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0046777",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0046928",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0048168",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0048813",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0051928",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0071346",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:1902108",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0004672",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0004674",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0004683",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005515",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005516",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0005524",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0016301",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0032794",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0035254",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0042802",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0042803",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0106310",
+            "label": null,
+            "aspect": "molecular_function"
+          },
+          {
+            "go_id": "GO:0006468",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0035235",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0038166",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0043123",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0060996",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0098696",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0098877",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0099148",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:1903076",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:1990443",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:2000124",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:2001222",
+            "label": null,
+            "aspect": "biological_process"
+          },
+          {
+            "go_id": "GO:0005737",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0014069",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0043005",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0098685",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0098978",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0099523",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0099524",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005739",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0030424",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0030425",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0032839",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0043025",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0043197",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0043226",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0045202",
+            "label": null,
+            "aspect": "cellular_component"
+          },
+          {
+            "go_id": "GO:0005954",
             "label": null,
             "aspect": "cellular_component"
           }

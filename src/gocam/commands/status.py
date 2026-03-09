@@ -77,6 +77,29 @@ def _narrative_status(process_dir: Path) -> str:
     return f"v{version} draft"
 
 
+def _enrichment_status(process_dir: Path) -> str:
+    """Summarise enrichment: number of papers and new interactions found."""
+    enrich_ext_dir = process_dir / "extractions" / "enrichment"
+    enrich_input_dir = process_dir / "input" / "enrichment"
+    if not enrich_ext_dir.exists():
+        return "—"
+
+    n_papers = len(list(enrich_input_dir.glob("pubmed_*.txt"))) if enrich_input_dir.exists() else 0
+    if n_papers == 0:
+        return "—"
+
+    # Count interactions in enrichment extraction JSONs
+    n_interactions = 0
+    for jf in enrich_ext_dir.glob("pubmed_*.json"):
+        try:
+            data = read_json(jf)
+            n_interactions += len(data.get("interactions", []))
+        except Exception:
+            pass
+
+    return f"{n_papers}p/{n_interactions}i"
+
+
 # ---------------------------------------------------------------------------
 # Command
 # ---------------------------------------------------------------------------
@@ -116,6 +139,7 @@ def status_command() -> None:
     table.add_column("Translated", justify="center")
     table.add_column("Verified", justify="center")
     table.add_column("Narrative", justify="center")
+    table.add_column("Enrichment", justify="center")
 
     for process_dir in processes:
         try:
@@ -131,6 +155,7 @@ def status_command() -> None:
         translated = _translation_status(process_dir)
         verified = _verification_status(process_dir)
         narrative = _narrative_status(process_dir)
+        enrichment = _enrichment_status(process_dir)
 
         # Colour-code the check columns
         def _fmt(val: str) -> str:
@@ -150,6 +175,7 @@ def status_command() -> None:
             _fmt(translated),
             _fmt(verified),
             _fmt(narrative),
+            _fmt(enrichment),
         )
 
     console.print()

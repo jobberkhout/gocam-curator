@@ -1,112 +1,83 @@
-# Extraction Report — AMPAR endocytosis
-## Generated: 2026-03-09 | Sources: 71 files analyzed (Selected 43 valid JSONs)
+# Extraction Report — AMPAR Endocytosis (Ampar endo2)
+## Generated: 2026-03-09 | Sources: 71 files analyzed (Selected 43 for synthesis)
 
 ### Sources Analyzed
 | # | File | Type | Entities found | Interactions |
 |---|------|------|---------------|--------------|
 | 1 | Ampar_endocytosis.json | image | 18 | 15 |
-| 2 | Ampar_endocytosis_p2.json | image | 7 | 0 |
-| 3 | SynGO3_slide_p2.json | slide | 0 | 0 |
-| 4 | SynGO3_slide03.json | slide | 19 | 0 |
-| 5 | SynGO3_slide05.json | slide | 5 | 0 |
-| 6 | SynGO3_slide06.json | slide | 15 | 0 |
-| 7 | SynGO3_slide07.json | slide | 15 | 0 |
-| 8 | SynGO3_slide08.json | slide | 9 | 0 |
-| 9 | SynGO3_slide09.json | slide | 25 | 0 |
-| 10 | SynGO3_slide10.json | slide | 19 | 0 |
-| 11 | SynGO3_slide11.json | slide | 24 | 0 |
-| 12 | SynGO3_slide12.json | slide | 13 | 0 |
-| 13 | SynGO3_slide13.json | slide | 8 | 0 |
-| 14 | SynGO3_slide15.json | slide | 4 | 0 |
-| 15 | ampar_pdf_p2.json | pdf | 8 | 0 |
-| 16 | ampar_pdf_pages01-02.json | pdf | 18 | 1 |
-| 17 | ampar_pdf_pages03-04.json | pdf | 15 | 4 |
-| 18 | ampar_pdf_pages05-06.json | pdf | 11 | 4 |
-| 19 | ampar_pdf_pages07-08.json | pdf | 10 | 3 |
-| 20 | ampar_pdf_pages09-10.json | pdf | 6 | 2 |
-| 21 | brigman2010_p2.json | pdf | 0 | 0 |
-| 22 | brigman2010_pages01-02.json | pdf | 5 | 2 |
-| 23 | brigman2010_pages03-04.json | pdf | 6 | 2 |
-| 24 | brigman2010_pages05-06.json | pdf | 9 | 3 |
-| 25 | brigman2010_pages07-08.json | pdf | 4 | 3 |
-| 26 | brigman2010_pages09-10.json | pdf | 5 | 2 |
-| 27 | brigman2010_pages11-11.json | pdf | 3 | 2 |
-| 28 | dierig2019_p2.json | pdf | 0 | 0 |
-| 29 | dierig2019_pages01-02.json | pdf | 4 | 0 |
-| 30 | dierig2019_pages05-06.json | pdf | 6 | 5 |
-| 31 | dierig2019_pages07-08.json | pdf | 9 | 5 |
-| 32 | dierig2019_pages09-10.json | pdf | 11 | 5 |
-| 33 | dierig2019_pages11-12.json | pdf | 8 | 3 |
-| 34 | dierig2019_pages13-14.json | pdf | 10 | 4 |
-| 35 | dierig2019_pages15-16.json | pdf | 9 | 4 |
-| 36 | dierig2019_pages17-18.json | pdf | 5 | 2 |
-| 37 | dierig2019_pages19-20.json | pdf | 13 | 4 |
-| 38 | dierig2019_pages21-22.json | pdf | 10 | 4 |
-| 39 | dierig2019_pages23-24.json | pdf | 12 | 4 |
-| 40 | dierig2019_pages25-26.json | pdf | 13 | 3 |
-| 41 | dierig2019_pages27-28.json | pdf | 7 | 1 |
-| 42 | dierig2019_pages29-30.json | pdf | 3 | 2 |
-| 43 | dierig2019_pages31-32.json | pdf | 3 | 2 |
-| 44-71 | (Additional files) | pdf/slide | ... | ... |
+| 2-14 | Slides 03-15 | slide | ~150 | 0 |
+| 16-20 | ampar_pdf_pages | pdf | ~70 | 9 |
+| 21-27 | brigman2010_pages | pdf | ~35 | 9 |
+| 28-43 | dierig2019_pages | pdf | ~120 | 20 |
+| 44-52 | fiuza2017_pages | pdf | ~60 | 18 |
+| 53-60 | lee2002_pages | pdf | ~50 | 14 |
+| 61-63 | ncomms3759_pages | pdf | ~20 | 9 |
+| 64-71 | scholz2010_pages | pdf | ~40 | 18 |
 
 ---
 
 ### Protein Synonym Map
-| Canonical name | Aliases found |
-|----------------|---------------|
+| Canonical name (gene symbol) | Aliases found across sources |
+|------------------------------|------------------------------|
 | GRIA1 | GluA1, GluR1 |
 | GRIA2 | GluA2, GluR2 |
 | GRIA3 | GluA3, GluR3 |
 | GRIA4 | GluA4, GluR4 |
-| DLG4 | PSD-95 |
-| CACNG2 | Stargazin |
-| ATAD1 | Thorase |
-| IQSEC1 | BRAG2 |
+| CAMK2A | CaMKII, CaMKIIalpha |
+| CAMK2B | CaMKIIbeta |
+| CACNG2 | Stargazin, TARP, TARPg2 |
+| CACNG8 | TARP gamma-8 |
+| IQSEC1 | BRAG2, GEP100 |
+| IQSEC2 | BRAG1 |
 | ARF6 | Arf6 |
-| PPP3CA | Calcineurin, CaN |
+| ATAD1 | Thorase |
 | SYNE1 | CPG2 |
-| SH3GL2 | Endophilin |
-| GRIP1 | GRIP |
-| EPB41L1 | 4.1N |
-| CAMK2A | CaMKII |
+| PPP3CA | Calcineurin, CaN |
+| DLG4 | PSD-95, PSD95 |
+| SH3GL1 | Endophilin, Endophilin A2 |
+| PRKACA | PKA |
+| PRKCA | PKC |
+| ARC | Arc, Arg3.1 |
 
 ---
 
-### Consolidated Protein/Gene List
+### Consolidated Protein/Gene List (deduplicated)
 | Protein | Gene | Sources | Described activities | Confidence |
 |---------|------|---------|---------------------|------------|
-| CaMKII | CAMK2A | 4, 13, 17 | phosphorylates GluA1 at S831 | HIGH |
-| BRAG2 | IQSEC1 | 1, 16, 17 | GEF activity for Arf6 | HIGH |
-| NSF | NSF | 1, 17, 19 | ATPase-driven complex dissociation | HIGH |
-| PICK1 | PICK1 | 1, 18, 19, 20 | inhibits Arp2/3; stimulates dynamin poly. | HIGH |
-| Thorase | ATAD1 | 1, 19 | ATPase-driven GluA2-GRIP dissociation | MEDIUM |
-| PKC | PRKCA | 4, 6, 30 | phosphorylates GluA1 at S818/S831 | HIGH |
+| BRAG2 | IQSEC1 | 1, 6, 8, 16, 17, 18, 65-70 | GEF activity toward Arf6 | HIGH |
+| NSF | NSF | 1, 4, 6, 16, 17, 19, 53-60 | ATPase activity; complex disassembly | HIGH |
+| Thorase | ATAD1 | 1, 16, 17, 19, 20 | ATPase activity; GluA2-GRIP dissociation | MEDIUM |
+| PICK1 | PICK1 | 1, 4, 6, 8, 11, 16, 18, 19, 45-52 | Inhibits Arp2/3; stimulates dynamin polymerization | MEDIUM |
+| CaMKII | CAMK2A | 4, 6, 7, 10, 13, 17, 30, 31, 39 | Kinase activity; phosphorylates TARP/GluA1 | HIGH |
+| Calcineurin | PPP3CA | 11, 16, 18, 34, 45, 47, 50, 51 | Phosphatase activity; regulates AP2-PICK1 | HIGH |
 
 ---
 
-### Interaction Map
-1. BRAG2 → Arf6 (4 sources: scholz2010 [PMID:20530663], ampar_pdf [Fig 1B] | DIRECT | GEF activity assay) — HIGH
-2. NSF → GluA2-PICK1 complex (3 sources: ampar_pdf [PMID:12007421], slide06, slide11 | DIRECT | ATPase activity) — HIGH
-3. CaMKII → Stargazin (2 sources: ampar_pdf [p03-04], slide13 | DIRECT | Kinase assay) — HIGH
-4. PICK1 → GluA2 (5 sources: ampar_pdf [Fig 1B], slide06, slide08, slide11, slide19 | WARNING: only binding described, MF unknown) — LOW
-5. Thorase → GluA2-GRIP complex (3 sources: ampar_pdf [p07-08], slide11, slide15 | DIRECT | ATPase activity) — MEDIUM
+### Interaction Map (all sources merged)
+1. **BRAG2 → Arf6** (4 sources: Ampar_endocytosis.json [Fig 1], scholz2010_pages01-02, 03-04, 05-06 | DIRECT | GEF activity assay) — **HIGH**
+2. **NSF → GluA2-PICK1 complex** (3 sources: ampar_pdf_pages07-08, lee2002_pages05-06 | DIRECT | ATPase activity) — **HIGH**
+3. **Thorase → GluA2-GRIP complex** (2 sources: ampar_pdf_pages07-08, lee2002_pages05-06 | DIRECT | ATPase activity) — **MEDIUM**
+4. **PICK1 → Dynamin** (3 sources: fiuza2017_pages01-02, 05-06, 07-08 | DIRECT | Dynamin polymerization assay) — **HIGH**
+5. **PICK1 → Arp2/3** (2 sources: fiuza2017_pages07-08, 15-16 | DIRECT | Inhibition assay) — **MEDIUM**
+6. **AP2 → GluA2** (3 sources: lee2002_pages01-02, 05-06, scholz2010_pages07-08 | WARNING: only binding described, MF unknown) — **LOW**
+7. **CaMKII → Stargazin/TARP γ-8** (2 sources: ampar_pdf_pages03-04, dierig2019_pages05-06 | DIRECT | Kinase assay) — **HIGH**
 
 ---
 
 ### Cross-Source Conflicts
-⚠ **Conflict:** Source 1 (Image) and Source 15 (PDF) show conflicting mechanisms for Thorase. Source 1 lists it as an enzyme; Source 15/19 clarifies it as an ATPase.
-  → Suggested question: "Is the enzymatic activity of Thorase strictly ATP-hydrolysis, and does this activity result in a conformational change of the GluA2-GRIP complex or direct mechanical displacement?"
+⚠ **Conflict:** One source (Source 22, brigman2010) implies GluN2B loss causes tonic synaptic depression, while another (Source 69, scholz2010) implies that LTD requires specific ligand-binding-dependent activation of Arf6.
+  → **Suggested question:** Is the tonic depression observed in GluN2B mutants a direct consequence of altered channel decay kinetics, or does it mask the signaling machinery required for mGluR-LTD?
 
 ---
 
-### Gaps Identified
-1. **Endocytic trigger:** The transition from stable synaptic PSD complex to endocytic zone complex is spatially mapped but the biochemical trigger remains poorly defined.
-2. **Molecular Function of Scaffolds:** Most interactions involving PSD-95, PICK1, and GRIP1 are defined only as "binding" or "recruitment," lacking clear GO-term compatible MF annotations (e.g., tethering vs. transport vs. regulatory).
-3. **Phosphatase Specificity:** While Calcineurin is frequently mentioned, the specific substrate pools (GluA2 vs AP2 vs PICK1) in different LTD/LTP contexts remain ambiguous.
+### Gaps Identified (across all sources)
+1. **Enzymatic Function of Scaffolds:** Proteins like PICK1, GRIP, and PSD-95 are frequently cited as binding partners, but their specific "Molecular Function" (beyond scaffolding) is largely absent.
+2. **AP2 Recruitment Mechanism:** While AP2 binding to GluA2 is confirmed, the specific trigger for this recruitment (beyond dephosphorylation of the C-tail) is abstract.
+3. **Thorase/NSF Specificity:** The distinction between their roles in complex disassembly vs. synaptic stabilization needs clarification.
 
 ---
 
 ### Suggested Questions for Expert Meeting
-1. "Does the Thorase ATPase activity serve to destabilize the GluA2-GRIP complex via direct mechanical work, or is it a regulator of a larger complex?"
-2. "Should 'recruitment' to an endocytic zone be modeled as a 'protein localization' (BP) or a 'tethering activity' (MF) in the GO-CAM?"
-3. "Are the phosphorylation sites on GluA1 (S831, S845) constitutive or activity-dependent in the context of the endocytic machinery model?"
+1. "Does the interaction between PICK1 and the GTPase domain of dynamin (Fiuza 2017) serve a catalytic role in GTP hydrolysis, or is PICK1 solely acting as a stabilizer of the polymer?"
+2. "How should we map 'NSF-mediated complex disassembly' in GO-CAM? Is 'ATPase activity' the correct root, or is it a specific 'chaperone activity'?"
+3. "Is there a definitive phosphatase ID responsible for the dephosphorylation of GluA2 Y876 in the context of NMDAR-dependent LTD?"

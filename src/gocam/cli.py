@@ -2,12 +2,14 @@
 
 import click
 
+from gocam.commands.enrich import enrich_command
 from gocam.commands.extract import extract_command
 from gocam.commands.extract_all import extract_all_command
 from gocam.commands.init import init_command
 from gocam.commands.narrative import narrative_command
 from gocam.commands.report import report_command
 from gocam.commands.run import run_command
+from gocam.commands.search import search_command
 from gocam.commands.status import status_command
 from gocam.commands.translate import translate_command
 from gocam.commands.verify import verify_command
@@ -58,6 +60,13 @@ def main() -> None:
       GEMINI_API_CALL_DELAY=10         Gemini-specific delay    (default: 10)
 
     \b
+    UTILITIES
+      gocam search <gene>           Look up a gene across UniProt, QuickGO, and OLS4.
+                                    No LLM — fast, pure database queries.
+      gocam enrich <process>        Discover new literature via PubMed and extract
+                                    from it. Kept strictly separate from the main pipeline.
+
+    \b
     EXAMPLE WORKFLOW
       # 1. Create a process workspace
       gocam init vesicle-fusion --species "Rattus norvegicus" --expert-name "Dr. Smith"
@@ -70,6 +79,9 @@ def main() -> None:
 
       # 4. View the expert validation document
       open processes/vesicle-fusion/narratives/claims_v1.md
+
+      # 5. Discover additional literature
+      gocam enrich vesicle-fusion --max-papers 15
     """
 
 
@@ -82,3 +94,5 @@ main.add_command(verify_command)
 main.add_command(narrative_command)
 main.add_command(status_command)
 main.add_command(run_command)
+main.add_command(search_command)
+main.add_command(enrich_command)
