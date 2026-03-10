@@ -25,6 +25,9 @@ env/
 processes/
 searches/
 
+# SynGO data files (large binaries — download from syngoportal.org)
+data/syngo/*.xlsx
+
 # macOS
 .DS_Store
 

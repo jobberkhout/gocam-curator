@@ -20,6 +20,7 @@ from gocam.models.verification import (
 )
 from gocam.services.eco import search_eco_terms, verify_eco
 from gocam.services.quickgo import get_protein_annotations, search_go_terms, verify_go_term
+from gocam.services.syngo import get_syngo
 from gocam.services.uniprot import verify_protein
 from gocam.utils.display import console, print_error, print_info, print_success, print_warning
 from gocam.utils.io import read_json, write_json
@@ -121,12 +122,33 @@ def _verify_record(record, species: str) -> RecordVerification:
             if assay:
                 rv.eco.eco_suggestions = search_eco_terms(assay)
 
+    # SynGO — check gene + each GO term against the local SynGO database
+    syngo = get_syngo()
+    if syngo.available and gene_symbol:
+        # Use MF GO ID as primary check; fall back to BP or CC
+        go_id_to_check = ""
+        if record.molecular_function:
+            go_id_to_check = record.molecular_function.go_id or ""
+        if not go_id_to_check and record.biological_process:
+            go_id_to_check = record.biological_process.go_id or ""
+        if not go_id_to_check and record.cellular_component:
+            go_id_to_check = record.cellular_component.go_id or ""
+
+        if go_id_to_check and go_id_to_check != "UNKNOWN":
+            rv.syngo = syngo.validate_annotation(gene_symbol, go_id_to_check)
+        else:
+            # Gene might still be in SynGO even without a verified GO ID
+            result = syngo.search_gene(gene_symbol)
+            if result.get("found"):
+                rv.syngo = {"status": "GENE_IN_SYNGO_NO_GO_MATCH", "symbol": gene_symbol,
+                            "total_annotations": result.get("total", 0)}
+
     return rv
 
 
 def _build_summary(details: list[RecordVerification]) -> VerificationSummary:
     go_verified = go_failed = go_obsolete = go_skipped = go_already_annotated = 0
-    uniprot_confirmed = eco_verified = 0
+    uniprot_confirmed = eco_verified = syngo_confirmed = syngo_alternative = 0
 
     for rv in details:
         for go_field in (rv.go_mf, rv.go_bp, rv.go_cc):
@@ -150,6 +172,13 @@ def _build_summary(details: list[RecordVerification]) -> VerificationSummary:
         if rv.eco and rv.eco.status == "VERIFIED":
             eco_verified += 1
 
+        if rv.syngo:
+            s = rv.syngo.get("status", "")
+            if s == "SYNGO_CONFIRMED":
+                syngo_confirmed += 1
+            elif s == "SYNGO_ALTERNATIVE":
+                syngo_alternative += 1
+
     return VerificationSummary(
         total_records=len(details),
         go_terms_verified=go_verified,
@@ -159,6 +188,8 @@ def _build_summary(details: list[RecordVerification]) -> VerificationSummary:
         go_terms_already_annotated=go_already_annotated,
         uniprot_confirmed=uniprot_confirmed,
         eco_verified=eco_verified,
+        syngo_confirmed=syngo_confirmed,
+        syngo_alternative=syngo_alternative,
     )
 
 
@@ -231,6 +262,9 @@ def _display_results(details: list[RecordVerification], summary: VerificationSum
     grid.add_row("GO terms skipped (UNKNOWN)", _fmt(summary.go_terms_skipped, "dim"))
     grid.add_row("UniProt confirmed", _fmt(summary.uniprot_confirmed))
     grid.add_row("ECO codes verified", _fmt(summary.eco_verified))
+    if summary.syngo_confirmed or summary.syngo_alternative:
+        grid.add_row("SynGO confirmed (exact match)", _fmt(summary.syngo_confirmed, "magenta"))
+        grid.add_row("SynGO alternative (gene annotated differently)", _fmt(summary.syngo_alternative, "yellow"))
 
     console.print(grid)
 
@@ -285,6 +319,42 @@ def _display_results(details: list[RecordVerification], summary: VerificationSum
                 console.print("    [dim]Suggested alternatives:[/dim]")
                 for alt in field.alternative_suggestions[:3]:
                     console.print(f"      [cyan]{alt['go_id']}[/cyan]  {alt['label']}")
+
+    # SynGO confirmations and alternatives
+    syngo_hits = [(rv.record_id, rv.syngo) for rv in details if rv.syngo]
+    syngo_confirmed_list = [(rid, s) for rid, s in syngo_hits if s.get("status") == "SYNGO_CONFIRMED"]
+    syngo_alt_list = [(rid, s) for rid, s in syngo_hits if s.get("status") == "SYNGO_ALTERNATIVE"]
+
+    if syngo_confirmed_list:
+        console.print("\n[bold magenta]SynGO — expert-curated synaptic annotations:[/bold magenta]")
+        for rec_id, s in syngo_confirmed_list:
+            go_name = s.get("go_name", "")
+            go_id = s.get("go_id", "")
+            console.print(
+                f"  [dim]{rec_id}[/dim]  [magenta]SYNGO_CONFIRMED[/magenta]  "
+                f"{s.get('symbol', '')}  {go_name} ({go_id})"
+            )
+            for ev in s.get("evidence", [])[:3]:
+                parts = []
+                if ev.get("biological_system"):
+                    parts.append(ev["biological_system"])
+                if ev.get("assay"):
+                    parts.append(ev["assay"])
+                pmid = ev.get("pmid", "")
+                ev_str = ", ".join(p for p in parts if p)
+                pmid_str = f"  PMID:{pmid}" if pmid else ""
+                if ev_str or pmid_str:
+                    console.print(f"    [dim]Evidence: {ev_str}{pmid_str}[/dim]")
+
+    if syngo_alt_list:
+        console.print("\n[bold yellow]SynGO — gene annotated to different GO term(s):[/bold yellow]")
+        for rec_id, s in syngo_alt_list:
+            alts = s.get("alternatives", [])[:3]
+            alt_str = "; ".join(f"{a['go_name']} ({a['go_id']})" for a in alts)
+            console.print(
+                f"  [dim]{rec_id}[/dim]  [yellow]SYNGO_ALTERNATIVE[/yellow]  "
+                f"{s.get('symbol', '')}  SynGO has: {alt_str}"
+            )
 
     # ECO suggestions for UNKNOWN codes — log format as per spec
     eco_suggestions = [

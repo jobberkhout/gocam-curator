@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import json
 from datetime import datetime
 from pathlib import Path
 
@@ -11,9 +10,9 @@ import click
 import httpx
 from rich.panel import Panel
 from rich.table import Table
-from rich.text import Text
 
 from gocam.config import PROCESSES_DIR, SEARCHES_DIR
+from gocam.services.syngo import get_syngo
 from gocam.utils.display import console, print_error, print_info, print_warning
 from gocam.utils.io import write_json
 
@@ -296,6 +295,47 @@ def _display(
             if n_qgo > 20:
                 console.print(f"  [dim]… and {n_qgo - 20} more (see saved JSON)[/dim]")
 
+    # SynGO annotations
+    syngo = get_syngo()
+    if syngo.available:
+        syngo_result = syngo.search_gene(gene)
+        if syngo_result.get("found"):
+            bp_anns = syngo_result.get("bp", [])
+            cc_anns = syngo_result.get("cc", [])
+            total_syngo = syngo_result.get("total", 0)
+            console.print(
+                f"\n[bold magenta]SynGO Annotations[/bold magenta] "
+                f"(expert-curated synaptic, {total_syngo} total)"
+            )
+
+            def _syngo_rows(anns: list[dict], aspect_label: str) -> None:
+                if not anns:
+                    return
+                console.print(f"  [magenta]{aspect_label}[/magenta]")
+                seen_go: set[str] = set()
+                for a in anns:
+                    go_id = a.get("go_id", "")
+                    if go_id in seen_go:
+                        continue
+                    seen_go.add(go_id)
+                    go_name = a.get("go_name", "")
+                    bio_sys = a.get("evidence_biological_system", "")
+                    assay = a.get("evidence_experiment_assay", "")
+                    targeting = a.get("evidence_protein_targeting", "")
+                    pmid = str(a.get("pubmed_id", "")).strip()
+                    ev_parts = [p for p in [bio_sys, targeting, assay] if p]
+                    ev_str = ", ".join(ev_parts)
+                    console.print(f"    {go_name} ({go_id})")
+                    if ev_str:
+                        console.print(f"    [dim]Evidence: {ev_str}[/dim]")
+                    if pmid:
+                        console.print(f"    [dim]PMID: {pmid}[/dim]")
+
+            _syngo_rows(bp_anns, "Biological Process (BP)")
+            _syngo_rows(cc_anns, "Cellular Component (CC)")
+        elif syngo_result.get("available") and not syngo_result.get("found"):
+            console.print(f"\n[dim]SynGO: {gene.upper()} not found in SynGO database.[/dim]")
+
     # OLS4 terms
     valid_ols = [t for t in ols if "error" not in t and t.get("label")]
     if valid_ols:
@@ -389,6 +429,47 @@ def _build_markdown(
         if len(valid_qgo) > 50:
             lines.append(f"| … | *{len(valid_qgo) - 50} more — see {gene.lower()}.json* | | | |")
         lines.append("")
+
+    # SynGO annotations
+    syngo = get_syngo()
+    if syngo.available:
+        syngo_result = syngo.search_gene(gene)
+        if syngo_result.get("found"):
+            bp_anns = syngo_result.get("bp", [])
+            cc_anns = syngo_result.get("cc", [])
+            total_syngo = syngo_result.get("total", 0)
+            lines += [
+                f"## SynGO Annotations (expert-curated synaptic, {total_syngo} total)", ""
+            ]
+
+            def _syngo_md_section(anns: list[dict], heading: str) -> None:
+                if not anns:
+                    return
+                lines.append(f"### {heading}")
+                lines.append("")
+                seen_go: set[str] = set()
+                for a in anns:
+                    go_id = a.get("go_id", "")
+                    if go_id in seen_go:
+                        continue
+                    seen_go.add(go_id)
+                    go_name = a.get("go_name", "")
+                    link = f"[{go_id}](https://www.ebi.ac.uk/QuickGO/term/{go_id})" if go_id else "—"
+                    bio_sys = a.get("evidence_biological_system", "")
+                    assay = a.get("evidence_experiment_assay", "")
+                    targeting = a.get("evidence_protein_targeting", "")
+                    pmid = str(a.get("pubmed_id", "")).strip()
+                    ev_parts = [p for p in [bio_sys, targeting, assay] if p]
+                    ev_str = ", ".join(ev_parts)
+                    lines.append(f"**{go_name}** {link}")
+                    if ev_str:
+                        lines.append(f"  Evidence: {ev_str}")
+                    if pmid:
+                        lines.append(f"  PMID: [{pmid}](https://pubmed.ncbi.nlm.nih.gov/{pmid}/)")
+                    lines.append("")
+
+            _syngo_md_section(bp_anns, "Biological Process (BP)")
+            _syngo_md_section(cc_anns, "Cellular Component (CC)")
 
     # OLS4 terms
     valid_ols = [t for t in ols if "error" not in t and t.get("label")]

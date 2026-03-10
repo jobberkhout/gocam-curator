@@ -20,6 +20,7 @@ from gocam.config import PROCESSES_DIR
 from gocam.services import pubmed as pubmed_svc
 from gocam.services.file_processor import FileContent
 from gocam.services.llm import get_llm_client
+from gocam.services.syngo import get_syngo
 from gocam.utils.display import console, print_error, print_info, print_success, print_warning, timed_status
 from gocam.utils.io import read_json, write_json
 from gocam.utils.process import load_meta
@@ -335,6 +336,34 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
     existing_pmids = _collect_existing_pmids(process_dir)
     print_info(f"Already have {len(existing_pmids)} PMID(s) in this process")
 
+    # --- SynGO priority pass -------------------------------------------
+    # Check SynGO for PMIDs associated with each gene before querying PubMed.
+    # These are expert-curated references and are treated as priority sources.
+    syngo = get_syngo()
+    syngo_pmids: dict[str, str] = {}  # pmid -> gene label
+    if syngo.available:
+        console.print("\n[bold magenta]Checking SynGO for expert-curated references…[/bold magenta]")
+        genes_seen: set[str] = set()
+        for rec in records_data.get("records", []):
+            protein = rec.get("protein") or {}
+            gene = (protein.get("gene_symbol") or protein.get("name") or "").strip()
+            if not gene or gene in genes_seen:
+                continue
+            genes_seen.add(gene)
+            pmids = syngo.get_pmids_for_gene(gene)
+            new = [p for p in pmids if p not in existing_pmids]
+            if new:
+                print_info(f"  {gene}: {len(new)} SynGO PMID(s) found")
+                for p in new:
+                    syngo_pmids[p] = f"{gene} (SynGO)"
+        if syngo_pmids:
+            print_success(
+                f"SynGO contributed {len(syngo_pmids)} unique reference(s) as priority sources."
+            )
+        else:
+            print_info("No new SynGO references found (all already in process or gene not in SynGO).")
+    # ------------------------------------------------------------------
+
     # Search PubMed
     console.print("\n[bold]Searching PubMed…[/bold]")
     found_pmids: set[str] = set()
@@ -349,14 +378,23 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
             print_info(f"Reached --max-papers limit ({max_papers}). Stopping search.")
             break
 
-    # Trim to max_papers
-    pmids_to_fetch = sorted(found_pmids)[:max_papers]
+    # Merge SynGO PMIDs (priority) with PubMed results — SynGO first
+    all_new_pmids: list[str] = []
+    seen_merged: set[str] = set()
+    for p in sorted(syngo_pmids.keys()):   # SynGO first
+        if p not in seen_merged:
+            all_new_pmids.append(p)
+            seen_merged.add(p)
+    for p in sorted(found_pmids):          # then PubMed
+        if p not in seen_merged:
+            all_new_pmids.append(p)
+            seen_merged.add(p)
 
-    already_in_process = len(existing_pmids & (found_pmids | set()))
+    pmids_to_fetch = all_new_pmids[:max_papers]
+
     print_info(
-        f"Found {len(found_pmids)} new paper(s) across {len(queries)} queries. "
-        f"{len(existing_pmids)} were already in the process. "
-        f"Fetching {len(pmids_to_fetch)} abstract(s)."
+        f"Found {len(found_pmids)} new PubMed paper(s) + {len(syngo_pmids)} SynGO reference(s). "
+        f"Fetching {len(pmids_to_fetch)} abstract(s) (limit: {max_papers})."
     )
 
     if not pmids_to_fetch:
@@ -384,8 +422,15 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
             print_warning(f"  PMID {pmid}: empty abstract, skipping")
             continue
 
-        out.write_text(abstract, encoding="utf-8")
-        print_success(f"  Saved PMID {pmid} → {out.name}")
+        # Prepend provenance header so the extraction LLM and curator can see the source
+        source_label = syngo_pmids.get(pmid)
+        if source_label:
+            header = f"[Source: SynGO (expert-curated) — {source_label}]\n\n"
+        else:
+            header = ""
+        out.write_text(header + abstract, encoding="utf-8")
+        tag = " [SynGO]" if source_label else ""
+        print_success(f"  Saved PMID {pmid}{tag} → {out.name}")
         saved_files.append(out)
 
     if not saved_files:

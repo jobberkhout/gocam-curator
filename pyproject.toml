@@ -17,6 +17,7 @@ dependencies = [
     "pymupdf",
     "pillow",
     "google-genai",
+    "openpyxl",
 ]
 
 [project.scripts]

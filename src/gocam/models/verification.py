@@ -43,6 +43,7 @@ class RecordVerification(BaseModel):
     go_cc: Optional[GOTermVerification] = None
     uniprot: Optional[UniProtVerification] = None
     eco: Optional[ECOVerification] = None
+    syngo: Optional[dict] = None   # SynGOService.validate_annotation() result
 
 
 class VerificationSummary(BaseModel):
@@ -54,6 +55,8 @@ class VerificationSummary(BaseModel):
     go_terms_already_annotated: int   # confirmed via QuickGO existing annotations
     uniprot_confirmed: int
     eco_verified: int
+    syngo_confirmed: int = 0          # exact gene+GO match in SynGO
+    syngo_alternative: int = 0        # gene in SynGO but different GO term
 
 
 class VerificationReport(BaseModel):
