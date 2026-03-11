@@ -24,8 +24,19 @@ from gocam.utils.io import load_prompt, load_system_prompt
 
 _MAX_IMAGE_DIMENSION = 1568  # longest side in pixels; both APIs recommend this
 
-# Retry delays in seconds for each successive attempt (up to 5 retries).
-_RETRY_DELAYS = [60, 120, 240, 240, 240]
+# Retry delays in seconds for each successive attempt.
+# Override with LLM_RETRY_DELAYS env var (comma-separated, e.g. "30,60,120").
+def _load_retry_delays() -> list[int]:
+    import os
+    env = os.getenv("LLM_RETRY_DELAYS", "").strip()
+    if env:
+        try:
+            return [int(s.strip()) for s in env.split(",") if s.strip()]
+        except ValueError:
+            pass
+    return [30, 60, 120, 120]
+
+_RETRY_DELAYS = _load_retry_delays()
 
 
 def _is_retryable(exc: Exception) -> bool:

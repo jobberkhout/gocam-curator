@@ -26,8 +26,15 @@ def _taxon_id(species: str) -> str | None:
     return _TAXON_MAP.get(species.lower().strip())
 
 
-def verify_protein(gene_symbol: str, species: str) -> dict:
+def verify_protein(
+    gene_symbol: str,
+    species: str,
+    client: httpx.Client | None = None,
+) -> dict:
     """Query UniProt for a protein by gene symbol and species.
+
+    Args:
+        client: optional shared httpx.Client for connection pooling.
 
     Returns a dict suitable for UniProtVerification.model_validate().
     """
@@ -40,18 +47,17 @@ def verify_protein(gene_symbol: str, species: str) -> dict:
     else:
         query = f"gene:{gene_symbol} AND organism_name:{species}"
 
-    try:
-        with httpx.Client(timeout=_TIMEOUT) as client:
-            r = client.get(
-                _UNIPROT_BASE,
-                params={
-                    "query": query,
-                    "fields": "accession,gene_names,go_id",
-                    "format": "json",
-                    "size": "5",
-                },
-                headers={"Accept": "application/json"},
-            )
+    def _do(c: httpx.Client) -> dict:
+        r = c.get(
+            _UNIPROT_BASE,
+            params={
+                "query": query,
+                "fields": "accession,gene_names,go_id",
+                "format": "json",
+                "size": "5",
+            },
+            headers={"Accept": "application/json"},
+        )
 
         r.raise_for_status()
         results = r.json().get("results", [])
@@ -77,6 +83,11 @@ def verify_protein(gene_symbol: str, species: str) -> dict:
             "existing_go_annotations": go_ids[:20],
         }
 
+    try:
+        if client:
+            return _do(client)
+        with httpx.Client(timeout=_TIMEOUT) as c:
+            return _do(c)
     except httpx.TimeoutException:
         return {"query": f"{gene_symbol} {species}", "status": "TIMEOUT"}
     except Exception as exc:

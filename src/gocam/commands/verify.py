@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 import click
+import httpx
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 
@@ -52,56 +53,80 @@ def _enrich_with_suggestions(
     go_result: GOTermVerification,
     suggested_term: str | None,
     aspect: str,
+    http_client: httpx.Client | None = None,
 ) -> None:
     """If label or aspect mismatches, search QuickGO for better alternatives."""
     needs_search = go_result.label_match is False or go_result.aspect_match is False
     if not needs_search or not suggested_term:
         return
-    go_result.alternative_suggestions = search_go_terms(suggested_term, aspect)
+    go_result.alternative_suggestions = search_go_terms(
+        suggested_term, aspect, client=http_client,
+    )
 
 
-def _verify_record(record, species: str) -> RecordVerification:
+def _verify_record(
+    record,
+    species: str,
+    http_client: httpx.Client | None = None,
+) -> RecordVerification:
     rv = RecordVerification(record_id=record.id)
     protein = record.protein
     gene_symbol: str = protein.get("gene_symbol") or ""
 
     # GO Molecular Function
     if record.molecular_function:
-        raw = verify_go_term(record.molecular_function.go_id, "molecular_function")
+        raw = verify_go_term(
+            record.molecular_function.go_id, "molecular_function", client=http_client,
+        )
         rv.go_mf = GOTermVerification.model_validate(raw)
         if rv.go_mf.status == "VERIFIED":
             rv.go_mf.label_match = _label_match(
                 record.molecular_function.term, rv.go_mf.official_label
             )
-        _enrich_with_suggestions(rv.go_mf, record.molecular_function.term, "molecular_function")
+        _enrich_with_suggestions(
+            rv.go_mf, record.molecular_function.term, "molecular_function",
+            http_client=http_client,
+        )
 
     # GO Biological Process
     if record.biological_process:
-        raw = verify_go_term(record.biological_process.go_id, "biological_process")
+        raw = verify_go_term(
+            record.biological_process.go_id, "biological_process", client=http_client,
+        )
         rv.go_bp = GOTermVerification.model_validate(raw)
         if rv.go_bp.status == "VERIFIED":
             rv.go_bp.label_match = _label_match(
                 record.biological_process.term, rv.go_bp.official_label
             )
-        _enrich_with_suggestions(rv.go_bp, record.biological_process.term, "biological_process")
+        _enrich_with_suggestions(
+            rv.go_bp, record.biological_process.term, "biological_process",
+            http_client=http_client,
+        )
 
     # GO Cellular Component
     if record.cellular_component:
-        raw = verify_go_term(record.cellular_component.go_id, "cellular_component")
+        raw = verify_go_term(
+            record.cellular_component.go_id, "cellular_component", client=http_client,
+        )
         rv.go_cc = GOTermVerification.model_validate(raw)
         if rv.go_cc.status == "VERIFIED":
             rv.go_cc.label_match = _label_match(
                 record.cellular_component.term, rv.go_cc.official_label
             )
-        _enrich_with_suggestions(rv.go_cc, record.cellular_component.term, "cellular_component")
+        _enrich_with_suggestions(
+            rv.go_cc, record.cellular_component.term, "cellular_component",
+            http_client=http_client,
+        )
 
     # UniProt — also fetches QuickGO annotations and cross-references GO terms
     if gene_symbol:
-        raw = verify_protein(gene_symbol, species)
+        raw = verify_protein(gene_symbol, species, client=http_client)
         rv.uniprot = UniProtVerification.model_validate(raw)
 
         if rv.uniprot.status == "FOUND" and rv.uniprot.uniprot_id:
-            rv.uniprot.quickgo_annotations = get_protein_annotations(rv.uniprot.uniprot_id)
+            rv.uniprot.quickgo_annotations = get_protein_annotations(
+                rv.uniprot.uniprot_id, client=http_client,
+            )
             annotated_ids = {ann["go_id"] for ann in rv.uniprot.quickgo_annotations}
 
             # Mark GO terms that are already confirmed in QuickGO for this protein
@@ -115,27 +140,48 @@ def _verify_record(record, species: str) -> RecordVerification:
 
     # ECO — if UNKNOWN, search OLS4 by assay name
     if record.evidence:
-        raw = verify_eco(record.evidence.eco_code)
+        raw = verify_eco(record.evidence.eco_code, client=http_client)
         rv.eco = ECOVerification.model_validate(raw)
         if rv.eco.status == "SKIPPED":
             assay = (record.evidence.assay or record.evidence.eco_label or "").strip()
             if assay:
-                rv.eco.eco_suggestions = search_eco_terms(assay)
+                rv.eco.eco_suggestions = search_eco_terms(assay, client=http_client)
 
-    # SynGO — check gene + each GO term against the local SynGO database
+    # SynGO — check gene + ALL GO terms against the local SynGO database.
+    # We check MF, BP, and CC independently so a confirmed BP isn't hidden
+    # by an unmatched MF.
     syngo = get_syngo()
     if syngo.available and gene_symbol:
-        # Use MF GO ID as primary check; fall back to BP or CC
-        go_id_to_check = ""
-        if record.molecular_function:
-            go_id_to_check = record.molecular_function.go_id or ""
-        if not go_id_to_check and record.biological_process:
-            go_id_to_check = record.biological_process.go_id or ""
-        if not go_id_to_check and record.cellular_component:
-            go_id_to_check = record.cellular_component.go_id or ""
+        go_ids_to_check = [
+            (label, go_rec.go_id)
+            for label, go_rec in [
+                ("MF", record.molecular_function),
+                ("BP", record.biological_process),
+                ("CC", record.cellular_component),
+            ]
+            if go_rec and go_rec.go_id and go_rec.go_id != "UNKNOWN"
+        ]
 
-        if go_id_to_check and go_id_to_check != "UNKNOWN":
-            rv.syngo = syngo.validate_annotation(gene_symbol, go_id_to_check)
+        if go_ids_to_check:
+            # Check each GO term; report the best result (CONFIRMED > ALTERNATIVE)
+            best: dict | None = None
+            all_results: list[dict] = []
+            for label, go_id in go_ids_to_check:
+                result = syngo.validate_annotation(gene_symbol, go_id)
+                result["checked_aspect"] = label
+                all_results.append(result)
+                if result.get("status") == "SYNGO_CONFIRMED":
+                    best = result
+                    break  # exact match found — no need to check further
+            if best is None:
+                # Use first non-trivial result (ALTERNATIVE > GENE_NOT_IN_SYNGO)
+                for r in all_results:
+                    if r.get("status") in ("SYNGO_ALTERNATIVE", "SYNGO_CONFIRMED"):
+                        best = r
+                        break
+            if best is None and all_results:
+                best = all_results[0]
+            rv.syngo = best
         else:
             # Gene might still be in SynGO even without a verified GO ID
             result = syngo.search_gene(gene_symbol)
@@ -437,7 +483,7 @@ def verify_command(process: str | None) -> None:
 
     details: list[RecordVerification] = []
 
-    with Progress(
+    with httpx.Client(timeout=15.0) as http_client, Progress(
         SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
         BarColumn(),
@@ -451,7 +497,7 @@ def verify_command(process: str | None) -> None:
                 task,
                 description=f"[dim]{record.id}[/dim] {record.protein.get('name', '')}",
             )
-            rv = _verify_record(record, species)
+            rv = _verify_record(record, species, http_client=http_client)
             details.append(rv)
             progress.advance(task)
 

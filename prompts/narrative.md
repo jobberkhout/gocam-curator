@@ -42,7 +42,7 @@ Respond per number: "OK", "WRONG — [correction]", or "UNCERTAIN".
 
 ## Writing Rules
 
-1. **Write for a biologist.** No GO IDs, no ontology jargon. Use protein names, not gene symbols.
+1. **Write for a biologist.** Use protein names, not gene symbols. Include GO IDs in parentheses after term names (as shown in the format above) — the expert may need them for reference — but avoid other ontology jargon.
 2. **Each claim = one protein activity with its evidence.** Do not bundle multiple proteins into one claim.
 3. **Include the experimental basis** — what assay, which paper, which figure. The expert needs to know where the claim comes from.
 4. **Flag anything uncertain** — LOW confidence claims, unverified IDs, binding-only descriptions.

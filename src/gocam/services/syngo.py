@@ -13,6 +13,7 @@ Data files (download from https://syngoportal.org):
 from __future__ import annotations
 
 import logging
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -57,6 +58,76 @@ def _col(headers: list[str], name: str) -> int:
             if name in h:
                 return i
         return -1
+
+
+# SynGO internal evidence codes → human-readable labels
+_EVIDENCE_CODES: dict[str, str] = {
+    # Biological system
+    "biosys:cultneuron": "cultured neurons",
+    "biosys:intacttissue": "intact tissue",
+    "biosys:nonneuron": "non-neuronal cells",
+    "biosys:cellfree": "cell-free system",
+    # Protein targeting
+    "target:antibody": "antibody",
+    "target:rnai": "RNAi",
+    "target:knockout": "knockout",
+    "target:overexpression": "overexpression",
+    "target:antagonist": "antagonist",
+    "target:none": "not targeted",
+    "target:knockin": "knock-in",
+    "target:morpholino": "morpholino",
+    "target:transgenic": "transgenic",
+    # Microscopy
+    "mic:confocal": "confocal microscopy",
+    "mic:em": "electron microscopy",
+    "mic:hires": "high-resolution microscopy",
+    "mic:wffluo": "wide-field fluorescence microscopy",
+    "mic:2photon": "two-photon microscopy",
+    "mic:frap": "FRAP",
+    "mic:generic": "microscopy",
+    "mic:sted": "STED microscopy",
+    "mic:palm": "PALM/STORM microscopy",
+    "mic:sim": "SIM microscopy",
+    # Electrophysiology
+    "ephys:patchclamp": "patch-clamp",
+    "ephys:field": "field recording",
+    "ephys:generic": "electrophysiology",
+    # Fractionation / biochemistry
+    "frac:wb": "western blot",
+    "frac:generic": "fractionation",
+    "frac:msms": "mass spectrometry",
+    "frac:flow": "flow cytometry",
+    # Protein–protein interaction
+    "ppi:ip": "co-immunoprecipitation",
+    "ppi:y2h": "yeast two-hybrid",
+    "ppi:fret": "FRET",
+    "ppi:generic": "protein–protein interaction",
+    "ppi:pulldown": "pull-down",
+    # Optical physiology
+    "ophys:optical": "optical imaging",
+    # Other methods
+    "other:phluorin": "pHluorin imaging",
+    "other:enzymeassay": "enzyme activity assay",
+    "other:voltammetry": "voltammetry",
+    "other:generic": "other method",
+}
+
+
+def _decode_evidence(coded: str) -> str:
+    """Decode a SynGO evidence code (or comma-separated list of codes) to human-readable text."""
+    if not coded or coded.lower() in ("", "false", "none", "n/a"):
+        return ""
+    parts = [p.strip() for p in coded.split(",") if p.strip()]
+    decoded = [_EVIDENCE_CODES.get(p, p) for p in parts]
+    return ", ".join(decoded)
+
+
+_GO_SUFFIX_RE = re.compile(r"\s*\(GO:\d+\)\s*$")
+
+
+def _strip_go_suffix(name: str) -> str:
+    """Remove trailing ' (GO:XXXXXXX)' from a GO term name."""
+    return _GO_SUFFIX_RE.sub("", name).strip()
 
 
 class SynGOService:
@@ -124,7 +195,7 @@ class SynGOService:
             self._synonym_map[symbol.lower()] = symbol  # self-map
 
             if syn_col >= 0 and syn_col < len(row) and row[syn_col]:
-                for syn in str(row[syn_col]).split("|"):
+                for syn in str(row[syn_col]).split(","):
                     s = syn.strip()
                     if s:
                         self._synonym_map[s.lower()] = symbol
@@ -133,6 +204,12 @@ class SynGOService:
         headers, rows = _read_xlsx(path)
         sym_col = _col(headers, "hgnc_symbol")
         go_col = _col(headers, "go_id")
+
+        _evidence_cols = (
+            "evidence_biological_system",
+            "evidence_protein_targeting",
+            "evidence_experiment_assay",
+        )
 
         for row in rows:
             ann = {
@@ -144,6 +221,16 @@ class SynGOService:
             go_id = ann.get("go_id", "").strip()
             if not symbol or not go_id:
                 continue
+
+            # Clean up go_name — strip trailing "(GO:XXXXXXX)" suffix
+            if "go_name" in ann:
+                ann["go_name"] = _strip_go_suffix(ann["go_name"])
+
+            # Decode SynGO internal evidence codes to human-readable labels
+            for col in _evidence_cols:
+                if col in ann:
+                    ann[col] = _decode_evidence(ann[col])
+
             self._annotations.append(ann)
             # Add self-map for symbol
             if symbol.lower() not in self._synonym_map:
@@ -184,16 +271,8 @@ class SynGOService:
         if not annotations:
             return {"available": True, "found": False, "symbol": symbol, "canonical": canonical}
 
-        bp = [
-            a for a in annotations
-            if "biological" in a.get("go_domain", "").lower()
-            or a.get("go_domain", "").upper() in ("BP", "BIOLOGICAL PROCESS")
-        ]
-        cc = [
-            a for a in annotations
-            if "cellular" in a.get("go_domain", "").lower()
-            or a.get("go_domain", "").upper() in ("CC", "CELLULAR COMPONENT")
-        ]
+        bp = [a for a in annotations if a.get("go_domain", "").upper() == "BP"]
+        cc = [a for a in annotations if a.get("go_domain", "").upper() == "CC"]
 
         return {
             "available": True,

@@ -128,10 +128,34 @@ async def _fetch_uniprot(
     }
 
 
+async def _fetch_go_names(
+    client: httpx.AsyncClient, go_ids: list[str]
+) -> dict[str, str]:
+    """Batch-fetch GO term names from QuickGO terms endpoint.
+
+    The annotation search endpoint does not return goName, so we resolve names
+    separately. Returns a dict mapping go_id → term_name.
+    """
+    if not go_ids:
+        return {}
+    # QuickGO accepts up to ~200 IDs in a comma-separated path segment
+    ids_str = ",".join(go_ids[:200])
+    try:
+        r = await client.get(
+            f"https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms/{ids_str}",
+            headers={"Accept": "application/json"},
+        )
+        r.raise_for_status()
+        results = r.json().get("results", [])
+    except Exception:
+        return {}
+    return {item.get("id", ""): item.get("name", "") for item in results}
+
+
 async def _fetch_quickgo(
     client: httpx.AsyncClient, uniprot_id: str
 ) -> list[dict]:
-    """Fetch QuickGO annotations for a UniProt accession."""
+    """Fetch QuickGO annotations for a UniProt accession, with term names resolved."""
     if not uniprot_id:
         return []
     try:
@@ -152,11 +176,18 @@ async def _fetch_quickgo(
     for ann in results:
         annotations.append({
             "go_id": ann.get("goId", ""),
-            "go_name": ann.get("goName", ""),
+            "go_name": "",  # resolved below via terms endpoint
             "aspect": ann.get("goAspect", ""),
             "evidence_code": ann.get("evidenceCode", ""),
             "reference": ann.get("reference", ""),
         })
+
+    # Resolve GO term names — the annotation endpoint does not include them
+    unique_ids = list({a["go_id"] for a in annotations if a["go_id"]})
+    names = await _fetch_go_names(client, unique_ids)
+    for ann in annotations:
+        ann["go_name"] = names.get(ann["go_id"], "")
+
     return annotations
 
 
@@ -427,25 +458,7 @@ def _build_markdown(
         _go_section(go_bp, "Biological Process (BP)")
         _go_section(go_cc, "Cellular Component (CC)")
 
-    # QuickGO annotations
-    valid_qgo = [a for a in quickgo if "error" not in a]
-    if valid_qgo:
-        lines += [f"## QuickGO Annotations ({len(valid_qgo)} total)", ""]
-        lines.append("| GO ID | Term | Aspect | Evidence | Reference |")
-        lines.append("|-------|------|--------|----------|-----------|")
-        for ann in valid_qgo[:50]:
-            go_id = ann.get("go_id", "")
-            link = f"[{go_id}](https://www.ebi.ac.uk/QuickGO/term/{go_id})"
-            aspect = ann.get("aspect", "")[:2].upper()
-            lines.append(
-                f"| {link} | {ann.get('go_name', '')} | {aspect} "
-                f"| {ann.get('evidence_code', '')} | {ann.get('reference', '')} |"
-            )
-        if len(valid_qgo) > 50:
-            lines.append(f"| … | *{len(valid_qgo) - 50} more — see {gene.lower()}.json* | | | |")
-        lines.append("")
-
-    # SynGO annotations — one subsection per GO term, full evidence table per entry
+    # SynGO annotations — placed directly after UniProt (expert-curated, high priority)
     syngo = get_syngo()
     if syngo.available:
         syngo_result = syngo.search_gene(gene)
@@ -454,7 +467,7 @@ def _build_markdown(
             cc_anns = syngo_result.get("cc", [])
             total_syngo = syngo_result.get("total", 0)
             lines += [
-                f"## SynGO Annotations",
+                "## SynGO Annotations",
                 f"*Expert-curated synaptic — {total_syngo} annotation(s) from [SynGO](https://syngoportal.org)*",
                 "",
             ]
@@ -479,6 +492,24 @@ def _build_markdown(
                         )
                         lines.append(f"| {bio_sys} | {targeting} | {assay} | {pmid_cell} |")
                     lines.append("")
+
+    # QuickGO annotations
+    valid_qgo = [a for a in quickgo if "error" not in a]
+    if valid_qgo:
+        lines += [f"## QuickGO Annotations ({len(valid_qgo)} total)", ""]
+        lines.append("| GO ID | Term | Aspect | Evidence | Reference |")
+        lines.append("|-------|------|--------|----------|-----------|")
+        for ann in valid_qgo[:50]:
+            go_id = ann.get("go_id", "")
+            link = f"[{go_id}](https://www.ebi.ac.uk/QuickGO/term/{go_id})"
+            aspect = ann.get("aspect", "")[:2].upper()
+            lines.append(
+                f"| {link} | {ann.get('go_name', '')} | {aspect} "
+                f"| {ann.get('evidence_code', '')} | {ann.get('reference', '')} |"
+            )
+        if len(valid_qgo) > 50:
+            lines.append(f"| … | *{len(valid_qgo) - 50} more — see {gene.lower()}.json* | | | |")
+        lines.append("")
 
     # OLS4 terms
     valid_ols = [t for t in ols if "error" not in t and t.get("label")]
@@ -520,12 +551,14 @@ def _save_results(
 
     # Full JSON for programmatic use
     json_out = searches_dir / f"{stem}.json"
+    syngo_result = get_syngo().search_gene(gene)
     payload = {
         "gene": gene,
         "taxon_id": taxon_id,
         "species": species_label,
         "timestamp": datetime.now().isoformat(timespec="seconds"),
         "uniprot": uniprot,
+        "syngo": syngo_result if syngo_result.get("available") else None,
         "quickgo_annotations": quickgo,
         "ols4_terms": ols,
     }

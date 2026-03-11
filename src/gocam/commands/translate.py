@@ -33,31 +33,33 @@ _BATCH_SIZE = 5
 def _build_pmid_table(json_files: list, read_json_fn) -> str:
     """Scan all extraction JSONs and build a source→PMID hint table for the translate prompt.
 
+    Captures ALL unique PMIDs per source file (a review PDF may cite several papers).
     Returns a Markdown table string, or empty string if no PMIDs found.
     """
-    source_pmids: dict[str, str] = {}
+    source_pmids: dict[str, list[str]] = {}
     for p in json_files:
         try:
             data = read_json_fn(p)
         except Exception:
             continue
         stem = p.stem
+        seen_for_stem: set[str] = set()
         # Collect PMIDs from interaction fields
         for interaction in data.get("interactions", []):
             pmid = interaction.get("pmid")
             if pmid and pmid not in ("null", "None", "UNKNOWN"):
                 # Normalise: strip "PMID:" prefix if present
                 pmid = re.sub(r"(?i)^pmid:?\s*", "", str(pmid)).strip()
-                if pmid.isdigit():
-                    source_pmids[stem] = pmid
-                    break
+                if pmid.isdigit() and pmid not in seen_for_stem:
+                    seen_for_stem.add(pmid)
+                    source_pmids.setdefault(stem, []).append(pmid)
     if not source_pmids:
         return ""
     lines = ["## Source File → PMID Mapping (use these when filling the pmid field)", ""]
-    lines.append("| Source file | PMID |")
-    lines.append("|-------------|------|")
-    for stem, pmid in sorted(source_pmids.items()):
-        lines.append(f"| {stem} | {pmid} |")
+    lines.append("| Source file | PMID(s) |")
+    lines.append("|-------------|---------|")
+    for stem, pmids in sorted(source_pmids.items()):
+        lines.append(f"| {stem} | {', '.join(pmids)} |")
     lines.append("")
     lines.append("For source files not in this table, look for the PMID in the extracted text or write null.")
     return "\n".join(lines)
@@ -341,7 +343,7 @@ def translate_command(process: str | None) -> None:
         )
 
         for i, batch in enumerate(batches):
-            id_offset = i * _BATCH_SIZE
+            id_offset = len(all_records)  # sequential IDs based on actual records produced
             batch_info = f"BATCH {i + 1} OF {len(batches)}"
             user_msg = _build_user_msg(
                 process_name, species, report_text, raw_json_content,
@@ -386,8 +388,12 @@ def translate_command(process: str | None) -> None:
                 print_error(f"LLM call failed: {exc}")
                 raise SystemExit(1)
 
+        # Normalise: some models return a bare list instead of {records: [...]}
+        if isinstance(merged_raw, list):
+            merged_raw = {"records": merged_raw}
+
         # Retry once if fewer records were produced than interactions in the report
-        n_produced = len(merged_raw.get("records", []) if isinstance(merged_raw, dict) else merged_raw)
+        n_produced = len(merged_raw.get("records", []))
         if n_report_interactions and n_produced < n_report_interactions:
             missing = n_report_interactions - n_produced
             print_warning(

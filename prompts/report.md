@@ -84,8 +84,9 @@ Example:
    - 1 source → LOW
    - 2–3 sources → MEDIUM
    - 4+ sources → HIGH
-   - Override upward for direct biochemical/electrophysiological evidence (kinase assay, patch-clamp)
-   - Override downward for binding-only or cartoon-only evidence
+   - **Override to MEDIUM** (from LOW): if the single source provides direct biochemical or electrophysiological evidence (e.g., in vitro kinase assay, reconstituted assay, patch-clamp recording, single-channel recording). One strong mechanistic experiment outweighs the single-source penalty.
+   - **Override to LOW** (from MEDIUM/HIGH): if ALL supporting sources are binding-only (co-IP, pull-down without functional assay) or cartoon-only (diagram with no experimental figure cited). Multiple weak sources do not make strong evidence.
+   - **Never override to HIGH** from source count alone if no source provides a specific assay or figure reference — cap at MEDIUM.
 4. **Flag binding-only interactions** explicitly in the Interaction Map with "WARNING: only binding described, MF unknown."
 5. **Detect conflicts** — same protein shown as activator in one source and inhibitor in another, or different substrates reported. Flag every conflict with a suggested expert question.
 6. **Merge gaps** — deduplicate similar gaps across sources, order by importance.

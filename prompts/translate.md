@@ -120,4 +120,20 @@ Apply all rules from the system prompt. Key reminders:
    - `kinase assay / biochemical activity assay` → ECO:0005581
    - `genetic interaction` → ECO:0001225
    - `protein overexpression` → ECO:0000120
+   - `electron microscopy (EM / cryo-EM)` → ECO:0005027
+   - `mass spectrometry / proteomics` → ECO:0001096
+   - `FRET / Förster resonance energy transfer` → ECO:0001048
+   - `proximity ligation assay (PLA)` → ECO:0007695
+   - `cross-linking mass spectrometry (XL-MS)` → ECO:0001096
+   - `surface plasmon resonance (SPR)` → ECO:0001024
+   - `in situ hybridization (ISH / FISH)` → ECO:0001114
+   - `RNA immunoprecipitation (RIP)` → ECO:0000226
+   - `chromatin immunoprecipitation (ChIP)` → ECO:0000229
+   - `enzyme-linked immunosorbent assay (ELISA)` → ECO:0000269
+   - `live-cell imaging / time-lapse microscopy` → ECO:0007695
+   - `super-resolution microscopy (STORM / PALM / STED)` → ECO:0007695
+   - `calcium imaging` → ECO:0005660
+   - `optogenetics` → ECO:0005660
+   - `voltage-clamp` → ECO:0005660
+   - `mutagenesis / site-directed mutagenesis` → ECO:0005528
    - If you do not know the exact ECO code for the described assay → write `"eco_code": "UNKNOWN"` and fill `eco_label` with the assay name verbatim.

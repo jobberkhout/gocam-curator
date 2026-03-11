@@ -74,6 +74,12 @@ def _build_queries(records_data: dict) -> list[tuple[str, str]]:
     Returns list of (query_string, human_label) tuples.
     Deduplicates and skips records without enough info for a useful query.
     """
+    # Words that are too generic to be useful in a PubMed query
+    _STOPWORDS = {
+        "protein", "activity", "complex", "subunit", "receptor",
+        "signaling", "pathway", "regulation", "the", "a", "of", "and",
+    }
+
     seen: set[str] = set()
     queries: list[tuple[str, str]] = []
 
@@ -93,10 +99,20 @@ def _build_queries(records_data: dict) -> list[tuple[str, str]]:
 
         parts = [gene]
         if target:
-            # Normalise target: strip "protein" / "kinase" suffixes for better PubMed hits
-            parts.append(target.split()[0] if target else "")
+            # Keep meaningful words from the target, drop generic filler
+            target_words = [
+                w for w in target.split()
+                if w.lower() not in _STOPWORDS
+            ]
+            # Use up to the first 3 meaningful words (enough for specificity)
+            target_term = " ".join(target_words[:3]) if target_words else ""
+            if target_term:
+                parts.append(f'"{target_term}"' if " " in target_term else target_term)
         if bp:
-            parts.append(bp.split()[0] if bp else "")
+            bp_words = [w for w in bp.split() if w.lower() not in _STOPWORDS]
+            bp_term = " ".join(bp_words[:3]) if bp_words else ""
+            if bp_term:
+                parts.append(f'"{bp_term}"' if " " in bp_term else bp_term)
 
         # Build query — at minimum we need gene
         query = " AND ".join(p for p in parts if p)
@@ -439,6 +455,16 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
 
     # Extract from enrichment files
     console.print(f"\n[bold]Extracting from {len(saved_files)} enrichment file(s)…[/bold]")
+    already_done = sum(
+        1 for f in saved_files
+        if _already_enriched(enrich_ext_dir, f.stem.replace("pubmed_", ""))
+    )
+    if already_done:
+        print_info(
+            f"Resuming — {already_done}/{len(saved_files)} abstract(s) already extracted, "
+            f"{len(saved_files) - already_done} remaining"
+        )
+
     client = get_llm_client()
     total_interactions = 0
 

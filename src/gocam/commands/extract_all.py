@@ -227,6 +227,17 @@ def extract_all_command(process: str | None, deep: bool) -> None:
     client = get_llm_client()
     skipped = processed = failed = 0
 
+    # Count already-done files up front so we can show a resume message
+    if deep:
+        already_done = sum(1 for f in input_files if _already_deep_extracted(extractions_dir, f.stem))
+    else:
+        already_done = sum(1 for f in input_files if _already_extracted(extractions_dir, f))
+    if already_done:
+        print_info(
+            f"Resuming — {already_done}/{len(input_files)} file(s) already processed, "
+            f"{len(input_files) - already_done} remaining"
+        )
+
     for i, file in enumerate(input_files, start=1):
         print_info(f"Processing file {i}/{len(input_files)}: {file.name}")
 
