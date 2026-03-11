@@ -265,7 +265,34 @@ def _process_pdf(
                     raw = client.call_text("extract_text", user_msg)
                 extraction = _build_extraction(raw, source_id, "pdf")
             except Exception as exc:
-                print_warning(f"Pages {start_page}–{end_page}: API error — {exc}")
+                # If chunk has multiple pages, retry each page individually
+                if len(chunk) > 1:
+                    print_warning(
+                        f"Pages {start_page}–{end_page}: output truncated — "
+                        f"retrying {len(chunk)} pages individually"
+                    )
+                    for j, page_text in enumerate(chunk):
+                        page_num = start_page + j
+                        page_source_id = f"{stem}_page{page_num:02d}"
+                        page_msg = (
+                            f"Analyze page {page_num} of: {content.source_path.name}\n\n"
+                            f"Text content:\n---\n{page_text}\n---\n\n"
+                            "Return extraction JSON as specified."
+                        )
+                        try:
+                            page_raw = client.call_text("extract_text", page_msg)
+                            page_ext = _build_extraction(page_raw, page_source_id, "pdf")
+                            page_out = extractions_dir / f"{page_source_id}.json"
+                            write_json(page_out, page_ext)
+                            results.append(page_ext)
+                            print_success(
+                                f"  Page {page_num}: {len(page_ext.entities)} entities"
+                                f", {len(page_ext.interactions)} interactions → {page_out.name}"
+                            )
+                        except Exception as page_exc:
+                            print_warning(f"  Page {page_num}: failed — {page_exc}")
+                else:
+                    print_warning(f"Pages {start_page}–{end_page}: API error — {exc}")
                 progress.advance(task)
                 continue
 
