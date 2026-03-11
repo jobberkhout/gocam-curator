@@ -50,14 +50,31 @@ GEMINI_API_CALL_DELAY: int = int(os.getenv("GEMINI_API_CALL_DELAY", _global_dela
 # chunk_pages: pages per API call when processing PDFs.
 # None = send the entire document in one call (Anthropic handles large contexts well).
 # Integer = split into chunks of that many pages (Gemini has tighter output limits).
+# Override with PDF_CHUNK_PAGES env var (integer or "none" for single call).
 PROVIDER_DEFAULTS: dict[str, dict] = {
     "anthropic": {"chunk_pages": None},
-    "gemini": {"chunk_pages": 2},
+    "gemini": {"chunk_pages": 5},
 }
+
+# Overlap between PDF chunks (characters from the end of the previous chunk
+# prepended to the next). Override with PDF_CHUNK_OVERLAP env var.
+PDF_CHUNK_OVERLAP: int = int(os.getenv("PDF_CHUNK_OVERLAP", "500"))
 
 
 def get_pdf_chunk_pages() -> int | None:
-    """Return pages-per-chunk for the active provider (None = single call)."""
+    """Return pages-per-chunk for the active provider (None = single call).
+
+    The PDF_CHUNK_PAGES env var overrides the provider default.
+    Set to an integer, or "none" / "0" for single-call mode.
+    """
+    env = os.getenv("PDF_CHUNK_PAGES", "").strip().lower()
+    if env:
+        if env in ("none", "0"):
+            return None
+        try:
+            return int(env)
+        except ValueError:
+            pass
     return PROVIDER_DEFAULTS.get(LLM_PROVIDER, {}).get("chunk_pages", None)
 
 # ---------------------------------------------------------------------------

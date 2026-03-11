@@ -14,3 +14,7 @@ class Entity(BaseModel):
     label_as_shown: Optional[str] = None
     position_in_diagram: Optional[str] = None
     implied_activity: Optional[str] = None
+
+    # Set True for entities found in the overlap region between PDF chunks.
+    # The report step can use this flag to deduplicate.
+    overlap_from_previous: bool = False

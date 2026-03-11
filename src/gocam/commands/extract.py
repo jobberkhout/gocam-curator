@@ -9,7 +9,7 @@ from pathlib import Path
 import click
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 
-from gocam.config import get_pdf_chunk_pages
+from gocam.config import PDF_CHUNK_OVERLAP, get_pdf_chunk_pages
 from gocam.models import Extraction
 from gocam.services.llm import LLMClient, get_llm_client
 from gocam.services.file_processor import (
@@ -32,6 +32,37 @@ from gocam.utils.process import load_meta, resolve_process
 
 def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
+
+
+def _dedup_entities(entities: list) -> list:
+    """Deduplicate entities by name (case-insensitive), merging mentioned_activities.
+
+    When merging, prefer the non-overlap copy (overlap_from_previous=False) so
+    that the primary extraction's richer context is kept.
+    """
+    seen: dict[str, dict] = {}  # lowercase name → merged entity dict
+    result: list = []
+    for e in entities:
+        key = (e.name or "").strip().lower()
+        if not key:
+            continue
+        if key in seen:
+            existing = seen[key]
+            # Merge activities from duplicate into existing entry
+            for act in e.mentioned_activities:
+                if act not in existing.mentioned_activities:
+                    existing.mentioned_activities.append(act)
+            # If existing is overlap-only but new one isn't, swap in the richer copy
+            if existing.overlap_from_previous and not getattr(e, "overlap_from_previous", False):
+                idx = result.index(existing)
+                # Preserve merged activities
+                e.mentioned_activities = existing.mentioned_activities
+                result[idx] = e
+                seen[key] = e
+        else:
+            seen[key] = e
+            result.append(e)
+    return result
 
 
 def _build_extraction(raw: dict, source: str, source_type: str) -> Extraction:
@@ -117,13 +148,22 @@ def _process_pdf(
     # Single-call path (chunk_pages is None → provider handles large contexts)
     if chunk_pages is None:
         images = content.images
-        img_note = (
-            f"\n{len(images)} figure(s) extracted from the PDF are attached above."
-            if images else ""
-        )
+        if images:
+            img_instructions = (
+                f"\n{len(images)} figure(s) extracted from the PDF are attached above.\n\n"
+                "IMPORTANT — For each attached figure:\n"
+                "- Record every protein/gene label visible in the figure as an entity.\n"
+                "- Record every arrow, line, or spatial connection between proteins in "
+                "`connections_shown` (from_entity, to_entity, arrow_type, implied_relation).\n"
+                "- Record every compartment visible in the figure in `compartments_shown`.\n"
+                "- Do NOT leave `connections_shown` or `compartments_shown` empty if the "
+                "figures contain diagrams with arrows or labeled compartments.\n"
+            )
+        else:
+            img_instructions = ""
         user_msg = (
             f"Analyze the following PDF: {content.source_path.name}"
-            f"{img_note}\n\n"
+            f"{img_instructions}\n\n"
             f"Text content:\n---\n{total_text}\n---\n\n"
             "Return extraction JSON as specified."
         )
@@ -143,15 +183,18 @@ def _process_pdf(
         return [extraction]
 
     # Chunked path (chunk_pages = N)
+    overlap_chars = PDF_CHUNK_OVERLAP
     print_info(
         f"{len(pages)} pages, {len(total_text):,} chars — splitting into "
         f"chunks of {chunk_pages} pages"
+        + (f" (overlap {overlap_chars} chars)" if overlap_chars else "")
     )
     chunks = [
         pages[i : i + chunk_pages]
         for i in range(0, len(pages), chunk_pages)
     ]
     results: list[Extraction] = []
+    prev_chunk_text: str = ""  # used to compute overlap
 
     with Progress(
         SpinnerColumn(),
@@ -170,17 +213,41 @@ def _process_pdf(
             end_page = min(i * chunk_pages, len(pages))
             chunk_text = "\n\n".join(chunk)
 
+            # Build overlap prefix from end of previous chunk
+            overlap_prefix = ""
+            if i > 1 and overlap_chars and prev_chunk_text:
+                tail = prev_chunk_text[-overlap_chars:]
+                # Try to start at a sentence/paragraph boundary
+                newline_pos = tail.find("\n")
+                if newline_pos != -1 and newline_pos < len(tail) // 2:
+                    tail = tail[newline_pos + 1:]
+                overlap_prefix = (
+                    "[OVERLAP FROM PREVIOUS CHUNK — included for context continuity. "
+                    "Entities already extracted from this text should be marked "
+                    "overlap_from_previous=true in your JSON output.]\n"
+                    f"{tail}\n[END OVERLAP]\n\n"
+                )
+
+            prev_chunk_text = chunk_text
+
             # Attach images to the first chunk only
             images = content.images if i == 1 and content.images else []
-            img_note = (
-                f"\n{len(images)} figure(s) extracted from the PDF are attached above."
-                if images else ""
-            )
+            if images:
+                img_note = (
+                    f"\n{len(images)} figure(s) extracted from the PDF are attached above.\n\n"
+                    "IMPORTANT — For each attached figure:\n"
+                    "- Record every protein/gene label visible in the figure as an entity.\n"
+                    "- Record every arrow, line, or spatial connection between proteins in "
+                    "`connections_shown` (from_entity, to_entity, arrow_type, implied_relation).\n"
+                    "- Record every compartment visible in the figure in `compartments_shown`.\n"
+                )
+            else:
+                img_note = ""
 
             user_msg = (
                 f"Analyze pages {start_page}–{end_page} of: {content.source_path.name}"
                 f"{img_note}\n\n"
-                f"Text content:\n---\n{chunk_text}\n---\n\n"
+                f"Text content:\n---\n{overlap_prefix}{chunk_text}\n---\n\n"
                 "Return extraction JSON as specified."
             )
 
@@ -217,7 +284,7 @@ def _process_pdf(
             source=f"{stem}_summary",
             source_type="pdf",
             timestamp=_now(),
-            entities=[e for ext in results for e in ext.entities],
+            entities=_dedup_entities([e for ext in results for e in ext.entities]),
             interactions=[i for ext in results for i in ext.interactions],
             connections_shown=[c for ext in results for c in ext.connections_shown],
             compartments_shown=list({
@@ -279,8 +346,14 @@ def _process_pptx(
                 progress.advance(task)
                 continue
 
-            if raw.get("skip"):
-                print_info(f"Slide {slide.slide_number}: skipped ({raw.get('reason', 'not relevant')})")
+            if raw.get("skip") or (
+                not raw.get("entities")
+                and not raw.get("connections_shown")
+                and not raw.get("interactions")
+                and raw.get("reason")  # LLM returned a skip with reason but no skip flag
+            ):
+                reason = raw.get("reason", "not relevant")
+                print_info(f"Slide {slide.slide_number}: skipped ({reason})")
                 progress.advance(task)
                 continue
 
@@ -322,7 +395,7 @@ def _process_pptx(
             source=f"{stem}_summary",
             source_type="slide",
             timestamp=_now(),
-            entities=[e for ext in relevant for e in ext.entities],
+            entities=_dedup_entities([e for ext in relevant for e in ext.entities]),
             interactions=[i for ext in relevant for i in ext.interactions],
             connections_shown=[c for ext in relevant for c in ext.connections_shown],
             compartments_shown=list({
