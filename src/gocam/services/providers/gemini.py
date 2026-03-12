@@ -32,6 +32,17 @@ def _is_quota_exhausted(exc: Exception) -> bool:
     ))
 
 
+def _is_overloaded(exc: Exception) -> bool:
+    """Return True for server-overloaded / rate-limit / unavailable errors."""
+    msg = str(exc).lower()
+    return any(x in msg for x in (
+        "503", "overloaded", "service unavailable",
+        "too many requests", "rate limit", "rate_limit",
+        "resource_exhausted", "resource exhausted",
+        "quota exceeded", "429",
+    ))
+
+
 class GeminiProvider(LLMClient):
     """Calls the Google Gemini API using the configured Gemini model."""
 
@@ -65,14 +76,17 @@ class GeminiProvider(LLMClient):
     # ------------------------------------------------------------------
 
     def _call_with_model_fallback(self, fn: Callable[[str], Any]) -> Any:
-        """Try fn(model) with the primary model, then fallbacks on quota exhaustion.
+        """Try fn(model) with the primary model, then fallbacks on overload/quota errors.
 
         For each model in the chain:
         1. Try the call (with the standard retry logic from LLMClient).
-        2. If it fails with a quota error on the *first* model, wait
+        2. If it fails with an overload/quota error on the *first* model, wait
            _QUOTA_COOLDOWN seconds and retry once more.
         3. If still failing, move to the next model in the chain.
         4. If all models are exhausted, raise the last exception.
+
+        Non-overload errors (e.g. invalid request, auth failure) are raised
+        immediately without trying fallback models.
         """
         from gocam.utils.display import console
 
@@ -87,13 +101,13 @@ class GeminiProvider(LLMClient):
                     return self._call_with_retry(lambda: fn(self._model))
                 except Exception as exc:
                     last_exc = exc
-                    if not _is_quota_exhausted(exc):
-                        raise  # non-quota error — don't fallback, just raise
+                    if not _is_overloaded(exc):
+                        raise  # non-overload error — don't fallback, just raise
 
                     if idx == 0 and attempt == 0:
                         # First failure on primary model: wait and retry
                         console.print(
-                            f"[yellow]Quota exhausted for {model}. "
+                            f"[yellow]Model {model} overloaded/quota exhausted. "
                             f"Waiting {_QUOTA_COOLDOWN // 60} minutes before retrying…[/yellow]"
                         )
                         with console.status("") as status:
@@ -108,12 +122,12 @@ class GeminiProvider(LLMClient):
                         if idx + 1 < len(self._model_chain):
                             next_model = self._model_chain[idx + 1]
                             console.print(
-                                f"[yellow]Quota exhausted for {model}. "
+                                f"[yellow]{model} overloaded/quota exhausted. "
                                 f"Switching to fallback model: {next_model}[/yellow]"
                             )
                         else:
                             console.print(
-                                f"[red]Quota exhausted for {model} "
+                                f"[red]{model} overloaded/quota exhausted "
                                 f"(last fallback). Aborting.[/red]"
                             )
                         break  # move to next model in chain

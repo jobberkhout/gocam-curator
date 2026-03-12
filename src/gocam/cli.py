@@ -50,14 +50,17 @@ def main() -> None:
 
     \b
     CONFIGURATION  (.env file in the project root)
-      LLM_PROVIDER=anthropic|gemini    AI provider to use (default: anthropic)
+      LLM_PROVIDER=anthropic|gemini|vertex  AI provider (default: anthropic)
       ANTHROPIC_API_KEY=...            Required when LLM_PROVIDER=anthropic
       GEMINI_API_KEY=...               Required when LLM_PROVIDER=gemini
+      GOOGLE_CLOUD_PROJECT=...         Required when LLM_PROVIDER=vertex
+      VERTEX_LOCATION=us-central1      Vertex AI region (default: us-central1)
       ANTHROPIC_MODEL=claude-...       Override the Anthropic model (default: claude-sonnet-4-5)
       GEMINI_MODEL=gemini-...          Override the Gemini model  (default: gemini-2.5-pro)
-      API_CALL_DELAY=5                 Seconds between API calls (overrides both providers)
+      API_CALL_DELAY=5                 Seconds between API calls (overrides all providers)
       ANTHROPIC_API_CALL_DELAY=2       Anthropic-specific delay (default: 2)
       GEMINI_API_CALL_DELAY=10         Gemini-specific delay    (default: 10)
+      VERTEX_API_CALL_DELAY=2          Vertex-specific delay    (default: 2)
 
     \b
     UTILITIES

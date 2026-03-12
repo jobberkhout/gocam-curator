@@ -49,6 +49,45 @@ def _is_retryable(exc: Exception) -> bool:
     ))
 
 
+def _repair_truncated_json(text: str) -> dict | None:
+    """Attempt to salvage a truncated JSON object by closing open structures.
+
+    Works backwards from the truncation point: strips the last partial
+    value/key, then appends the necessary closing brackets and braces.
+    Returns the parsed dict on success, or None if repair fails.
+    """
+    text = text.strip()
+    if not text.startswith("{"):
+        return None
+
+    # Strip trailing partial tokens: cut back to the last complete
+    # value delimiter (, ] } or a quoted string ending with ")
+    # Try increasingly aggressive truncation points.
+    for cut_chars in ("]", "}", ",", '"'):
+        idx = text.rfind(cut_chars)
+        if idx == -1:
+            continue
+        fragment = text[: idx + 1]
+
+        # Count open/close brackets and braces
+        open_braces = fragment.count("{") - fragment.count("}")
+        open_brackets = fragment.count("[") - fragment.count("]")
+
+        if open_braces < 0 or open_brackets < 0:
+            continue
+
+        # Close everything that's still open
+        suffix = "]" * open_brackets + "}" * open_braces
+        try:
+            result = json.loads(fragment + suffix)
+            if isinstance(result, dict):
+                return result
+        except json.JSONDecodeError:
+            continue
+
+    return None
+
+
 class LLMClient(ABC):
     """Abstract base for all LLM provider implementations.
 
@@ -117,7 +156,9 @@ class LLMClient(ABC):
         """Extract JSON from a model response, stripping markdown code fences.
 
         Handles nested objects correctly by splitting on fence markers rather
-        than using a greedy/non-greedy regex over the JSON body.
+        than using a greedy/non-greedy regex over the JSON body.  If the JSON
+        is truncated (output hit the token limit), attempts to repair it by
+        closing open brackets/braces so partial data is not lost.
         """
         text = text.strip()
         # Fast path: the whole response is valid JSON
@@ -126,6 +167,7 @@ class LLMClient(ABC):
         except json.JSONDecodeError:
             pass
         # Extract content between ``` fences; odd-indexed parts are inside fences
+        candidates: list[str] = []
         if "```" in text:
             for part in text.split("```")[1::2]:
                 candidate = part.strip()
@@ -134,7 +176,15 @@ class LLMClient(ABC):
                 try:
                     return json.loads(candidate)
                 except json.JSONDecodeError:
-                    continue
+                    candidates.append(candidate)
+
+        # Truncation repair: try to close open brackets/braces on the best
+        # candidate (fenced JSON first, otherwise the raw text).
+        for raw in (candidates or [text]):
+            repaired = _repair_truncated_json(raw)
+            if repaired is not None:
+                return repaired
+
         raise ValueError(
             f"Could not parse JSON from model response.\nFirst 500 chars:\n{text[:500]}"
         )
@@ -179,7 +229,11 @@ def get_llm_client() -> LLMClient:
         from gocam.services.providers.gemini import GeminiProvider
         return GeminiProvider()
 
+    if provider == "vertex":
+        from gocam.services.providers.vertex import VertexProvider
+        return VertexProvider()
+
     raise SystemExit(
         f"Unknown LLM_PROVIDER: '{LLM_PROVIDER}'. "
-        "Set LLM_PROVIDER=anthropic or LLM_PROVIDER=gemini in your .env file."
+        "Set LLM_PROVIDER=anthropic, gemini, or vertex in your .env file."
     )

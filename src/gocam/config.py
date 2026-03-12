@@ -22,13 +22,19 @@ SEARCHES_DIR: Path = PROJECT_ROOT / "searches"  # global search results (all pro
 # ---------------------------------------------------------------------------
 # LLM provider selection
 # ---------------------------------------------------------------------------
-LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "anthropic")  # "anthropic" | "gemini"
+LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "anthropic")  # "anthropic" | "gemini" | "vertex"
 
 # ---------------------------------------------------------------------------
 # API keys
 # ---------------------------------------------------------------------------
 ANTHROPIC_API_KEY: str | None = os.getenv("ANTHROPIC_API_KEY")
 GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY")
+
+# ---------------------------------------------------------------------------
+# Vertex AI settings (used when LLM_PROVIDER=vertex)
+# ---------------------------------------------------------------------------
+VERTEX_PROJECT: str | None = os.getenv("GOOGLE_CLOUD_PROJECT") or os.getenv("VERTEX_PROJECT")
+VERTEX_LOCATION: str = os.getenv("VERTEX_LOCATION", "us-central1")
 
 # ---------------------------------------------------------------------------
 # Model IDs (override via env if needed)
@@ -51,6 +57,7 @@ GEMINI_FALLBACK_MODELS: list[str] = [
 _global_delay = os.getenv("API_CALL_DELAY", "")
 ANTHROPIC_API_CALL_DELAY: int = int(os.getenv("ANTHROPIC_API_CALL_DELAY", _global_delay or "2"))
 GEMINI_API_CALL_DELAY: int = int(os.getenv("GEMINI_API_CALL_DELAY", _global_delay or "10"))
+VERTEX_API_CALL_DELAY: int = int(os.getenv("VERTEX_API_CALL_DELAY", _global_delay or "2"))
 
 # ---------------------------------------------------------------------------
 # Provider-specific PDF extraction defaults
@@ -62,6 +69,7 @@ GEMINI_API_CALL_DELAY: int = int(os.getenv("GEMINI_API_CALL_DELAY", _global_dela
 PROVIDER_DEFAULTS: dict[str, dict] = {
     "anthropic": {"chunk_pages": None},
     "gemini": {"chunk_pages": 8},
+    "vertex": {"chunk_pages": 8},  # same Gemini models, same chunking
 }
 
 # Overlap between PDF chunks (characters from the end of the previous chunk
