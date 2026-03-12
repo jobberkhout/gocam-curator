@@ -36,6 +36,14 @@ GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY")
 ANTHROPIC_MODEL: str = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-5")
 GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-pro")
 
+# Comma-separated fallback models for Gemini when quota is exhausted.
+# Tried in order after the primary model fails and a cooldown wait doesn't help.
+GEMINI_FALLBACK_MODELS: list[str] = [
+    m.strip()
+    for m in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.5-flash,gemini-2.0-flash").split(",")
+    if m.strip()
+]
+
 # ---------------------------------------------------------------------------
 # Per-provider inter-call delays (seconds between consecutive API calls)
 # API_CALL_DELAY sets both; provider-specific vars override it.
@@ -53,7 +61,7 @@ GEMINI_API_CALL_DELAY: int = int(os.getenv("GEMINI_API_CALL_DELAY", _global_dela
 # Override with PDF_CHUNK_PAGES env var (integer or "none" for single call).
 PROVIDER_DEFAULTS: dict[str, dict] = {
     "anthropic": {"chunk_pages": None},
-    "gemini": {"chunk_pages": 5},
+    "gemini": {"chunk_pages": 8},
 }
 
 # Overlap between PDF chunks (characters from the end of the previous chunk

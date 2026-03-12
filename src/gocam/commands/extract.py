@@ -103,6 +103,67 @@ def _split_pdf_pages(text: str) -> list[str]:
     return [p.strip() for p in parts if p.strip()]
 
 
+def _extract_chunk_recursive(
+    client: LLMClient,
+    page_texts: list[str],
+    first_page_num: int,
+    stem: str,
+    source_name: str,
+    extractions_dir: Path,
+    results: list[Extraction],
+    depth: int = 0,
+) -> None:
+    """Try to extract a chunk of pages; on failure, halve the chunk and recurse.
+
+    Cascade: e.g. 8 → 4 → 2 → 1 pages per call.  If a single page still
+    fails, log a warning and move on.
+    """
+    indent = "  " * depth
+    n = len(page_texts)
+    last_page_num = first_page_num + n - 1
+
+    if n == 1:
+        label = f"Page {first_page_num}"
+        source_id = f"{stem}_page{first_page_num:02d}"
+    else:
+        label = f"Pages {first_page_num}–{last_page_num}"
+        source_id = f"{stem}_pages{first_page_num:02d}-{last_page_num:02d}"
+
+    chunk_text = "\n\n".join(page_texts)
+    msg = (
+        f"Analyze {label.lower()} of: {source_name}\n\n"
+        f"Text content:\n---\n{chunk_text}\n---\n\n"
+        "Return extraction JSON as specified."
+    )
+
+    try:
+        raw = client.call_text("extract_text", msg)
+        ext = _build_extraction(raw, source_id, "pdf")
+        out = extractions_dir / f"{source_id}.json"
+        write_json(out, ext)
+        results.append(ext)
+        print_success(
+            f"{indent}{label}: {len(ext.entities)} entities"
+            f", {len(ext.interactions)} interactions → {out.name}"
+        )
+    except Exception as exc:
+        if n == 1:
+            print_warning(f"{indent}{label}: failed — {exc}")
+            return
+        half = n // 2
+        print_warning(
+            f"{indent}{label}: output truncated — "
+            f"splitting into sub-chunks of {half} page(s)"
+        )
+        for sub_start in range(0, n, half):
+            sub = page_texts[sub_start : sub_start + half]
+            _extract_chunk_recursive(
+                client, sub, first_page_num + sub_start,
+                stem, source_name, extractions_dir, results,
+                depth=depth + 1,
+            )
+
+
 def _process_pdf(
     client: LLMClient,
     content: FileContent,
@@ -265,32 +326,20 @@ def _process_pdf(
                     raw = client.call_text("extract_text", user_msg)
                 extraction = _build_extraction(raw, source_id, "pdf")
             except Exception as exc:
-                # If chunk has multiple pages, retry each page individually
                 if len(chunk) > 1:
+                    # Recursively halve: e.g. 8→4→2→1
+                    half = len(chunk) // 2
                     print_warning(
                         f"Pages {start_page}–{end_page}: output truncated — "
-                        f"retrying {len(chunk)} pages individually"
+                        f"splitting into sub-chunks of {half} page(s)"
                     )
-                    for j, page_text in enumerate(chunk):
-                        page_num = start_page + j
-                        page_source_id = f"{stem}_page{page_num:02d}"
-                        page_msg = (
-                            f"Analyze page {page_num} of: {content.source_path.name}\n\n"
-                            f"Text content:\n---\n{page_text}\n---\n\n"
-                            "Return extraction JSON as specified."
+                    for sub_start in range(0, len(chunk), half):
+                        sub = chunk[sub_start : sub_start + half]
+                        _extract_chunk_recursive(
+                            client, sub, start_page + sub_start,
+                            stem, content.source_path.name,
+                            extractions_dir, results, depth=1,
                         )
-                        try:
-                            page_raw = client.call_text("extract_text", page_msg)
-                            page_ext = _build_extraction(page_raw, page_source_id, "pdf")
-                            page_out = extractions_dir / f"{page_source_id}.json"
-                            write_json(page_out, page_ext)
-                            results.append(page_ext)
-                            print_success(
-                                f"  Page {page_num}: {len(page_ext.entities)} entities"
-                                f", {len(page_ext.interactions)} interactions → {page_out.name}"
-                            )
-                        except Exception as page_exc:
-                            print_warning(f"  Page {page_num}: failed — {page_exc}")
                 else:
                     print_warning(f"Pages {start_page}–{end_page}: API error — {exc}")
                 progress.advance(task)
@@ -460,7 +509,7 @@ def extract_command(file: Path, process: str | None) -> None:
       .png  .jpg   Sent as images to the extract_visual prompt.
       .pdf         Text extracted with PyMuPDF; embedded figures sent as images.
                    Anthropic: single API call for the whole document.
-                   Gemini:    split into 2-page chunks to fit context limits.
+                   Gemini:    split into 8-page chunks (halves on failure: 8→4→2→1).
                    Reference sections are detected and skipped automatically.
       .pptx        Each slide processed individually with the extract_slides prompt.
                    Speaker notes are extracted and processed as a separate text source.
