@@ -47,25 +47,15 @@ def _run_step(
     default=None,
     help="Process name. Auto-detected if there is exactly one process.",
 )
-@click.option(
-    "--deep",
-    is_flag=True,
-    default=False,
-    help="Include a deep second-pass extraction after the initial report.",
-)
 @click.pass_context
-def run_command(ctx: click.Context, process: str | None, deep: bool) -> None:
+def run_command(ctx: click.Context, process: str | None) -> None:
     """Run the full GO-CAM curation pipeline for a process in one command.
 
     \b
     PIPELINE STEPS
-      1. extract-all          Extract entities from all files in input/.
-      2. report               Synthesize extractions into REPORT.md.
-      3. extract-all --deep   Second-pass extraction for missed content.  [--deep only]
-      4. report (post-deep)   Re-synthesize after deep pass.              [--deep only]
-      5. translate            Map biology to GO terms and ECO codes.
-      6. verify               Check all IDs against live databases.
-      7. narrative            Generate expert-readable claims document.
+      1. extract-all    Extract GO-CAM claims from all files in input/ (AI).
+      2. validate        Verify all claims against live databases (no AI).
+      3. narrative       Generate expert-readable validation document.
 
     \b
     BEHAVIOR
@@ -80,15 +70,12 @@ def run_command(ctx: click.Context, process: str | None, deep: bool) -> None:
     \b
     EXAMPLES
       gocam run vesicle-fusion
-      gocam run vesicle-fusion --deep
       gocam run --process ampa-endocytosis
     """
     # Lazy imports to avoid circular dependency at module load time
     from gocam.commands.extract_all import extract_all_command
     from gocam.commands.narrative import narrative_command
-    from gocam.commands.report import report_command
-    from gocam.commands.translate import translate_command
-    from gocam.commands.verify import verify_command
+    from gocam.commands.validate import validate_command
 
     process_dir = resolve_process(process)
     process_name = process_dir.name
@@ -97,50 +84,26 @@ def run_command(ctx: click.Context, process: str | None, deep: bool) -> None:
         f"gocam pipeline run",
         f"Process:  {process_name}",
         f"Started:  {_now()}",
-        f"Deep mode: {deep}",
     ]
 
     console.print(
         f"[bold]Process:[/bold] {process_name}  "
-        f"[bold]Steps:[/bold] extract-all → report"
-        + (" → deep" if deep else "")
-        + " → translate → verify → narrative"
+        f"[bold]Steps:[/bold] extract-all → validate → narrative"
     )
 
     results: dict[str, bool] = {}
 
     # Step 1: extract-all
     results["extract-all"] = _run_step(
-        ctx, extract_all_command, "extract-all", log_lines, process=process_name, deep=False
+        ctx, extract_all_command, "extract-all", log_lines, process=process_name
     )
 
-    # Step 2: report
-    results["report"] = _run_step(
-        ctx, report_command, "report", log_lines, process=process_name
+    # Step 2: validate
+    results["validate"] = _run_step(
+        ctx, validate_command, "validate", log_lines, process=process_name
     )
 
-    # Step 3 (optional): deep second pass
-    if deep:
-        results["extract-all --deep"] = _run_step(
-            ctx, extract_all_command, "extract-all --deep", log_lines,
-            process=process_name, deep=True
-        )
-        # Re-run report to incorporate deep-pass findings
-        results["report (post-deep)"] = _run_step(
-            ctx, report_command, "report (post-deep)", log_lines, process=process_name
-        )
-
-    # Step 4: translate
-    results["translate"] = _run_step(
-        ctx, translate_command, "translate", log_lines, process=process_name
-    )
-
-    # Step 5: verify
-    results["verify"] = _run_step(
-        ctx, verify_command, "verify", log_lines, process=process_name
-    )
-
-    # Step 6: narrative
+    # Step 3: narrative
     results["narrative"] = _run_step(
         ctx, narrative_command, "narrative", log_lines, process=process_name
     )

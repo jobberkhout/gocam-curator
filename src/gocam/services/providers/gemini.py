@@ -53,7 +53,10 @@ class GeminiProvider(LLMClient):
                 "GEMINI_API_KEY is not set. "
                 "Add it to your .env file (see .env.example)."
             )
-        self._client = genai.Client(api_key=GEMINI_API_KEY)
+        self._client = genai.Client(
+            api_key=GEMINI_API_KEY,
+            http_options={"timeout": 600_000},  # 10 minutes (milliseconds)
+        )
         self._api_call_delay = GEMINI_API_CALL_DELAY
         self._model = GEMINI_MODEL
         # Build ordered fallback list (primary model first, then fallbacks,

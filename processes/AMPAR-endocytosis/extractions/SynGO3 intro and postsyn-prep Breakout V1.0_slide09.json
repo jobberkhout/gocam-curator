@@ -1,194 +1,103 @@
 {
-  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide09",
-  "source_type": "slide",
-  "timestamp": "2026-03-06T16:23:37",
-  "visual_description": "A diagram summarizing mGluR signaling pathways (GPCR signaling). Panels A, B, and C depict different mGluR-mediated signaling cascades involving secondary messengers like cAMP, DAG, IP3, and downstream effectors like PKA, ERK, PLC, and mTOR, illustrating their influence on synaptic transmission and LTD.",
-  "entities": [
+  "claims": [
     {
-      "name": "mGluR2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C1",
+      "type": "node",
+      "protein_name": "mGluR2",
+      "gene_symbol": "GRM2",
+      "molecular_function": "G protein-coupled receptor activity",
+      "biological_process": "synaptic transmission",
+      "cellular_component": "presynaptic membrane",
+      "quote": "mGluR2",
+      "figure": "Fig. A",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "mGluR7",
+      "id": "C2",
+      "type": "node",
+      "protein_name": "G protein beta/gamma subunit",
       "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "molecular_function": "G protein signaling modulator activity",
+      "biological_process": "synaptic vesicle exocytosis",
+      "cellular_component": "presynaptic membrane",
+      "quote": "Gβγ",
+      "figure": "Fig. A",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "mGluR5",
+      "id": "C3",
+      "type": "node",
+      "protein_name": "VGCC",
       "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "molecular_function": "voltage-gated calcium channel activity",
+      "biological_process": "synaptic vesicle exocytosis",
+      "cellular_component": "presynaptic active zone",
+      "quote": "VGCC",
+      "figure": "Fig. A",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "G-protein (Gi/o, Gq, Gby)",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E1",
+      "type": "edge",
+      "subject": "G protein beta/gamma subunit",
+      "relation": "directly_negatively_regulates",
+      "object": "VGCC",
+      "mechanism": "inhibition of voltage-gated calcium channel",
+      "quote": "Gβγ ... ⊣ VGCC",
+      "figure": "Fig. A",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "AC (Adenylate cyclase)",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C4",
+      "type": "node",
+      "protein_name": "mGluR5",
+      "gene_symbol": "GRM5",
+      "molecular_function": "G protein-coupled receptor activity",
+      "biological_process": "synaptic transmission",
+      "cellular_component": "postsynaptic membrane",
+      "quote": "mGluR5",
+      "figure": "Fig. C",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PLC (Phospholipase C)",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C5",
+      "type": "node",
+      "protein_name": "Phospholipase C",
+      "gene_symbol": "PLCB1",
+      "molecular_function": "phospholipase C activity",
+      "biological_process": "intracellular signal transduction",
+      "cellular_component": "postsynaptic density",
+      "quote": "PLC",
+      "figure": "Fig. C",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PKA",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "ERK1/2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "MEK1/2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "mTOR",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "VGCC",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "GIRK",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "TRPC",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "IP3R",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "Munc18-1",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "Munc13-2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "RIM1a",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "Homer",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PIKE-L",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E2",
+      "type": "edge",
+      "subject": "mGluR5",
+      "relation": "directly_positively_regulates",
+      "object": "Phospholipase C",
+      "mechanism": "Gq-mediated signaling",
+      "quote": "mGluR5...Gq...PLC",
+      "figure": "Fig. C",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     }
   ],
-  "interactions": [],
-  "connections_shown": [],
-  "compartments_shown": [
-    "Presynaptic membrane",
-    "Postsynaptic membrane",
-    "Endoplasmic reticulum (ER)"
-  ],
-  "gaps": [
-    "The diagram implies LTD is a process, but the direct molecular function that executes LTD is not explicitly defined in the nodes.",
-    "The specific interaction mechanism between Gby and VGCC is drawn as an inhibitory line, but the molecular mechanism (e.g., pore blocking vs. conformational change) is unknown."
-  ],
-  "questions_for_expert": [
-    "Are the arrows leading to 'LTD' and 'synaptic transmission' representing the sum of the pathway activity, or should these be modeled as specific biological processes (BPs) linked to the signaling molecules?",
-    "Is the inhibition of VGCC by Gby considered a direct physical interaction or a downstream signaling event?"
-  ]
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide09",
+  "source_type": "slide",
+  "timestamp": "2026-03-19T13:09:09"
 }

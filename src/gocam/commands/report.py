@@ -18,7 +18,7 @@ _SKIP_STEMS = {"REPORT"}  # stems to exclude when loading extraction JSONs
 
 # Approximate token-per-character ratio for JSON (conservative: 1 token ≈ 3 chars).
 # We target batches well under the 1M token limit to leave room for the system prompt.
-_MAX_BATCH_CHARS = 200_000 * 3  # ~200K tokens worth of characters
+_MAX_BATCH_CHARS = 100_000 * 3  # ~100K tokens worth of characters
 
 
 def _build_source_block(json_path: Path, index: int) -> tuple[str, int]:
@@ -192,32 +192,54 @@ def report_command(process: str | None) -> None:
 
         for batch_idx, batch in enumerate(batches, start=1):
             label = f"{batch_idx}/{len(batches)} ({len(batch)} sources)"
-            with timed_status(f"Batch {label}..."):
-                try:
-                    user_msg = _build_batch_prompt(
-                        batch, process_name, species, label,
-                    )
-                    partial = client.call_text_markdown("report", user_msg)
-                    partial_reports.append(partial)
-                    print_success(f"Batch {label} done")
-                except Exception as exc:
-                    print_warning(f"Batch {label} failed: {exc}")
+            user_msg = _build_batch_prompt(
+                batch, process_name, species, label,
+            )
+            # Try twice — 499 CANCELLED is often a transient server timeout
+            for attempt in range(2):
+                with timed_status(f"Batch {label}{'  (retry)' if attempt else ''}..."):
+                    try:
+                        partial = client.call_text_markdown("report", user_msg)
+                        partial_reports.append(partial)
+                        print_success(f"Batch {label} done")
+                        break
+                    except Exception as exc:
+                        if attempt == 0 and "cancel" in str(exc).lower():
+                            print_warning(f"Batch {label} timed out — retrying...")
+                        else:
+                            print_warning(f"Batch {label} failed: {exc}")
+                            break
 
         if not partial_reports:
             print_error("All batches failed.")
             raise SystemExit(1)
-
+        
         if len(partial_reports) == 1:
             # Only one batch succeeded — use it directly
             report_md = partial_reports[0]
         else:
-            # Merge partial reports
-            with timed_status(f"Merging {len(partial_reports)} partial reports..."):
+            # Merge partial reports in chunks to avoid 504 Timeouts
+            with timed_status(f"Merging {len(partial_reports)} partial reports in chunks..."):
                 try:
-                    merge_msg = _build_merge_prompt(
-                        partial_reports, process_name, species,
-                    )
-                    report_md = client.call_text_markdown("report", merge_msg)
+                    chunk_size = 5
+                    merged_chunks = []
+                    
+                    # Step 1: Merge the partial reports into a few combined chunks
+                    for i in range(0, len(partial_reports), chunk_size):
+                        chunk = partial_reports[i : i + chunk_size]
+                        print_info(f"Merging subset {i // chunk_size + 1} ({len(chunk)} reports)...")
+                        
+                        merge_msg = _build_merge_prompt(chunk, process_name, species)
+                        merged_chunks.append(client.call_text_markdown("report", merge_msg))
+                    
+                    # Step 2: Merge those combined chunks into one final report
+                    if len(merged_chunks) > 1:
+                        print_info(f"Performing final master merge of {len(merged_chunks)} chunks...")
+                        final_merge_msg = _build_merge_prompt(merged_chunks, process_name, species)
+                        report_md = client.call_text_markdown("report", final_merge_msg)
+                    else:
+                        report_md = merged_chunks[0]
+
                 except Exception as exc:
                     print_error(f"Merge failed: {exc}")
                     # Fall back: concatenate partial reports
@@ -228,6 +250,28 @@ def report_command(process: str | None) -> None:
                         f"(merge pass failed)*\n\n"
                         + "\n\n---\n\n".join(partial_reports)
                     )
+
+        # if len(partial_reports) == 1:
+        #     # Only one batch succeeded — use it directly
+        #     report_md = partial_reports[0]
+        # else:
+        #     # Merge partial reports
+        #     with timed_status(f"Merging {len(partial_reports)} partial reports..."):
+        #         try:
+        #             merge_msg = _build_merge_prompt(
+        #                 partial_reports, process_name, species,
+        #             )
+        #             report_md = client.call_text_markdown("report", merge_msg)
+        #         except Exception as exc:
+        #             print_error(f"Merge failed: {exc}")
+        #             # Fall back: concatenate partial reports
+        #             print_warning("Falling back to concatenated partial reports")
+        #             report_md = (
+        #                 f"# {process_name} — Extraction Report\n\n"
+        #                 f"*Auto-generated from {len(partial_reports)} batches "
+        #                 f"(merge pass failed)*\n\n"
+        #                 + "\n\n---\n\n".join(partial_reports)
+        #             )
 
     out_path = extractions_dir / _REPORT_FILENAME
     out_path.write_text(report_md, encoding="utf-8")

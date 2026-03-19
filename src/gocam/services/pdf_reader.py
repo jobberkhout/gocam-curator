@@ -6,6 +6,45 @@ import re
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
+# DOI extraction (for linking all claims to the source paper)
+# ---------------------------------------------------------------------------
+
+# DOIs always start with "10." followed by 4+ digits, then "/"
+# We match greedily but stop at whitespace/brackets/quotes.
+_DOI_RE = re.compile(
+    r'\b(10\.\d{4,}(?:\.\d+)*/[^\s\]\[<>"()\',;]+)',
+    re.IGNORECASE,
+)
+
+# Matches DOIs that are preceded by an explicit "doi:" or "doi.org/" marker —
+# a strong signal that this is the paper's own DOI, not an inline citation.
+_DOI_EXPLICIT_RE = re.compile(
+    r'(?:doi[:\s/]+|https?://doi\.org/)(10\.\d{4,}(?:\.\d+)*/[^\s\]\[<>"()\',;]+)',
+    re.IGNORECASE,
+)
+
+
+def extract_doi(text: str) -> str | None:
+    """Find the source paper's DOI in the header/abstract region of a PDF.
+
+    Prefers DOIs explicitly labelled with 'doi:' or 'doi.org/' (the paper's
+    own DOI stamp) over bare DOIs that could be inline citations.
+
+    Returns the DOI string (e.g. '10.1038/s41593-021-00932-z') or None.
+    The input should be the first 1–2 pages only — do NOT pass the full paper.
+    """
+    # Prefer explicitly labelled DOI (doi: / doi.org/)
+    m = _DOI_EXPLICIT_RE.search(text)
+    if m:
+        return m.group(1).rstrip(".,;:")
+    # Fallback: any bare DOI pattern
+    m = _DOI_RE.search(text)
+    if m:
+        return m.group(1).rstrip(".,;:")
+    return None
+
+
+# ---------------------------------------------------------------------------
 # Reference-section detection (per-page)
 # ---------------------------------------------------------------------------
 

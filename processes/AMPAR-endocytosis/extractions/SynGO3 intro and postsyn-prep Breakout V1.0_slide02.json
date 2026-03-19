@@ -1,12 +1,88 @@
 {
+  "claims": [
+    {
+      "id": "C1",
+      "type": "node",
+      "protein_name": "CaMKIIalpha",
+      "gene_symbol": "CAMK2A",
+      "molecular_function": "protein serine/threonine kinase activity",
+      "biological_process": "protein phosphorylation",
+      "cellular_component": "postsynaptic density",
+      "quote": "CaMKIIalpha phosphorylated GluA1 at Ser831",
+      "figure": "Slide 2, Image 1",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
+    },
+    {
+      "id": "C2",
+      "type": "node",
+      "protein_name": "Protein kinase A",
+      "gene_symbol": null,
+      "molecular_function": "protein serine/threonine kinase activity",
+      "biological_process": "protein phosphorylation",
+      "cellular_component": "postsynaptic density",
+      "quote": "Protein kinase A phosphorylated GluA1 at Ser845",
+      "figure": "Slide 2, Image 1",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
+    },
+    {
+      "id": "E1",
+      "type": "edge",
+      "subject": "CaMKIIalpha",
+      "relation": "directly_positively_regulates",
+      "object": "GluA1",
+      "mechanism": "phosphorylation at Ser831",
+      "quote": "CaMKIIalpha phosphorylated GluA1 at Ser831",
+      "figure": "Slide 2, Image 1",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
+    },
+    {
+      "id": "E2",
+      "type": "edge",
+      "subject": "Protein kinase A",
+      "relation": "directly_positively_regulates",
+      "object": "GluA1",
+      "mechanism": "phosphorylation at Ser845",
+      "quote": "Protein kinase A phosphorylated GluA1 at Ser845",
+      "figure": "Slide 2, Image 1",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
+    },
+    {
+      "id": "C3",
+      "type": "node",
+      "protein_name": "Protein phosphatase 1",
+      "gene_symbol": "PPP1CA",
+      "molecular_function": "protein serine/threonine phosphatase activity",
+      "biological_process": "protein dephosphorylation",
+      "cellular_component": "postsynaptic density",
+      "quote": "PP1 dephosphorylates GluA1 at Ser845",
+      "figure": "Slide 2, Image 2",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
+    },
+    {
+      "id": "E3",
+      "type": "edge",
+      "subject": "Protein phosphatase 1",
+      "relation": "directly_negatively_regulates",
+      "object": "GluA1",
+      "mechanism": "dephosphorylation at Ser845",
+      "quote": "PP1 dephosphorylates GluA1 at Ser845",
+      "figure": "Slide 2, Image 2",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
+    }
+  ],
   "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide02",
   "source_type": "slide",
-  "timestamp": "2026-03-06T16:09:36",
-  "visual_description": null,
-  "entities": [],
-  "interactions": [],
-  "connections_shown": [],
-  "compartments_shown": [],
-  "gaps": [],
-  "questions_for_expert": []
+  "timestamp": "2026-03-19T13:08:01"
 }

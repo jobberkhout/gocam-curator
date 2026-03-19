@@ -7,12 +7,10 @@ from gocam.commands.extract import extract_command
 from gocam.commands.extract_all import extract_all_command
 from gocam.commands.init import init_command
 from gocam.commands.narrative import narrative_command
-from gocam.commands.report import report_command
 from gocam.commands.run import run_command
 from gocam.commands.search import search_command
 from gocam.commands.status import status_command
-from gocam.commands.translate import translate_command
-from gocam.commands.verify import verify_command
+from gocam.commands.validate import validate_command
 
 
 @click.group()
@@ -23,21 +21,23 @@ def main() -> None:
     \b
     QUICK START
       gocam run <process>           Run the full pipeline in one command.
-      gocam run <process> --deep    Run with a second-pass extraction.
 
     \b
     STEP-BY-STEP PIPELINE
       1. gocam init <name>          Create a workspace at processes/<name>/.
                                     Drop your input files into processes/<name>/input/.
-      2. gocam extract-all          Extract entities and interactions from all input files.
+      2. gocam extract-all          Extract GO-CAM claims from all input files (AI).
+                                    Produces nodes (molecular activities) and edges
+                                    (causal relations) with evidence.
                                     Output: extractions/*.json
-      3. gocam report               Synthesize all extractions into one Markdown report.
-                                    Output: extractions/REPORT.md
-      4. gocam translate            Map biology to GO terms and ECO codes.
-                                    Output: evidence_records/records.json (all IDs unverified)
-      5. gocam verify               Check all GO/ECO/UniProt IDs against live databases.
-                                    Output: verification/report.json, records.json updated
-      6. gocam narrative            Convert evidence records into expert-readable claims.
+      3. gocam validate             Verify all claims against live databases (no AI).
+                                    Looks up proteins (UniProt), GO terms (QuickGO),
+                                    ECO codes (OLS4), PMIDs (PubMed), DOIs (CrossRef),
+                                    and synaptic annotations (SynGO).
+                                    Output: validation/validated_claims.json
+      4. gocam narrative            Assemble an expert-readable validation document
+                                    (no AI). Each claim shows verified IDs, database
+                                    status, and clickable DOI links.
                                     Output: narratives/claims_v1.md
 
     \b
@@ -75,7 +75,7 @@ def main() -> None:
       gocam init vesicle-fusion --species "Rattus norvegicus" --expert-name "Dr. Smith"
 
       # 2. Drop papers, slides, and figures into input/, then run the full pipeline:
-      gocam run vesicle-fusion --deep
+      gocam run vesicle-fusion
 
       # 3. Check progress across all processes
       gocam status
@@ -91,9 +91,7 @@ def main() -> None:
 main.add_command(init_command)
 main.add_command(extract_command)
 main.add_command(extract_all_command)
-main.add_command(report_command)
-main.add_command(translate_command)
-main.add_command(verify_command)
+main.add_command(validate_command)
 main.add_command(narrative_command)
 main.add_command(status_command)
 main.add_command(run_command)

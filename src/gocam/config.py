@@ -5,7 +5,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(Path(__file__).parent.parent.parent / ".env", override=False)
 
 # ---------------------------------------------------------------------------
 # Directory layout
@@ -67,9 +67,9 @@ VERTEX_API_CALL_DELAY: int = int(os.getenv("VERTEX_API_CALL_DELAY", _global_dela
 # Integer = split into chunks of that many pages (Gemini has tighter output limits).
 # Override with PDF_CHUNK_PAGES env var (integer or "none" for single call).
 PROVIDER_DEFAULTS: dict[str, dict] = {
-    "anthropic": {"chunk_pages": None},
-    "gemini": {"chunk_pages": 8},
-    "vertex": {"chunk_pages": 8},  # same Gemini models, same chunking
+    "anthropic": {"chunk_pages": None, "text_chunk_chars": None},
+    "gemini": {"chunk_pages": 8, "text_chunk_chars": 30_000},
+    "vertex": {"chunk_pages": 8, "text_chunk_chars": 30_000},
 }
 
 # Overlap between PDF chunks (characters from the end of the previous chunk
@@ -93,13 +93,30 @@ def get_pdf_chunk_pages() -> int | None:
             pass
     return PROVIDER_DEFAULTS.get(LLM_PROVIDER, {}).get("chunk_pages", None)
 
+
+def get_text_chunk_chars() -> int | None:
+    """Return max characters per chunk when processing text files (None = single call).
+
+    Gemini/Vertex default to 30 000 chars per chunk so Flash models see a
+    focused section rather than an entire paper at once.
+    Override with TEXT_CHUNK_CHARS env var (integer or "none" / "0").
+    """
+    env = os.getenv("TEXT_CHUNK_CHARS", "").strip().lower()
+    if env:
+        if env in ("none", "0"):
+            return None
+        try:
+            return int(env)
+        except ValueError:
+            pass
+    return PROVIDER_DEFAULTS.get(LLM_PROVIDER, {}).get("text_chunk_chars", None)
+
 # ---------------------------------------------------------------------------
 # Process subdirectory names
 # ---------------------------------------------------------------------------
 PROCESS_SUBDIRS: list[str] = [
     "input",
     "extractions",
-    "evidence_records",
-    "verification",
+    "validation",
     "narratives",
 ]

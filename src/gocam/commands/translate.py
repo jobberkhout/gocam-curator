@@ -23,7 +23,7 @@ _SKIP_STEMS = {"REPORT"}
 
 # Split translate into batches when the report has more than this many interactions.
 _BATCH_THRESHOLD = 25
-_BATCH_SIZE = 5
+_BATCH_SIZE = 4
 
 
 # ---------------------------------------------------------------------------

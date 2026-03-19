@@ -50,9 +50,8 @@ def init_command(
       processes/NAME/
         meta.json           Process metadata (species, expert, papers)
         input/              Place source files here (.txt, .pdf, .pptx, .png, .jpg)
-        extractions/        Populated by 'gocam extract-all' and 'gocam report'
-        evidence_records/   Populated by 'gocam translate'
-        verification/       Populated by 'gocam verify'
+        extractions/        Populated by 'gocam extract-all'
+        validation/         Populated by 'gocam validate'
         narratives/         Populated by 'gocam narrative'
 
     \b

@@ -27,6 +27,7 @@ class FileContent:
     images: list[bytes] = field(default_factory=list)  # raw image bytes (image, pdf)
     slides: list[SlideContent] = field(default_factory=list)  # PPTX slides
     skipped_pages_msg: str | None = None          # set when PDF reference pages are dropped
+    source_doi: str | None = None                 # DOI found in the PDF (first 2 pages)
 
 
 def process_file(path: Path) -> FileContent:
@@ -60,14 +61,22 @@ def process_file(path: Path) -> FileContent:
         )
 
     if suffix in PDF_EXTENSIONS:
-        from gocam.services.pdf_reader import read_pdf
+        from gocam.services.pdf_reader import extract_doi, read_pdf
         text, images, skipped_msg = read_pdf(path)
+        # Extract the paper's own DOI from the header region only.
+        # Limit to the first [Page 1] / [Page 2] block — typically title,
+        # authors, journal, abstract — where the DOI stamp appears.
+        # Using only 10 paragraphs avoids picking up cited papers' DOIs
+        # from the introduction or body text.
+        first_pages = "\n".join(text.split("\n\n")[:10]) if text else ""
+        source_doi = extract_doi(first_pages)
         return FileContent(
             source_path=path,
             source_type="pdf",
             text=text,
             images=images,
             skipped_pages_msg=skipped_msg,
+            source_doi=source_doi,
         )
 
     raise ValueError(

@@ -1,155 +1,102 @@
 {
-  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide06",
-  "source_type": "slide",
-  "timestamp": "2026-03-06T16:22:17",
-  "visual_description": "A list of molecular interactions involving the GluA2 subunit, highlighting regulatory mechanisms including binding partners (NSF, PICK, GRIP, TARP, BRAG2), phosphorylation (PKA/PKC/CamKII), and endocytic recruitment.",
-  "entities": [
+  "claims": [
     {
-      "name": "GluA2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C1",
+      "type": "node",
+      "protein_name": "NSF",
+      "gene_symbol": "NSF",
+      "molecular_function": "ATPase activity",
+      "biological_process": "AMPA receptor trafficking",
+      "cellular_component": "postsynaptic density",
+      "quote": "NSF binds GluA2. Prevents PICK from binding",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     },
     {
-      "name": "NSF",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C2",
+      "type": "node",
+      "protein_name": "PICK1",
+      "gene_symbol": "PICK1",
+      "molecular_function": null,
+      "biological_process": "AMPA receptor trafficking",
+      "cellular_component": "postsynaptic density",
+      "quote": "PICK binds GluA2. PICK recruits binding to AP2",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PICK",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C3",
+      "type": "node",
+      "protein_name": "PKC",
+      "gene_symbol": "PRKCA",
+      "molecular_function": "protein serine/threonine kinase activity",
+      "biological_process": "protein phosphorylation",
+      "cellular_component": "postsynaptic density",
+      "quote": "PKC phosphorylates S880 GluA2 dislodges PICK from binding GluA2",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "AP2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C4",
+      "type": "node",
+      "protein_name": "GluA2",
+      "gene_symbol": "GRIA2",
+      "molecular_function": null,
+      "biological_process": "AMPA receptor trafficking",
+      "cellular_component": "postsynaptic density",
+      "quote": "GluA2... Anchors receptor at GRIP in PSD",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PKA",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E1",
+      "type": "edge",
+      "subject": "PKC",
+      "relation": "directly_positively_regulates",
+      "object": "GluA2",
+      "mechanism": "phosphorylation at S880",
+      "quote": "PKC phosphorylates S880 GluA2 dislodges PICK from binding GluA2",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "PKC",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E2",
+      "type": "edge",
+      "subject": "PKC",
+      "relation": "directly_negatively_regulates",
+      "object": "PICK1",
+      "mechanism": "dislodging PICK1 from GluA2 via phosphorylation",
+      "quote": "PKC phosphorylates S880 GluA2 dislodges PICK from binding GluA2",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     },
     {
-      "name": "DAG",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "Ca2+",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "GRIP",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "TARPg2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PSD95",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "CamkII",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PP",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "BRAG2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "ARF6",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E3",
+      "type": "edge",
+      "subject": "NSF",
+      "relation": "directly_negatively_regulates",
+      "object": "PICK1",
+      "mechanism": "competitive binding/steric hindrance",
+      "quote": "NSF binds GluA2. Prevents PICK from binding",
+      "figure": "Slide 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     }
   ],
-  "interactions": [],
-  "connections_shown": [],
-  "compartments_shown": [
-    "PSD (Postsynaptic Density)",
-    "Endocytic zone"
-  ],
-  "gaps": [],
-  "questions_for_expert": [
-    "Is the 'MF' label on the slide intended to be the final GO Molecular Function node, or is it a placeholder for interaction evidence?",
-    "Regarding the 'CamkII/ PP' line: Does CamkII directly promote endocytosis of GluA2, or is this mediated by a change in TARP binding?",
-    "Confirm if S880 phosphorylation is a PKC or PKA mediated event in this specific context."
-  ]
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide06",
+  "source_type": "slide",
+  "timestamp": "2026-03-19T13:08:41"
 }

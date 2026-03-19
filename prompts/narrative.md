@@ -27,7 +27,7 @@ Respond per number: "OK", "WRONG — [correction]", or "UNCERTAIN".
 - Biological Process: process name (GO:XXXXXXX or plain English if unknown)
 - Cellular Component: compartment name (GO:XXXXXXX or plain English if unknown)
 - Relation: relation_type → target protein or process
-- Evidence: experimental method, figure reference, first author + year (PMID: XXXXXXX)
+- Evidence: experimental method, figure reference, first author + year (PMID: XXXXXXX) + Validated DOI link
 - Confidence: HIGH / MEDIUM / LOW — brief reason
 
 **Claim 2:** ...

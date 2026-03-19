@@ -43,7 +43,7 @@ def _is_retryable(exc: Exception) -> bool:
     """Return True for rate-limit (429) and server-overloaded (503) errors."""
     msg = str(exc).lower()
     return any(x in msg for x in (
-        "503", "429", "rate limit", "rate_limit",
+        "503", "429", "499", "rate limit", "rate_limit",
         "overloaded", "too many requests", "service unavailable",
         "resource exhausted",
     ))
@@ -53,7 +53,8 @@ def _repair_truncated_json(text: str) -> dict | None:
     """Attempt to salvage a truncated JSON object by closing open structures.
 
     Works backwards from the truncation point: strips the last partial
-    value/key, then appends the necessary closing brackets and braces.
+    value/key (and any trailing comma), then appends the necessary closing
+    brackets and braces.
     Returns the parsed dict on success, or None if repair fails.
     """
     text = text.strip()
@@ -69,9 +70,15 @@ def _repair_truncated_json(text: str) -> dict | None:
             continue
         fragment = text[: idx + 1]
 
+        # Strip any trailing commas that would make the closed JSON invalid
+        # (e.g. last item in array followed by "," before truncation point)
+        stripped = fragment.rstrip()
+        while stripped.endswith(","):
+            stripped = stripped[:-1].rstrip()
+
         # Count open/close brackets and braces
-        open_braces = fragment.count("{") - fragment.count("}")
-        open_brackets = fragment.count("[") - fragment.count("]")
+        open_braces = stripped.count("{") - stripped.count("}")
+        open_brackets = stripped.count("[") - stripped.count("]")
 
         if open_braces < 0 or open_brackets < 0:
             continue
@@ -79,7 +86,7 @@ def _repair_truncated_json(text: str) -> dict | None:
         # Close everything that's still open
         suffix = "]" * open_brackets + "}" * open_braces
         try:
-            result = json.loads(fragment + suffix)
+            result = json.loads(stripped + suffix)
             if isinstance(result, dict):
                 return result
         except json.JSONDecodeError:

@@ -1,159 +1,117 @@
 {
-  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide07",
-  "source_type": "slide",
-  "timestamp": "2026-03-06T16:22:22",
-  "visual_description": "A list of molecular interactions involving GluA2 (AMPA receptor subunit) and its interactors (NSF, PICK, AP2, PKA/PKC, GRIP, TARP, BRAG2) regulating receptor trafficking and anchoring.",
-  "entities": [
+  "claims": [
     {
-      "name": "GluA2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C1",
+      "type": "node",
+      "protein_name": "NSF",
+      "gene_symbol": "NSF",
+      "molecular_function": null,
+      "biological_process": "AMPAR trafficking",
+      "cellular_component": "postsynaptic density",
+      "quote": "NSF binds GluA2. Prevents PICK from binding",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "NSF",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C2",
+      "type": "node",
+      "protein_name": "PICK1",
+      "gene_symbol": "PICK1",
+      "molecular_function": null,
+      "biological_process": "AMPAR trafficking",
+      "cellular_component": "postsynaptic density",
+      "quote": "PICK binds GluA2. PICK recruits binding to AP2",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PICK",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C3",
+      "type": "node",
+      "protein_name": "PKC",
+      "gene_symbol": "PRKCA",
+      "molecular_function": "protein serine/threonine kinase activity",
+      "biological_process": "protein phosphorylation",
+      "cellular_component": "postsynaptic density",
+      "quote": "PKC phosphorylates S880 GluA2",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "AP2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C4",
+      "type": "node",
+      "protein_name": "GRIP",
+      "gene_symbol": "GRIP1",
+      "molecular_function": null,
+      "biological_process": "protein anchoring",
+      "cellular_component": "postsynaptic density",
+      "quote": "GRIP binds to GluA2. Anchors receptor at GRIP in PSD",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PKA",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C5",
+      "type": "node",
+      "protein_name": "TARP gamma-2",
+      "gene_symbol": "CACNG2",
+      "molecular_function": null,
+      "biological_process": "protein anchoring",
+      "cellular_component": "postsynaptic density",
+      "quote": "TARP binds GluA2 to PSD95. Anchors receptor to PSD95 in PSD",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "LOW"
     },
     {
-      "name": "PKC",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C6",
+      "type": "node",
+      "protein_name": "BRAG2",
+      "gene_symbol": "IQSEC1",
+      "molecular_function": "guanine nucleotide exchange factor activity",
+      "biological_process": "Arf protein signal transduction",
+      "cellular_component": "postsynaptic density",
+      "quote": "Increases PI(4,5)P2 concentration",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     },
     {
-      "name": "DAG",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E1",
+      "type": "edge",
+      "subject": "PKC",
+      "relation": "directly_negatively_regulates",
+      "object": "PICK1",
+      "mechanism": "phosphorylation of GluA2 at S880 dislodges PICK1",
+      "quote": "PKC phosphorylates S880 GluA2 dislodges PICK from binding GluA2",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "Ca2+",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "GRIP",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "TARPg2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PSD95",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "CamkII",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PP",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "BRAG2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "ARF6",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E2",
+      "type": "edge",
+      "subject": "NSF",
+      "relation": "directly_negatively_regulates",
+      "object": "PICK1",
+      "mechanism": "competitive binding/steric hindrance",
+      "quote": "NSF binds GluA2. Prevents PICK from binding",
+      "figure": "Slide 7",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     }
   ],
-  "interactions": [],
-  "connections_shown": [],
-  "compartments_shown": [
-    "PSD (Postsynaptic Density)",
-    "Endocytic zone"
-  ],
-  "gaps": [
-    "The slide uses 'MF' to label interactions (e.g., 'NSF binds GluA2'). Per curator rules, these 'binding' labels are interactions, not Molecular Functions. The intrinsic catalytic or mechanistic activities (e.g., ATPase activity of NSF, phosphorylation by PKC) are omitted.",
-    "Contradiction: Slide mentions 'PKA' as a header for a bullet point, but the text says 'PKC phosphorylates S880 GluA2'.",
-    "Mechanism of 'BRAG2 binds GluA2' is unclear regarding whether it involves GEF activity or scaffolding."
-  ],
-  "questions_for_expert": [
-    "Is PKA or PKC the primary kinase for GluA2 S880 phosphorylation in this model?",
-    "Does NSF possess ATPase activity that facilitates the dissociation of PICK, or is the binding purely a steric/competitive event?",
-    "Should BRAG2 be modeled as a Guanine Nucleotide Exchange Factor (GEF) for ARF6, or specifically as an adaptor for GluA2?"
-  ]
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide07",
+  "source_type": "slide",
+  "timestamp": "2026-03-19T13:08:49"
 }

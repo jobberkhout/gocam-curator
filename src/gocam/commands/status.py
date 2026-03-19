@@ -17,49 +17,41 @@ from gocam.utils.io import read_json
 # ---------------------------------------------------------------------------
 
 def _count_extractions(process_dir: Path) -> str:
-    """Number of extraction JSON files (excludes *_summary.json and REPORT stem)."""
+    """Number of extraction JSON files (excludes *_summary.json)."""
     ext_dir = process_dir / "extractions"
     if not ext_dir.exists():
         return "—"
     files = [
         p for p in ext_dir.glob("*.json")
-        if p.stem != "REPORT" and not p.stem.endswith("_summary")
+        if not p.stem.endswith("_summary")
     ]
     return f"{len(files)} file{'s' if len(files) != 1 else ''}" if files else "—"
 
 
-def _report_status(process_dir: Path) -> str:
-    return "✓" if (process_dir / "extractions" / "REPORT.md").exists() else "—"
-
-
-def _translation_status(process_dir: Path) -> str:
-    records_path = process_dir / "evidence_records" / "records.json"
-    if not records_path.exists():
+def _validation_status(process_dir: Path) -> str:
+    """Summarise validation: nodes and edges verified."""
+    val_path = process_dir / "validation" / "validated_claims.json"
+    if not val_path.exists():
         return "—"
     try:
-        data = read_json(records_path)
-        n = len(data.get("records", []))
-        return f"{n} record{'s' if n != 1 else ''}" if n else "—"
-    except Exception:
-        return "?"
-
-
-def _verification_status(process_dir: Path) -> str:
-    report_path = process_dir / "verification" / "report.json"
-    if not report_path.exists():
-        return "—"
-    try:
-        data = read_json(report_path)
-        summary = data.get("summary", {})
-        total = summary.get("total_records", 0)
+        data = read_json(val_path)
+        nodes = data.get("nodes", [])
+        edges = data.get("edges", [])
+        total = len(nodes) + len(edges)
         if total == 0:
             return "—"
-        # Count records where the MF GO term is verified
-        verified = sum(
-            1 for rec in data.get("details", [])
-            if (rec.get("go_mf") or {}).get("status") == "VERIFIED"
+        # Count nodes where at least one GO term is verified
+        go_verified = sum(
+            1 for n in nodes
+            for gt_key in ("molecular_function", "biological_process", "cellular_component")
+            if (n.get(gt_key) or {}).get("status") == "VERIFIED"
         )
-        return f"{verified}/{total} ✓"
+        go_total = sum(
+            1 for n in nodes
+            for gt_key in ("molecular_function", "biological_process", "cellular_component")
+            if n.get(gt_key)
+        )
+        return f"{go_verified}/{go_total} GO"
     except Exception:
         return "?"
 
@@ -71,7 +63,6 @@ def _narrative_status(process_dir: Path) -> str:
     versions = sorted(narratives_dir.glob("claims_v*.md"))
     if not versions:
         return "—"
-    # Extract the highest version number from the filename
     latest = versions[-1].stem  # e.g. "claims_v3"
     version = latest.replace("claims_v", "")
     return f"v{version} draft"
@@ -88,7 +79,6 @@ def _enrichment_status(process_dir: Path) -> str:
     if n_papers == 0:
         return "—"
 
-    # Count interactions in enrichment extraction JSONs
     n_interactions = 0
     for jf in enrich_ext_dir.glob("pubmed_*.json"):
         try:
@@ -113,9 +103,7 @@ def status_command() -> None:
 
     \b
       Extracted    Number of extraction JSON files produced by 'gocam extract-all'.
-      Report       Whether extractions/REPORT.md exists.
-      Translated   Number of evidence records in evidence_records/records.json.
-      Verified     Fraction of MF GO terms verified (e.g. "8/10 ✓").
+      Validated    GO terms verified vs total (e.g. "8/10 GO").
       Narrative    Latest narrative version (e.g. "v2 draft").
     """
     if not PROCESSES_DIR.exists():
@@ -135,9 +123,7 @@ def status_command() -> None:
     table.add_column("Process", min_width=28)
     table.add_column("Complexity", justify="center")
     table.add_column("Extracted", justify="center")
-    table.add_column("Report", justify="center")
-    table.add_column("Translated", justify="center")
-    table.add_column("Verified", justify="center")
+    table.add_column("Validated", justify="center")
     table.add_column("Narrative", justify="center")
     table.add_column("Enrichment", justify="center")
 
@@ -151,13 +137,10 @@ def status_command() -> None:
         complexity = meta.get("complexity", "?")
 
         extracted = _count_extractions(process_dir)
-        report = _report_status(process_dir)
-        translated = _translation_status(process_dir)
-        verified = _verification_status(process_dir)
+        validated = _validation_status(process_dir)
         narrative = _narrative_status(process_dir)
         enrichment = _enrichment_status(process_dir)
 
-        # Colour-code the check columns
         def _fmt(val: str) -> str:
             if val == "✓":
                 return "[green]✓[/green]"
@@ -171,9 +154,7 @@ def status_command() -> None:
             name,
             complexity,
             _fmt(extracted),
-            _fmt(report),
-            _fmt(translated),
-            _fmt(verified),
+            _fmt(validated),
             _fmt(narrative),
             _fmt(enrichment),
         )

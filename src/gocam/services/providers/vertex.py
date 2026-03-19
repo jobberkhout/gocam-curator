@@ -38,6 +38,7 @@ class VertexProvider(GeminiProvider):
             vertexai=True,
             project=VERTEX_PROJECT,
             location=VERTEX_LOCATION,
+            http_options={"timeout": 600_000},  # 10 minutes (milliseconds)
         )
         self._api_call_delay = VERTEX_API_CALL_DELAY
         self._model = GEMINI_MODEL

@@ -1,178 +1,89 @@
 {
-  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide03",
-  "source_type": "slide",
-  "timestamp": "2026-03-06T16:21:29",
-  "visual_description": "A composite overview of postsynaptic density (PSD) molecular mechanisms, including AMPA receptor trafficking, phosphorylation, scaffolding (PSD-95, TARPs), and endocytosis pathways (AP2, Arc, PICK1, clathrin).",
-  "entities": [
+  "claims": [
     {
-      "name": "AMPA receptor",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C1",
+      "type": "node",
+      "protein_name": "CaMKIIalpha",
+      "gene_symbol": "CAMK2A",
+      "molecular_function": "protein serine/threonine kinase activity",
+      "biological_process": "regulation of synaptic transmission",
+      "cellular_component": "postsynaptic density",
+      "quote": "CaMKIIalpha ... Ser831",
+      "figure": "Slide 3, image 3",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "NMDA receptor",
+      "id": "C2",
+      "type": "node",
+      "protein_name": "Protein kinase A",
       "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "molecular_function": "protein serine/threonine kinase activity",
+      "biological_process": "regulation of synaptic transmission",
+      "cellular_component": "postsynaptic density",
+      "quote": "Protein kinase A ... Ser845",
+      "figure": "Slide 3, image 3",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "PSD-95",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "C3",
+      "type": "node",
+      "protein_name": "GluA1",
+      "gene_symbol": "GRIA1",
+      "molecular_function": "glutamate receptor activity",
+      "biological_process": "synaptic transmission",
+      "cellular_component": "postsynaptic density",
+      "quote": "GluA1 ... Ser845",
+      "figure": "Slide 3, image 3",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     },
     {
-      "name": "TARP",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E1",
+      "type": "edge",
+      "subject": "CaMKIIalpha",
+      "relation": "directly_positively_regulates",
+      "object": "GluA1",
+      "mechanism": "phosphorylation at Ser831",
+      "quote": "CaMKIIalpha ... Ser831",
+      "figure": "Slide 3, image 3",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     },
     {
-      "name": "CaMKII",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "id": "E2",
+      "type": "edge",
+      "subject": "Protein kinase A",
+      "relation": "directly_positively_regulates",
+      "object": "GluA1",
+      "mechanism": "phosphorylation at Ser845",
+      "quote": "Protein kinase A ... Ser845",
+      "figure": "Slide 3, image 3",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "MEDIUM"
     },
     {
-      "name": "PKC",
+      "id": "C4",
+      "type": "node",
+      "protein_name": "TARP",
       "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PKA",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PICK1",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "NSF",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "SAP97",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "GluR1",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "GluR2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "AP2",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "Arc",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "Clathrin",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "PP1",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
-    },
-    {
-      "name": "CaN",
-      "gene_symbol": null,
-      "mentioned_activities": [],
-      "context": null,
-      "label_as_shown": null,
-      "position_in_diagram": null,
-      "implied_activity": null
+      "molecular_function": null,
+      "biological_process": "protein transport",
+      "cellular_component": "synapse",
+      "quote": "Modulated by: ... TARP gamma2",
+      "figure": "Slide 3, image 6",
+      "assay_described": null,
+      "pmid_from_text": null,
+      "confidence": "HIGH"
     }
   ],
-  "interactions": [],
-  "connections_shown": [],
-  "compartments_shown": [
-    "Postsynaptic density",
-    "Endocytic zone",
-    "Perisynaptic area",
-    "Endoplasmic reticulum"
-  ],
-  "gaps": [
-    "The role of the individual phosphorylation sites (e.g., S831 vs S845) in specific long-term potentiation (LTP) versus long-term depression (LTD) outcomes is depicted but the regulatory mechanism for the kinase choice is not fully detailed.",
-    "The exact biochemical mechanism by which 'Arc' recruits the endocytic machinery is generalized."
-  ],
-  "questions_for_expert": [
-    "Are the arrows representing 'endocytosis' specifically targeting receptor internalization or the removal of scaffolding components?",
-    "Does the slide imply direct physical interaction between Arc and AP2, or is it mediated by intermediate proteins?",
-    "Is 'TARP' used as a generic term here for stargazin/gamma-2, or does it refer to the entire family of auxiliary proteins?"
-  ]
+  "source": "SynGO3 intro and postsyn-prep Breakout V1.0_slide03",
+  "source_type": "slide",
+  "timestamp": "2026-03-19T13:08:10"
 }
