@@ -156,11 +156,19 @@ Change `LLM_PROVIDER` in `.env` — no code changes needed. Both providers use t
 
 ## The Pipeline — Step by Step
 
+> **Name your files with their PubMed ID before you start.**
+> The single most important thing you can do to get clean output is to name every
+> input file with its PMID: `1234567.pdf`, `fig_1234567.png`, `fig2_1234567.png`.
+> Without this, the tool cannot reliably link claims to their source paper, and most
+> claims will appear in the narrative as unverified (NOT_CHECKED).
+> See [Naming Your Input Files](#naming-your-input-files) for the full convention.
+
 The full workflow from raw papers to a validated, expert-readable model looks like this:
 
 ```
 Input files (.pdf, .pptx, .png, .jpg, .txt)
     placed in: processes/<name>/input/
+    !! Name files with their PMID: 1234567.pdf, fig_1234567.png !!
           │
           ▼
   gocam extract-all          AI reads each file and extracts structured claims:
@@ -499,20 +507,40 @@ vesicle-fusion         HIGH         3 files     —           —           —
 
 ## Naming Your Input Files
 
-The filename is used to automatically assign a PMID to all claims extracted from that file. This is the most reliable way to ensure every claim gets a verified reference — the curator controls the filename.
+> **This is the most important setup step.** Every claim in the output must be linked to a paper to be useful. The easiest and most reliable way to do this is to name your files with their PubMed ID before running anything.
 
-**Convention:** include the PMID as a 7–9 digit number anywhere in the filename:
+The PMID in the filename is assigned to **every claim** extracted from that file. This is curator-controlled and always takes priority over any PMID the AI finds in the text.
+
+**Recommended naming convention:**
+
+| File type | Recommended name | Example |
+|-----------|-----------------|---------|
+| Full paper PDF | `<PMID>.pdf` | `20357116.pdf` |
+| Paper PDF with descriptive label | `<authorYear>_<PMID>.pdf` | `scholz2010_20357116.pdf` |
+| Figure / image from a paper | `fig_<PMID>.png` | `fig_20357116.png` |
+| Multiple figures from the same paper | `fig2_<PMID>.png` | `fig2_20357116.png` |
+| Slide deck (no single PMID) | any name | `expert_slides.pptx` |
+| Review article (no specific assay) | any name | `review_ampar_endocytosis.pdf` |
 
 ```
 input/
-├── 20357116.pdf                    ← PMID 20357116 assigned to all claims
-├── scholz2010_20357116.pdf         ← same, more descriptive name
-├── fig3_20357116.png               ← individual figure from same paper
-├── review_article.pdf              ← no PMID in filename — fallback to text extraction
-└── expert_slides.pptx              ← no PMID — each slide may carry its own
+├── 20357116.pdf            ← all claims get PMID 20357116
+├── 15385962.pdf            ← all claims get PMID 15385962
+├── fig_20357116.png        ← figure from the same paper as above
+├── fig2_20357116.png       ← second figure from that paper
+├── expert_slides.pptx      ← no PMID — each slide may reference its own
+└── review_ampar.pdf        ← no PMID — fallback to text/DOI extraction
 ```
 
-If no PMID is in the filename, the tool tries to extract one from the text content. For PDFs, it also reads the DOI from the paper header and resolves it to a PMID via CrossRef.
+**What happens without a PMID in the filename:**
+
+The tool falls back to two slower, less reliable methods:
+1. The AI tries to extract a PMID from the text content (only works if the paper prints its own PMID or DOI)
+2. The PDF header is scanned for a DOI, which is then resolved to a PMID via CrossRef
+
+Both fallbacks can fail or pick up the wrong paper (e.g. a cited paper's DOI instead of the source paper). Claims without a resolved PMID appear as `NOT_CHECKED` in the narrative and are placed in the **Excluded** section, making them harder to use.
+
+**How to find a PMID:** Search for the paper on [PubMed](https://pubmed.ncbi.nlm.nih.gov/). The PMID is the number in the URL: `pubmed.ncbi.nlm.nih.gov/20357116/` → PMID is `20357116`.
 
 ---
 
