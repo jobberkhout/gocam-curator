@@ -5,7 +5,7 @@ Enrichment data is kept strictly separate from the main pipeline:
   extractions/enrichment/    Extraction JSONs for enrichment files
   extractions/enrichment/ENRICHMENT_REPORT.md
 
-The original REPORT.md, records.json, and claims.md are never modified.
+The original REPORT.md, validated_claims.json, and narrative files are never modified.
 """
 
 from __future__ import annotations
@@ -34,23 +34,28 @@ _PUBMED_RETMAX = 5  # results per query
 # ---------------------------------------------------------------------------
 
 def _collect_existing_pmids(process_dir: Path) -> set[str]:
-    """Return all PMIDs already in evidence records or extraction JSONs."""
+    """Return all PMIDs already in validated claims or extraction JSONs."""
     pmids: set[str] = set()
 
-    # From records.json
-    records_path = process_dir / "evidence_records" / "records.json"
-    if records_path.exists():
+    # From validated_claims.json (primary pipeline output)
+    validated_path = process_dir / "validation" / "validated_claims.json"
+    if validated_path.exists():
         try:
-            data = read_json(records_path)
-            for rec in data.get("records", []):
-                ev = rec.get("evidence") or {}
+            data = read_json(validated_path)
+            for node in data.get("nodes", []):
+                ev = node.get("evidence") or {}
                 p = ev.get("pmid")
-                if p and str(p).strip().isdigit():
+                if p and str(p).strip():
+                    pmids.add(str(p).strip())
+            for edge in data.get("edges", []):
+                ev = edge.get("evidence") or {}
+                p = ev.get("pmid")
+                if p and str(p).strip():
                     pmids.add(str(p).strip())
         except Exception:
             pass
 
-    # From extraction JSONs
+    # From extraction JSONs (claims may have pmid_from_text)
     ext_dir = process_dir / "extractions"
     if ext_dir.exists():
         for jf in ext_dir.glob("*.json"):
@@ -58,23 +63,26 @@ def _collect_existing_pmids(process_dir: Path) -> set[str]:
                 continue
             try:
                 data = read_json(jf)
-                for interaction in data.get("interactions", []):
-                    p = interaction.get("pmid")
-                    if p and str(p).strip().isdigit():
+                for claim in data.get("claims", []):
+                    p = claim.get("pmid_from_text")
+                    if p and str(p).strip():
                         pmids.add(str(p).strip())
+                # Also use source_pmid (from filename) if present
+                sp = data.get("source_pmid")
+                if sp and str(sp).strip():
+                    pmids.add(str(sp).strip())
             except Exception:
                 pass
 
     return pmids
 
 
-def _build_queries(records_data: dict) -> list[tuple[str, str]]:
-    """Build PubMed query strings from evidence records.
+def _build_queries(validation_data: dict) -> list[tuple[str, str]]:
+    """Build PubMed query strings from validated claims.
 
     Returns list of (query_string, human_label) tuples.
-    Deduplicates and skips records without enough info for a useful query.
+    Deduplicates and skips entries without enough info for a useful query.
     """
-    # Words that are too generic to be useful in a PubMed query
     _STOPWORDS = {
         "protein", "activity", "complex", "subunit", "receptor",
         "signaling", "pathway", "regulation", "the", "a", "of", "and",
@@ -83,43 +91,41 @@ def _build_queries(records_data: dict) -> list[tuple[str, str]]:
     seen: set[str] = set()
     queries: list[tuple[str, str]] = []
 
-    for rec in records_data.get("records", []):
-        protein = rec.get("protein") or {}
-        gene = protein.get("gene_symbol") or protein.get("name") or ""
-        gene = gene.strip()
-
-        relation = rec.get("relation_to_target") or {}
-        target = relation.get("target", "").strip()
-
-        bp_rel = rec.get("relation_to_process") or {}
-        bp = bp_rel.get("target_bp", "").strip()
-
+    # Gene-based queries from nodes
+    for node in validation_data.get("nodes", []):
+        gene = (node.get("gene_symbol") or node.get("protein_name") or "").strip()
         if not gene:
             continue
 
-        parts = [gene]
-        if target:
-            # Keep meaningful words from the target, drop generic filler
-            target_words = [
-                w for w in target.split()
-                if w.lower() not in _STOPWORDS
-            ]
-            # Use up to the first 3 meaningful words (enough for specificity)
-            target_term = " ".join(target_words[:3]) if target_words else ""
-            if target_term:
-                parts.append(f'"{target_term}"' if " " in target_term else target_term)
-        if bp:
-            bp_words = [w for w in bp.split() if w.lower() not in _STOPWORDS]
-            bp_term = " ".join(bp_words[:3]) if bp_words else ""
-            if bp_term:
-                parts.append(f'"{bp_term}"' if " " in bp_term else bp_term)
+        # Add a focused gene query
+        if gene not in seen:
+            seen.add(gene)
+            queries.append((gene, gene))
 
-        # Build query — at minimum we need gene
-        query = " AND ".join(p for p in parts if p)
+    # Gene-pair queries from edges
+    for edge in validation_data.get("edges", []):
+        subject = (edge.get("subject") or "").strip()
+        obj = (edge.get("object") or "").strip()
+        if not subject or not obj:
+            continue
+
+        # Build query from subject and object (strip generic words)
+        subj_words = [w for w in subject.split() if w.lower() not in _STOPWORDS]
+        obj_words = [w for w in obj.split() if w.lower() not in _STOPWORDS]
+        subj_term = " ".join(subj_words[:2]) if subj_words else subject
+        obj_term = " ".join(obj_words[:2]) if obj_words else obj
+
+        if not subj_term or not obj_term:
+            continue
+
+        s = f'"{subj_term}"' if " " in subj_term else subj_term
+        o = f'"{obj_term}"' if " " in obj_term else obj_term
+        query = f"{s} AND {o}"
+
         if query in seen:
             continue
         seen.add(query)
-        label = f"{gene} → {target}" if target else gene
+        label = f"{subject} → {obj}"
         queries.append((query, label))
 
     return queries
@@ -134,7 +140,7 @@ def _extract_enrichment_file(
     txt_file: Path,
     enrich_ext_dir: Path,
 ) -> int:
-    """Extract from a single enrichment text file. Returns number of interactions."""
+    """Extract from a single enrichment text file. Returns number of claims."""
     try:
         content = FileContent(
             source_path=txt_file,
@@ -150,12 +156,14 @@ def _extract_enrichment_file(
             extraction = _process_text(client, content)
         out = enrich_ext_dir / f"{txt_file.stem}.json"
         write_json(out, extraction)
-        n = len(extraction.interactions)
+        claims = extraction.get("claims", [])
+        nodes = [c for c in claims if c.get("type") == "node"]
+        edges = [c for c in claims if c.get("type") == "edge"]
         print_success(
-            f"  {txt_file.name}: {len(extraction.entities)} entities, "
-            f"{n} interactions → {out.name}"
+            f"  {txt_file.name}: {len(nodes)} node(s), "
+            f"{len(edges)} edge(s) → {out.name}"
         )
-        return n
+        return len(claims)
     except Exception as exc:
         print_warning(f"  Extraction failed for {txt_file.name}: {exc}")
         return 0
@@ -163,18 +171,16 @@ def _extract_enrichment_file(
 
 def _generate_enrichment_report(
     enrich_ext_dir: Path,
-    existing_records: dict,
+    validation_data: dict,
     process_name: str,
 ) -> Path:
-    """Generate ENRICHMENT_REPORT.md comparing new findings against existing records."""
-    # Collect existing interaction pairs for matching
-    existing_pairs: set[tuple[str, str]] = set()
-    for rec in existing_records.get("records", []):
-        protein = rec.get("protein") or {}
-        gene = (protein.get("gene_symbol") or protein.get("name") or "").lower()
-        target = (rec.get("relation_to_target") or {}).get("target", "").lower()
-        if gene and target:
-            existing_pairs.add((gene, target.split()[0]))
+    """Generate ENRICHMENT_REPORT.md comparing new findings against existing validated claims."""
+    # Build a set of known gene symbols for quick matching
+    existing_genes: set[str] = set()
+    for node in validation_data.get("nodes", []):
+        gene = (node.get("gene_symbol") or node.get("protein_name") or "").lower().strip()
+        if gene:
+            existing_genes.add(gene)
 
     # Load enrichment extractions
     ext_files = sorted(enrich_ext_dir.glob("pubmed_*.json"))
@@ -200,49 +206,43 @@ def _generate_enrichment_report(
         except Exception:
             continue
 
-        interactions = data.get("interactions", [])
-        entities = data.get("entities", [])
-        gaps = data.get("gaps", [])
+        claims = data.get("claims", [])
+        nodes = [c for c in claims if c.get("type") == "node"]
+        edges = [c for c in claims if c.get("type") == "edge"]
 
         lines.append(f"## PMID: {pmid}  ({ext_file.name})")
         lines.append("")
-        lines.append(f"Entities extracted: {len(entities)}")
-        lines.append(f"Interactions found: {len(interactions)}")
+        lines.append(f"Node claims: {len(nodes)}")
+        lines.append(f"Edge claims: {len(edges)}")
         lines.append("")
 
-        if interactions:
-            lines.append("### Interactions")
+        if nodes:
+            lines.append("### Proteins / Molecular Functions")
             lines.append("")
-            for ix in interactions:
-                src = (ix.get("source_entity") or "").lower()
-                tgt = (ix.get("target_entity") or "").lower()
-                action = ix.get("described_action", "")
-                causal = ix.get("causal_type", "")
-                fig = ix.get("figure", "")
-                quote = ix.get("quote", "")
+            for node in nodes:
+                gene = (node.get("gene_symbol") or node.get("protein_name") or "").strip()
+                mf = node.get("molecular_function") or ""
+                bp = node.get("biological_process") or ""
+                quote = node.get("quote") or ""
 
-                # Check if this matches an existing record
+                gene_lower = gene.lower()
                 confirms = any(
-                    src and tgt and
-                    (src in pair[0] or pair[0] in src) and
-                    (tgt.split()[0] in pair[1] or pair[1] in tgt.split()[0])
-                    for pair in existing_pairs
+                    gene_lower and (gene_lower in eg or eg in gene_lower)
+                    for eg in existing_genes
                 )
 
                 if confirms:
-                    tag = "**CONFIRMS** — supports an existing record"
+                    tag = "**CONFIRMS** — gene already in validated claims"
                     total_confirming += 1
                 else:
-                    tag = "**NEW** — not in original extraction"
+                    tag = "**NEW** — gene not in original extraction"
                     total_new += 1
 
-                parts = [f"- {ix.get('source_entity')} → {ix.get('target_entity')}"]
-                if action:
-                    parts[0] += f": {action}"
-                if causal:
-                    parts[0] += f" ({causal})"
-                if fig:
-                    parts.append(f"  Figure: {fig}")
+                parts = [f"- **{gene}**"]
+                if mf:
+                    parts[0] += f": {mf}"
+                if bp:
+                    parts.append(f"  Process: {bp}")
                 if quote:
                     q = quote[:150] + ("…" if len(quote) > 150 else "")
                     parts.append(f"  Quote: \"{q}\"")
@@ -250,17 +250,49 @@ def _generate_enrichment_report(
                 lines.extend(parts)
                 lines.append("")
 
-        if gaps:
-            lines.append("### Gaps / Open Questions")
-            for g in gaps[:5]:
-                lines.append(f"- {g}")
+        if edges:
+            lines.append("### Interactions")
             lines.append("")
+            for edge in edges:
+                subject = (edge.get("subject") or "").strip()
+                relation = (edge.get("relation") or "").strip()
+                obj = (edge.get("object") or "").strip()
+                mechanism = edge.get("mechanism") or ""
+                quote = edge.get("quote") or ""
+                figure = edge.get("figure") or ""
+
+                subj_lower = subject.lower()
+                obj_lower = obj.lower()
+                confirms = any(
+                    (subj_lower and (subj_lower in eg or eg in subj_lower)) or
+                    (obj_lower and (obj_lower in eg or eg in obj_lower))
+                    for eg in existing_genes
+                )
+
+                if confirms:
+                    tag = "**CONFIRMS** — involves a known gene"
+                    total_confirming += 1
+                else:
+                    tag = "**NEW** — genes not in original extraction"
+                    total_new += 1
+
+                parts = [f"- {subject} —[{relation}]→ {obj}"]
+                if mechanism:
+                    parts.append(f"  Mechanism: {mechanism}")
+                if figure:
+                    parts.append(f"  Figure: {figure}")
+                if quote:
+                    q = quote[:150] + ("…" if len(quote) > 150 else "")
+                    parts.append(f"  Quote: \"{q}\"")
+                parts.append(f"  → {tag}")
+                lines.extend(parts)
+                lines.append("")
 
         lines.append("---")
         lines.append("")
 
     # Summary
-    lines.insert(4, f"Summary: {total_new} new interactions, {total_confirming} confirming existing records")
+    lines.insert(4, f"Summary: {total_new} new claim(s), {total_confirming} confirming existing genes")
     lines.insert(5, "")
 
     out = enrich_ext_dir / "ENRICHMENT_REPORT.md"
@@ -290,10 +322,10 @@ def _generate_enrichment_report(
 def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> None:
     """Discover additional literature via PubMed and extract from it.
 
-    Builds PubMed queries from existing evidence records, fetches new
-    abstracts, extracts interactions, and generates a separate enrichment
-    report. The original pipeline outputs (REPORT.md, records.json,
-    claims.md) are never modified.
+    Builds PubMed queries from validated claims, fetches new abstracts,
+    extracts claims, and generates a separate enrichment report. The
+    original pipeline outputs (REPORT.md, validated_claims.json,
+    narrative files) are never modified.
 
     \b
     SEPARATED OUTPUT PATHS
@@ -320,25 +352,28 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
     meta = load_meta(process_dir)
     display_name = meta.get("process_name", process_name)
 
-    records_path = process_dir / "evidence_records" / "records.json"
-    if not records_path.exists():
+    validated_path = process_dir / "validation" / "validated_claims.json"
+    if not validated_path.exists():
         print_error(
-            "No evidence records found. Run 'gocam translate' first to generate records.json."
+            "No validated claims found. Run 'gocam validate' first to generate validated_claims.json."
         )
         raise SystemExit(1)
 
     try:
-        records_data = read_json(records_path)
+        validation_data = read_json(validated_path)
     except Exception as exc:
-        print_error(f"Could not read records.json: {exc}")
+        print_error(f"Could not read validated_claims.json: {exc}")
         raise SystemExit(1)
 
+    node_count = len(validation_data.get("nodes", []))
+    edge_count = len(validation_data.get("edges", []))
     console.print(f"[bold]Process:[/bold] {display_name}")
+    console.print(f"[dim]Loaded {node_count} node(s) and {edge_count} edge(s) from validated claims.[/dim]")
 
     # Build queries
-    queries = _build_queries(records_data)
+    queries = _build_queries(validation_data)
     if not queries:
-        print_warning("No interactions found in records.json — cannot build PubMed queries.")
+        print_warning("No usable genes/interactions found in validated_claims.json — cannot build PubMed queries.")
         raise SystemExit(1)
 
     console.print(f"[bold]PubMed queries:[/bold] {len(queries)}")
@@ -353,16 +388,13 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
     print_info(f"Already have {len(existing_pmids)} PMID(s) in this process")
 
     # --- SynGO priority pass -------------------------------------------
-    # Check SynGO for PMIDs associated with each gene before querying PubMed.
-    # These are expert-curated references and are treated as priority sources.
     syngo = get_syngo()
     syngo_pmids: dict[str, str] = {}  # pmid -> gene label
     if syngo.available:
         console.print("\n[bold magenta]Checking SynGO for expert-curated references…[/bold magenta]")
         genes_seen: set[str] = set()
-        for rec in records_data.get("records", []):
-            protein = rec.get("protein") or {}
-            gene = (protein.get("gene_symbol") or protein.get("name") or "").strip()
+        for node in validation_data.get("nodes", []):
+            gene = (node.get("gene_symbol") or node.get("protein_name") or "").strip()
             if not gene or gene in genes_seen:
                 continue
             genes_seen.add(gene)
@@ -397,11 +429,11 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
     # Merge SynGO PMIDs (priority) with PubMed results — SynGO first
     all_new_pmids: list[str] = []
     seen_merged: set[str] = set()
-    for p in sorted(syngo_pmids.keys()):   # SynGO first
+    for p in sorted(syngo_pmids.keys()):
         if p not in seen_merged:
             all_new_pmids.append(p)
             seen_merged.add(p)
-    for p in sorted(found_pmids):          # then PubMed
+    for p in sorted(found_pmids):
         if p not in seen_merged:
             all_new_pmids.append(p)
             seen_merged.add(p)
@@ -438,7 +470,6 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
             print_warning(f"  PMID {pmid}: empty abstract, skipping")
             continue
 
-        # Prepend provenance header so the extraction LLM and curator can see the source
         source_label = syngo_pmids.get(pmid)
         if source_label:
             header = f"[Source: SynGO (expert-curated) — {source_label}]\n\n"
@@ -466,7 +497,7 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
         )
 
     client = get_llm_client()
-    total_interactions = 0
+    total_claims = 0
 
     for txt_file in saved_files:
         pmid = txt_file.stem.replace("pubmed_", "")
@@ -474,17 +505,17 @@ def enrich_command(process_name: str, max_papers: int, queries_only: bool) -> No
             print_info(f"  {txt_file.name}: already extracted, skipping")
             continue
         n = _extract_enrichment_file(client, txt_file, enrich_ext_dir)
-        total_interactions += n
+        total_claims += n
 
     # Generate enrichment report
     console.print("\n[bold]Generating enrichment report…[/bold]")
-    report_path = _generate_enrichment_report(enrich_ext_dir, records_data, display_name)
+    report_path = _generate_enrichment_report(enrich_ext_dir, validation_data, display_name)
     print_success(f"Enrichment report → {report_path}")
 
     console.print()
     print_success(
         f"Enrichment complete: {len(pmids_to_fetch)} new paper(s), "
-        f"{total_interactions} interaction(s) found."
+        f"{total_claims} claim(s) extracted."
     )
     console.print(
         "\n[dim]Review[/dim] [bold]extractions/enrichment/ENRICHMENT_REPORT.md[/bold] "

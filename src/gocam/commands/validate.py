@@ -226,7 +226,7 @@ def _validate_node(
         cellular_component=cc,
         evidence=evidence,
         confidence=claim.confidence,
-        syngo_annotations=syngo_annotations[:10],
+        syngo_annotations=syngo_annotations,
         quote=claim.quote,
     )
 

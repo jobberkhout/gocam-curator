@@ -23,6 +23,65 @@ _NARRATIVES_DIR = "narratives"
 _CONF_RANK = {"HIGH": 2, "MEDIUM": 1, "LOW": 0}
 _STATUS_RANK = {"VERIFIED": 3, "FOUND": 3, "OBSOLETE": 2, "NOT_FOUND": 1, "SKIPPED": 0}
 
+_PDF_CSS = """
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 30px;
+    color: #222;
+}
+h1 { font-size: 20pt; color: #1a3a5c; border-bottom: 2px solid #1a3a5c; padding-bottom: 6px; }
+h2 { font-size: 14pt; color: #2c5f8a; border-bottom: 1px solid #aac4de; padding-bottom: 3px; margin-top: 24px; }
+p  { margin: 4px 0; }
+ul { margin: 2px 0 8px 0; padding-left: 20px; }
+li { margin: 2px 0; }
+a  { color: #1a6fa8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { color: #111; }
+em { color: #555; }
+code { font-family: "Courier New", monospace; font-size: 9.5pt;
+       background: #f0f4f8; padding: 1px 4px; border-radius: 3px; }
+hr { border: none; border-top: 1px solid #ccc; margin: 16px 0; }
+"""
+
+
+def _md_to_pdf(md_text: str, out_path: Path) -> None:
+    """Convert a Markdown string to PDF via markdown → HTML → WeasyPrint."""
+    try:
+        import markdown as _md
+        from weasyprint import CSS, HTML
+    except ImportError:
+        raise ImportError(
+            "PDF output requires extra dependencies.\n"
+            "Install with:  pip install 'gocam-curator[pdf]'\n"
+            "  or:          pip install markdown weasyprint\n"
+            "WeasyPrint also needs system libraries (Pango/Cairo):\n"
+            "  macOS:  brew install weasyprint   (or: brew install pango cairo)\n"
+            "  Linux:  apt install libpango-1.0-0 libpangoft2-1.0-0"
+        )
+
+    html_body = _md.markdown(
+        md_text,
+        extensions=["tables", "fenced_code", "nl2br"],
+    )
+    full_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>GO-CAM Narrative</title>
+</head>
+<body>
+{html_body}
+</body>
+</html>"""
+    HTML(string=full_html).write_pdf(
+        str(out_path),
+        stylesheets=[CSS(string=_PDF_CSS)],
+    )
+
 
 def _next_version_path(narratives_dir: Path, prefix: str = "claims") -> Path:
     v = 1
@@ -83,10 +142,14 @@ def _quickgo_link(go_id: str) -> str:
 def _status_icon(status: str) -> str:
     if status in ("VERIFIED", "FOUND"):
         return "✓"
+    if status == "RESOLVED_FROM_DOI":
+        return "✓~"          # verified via DOI→PMID resolution, not direct citation
     if status == "OBSOLETE":
-        return "!"
+        return "!(obsolete)"  # distinguishable from NOT_FOUND in the document
     if status in ("NOT_FOUND", "INVALID"):
         return "✗"
+    if status == "ERROR":
+        return "✗(error)"
     return "?"
 
 
@@ -196,13 +259,29 @@ def _go_lines(label: str, terms: list[ValidatedGOTerm]) -> list[str]:
     return lines
 
 
+def _go_summary(go_term: ValidatedGOTerm | None) -> str:
+    """Compact one-line summary of a GO term for excluded-claims listings."""
+    if not go_term:
+        return "_not specified_"
+    icon = _status_icon(go_term.status)
+    id_str = f" ({go_term.go_id})" if go_term.go_id else ""
+    return f"{go_term.term}{id_str} {icon}"
+
+
+def _eco_link(eco_code: str) -> str:
+    """Clickable QuickGO link for an ECO code."""
+    return f"[{eco_code}](https://www.ebi.ac.uk/QuickGO/term/{eco_code})"
+
+
 def _evidence_block(ev: ValidatedEvidence) -> list[str]:
-    """Format one evidence block: assay, figure, PMID (clickable), title, DOI."""
+    """Format one evidence block: assay, ECO code, figure, PMID (clickable), title, DOI."""
     lines = []
     if ev.assay:
-        eco_str = f" ({ev.eco_code})" if ev.eco_code else ""
-        eco_status = f" {_status_icon(ev.eco_status)}" if ev.eco_code else ""
-        lines.append(f"- Assay: {ev.assay}{eco_str}{eco_status}")
+        lines.append(f"- Assay: {ev.assay}")
+    if ev.eco_code:
+        label_str = f" — {ev.eco_label}" if ev.eco_label else ""
+        icon = _status_icon(ev.eco_status)
+        lines.append(f"- ECO: {_eco_link(ev.eco_code)}{label_str} {icon}")
     if ev.figure:
         lines.append(f"- Figure: {ev.figure}")
     if ev.pmid:
@@ -212,6 +291,11 @@ def _evidence_block(ev: ValidatedEvidence) -> list[str]:
         lines.append(
             f"- Reference: {_pmid_link(ev.pmid)} {pmid_icon}{title_str}{doi_str}"
         )
+    # Always show source file for audit trail (dimmed if PMID already covers traceability)
+    if ev.source_file:
+        prefix = "  _(source:" if ev.pmid else "- Source:"
+        suffix = ")_" if ev.pmid else ""
+        lines.append(f"{prefix} {ev.source_file}{suffix}")
     return lines or ["- Evidence: _none_"]
 
 
@@ -221,11 +305,15 @@ def _render_node_group(group: list[ValidatedNodeClaim], index: int) -> list[str]
     names = list(dict.fromkeys(n.protein_name for n in group))
     genes = list(dict.fromkeys(n.gene_symbol for n in group if n.gene_symbol))
     uniprot = group[0].uniprot_id
+    uniprot_status = group[0].uniprot_status
 
     gene_str = f" ({', '.join(genes)})" if genes else ""
-    uniprot_str = (
-        f" — [{uniprot}](https://www.uniprot.org/uniprotkb/{uniprot})" if uniprot else ""
-    )
+    if uniprot:
+        uniprot_str = f" — [{uniprot}](https://www.uniprot.org/uniprotkb/{uniprot})"
+    elif uniprot_status == "NOT_FOUND":
+        uniprot_str = " — [UniProt: not found]"
+    else:
+        uniprot_str = ""
     merged_str = f" \\[merged {len(group)} extractions\\]" if len(group) > 1 else ""
 
     lines.append(f"**Node {index}: {', '.join(names)}{gene_str}{uniprot_str}{merged_str}**")
@@ -253,7 +341,7 @@ def _render_node_group(group: list[ValidatedNodeClaim], index: int) -> list[str]
 
     all_syngo = list(dict.fromkeys(ann for n in group for ann in n.syngo_annotations))
     if all_syngo:
-        lines.append(f"- SynGO: {', '.join(all_syngo[:5])}")
+        lines.append(f"- SynGO: {', '.join(all_syngo)}")
 
     lines.append("")
     return lines
@@ -293,33 +381,30 @@ def _render_edge_group(group: list[ValidatedEdgeClaim], index: int) -> list[str]
 
 
 # ---------------------------------------------------------------------------
-# Main assembly
+# Main assembly — one function per document
 # ---------------------------------------------------------------------------
 
-def _build_narrative(report: ValidationReport, process_name: str, species: str) -> str:
-    lines: list[str] = []
-    lines.append(f"# GO-CAM Claims — {process_name}")
-    lines.append(f"\n*Species: {species} | Generated: {date.today().isoformat()}*\n")
-
-    # --- Filter nodes by evidence quality ---
+def _partition_claims(report: ValidationReport) -> tuple[
+    list[list[ValidatedNodeClaim]],   # included node groups
+    list[tuple[list[ValidatedNodeClaim], list[str]]],  # excluded nodes
+    list[list[ValidatedEdgeClaim]],   # included edge groups
+    list[tuple[list[ValidatedEdgeClaim], list[str]]],  # excluded edges
+]:
+    """Split all claims into included/excluded groups for nodes and edges."""
     node_groups = _group_nodes_by_uniprot(report.nodes)
     included_node_groups: list[list[ValidatedNodeClaim]] = []
     excluded_nodes: list[tuple[list[ValidatedNodeClaim], list[str]]] = []
-
     for group in node_groups:
         evidences = _collect_evidences(group)
         if any(_evidence_is_complete(ev) for ev in evidences):
             included_node_groups.append(group)
         else:
-            # Collect what's missing from the best available evidence
             all_missing = _missing_fields(evidences[0] if evidences else None)
             excluded_nodes.append((group, all_missing))
 
-    # --- Filter edges by evidence quality ---
     edge_groups = _group_edges(report.edges)
     included_edge_groups: list[list[ValidatedEdgeClaim]] = []
     excluded_edges: list[tuple[list[ValidatedEdgeClaim], list[str]]] = []
-
     for group in edge_groups:
         evidences = [e.evidence for e in group if e.evidence]
         if any(_evidence_is_complete(ev) for ev in evidences):
@@ -328,37 +413,30 @@ def _build_narrative(report: ValidationReport, process_name: str, species: str) 
             all_missing = _missing_fields(evidences[0] if evidences else None)
             excluded_edges.append((group, all_missing))
 
-    n_node_merged = sum(1 for g in included_node_groups if len(g) > 1)
-    n_edge_merged = sum(1 for g in included_edge_groups if len(g) > 1)
+    return included_node_groups, excluded_nodes, included_edge_groups, excluded_edges
 
-    # --- Nodes ---
-    if included_node_groups:
-        merge_note = (
-            f" ({n_node_merged} protein(s) collapsed from duplicate extractions)"
-            if n_node_merged else ""
-        )
+
+def _build_nodes_doc(
+    report: ValidationReport,
+    included: list[list[ValidatedNodeClaim]],
+    excluded: list[tuple[list[ValidatedNodeClaim], list[str]]],
+    process_name: str,
+    species: str,
+) -> str:
+    """Nodes document: one entry per protein with all GO terms, evidence, and quotes."""
+    lines: list[str] = []
+    lines.append(f"# GO-CAM Nodes — {process_name}")
+    lines.append(f"\n*Species: {species} | Generated: {date.today().isoformat()}*")
+    lines.append("*Use this document to create entities in GO-CAM.*\n")
+
+    n_merged = sum(1 for g in included if len(g) > 1)
+    if included:
+        merge_note = f" ({n_merged} protein(s) collapsed from duplicate extractions)" if n_merged else ""
         lines.append(f"## Nodes (Molecular Activities){merge_note}\n")
-        for i, group in enumerate(included_node_groups, 1):
+        for i, group in enumerate(included, 1):
             lines.extend(_render_node_group(group, i))
 
-    # --- Edges ---
-    if included_edge_groups:
-        merge_note = (
-            f" ({n_edge_merged} relation(s) collapsed from duplicate extractions)"
-            if n_edge_merged else ""
-        )
-        lines.append(f"## Edges (Causal Relations){merge_note}\n")
-        for i, group in enumerate(included_edge_groups, 1):
-            lines.extend(_render_edge_group(group, i))
-
-    # --- Validation Summary ---
-    total_raw_nodes = len(report.nodes)
-    total_included_nodes = sum(len(g) for g in included_node_groups)
-    total_raw_edges = len(report.edges)
-    total_included_edges = sum(len(g) for g in included_edge_groups)
-
-    lines.append("## Validation Summary\n")
-
+    # Validation summary
     go_verified = sum(
         1 for n in report.nodes
         for gt in (n.molecular_function, n.biological_process, n.cellular_component)
@@ -372,40 +450,47 @@ def _build_narrative(report: ValidationReport, process_name: str, species: str) 
     uniprot_found = sum(1 for n in report.nodes if n.uniprot_status == "FOUND")
     syngo_hits = sum(1 for n in report.nodes if n.syngo_annotations)
 
+    lines.append("## Summary\n")
     lines.append(
-        f"- Nodes: {total_raw_nodes} extracted → {len(included_node_groups)} included"
-        + (f" ({n_node_merged} collapsed)" if n_node_merged else "")
-        + (f", {len(excluded_nodes)} excluded (insufficient evidence)" if excluded_nodes else "")
-    )
-    lines.append(
-        f"- Edges: {total_raw_edges} extracted → {len(included_edge_groups)} included"
-        + (f" ({n_edge_merged} collapsed)" if n_edge_merged else "")
-        + (f", {len(excluded_edges)} excluded (insufficient evidence)" if excluded_edges else "")
+        f"- {len(report.nodes)} extracted → {len(included)} included"
+        + (f" ({n_merged} collapsed)" if n_merged else "")
+        + (f", {len(excluded)} excluded" if excluded else "")
     )
     lines.append(f"- GO terms verified: {go_verified}/{go_total}")
-    lines.append(f"- UniProt matches: {uniprot_found}/{total_raw_nodes}")
-    lines.append(f"- SynGO matches: {syngo_hits}/{total_raw_nodes}")
+    lines.append(f"- UniProt matches: {uniprot_found}/{len(report.nodes)}")
+    lines.append(f"- SynGO matches: {syngo_hits}/{len(report.nodes)}")
 
-    # --- Excluded (for transparency) ---
-    if excluded_nodes or excluded_edges:
-        lines.append("\n## Excluded — Insufficient Evidence\n")
+    if excluded:
+        lines.append("\n## Excluded — No Verified PMID\n")
         lines.append(
-            "_These claims were removed from the main narrative because they lack a "
-            "verified PMID. Review manually if needed._\n"
+            "_These nodes lack a traceable paper reference. "
+            "Rename the source file with a PMID (e.g. 20357116.pdf) and re-run validate._\n"
         )
-        for group, missing in excluded_nodes:
+        for group, missing in excluded:
             names = ", ".join(dict.fromkeys(n.protein_name for n in group))
-            lines.append(f"- **Node — {names}**: missing {', '.join(missing)}")
-        for group, missing in excluded_edges:
-            first = group[0]
-            lines.append(
-                f"- **Edge — {first.subject} → {first.relation} → {first.object}**: "
-                f"missing {', '.join(missing)}"
-            )
+            genes = ", ".join(dict.fromkeys(n.gene_symbol for n in group if n.gene_symbol))
+            gene_str = f" ({genes})" if genes else ""
+            lines.append(f"\n**{names}{gene_str}** — missing: {', '.join(missing)}")
+            # Collect and show what GO terms were found, so the work isn't wasted
+            mf_terms = _collect_go_terms([n.molecular_function for n in group])
+            bp_terms = _collect_go_terms([n.biological_process for n in group])
+            cc_terms = _collect_go_terms([n.cellular_component for n in group])
+            for go_label, terms in (("MF", mf_terms), ("BP", bp_terms), ("CC", cc_terms)):
+                if terms:
+                    lines.append(f"- {go_label}: " + " | ".join(_go_summary(t) for t in terms))
+            # Show assay and source if available
+            evs = _collect_evidences(group)
+            for ev in evs:
+                if ev.assay:
+                    lines.append(f"- Assay: {ev.assay}")
+                if ev.source_file:
+                    lines.append(f"- Source: {ev.source_file}")
+            quotes = list(dict.fromkeys(n.quote for n in group if n.quote))
+            for q in quotes[:1]:  # just first quote to keep it short
+                lines.append(f'- Quote: "{q[:150]}{"…" if len(q) > 150 else ""}"')
 
-    # --- Unresolved (included claims that still need attention) ---
     unresolved: list[str] = []
-    for group in included_node_groups:
+    for group in included:
         for n in group:
             if not n.molecular_function or n.molecular_function.status != "VERIFIED":
                 mf_desc = (
@@ -413,10 +498,64 @@ def _build_narrative(report: ValidationReport, process_name: str, species: str) 
                     if n.molecular_function else "not specified"
                 )
                 unresolved.append(f"- {n.protein_name} ({n.id}): MF {mf_desc}")
-
     if unresolved:
         lines.append("\n## Unresolved GO Terms\n")
         lines.extend(unresolved)
+
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _build_edges_doc(
+    included: list[list[ValidatedEdgeClaim]],
+    excluded: list[tuple[list[ValidatedEdgeClaim], list[str]]],
+    process_name: str,
+    species: str,
+) -> str:
+    """Edges document: one entry per causal relation for wiring up the GO-CAM model."""
+    lines: list[str] = []
+    lines.append(f"# GO-CAM Edges — {process_name}")
+    lines.append(f"\n*Species: {species} | Generated: {date.today().isoformat()}*")
+    lines.append("*Use this document to connect entities in GO-CAM.*\n")
+
+    n_merged = sum(1 for g in included if len(g) > 1)
+    if included:
+        merge_note = f" ({n_merged} relation(s) collapsed from duplicate extractions)" if n_merged else ""
+        lines.append(f"## Edges (Causal Relations){merge_note}\n")
+        for i, group in enumerate(included, 1):
+            lines.extend(_render_edge_group(group, i))
+
+    lines.append("## Summary\n")
+    total_raw = sum(len(g) for g in included) + sum(len(g) for g, _ in excluded)
+    lines.append(
+        f"- {total_raw} extracted → {len(included)} included"
+        + (f" ({n_merged} collapsed)" if n_merged else "")
+        + (f", {len(excluded)} excluded" if excluded else "")
+    )
+
+    if excluded:
+        lines.append("\n## Excluded — No Verified PMID\n")
+        lines.append(
+            "_These edges lack a traceable paper reference. "
+            "Rename the source file with a PMID (e.g. 20357116.pdf) and re-run validate._\n"
+        )
+        for group, missing in excluded:
+            first = group[0]
+            lines.append(
+                f"\n**{first.subject} → {first.relation} → {first.object}** "
+                f"— missing: {', '.join(missing)}"
+            )
+            if first.mechanism:
+                lines.append(f"- Mechanism: {first.mechanism}")
+            evs = [e.evidence for e in group if e.evidence]
+            for ev in evs[:1]:
+                if ev.assay:
+                    lines.append(f"- Assay: {ev.assay}")
+                if ev.source_file:
+                    lines.append(f"- Source: {ev.source_file}")
+            quotes = list(dict.fromkeys(e.quote for e in group if e.quote))
+            for q in quotes[:1]:
+                lines.append(f'- Quote: "{q[:150]}{"…" if len(q) > 150 else ""}"')
 
     lines.append("")
     return "\n".join(lines)
@@ -436,7 +575,13 @@ def _build_narrative(report: ValidationReport, process_name: str, species: str) 
         "e.g. --genes brag,arf6,ap2,pick"
     ),
 )
-def narrative_command(process: str | None, genes: str | None) -> None:
+@click.option(
+    "--pdf",
+    is_flag=True,
+    default=False,
+    help="Also write PDF versions alongside the Markdown files (requires: pip install markdown weasyprint).",
+)
+def narrative_command(process: str | None, genes: str | None, pdf: bool) -> None:
     """Generate an expert-readable document from validated claims (no AI).
 
     Reads validation/validated_claims.json and assembles a Markdown document.
@@ -457,7 +602,11 @@ def narrative_command(process: str | None, genes: str | None) -> None:
       AP2M1, AP-2, etc.  Output is saved as <genes>_v1.md instead of claims_v1.md.
 
     \b
-    OUTPUT  narratives/claims_v1.md  (or v2, v3 ... if earlier versions exist)
+    OUTPUT  (two files per run, versioned independently)
+      narratives/claims_nodes_v1.md   Entities — use to create GO-CAM nodes
+      narratives/claims_edges_v1.md   Relations — use to wire up the model
+      With --genes: brag_arf6_nodes_v1.md / brag_arf6_edges_v1.md
+      With --pdf:   same names with .pdf extension, written alongside .md
       - Nodes with same UniProt ID are collapsed (all info preserved)
       - Edges with same subject/relation/object are collapsed
       - GO terms: clickable links to QuickGO
@@ -465,9 +614,15 @@ def narrative_command(process: str | None, genes: str | None) -> None:
       - Excluded claims listed at the end for manual review
 
     \b
+    PDF DEPENDENCIES  (only needed with --pdf)
+      pip install 'gocam-curator[pdf]'
+      macOS system libs:  brew install pango cairo
+
+    \b
     EXAMPLES
       gocam narrative
-      gocam narrative --genes brag,arf6,ap2,pick
+      gocam narrative --pdf
+      gocam narrative --genes brag,arf6,ap2,pick --pdf
       gocam narrative -g arf6 -p vesicle-fusion
     """
     process_dir = resolve_process(process)
@@ -506,24 +661,16 @@ def narrative_command(process: str | None, genes: str | None) -> None:
     # Swap report nodes/edges for the filtered set before counting and rendering
     filtered_report = report.model_copy(update={"nodes": nodes, "edges": edges})
 
-    # Pre-flight counts for the terminal summary
-    node_groups = _group_nodes_by_uniprot(nodes)
-    edge_groups = _group_edges(edges)
-    n_nodes_included = sum(
-        1 for g in node_groups
-        if any(_evidence_is_complete(ev) for ev in _collect_evidences(g))
-    )
-    n_edges_included = sum(
-        1 for g in edge_groups
-        if any(_evidence_is_complete(e.evidence) for e in g if e.evidence)
-    )
-    n_nodes_excluded = len(node_groups) - n_nodes_included
-    n_edges_excluded = len(edge_groups) - n_edges_included
+    # Partition into included/excluded groups
+    inc_nodes, exc_nodes, inc_edges, exc_edges = _partition_claims(filtered_report)
+
+    n_nodes_excluded = len(exc_nodes)
+    n_edges_excluded = len(exc_edges)
 
     console.print(
         f"[bold]Process:[/bold] {process_name}  "
-        f"[bold]Nodes:[/bold] {n_nodes_included} included, {n_nodes_excluded} excluded  "
-        f"[bold]Edges:[/bold] {n_edges_included} included, {n_edges_excluded} excluded"
+        f"[bold]Nodes:[/bold] {len(inc_nodes)} included, {n_nodes_excluded} excluded  "
+        f"[bold]Edges:[/bold] {len(inc_edges)} included, {n_edges_excluded} excluded"
     )
     if n_nodes_excluded or n_edges_excluded:
         print_warning(
@@ -531,17 +678,31 @@ def narrative_command(process: str | None, genes: str | None) -> None:
             "— listed at end of narrative for manual review"
         )
 
-    narrative_md = _build_narrative(filtered_report, process_name, species)
+    nodes_md = _build_nodes_doc(filtered_report, inc_nodes, exc_nodes, process_name, species)
+    edges_md = _build_edges_doc(inc_edges, exc_edges, process_name, species)
 
     narratives_dir = process_dir / _NARRATIVES_DIR
     narratives_dir.mkdir(exist_ok=True)
 
-    if gene_list:
-        prefix = "_".join(gene_list)
-    else:
-        prefix = "claims"
-    out_path = _next_version_path(narratives_dir, prefix=prefix)
-    out_path.write_text(narrative_md, encoding="utf-8")
+    base = "_".join(gene_list) if gene_list else "claims"
+    nodes_path = _next_version_path(narratives_dir, prefix=f"{base}_nodes")
+    edges_path = _next_version_path(narratives_dir, prefix=f"{base}_edges")
 
-    print_success(f"Narrative saved → {out_path}")
-    console.print(f"\n[dim]Open with: open {out_path}[/dim]")
+    nodes_path.write_text(nodes_md, encoding="utf-8")
+    edges_path.write_text(edges_md, encoding="utf-8")
+
+    print_success(f"Nodes narrative → {nodes_path}")
+    print_success(f"Edges narrative → {edges_path}")
+
+    if pdf:
+        nodes_pdf = nodes_path.with_suffix(".pdf")
+        edges_pdf = edges_path.with_suffix(".pdf")
+        try:
+            _md_to_pdf(nodes_md, nodes_pdf)
+            print_success(f"Nodes PDF       → {nodes_pdf}")
+            _md_to_pdf(edges_md, edges_pdf)
+            print_success(f"Edges PDF       → {edges_pdf}")
+        except ImportError as exc:
+            print_warning(f"PDF generation skipped: {exc}")
+
+    console.print(f"\n[dim]Open with: open {nodes_path.parent}[/dim]")

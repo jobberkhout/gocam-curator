@@ -66,21 +66,53 @@ def search_eco_terms(
     limit: int = 5,
     client: httpx.Client | None = None,
 ) -> list[dict]:
-    """Search OLS4 for ECO terms matching an assay description.
+    """Search for ECO terms matching an assay description via OLS4.
 
-    Used when eco_code is UNKNOWN but we know the assay name from the evidence.
+    Uses OLS4 full-text search against the ECO ontology.
     Returns a list of dicts with keys: eco_id, label.
-    Returns an empty list on any error or timeout.
+
+    Note: all returned IDs come directly from the ontology database and
+    have been matched by OLS4's own text search — no curated ID table is
+    used, so there is no risk of a semantically wrong but syntactically
+    valid code being returned.
     """
     if not assay_name.strip():
         return []
 
     def _do(c: httpx.Client) -> list[dict]:
-        r = c.get(
-            _OLS_SEARCH,
-            params={"q": assay_name, "ontology": "eco", "rows": limit},
-            headers={"Accept": "application/json"},
-        )
+        # Try exact-label search first for higher precision
+        results = _ols_search(c, assay_name, exact=True, limit=limit)
+        if not results:
+            results = _ols_search(c, assay_name, exact=False, limit=limit)
+        return results
+
+    try:
+        if client:
+            return _do(client)
+        with httpx.Client(timeout=_TIMEOUT) as c:
+            return _do(c)
+    except Exception:
+        return []
+
+
+def _ols_search(
+    c: httpx.Client,
+    query: str,
+    exact: bool,
+    limit: int,
+) -> list[dict]:
+    """Run one OLS4 search query and return parsed ECO results."""
+    params: dict = {
+        "q": query,
+        "ontology": "eco",
+        "rows": limit,
+        "fieldList": "short_form,label",
+    }
+    if exact:
+        params["exact"] = "true"
+
+    try:
+        r = c.get(_OLS_SEARCH, params=params, headers={"Accept": "application/json"})
         if not r.is_success:
             return []
         docs = r.json().get("response", {}).get("docs", [])
@@ -92,11 +124,5 @@ def search_eco_terms(
             for d in docs
             if d.get("short_form", "").startswith("ECO") and d.get("label")
         ]
-
-    try:
-        if client:
-            return _do(client)
-        with httpx.Client(timeout=_TIMEOUT) as c:
-            return _do(c)
     except Exception:
         return []

@@ -89,7 +89,7 @@ class ValidatedEvidence(BaseModel):
     assay: str | None = None
     eco_code: str | None = None
     eco_label: str | None = None
-    eco_status: Literal["VERIFIED", "OBSOLETE", "NOT_FOUND", "SKIPPED"] = "SKIPPED"
+    eco_status: Literal["VERIFIED", "OBSOLETE", "NOT_FOUND", "SKIPPED", "ERROR"] = "SKIPPED"
     source_file: str | None = None   # which extraction file this evidence came from
 
 

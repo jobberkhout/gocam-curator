@@ -23,5 +23,8 @@ dependencies = [
 [project.scripts]
 gocam = "gocam.cli:main"
 
+[project.optional-dependencies]
+pdf = ["markdown", "weasyprint"]
+
 [tool.setuptools.packages.find]
 where = ["src"]

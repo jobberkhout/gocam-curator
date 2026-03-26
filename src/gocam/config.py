@@ -119,4 +119,5 @@ PROCESS_SUBDIRS: list[str] = [
     "extractions",
     "validation",
     "narratives",
+    "interpretation",
 ]
