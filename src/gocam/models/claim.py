@@ -82,7 +82,7 @@ class ValidatedGOTerm(BaseModel):
 class ValidatedEvidence(BaseModel):
     """Evidence fields after PMID/DOI/ECO validation."""
     pmid: str | None = None
-    pmid_status: Literal["VERIFIED", "INVALID", "NOT_CHECKED", "RESOLVED_FROM_DOI"] = "NOT_CHECKED"
+    pmid_status: Literal["VERIFIED", "INVALID", "NOT_CHECKED", "RESOLVED_FROM_DOI", "ERROR"] = "NOT_CHECKED"
     pmid_title: str | None = None
     doi: str | None = None
     figure: str | None = None
