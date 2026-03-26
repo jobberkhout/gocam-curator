@@ -93,6 +93,14 @@ class ValidatedEvidence(BaseModel):
     source_file: str | None = None   # which extraction file this evidence came from
 
 
+class SynGOTerm(BaseModel):
+    """A single SynGO-curated GO term annotation with supporting PMIDs."""
+    go_id: str
+    go_name: str
+    domain: str       # "BP" or "CC"
+    pmids: list[str] = Field(default_factory=list)
+
+
 class ValidatedNodeClaim(BaseModel):
     """A fully validated node claim."""
     id: str
@@ -106,7 +114,8 @@ class ValidatedNodeClaim(BaseModel):
     cellular_component: ValidatedGOTerm | None = None
     evidence: ValidatedEvidence | None = None
     confidence: str = "MEDIUM"
-    syngo_annotations: list[str] = Field(default_factory=list)
+    syngo_annotations: list[str] = Field(default_factory=list)   # kept for display/legacy
+    syngo_enrichment: list[SynGOTerm] = Field(default_factory=list)  # structured, with PMIDs
     quote: str | None = None
 
 

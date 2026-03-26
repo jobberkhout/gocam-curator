@@ -8,6 +8,7 @@ from pathlib import Path
 import click
 
 from gocam.models.claim import (
+    SynGOTerm,
     ValidatedEdgeClaim,
     ValidatedEvidence,
     ValidatedGOTerm,
@@ -236,6 +237,57 @@ def _group_edges(edges: list[ValidatedEdgeClaim]) -> list[list[ValidatedEdgeClai
     return list(groups.values())
 
 
+def _separate_edge_types(
+    edges: list[ValidatedEdgeClaim],
+    nodes: list[ValidatedNodeClaim],
+) -> tuple[
+    list[ValidatedEdgeClaim],  # causal edges — connect two protein activities
+    list[ValidatedEdgeClaim],  # has_input edges — substrate/target of an activity
+    list[ValidatedEdgeClaim],  # node-property edges — part_of to a non-protein (BP context)
+]:
+    """Classify edges into three categories for appropriate rendering.
+
+    has_input edges and part_of-to-non-protein edges are node properties in
+    GO-CAM, not causal connections. They are displayed on the subject node
+    instead of as separate edges.
+    """
+    known: set[str] = set()
+    for n in nodes:
+        known.add(n.protein_name.lower())
+        if n.gene_symbol:
+            known.add(n.gene_symbol.lower())
+
+    causal: list[ValidatedEdgeClaim] = []
+    has_input: list[ValidatedEdgeClaim] = []
+    node_props: list[ValidatedEdgeClaim] = []
+
+    for edge in edges:
+        rel = edge.relation.lower()
+        if rel == "has_input":
+            has_input.append(edge)
+        elif rel == "part_of" and edge.object.lower() not in known:
+            # part_of to a biological process term, not to another protein
+            node_props.append(edge)
+        else:
+            causal.append(edge)
+
+    return causal, has_input, node_props
+
+
+def _build_node_edge_lookups(
+    has_input: list[ValidatedEdgeClaim],
+    node_props: list[ValidatedEdgeClaim],
+) -> tuple[dict[str, list[ValidatedEdgeClaim]], dict[str, list[ValidatedEdgeClaim]]]:
+    """Build subject → edge lookups for has_input and node-property edges."""
+    hi: dict[str, list[ValidatedEdgeClaim]] = {}
+    np: dict[str, list[ValidatedEdgeClaim]] = {}
+    for e in has_input:
+        hi.setdefault(e.subject.lower(), []).append(e)
+    for e in node_props:
+        np.setdefault(e.subject.lower(), []).append(e)
+    return hi, np
+
+
 # ---------------------------------------------------------------------------
 # Formatting
 # ---------------------------------------------------------------------------
@@ -299,7 +351,12 @@ def _evidence_block(ev: ValidatedEvidence) -> list[str]:
     return lines or ["- Evidence: _none_"]
 
 
-def _render_node_group(group: list[ValidatedNodeClaim], index: int) -> list[str]:
+def _render_node_group(
+    group: list[ValidatedNodeClaim],
+    index: int,
+    has_input_lookup: dict[str, list[ValidatedEdgeClaim]] | None = None,
+    node_props_lookup: dict[str, list[ValidatedEdgeClaim]] | None = None,
+) -> list[str]:
     lines: list[str] = []
 
     names = list(dict.fromkeys(n.protein_name for n in group))
@@ -326,6 +383,40 @@ def _render_node_group(group: list[ValidatedNodeClaim], index: int) -> list[str]
     lines.extend(_go_lines("BP", bp_terms))
     lines.extend(_go_lines("CC", cc_terms))
 
+    # Node-property edges: part_of to a biological process not in the protein set
+    subject_keys = {n.protein_name.lower() for n in group} | {n.gene_symbol.lower() for n in group if n.gene_symbol}
+    if node_props_lookup:
+        bp_context = [e for k in subject_keys for e in node_props_lookup.get(k, [])]
+        bp_context = list({id(e): e for e in bp_context}.values())  # deduplicate
+        if bp_context:
+            seen_obj: set[str] = set()
+            for e in bp_context:
+                obj_key = e.object.lower()
+                if obj_key in seen_obj:
+                    continue
+                seen_obj.add(obj_key)
+                pmid_str = (
+                    f" ({_pmid_link(e.evidence.pmid)})" if e.evidence and e.evidence.pmid else ""
+                )
+                lines.append(f"- BP context (from edge): {e.object}{pmid_str}")
+
+    # has_input edges: substrates/molecular targets of this protein's activity
+    if has_input_lookup:
+        inputs = [e for k in subject_keys for e in has_input_lookup.get(k, [])]
+        inputs = list({id(e): e for e in inputs}.values())
+        if inputs:
+            seen_inp: set[str] = set()
+            for e in inputs:
+                inp_key = e.object.lower()
+                if inp_key in seen_inp:
+                    continue
+                seen_inp.add(inp_key)
+                assay_str = f" [{e.evidence.assay}]" if e.evidence and e.evidence.assay else ""
+                pmid_str = (
+                    f" ({_pmid_link(e.evidence.pmid)})" if e.evidence and e.evidence.pmid else ""
+                )
+                lines.append(f"- Substrate/Input: {e.object}{assay_str}{pmid_str}")
+
     evidences = _collect_evidences(group)
     for ev in evidences:
         lines.extend(_evidence_block(ev))
@@ -339,9 +430,15 @@ def _render_node_group(group: list[ValidatedNodeClaim], index: int) -> list[str]
     for q in quotes:
         lines.append(f'- Quote: "{q}"')
 
-    all_syngo = list(dict.fromkeys(ann for n in group for ann in n.syngo_annotations))
-    if all_syngo:
-        lines.append(f"- SynGO: {', '.join(all_syngo)}")
+    # SynGO enrichment with clickable PMIDs, grouped by domain
+    all_syngo_terms: list[SynGOTerm] = list(
+        {t.go_id: t for n in group for t in n.syngo_enrichment}.values()
+    )
+    if all_syngo_terms:
+        lines.append("- SynGO annotations:")
+        for t in all_syngo_terms:
+            pmid_links = ", ".join(_pmid_link(p) for p in t.pmids) if t.pmids else "no PMID"
+            lines.append(f"  - [{t.domain}] {t.go_name} ({_quickgo_link(t.go_id)}) — {pmid_links}")
 
     lines.append("")
     return lines
@@ -385,12 +482,18 @@ def _render_edge_group(group: list[ValidatedEdgeClaim], index: int) -> list[str]
 # ---------------------------------------------------------------------------
 
 def _partition_claims(report: ValidationReport) -> tuple[
-    list[list[ValidatedNodeClaim]],   # included node groups
+    list[list[ValidatedNodeClaim]],                    # included node groups
     list[tuple[list[ValidatedNodeClaim], list[str]]],  # excluded nodes
-    list[list[ValidatedEdgeClaim]],   # included edge groups
-    list[tuple[list[ValidatedEdgeClaim], list[str]]],  # excluded edges
+    list[list[ValidatedEdgeClaim]],                    # included causal edge groups
+    list[tuple[list[ValidatedEdgeClaim], list[str]]],  # excluded causal edges
+    dict[str, list[ValidatedEdgeClaim]],               # has_input lookup (subject → edges)
+    dict[str, list[ValidatedEdgeClaim]],               # node-property lookup (subject → edges)
 ]:
-    """Split all claims into included/excluded groups for nodes and edges."""
+    """Split all claims into included/excluded groups.
+
+    has_input and part_of-to-non-protein edges are separated out before
+    grouping so they are displayed on nodes rather than as standalone edges.
+    """
     node_groups = _group_nodes_by_uniprot(report.nodes)
     included_node_groups: list[list[ValidatedNodeClaim]] = []
     excluded_nodes: list[tuple[list[ValidatedNodeClaim], list[str]]] = []
@@ -402,7 +505,13 @@ def _partition_claims(report: ValidationReport) -> tuple[
             all_missing = _missing_fields(evidences[0] if evidences else None)
             excluded_nodes.append((group, all_missing))
 
-    edge_groups = _group_edges(report.edges)
+    # Separate edge types: causal vs has_input vs node-property (part_of to BP/CC)
+    causal_edges, has_input_edges, node_prop_edges = _separate_edge_types(
+        report.edges, report.nodes
+    )
+    has_input_lookup, node_props_lookup = _build_node_edge_lookups(has_input_edges, node_prop_edges)
+
+    edge_groups = _group_edges(causal_edges)
     included_edge_groups: list[list[ValidatedEdgeClaim]] = []
     excluded_edges: list[tuple[list[ValidatedEdgeClaim], list[str]]] = []
     for group in edge_groups:
@@ -413,7 +522,11 @@ def _partition_claims(report: ValidationReport) -> tuple[
             all_missing = _missing_fields(evidences[0] if evidences else None)
             excluded_edges.append((group, all_missing))
 
-    return included_node_groups, excluded_nodes, included_edge_groups, excluded_edges
+    return (
+        included_node_groups, excluded_nodes,
+        included_edge_groups, excluded_edges,
+        has_input_lookup, node_props_lookup,
+    )
 
 
 def _build_nodes_doc(
@@ -422,6 +535,8 @@ def _build_nodes_doc(
     excluded: list[tuple[list[ValidatedNodeClaim], list[str]]],
     process_name: str,
     species: str,
+    has_input_lookup: dict[str, list[ValidatedEdgeClaim]] | None = None,
+    node_props_lookup: dict[str, list[ValidatedEdgeClaim]] | None = None,
 ) -> str:
     """Nodes document: one entry per protein with all GO terms, evidence, and quotes."""
     lines: list[str] = []
@@ -434,7 +549,7 @@ def _build_nodes_doc(
         merge_note = f" ({n_merged} protein(s) collapsed from duplicate extractions)" if n_merged else ""
         lines.append(f"## Nodes (Molecular Activities){merge_note}\n")
         for i, group in enumerate(included, 1):
-            lines.extend(_render_node_group(group, i))
+            lines.extend(_render_node_group(group, i, has_input_lookup, node_props_lookup))
 
     # Validation summary
     go_verified = sum(
@@ -662,7 +777,7 @@ def narrative_command(process: str | None, genes: str | None, pdf: bool) -> None
     filtered_report = report.model_copy(update={"nodes": nodes, "edges": edges})
 
     # Partition into included/excluded groups
-    inc_nodes, exc_nodes, inc_edges, exc_edges = _partition_claims(filtered_report)
+    inc_nodes, exc_nodes, inc_edges, exc_edges, has_input_lookup, node_props_lookup = _partition_claims(filtered_report)
 
     n_nodes_excluded = len(exc_nodes)
     n_edges_excluded = len(exc_edges)
@@ -678,7 +793,10 @@ def narrative_command(process: str | None, genes: str | None, pdf: bool) -> None
             "— listed at end of narrative for manual review"
         )
 
-    nodes_md = _build_nodes_doc(filtered_report, inc_nodes, exc_nodes, process_name, species)
+    nodes_md = _build_nodes_doc(
+        filtered_report, inc_nodes, exc_nodes, process_name, species,
+        has_input_lookup=has_input_lookup, node_props_lookup=node_props_lookup,
+    )
     edges_md = _build_edges_doc(inc_edges, exc_edges, process_name, species)
 
     narratives_dir = process_dir / _NARRATIVES_DIR

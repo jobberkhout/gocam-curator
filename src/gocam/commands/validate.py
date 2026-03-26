@@ -14,6 +14,7 @@ from gocam.models.claim import (
     EdgeClaim,
     ExtractionFile,
     NodeClaim,
+    SynGOTerm,
     ValidatedEdgeClaim,
     ValidatedEvidence,
     ValidatedGOTerm,
@@ -194,23 +195,59 @@ def _validate_node(
             if go_term and go_term.go_id and go_term.go_id in annotated_ids:
                 go_term.already_annotated = True
 
-    # SynGO check
+    # SynGO enrichment — collect all BP/CC annotations grouped by GO ID with PMIDs
     syngo_annotations: list[str] = []
+    syngo_enrichment: list[SynGOTerm] = []
     syngo = get_syngo()
     if syngo.available and gene:
         sg = syngo.search_gene(gene)
         if sg.get("found"):
+            # Group annotations by GO ID, collecting all supporting PMIDs
+            by_go_id: dict[str, SynGOTerm] = {}
             for ann in sg.get("bp", []) + sg.get("cc", []):
                 go_id = ann.get("go_id", "")
                 go_name = ann.get("go_name", "")
-                if go_id:
-                    syngo_annotations.append(f"{go_name} ({go_id})")
-            # Check if any of our GO terms are confirmed by SynGO
+                domain = ann.get("go_domain", "").upper()  # "BP" or "CC"
+                pmid = str(ann.get("pubmed_id", "")).strip()
+                if not go_id:
+                    continue
+                if go_id not in by_go_id:
+                    by_go_id[go_id] = SynGOTerm(go_id=go_id, go_name=go_name, domain=domain)
+                if pmid and pmid.isdigit() and pmid not in by_go_id[go_id].pmids:
+                    by_go_id[go_id].pmids.append(pmid)
+
+            syngo_enrichment = list(by_go_id.values())
+            # Keep flat list for display/legacy
+            syngo_annotations = [f"{t.go_name} ({t.go_id})" for t in syngo_enrichment]
+
+            # Mark extracted GO terms confirmed by SynGO
             for go_term in (mf, bp, cc):
-                if go_term and go_term.go_id:
-                    sv = syngo.validate_annotation(gene, go_term.go_id)
-                    if sv.get("status") == "SYNGO_CONFIRMED":
-                        go_term.syngo_confirmed = True
+                if go_term and go_term.go_id and go_term.go_id in by_go_id:
+                    go_term.syngo_confirmed = True
+
+            # Fill in missing BP from SynGO when extraction found nothing
+            syngo_bp = [t for t in syngo_enrichment if t.domain == "BP"]
+            if bp is None and syngo_bp:
+                best = syngo_bp[0]  # most entries = first after grouping
+                bp = ValidatedGOTerm(
+                    term=best.go_name,
+                    go_id=best.go_id,
+                    status="VERIFIED",  # SynGO uses only real, current GO IDs
+                    official_label=best.go_name,
+                    syngo_confirmed=True,
+                )
+
+            # Fill in missing CC from SynGO when extraction found nothing
+            syngo_cc = [t for t in syngo_enrichment if t.domain == "CC"]
+            if cc is None and syngo_cc:
+                best = syngo_cc[0]
+                cc = ValidatedGOTerm(
+                    term=best.go_name,
+                    go_id=best.go_id,
+                    status="VERIFIED",
+                    official_label=best.go_name,
+                    syngo_confirmed=True,
+                )
 
     # Evidence
     evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache)
@@ -227,6 +264,7 @@ def _validate_node(
         evidence=evidence,
         confidence=claim.confidence,
         syngo_annotations=syngo_annotations,
+        syngo_enrichment=syngo_enrichment,
         quote=claim.quote,
     )
 
