@@ -214,18 +214,45 @@ def _collect_evidences(nodes: list[ValidatedNodeClaim]) -> list[ValidatedEvidenc
     return result
 
 
-def _group_nodes_by_uniprot(
+def _group_nodes(
     nodes: list[ValidatedNodeClaim],
 ) -> list[list[ValidatedNodeClaim]]:
-    """Group nodes by UniProt ID. Nodes without a UniProt ID are not merged."""
-    groups: dict[str, list[ValidatedNodeClaim]] = {}
-    singletons: list[list[ValidatedNodeClaim]] = []
+    """Group nodes into merged sets, using the most reliable identifier available.
+
+    Priority:
+    1. UniProt ID  — most reliable; merges nodes from different papers about
+       the same protein regardless of what name the authors used.
+    2. Gene symbol — merges nodes that share a gene symbol but have no UniProt
+       hit (e.g. the protein wasn't found in the species taxon).
+    3. Protein name (lowercase) — last resort for truly unidentified entries.
+
+    Within each group ALL distinct protein_name values are preserved as aliases
+    and shown in the node header.
+    """
+    # Pass 1: group by UniProt ID
+    by_uniprot: dict[str, list[ValidatedNodeClaim]] = {}
+    remaining: list[ValidatedNodeClaim] = []
     for node in nodes:
         if node.uniprot_id:
-            groups.setdefault(node.uniprot_id, []).append(node)
+            by_uniprot.setdefault(node.uniprot_id, []).append(node)
         else:
-            singletons.append([node])
-    return list(groups.values()) + singletons
+            remaining.append(node)
+
+    # Pass 2: group remaining by gene symbol (case-insensitive)
+    by_gene: dict[str, list[ValidatedNodeClaim]] = {}
+    still_remaining: list[ValidatedNodeClaim] = []
+    for node in remaining:
+        if node.gene_symbol:
+            by_gene.setdefault(node.gene_symbol.upper(), []).append(node)
+        else:
+            still_remaining.append(node)
+
+    # Pass 3: group remaining by protein name (case-insensitive)
+    by_name: dict[str, list[ValidatedNodeClaim]] = {}
+    for node in still_remaining:
+        by_name.setdefault(node.protein_name.lower(), []).append(node)
+
+    return list(by_uniprot.values()) + list(by_gene.values()) + list(by_name.values())
 
 
 def _group_edges(edges: list[ValidatedEdgeClaim]) -> list[list[ValidatedEdgeClaim]]:
@@ -301,13 +328,17 @@ def _go_lines(label: str, terms: list[ValidatedGOTerm]) -> list[str]:
         go_id_str = f" ({_quickgo_link(go_term.go_id)})" if go_term.go_id else ""
         official = (
             f' [official: "{go_term.official_label}"]'
-            if go_term.official_label
-            and go_term.official_label.lower() != go_term.term.lower()
+            if go_term.name_mismatch and go_term.official_label
             else ""
         )
         annotated = " [already in QuickGO]" if go_term.already_annotated else ""
         syngo = " [SynGO confirmed]" if go_term.syngo_confirmed else ""
-        lines.append(f"- {label}: {go_term.term}{go_id_str} {icon}{official}{annotated}{syngo}")
+        ns_warn = (
+            f" **[⚠ NAMESPACE MISMATCH: term is {go_term.actual_namespace}, not {label}]**"
+            if go_term.namespace_ok is False and go_term.actual_namespace
+            else ""
+        )
+        lines.append(f"- {label}: {go_term.term}{go_id_str} {icon}{official}{annotated}{syngo}{ns_warn}")
     return lines
 
 
@@ -455,16 +486,44 @@ def _render_edge_group(group: list[ValidatedEdgeClaim], index: int) -> list[str]
     if mechanisms:
         lines.append(f"- Mechanism: {'; '.join(mechanisms)}")
 
-    seen_pmids: set[str] = set()
-    for e in group:
+    # Sort evidence: primary sources before review sources, then by PMID
+    def _ev_sort_key(e: ValidatedEdgeClaim) -> tuple[int, str]:
+        st = (e.evidence.source_type or "").lower() if e.evidence else ""
+        rank = 0 if st == "primary" else (1 if st == "review" else 2)
+        pmid = (e.evidence.pmid or "") if e.evidence else ""
+        return (rank, pmid)
+
+    sorted_group = sorted(group, key=_ev_sort_key)
+
+    # Deduplicate on (PMID, ECO code) so that the same paper with different
+    # assay methods each appear, but truly identical records are collapsed.
+    seen_keys: set[tuple[str | None, str | None]] = set()
+    for e in sorted_group:
         if not e.evidence:
             continue
-        key = e.evidence.pmid or str(id(e.evidence))
-        if key not in seen_pmids:
-            seen_pmids.add(key)
+        pmid_key = e.evidence.pmid or f"_noid_{id(e.evidence)}"
+        eco_key = e.evidence.eco_code
+        key = (pmid_key, eco_key)
+        if key not in seen_keys:
+            seen_keys.add(key)
             lines.extend(_evidence_block(e.evidence))
-    if not seen_pmids:
+
+    if not seen_keys:
         lines.append("- Evidence: _none_")
+
+    # Show merged source type when multiple extractions were combined
+    if len(group) > 1:
+        has_primary = any(
+            e.evidence and (e.evidence.source_type or "").lower() == "primary"
+            for e in group
+        )
+        has_review = any(
+            e.evidence and (e.evidence.source_type or "").lower() == "review"
+            for e in group
+        )
+        if has_primary or has_review:
+            merged_type = "primary" if has_primary else "review"
+            lines.append(f"- Source type (merged): {merged_type}")
 
     best_conf = max((e.confidence for e in group), key=lambda c: _CONF_RANK.get(c, 0))
     lines.append(f"- Confidence: {best_conf}")
@@ -494,7 +553,7 @@ def _partition_claims(report: ValidationReport) -> tuple[
     has_input and part_of-to-non-protein edges are separated out before
     grouping so they are displayed on nodes rather than as standalone edges.
     """
-    node_groups = _group_nodes_by_uniprot(report.nodes)
+    node_groups = _group_nodes(report.nodes)
     included_node_groups: list[list[ValidatedNodeClaim]] = []
     excluded_nodes: list[tuple[list[ValidatedNodeClaim], list[str]]] = []
     for group in node_groups:

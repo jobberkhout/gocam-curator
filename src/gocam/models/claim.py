@@ -77,6 +77,11 @@ class ValidatedGOTerm(BaseModel):
     official_label: str | None = None
     already_annotated: bool = False
     syngo_confirmed: bool = False
+    # Namespace (ontology aspect) validation
+    namespace_ok: bool | None = None        # None=not checked, True=match, False=mismatch
+    actual_namespace: str | None = None     # actual GO namespace returned by QuickGO
+    # Term-name consistency
+    name_mismatch: bool = False             # True when official_label differs from stated term
 
 
 class ValidatedEvidence(BaseModel):
@@ -91,6 +96,7 @@ class ValidatedEvidence(BaseModel):
     eco_label: str | None = None
     eco_status: Literal["VERIFIED", "OBSOLETE", "NOT_FOUND", "SKIPPED", "ERROR"] = "SKIPPED"
     source_file: str | None = None   # which extraction file this evidence came from
+    source_type: str = "text"        # "primary", "review", or file-type hint from extraction
 
 
 class SynGOTerm(BaseModel):

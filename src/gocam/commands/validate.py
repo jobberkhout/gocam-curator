@@ -21,7 +21,7 @@ from gocam.models.claim import (
     ValidatedNodeClaim,
     ValidationReport,
 )
-from gocam.services.eco import search_eco_terms, verify_eco
+from gocam.services.eco import lookup_eco_by_keyword, search_eco_terms, verify_eco
 from gocam.services.pubmed import resolve_doi_from_title, resolve_pmid_from_doi, verify_pmid
 from gocam.services.quickgo import get_protein_annotations, search_go_terms, verify_go_term
 from gocam.services.syngo import get_syngo
@@ -58,7 +58,14 @@ def _resolve_go_term(
     aspect: str,
     http: httpx.Client,
 ) -> ValidatedGOTerm | None:
-    """Search for a GO term by label, verify the best hit."""
+    """Search for a GO term by label, verify the best hit.
+
+    After verification, check:
+    - namespace: does the term's actual ontology aspect match the field it is
+      used in?  A wrong namespace means the LLM put a BP term in the MF field
+      (or similar).
+    - name: does the stated term name match the official QuickGO label?
+    """
     if not term:
         return None
 
@@ -70,11 +77,31 @@ def _resolve_go_term(
     go_id = best.get("go_id", "")
     vr = verify_go_term(go_id, aspect, client=http)
 
+    official_label: str | None = vr.get("official_label") or best.get("label")
+    actual_namespace: str | None = vr.get("aspect")   # e.g. "molecular_function"
+    aspect_match: bool | None = vr.get("aspect_match")  # None if not returned
+
+    # Namespace validation: flag if GO namespace ≠ field where term is used
+    if aspect_match is not None:
+        namespace_ok: bool | None = bool(aspect_match)
+    elif actual_namespace:
+        namespace_ok = (actual_namespace == aspect)
+    else:
+        namespace_ok = None
+
+    # Name validation: flag when the official label materially differs from stated term
+    name_mismatch = False
+    if official_label and term:
+        name_mismatch = official_label.lower().strip() != term.lower().strip()
+
     return ValidatedGOTerm(
         term=term,
         go_id=go_id,
         status=vr.get("status", "NOT_FOUND"),
-        official_label=vr.get("official_label") or best.get("label"),
+        official_label=official_label,
+        namespace_ok=namespace_ok,
+        actual_namespace=actual_namespace,
+        name_mismatch=name_mismatch,
     )
 
 
@@ -89,6 +116,7 @@ def _validate_evidence(
     source_doi: str | None = None,
     source_pmid: str | None = None,
     doi_pmid_cache: dict[str, str | None] | None = None,
+    source_type: str = "text",
 ) -> ValidatedEvidence:
     """Validate the evidence fields of a claim.
 
@@ -97,6 +125,7 @@ def _validate_evidence(
                   highest-priority fallback).
     source_doi:   DOI of the source paper; used as last-resort PMID fallback.
     doi_pmid_cache: shared dict to avoid re-resolving the same DOI repeatedly.
+    source_type:  "primary", "review", or file-type hint from the extraction file.
     """
     if doi_pmid_cache is None:
         doi_pmid_cache = {}
@@ -105,18 +134,37 @@ def _validate_evidence(
         figure=claim.figure,
         assay=claim.assay_described,
         source_file=source_file,
+        source_type=source_type,
     )
 
-    # ECO code from assay description
+    # ECO code from assay description.
+    # Strategy: keyword lookup first (fast, precise) → OLS4 search fallback.
+    # If neither matches, log a warning so the curator knows to assign manually.
     if claim.assay_described:
-        eco_hits = search_eco_terms(claim.assay_described, limit=3, client=http)
-        if eco_hits:
-            best_eco = eco_hits[0]
-            eco_id = best_eco.get("eco_id", "")
+        eco_id, eco_label_hint = lookup_eco_by_keyword(claim.assay_described)
+        if eco_id:
+            # Keyword matched — verify the ID is still current and get official label
             eco_vr = verify_eco(eco_id, client=http)
             ev.eco_code = eco_id
-            ev.eco_label = eco_vr.get("official_label") or best_eco.get("label")
+            ev.eco_label = eco_vr.get("official_label") or eco_label_hint
             ev.eco_status = eco_vr.get("status", "NOT_FOUND")
+        else:
+            # No keyword match — try OLS4 full-text search as fallback
+            eco_hits = search_eco_terms(claim.assay_described, limit=3, client=http)
+            if eco_hits:
+                best_eco = eco_hits[0]
+                eco_id = best_eco.get("eco_id", "")
+                eco_vr = verify_eco(eco_id, client=http)
+                ev.eco_code = eco_id
+                ev.eco_label = eco_vr.get("official_label") or best_eco.get("label")
+                ev.eco_status = eco_vr.get("status", "NOT_FOUND")
+            else:
+                # Neither matched — warn; eco_code stays None
+                console.print(
+                    f"  [yellow]ECO:[/yellow] no match for assay "
+                    f"'{claim.assay_described[:70]}' (claim {claim.id}) — "
+                    "eco_code unset; assign manually"
+                )
 
     # PMID resolution — priority order:
     # 1. PMID from the input filename (curator-named, e.g. 20357116.pdf) — ground truth
@@ -170,6 +218,7 @@ def _validate_node(
     source_doi: str | None = None,
     source_pmid: str | None = None,
     doi_pmid_cache: dict[str, str | None] | None = None,
+    source_type: str = "text",
 ) -> ValidatedNodeClaim:
     """Validate a single node claim against all databases."""
     gene = claim.gene_symbol or ""
@@ -250,7 +299,7 @@ def _validate_node(
                 )
 
     # Evidence
-    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache)
+    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache, source_type=source_type)
 
     return ValidatedNodeClaim(
         id=claim.id,
@@ -280,9 +329,10 @@ def _validate_edge(
     source_doi: str | None = None,
     source_pmid: str | None = None,
     doi_pmid_cache: dict[str, str | None] | None = None,
+    source_type: str = "text",
 ) -> ValidatedEdgeClaim:
     """Validate an edge claim (evidence only — proteins validated via nodes)."""
-    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache)
+    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache, source_type=source_type)
 
     return ValidatedEdgeClaim(
         id=claim.id,
@@ -440,9 +490,9 @@ def validate_command(process: str | None) -> None:
         print_error("No extraction JSON files found.")
         raise SystemExit(1)
 
-    # Collect all claims across files, tracking source file, PMID, and DOI per claim
-    all_nodes: list[tuple[NodeClaim, str, str | None, str | None]] = []   # (claim, source_file, source_pmid, source_doi)
-    all_edges: list[tuple[EdgeClaim, str, str | None, str | None]] = []
+    # Collect all claims across files, tracking source file, PMID, DOI, and source_type per claim
+    all_nodes: list[tuple[NodeClaim, str, str | None, str | None, str]] = []   # (claim, src_file, src_pmid, src_doi, src_type)
+    all_edges: list[tuple[EdgeClaim, str, str | None, str | None, str]] = []
 
     for jf in json_files:
         try:
@@ -450,11 +500,12 @@ def validate_command(process: str | None) -> None:
             ext = ExtractionFile.model_validate(data)
             file_pmid = ext.source_pmid
             file_doi = ext.source_doi
+            file_type = ext.source_type or "text"
             for claim in ext.claims:
                 if isinstance(claim, NodeClaim):
-                    all_nodes.append((claim, jf.name, file_pmid, file_doi))
+                    all_nodes.append((claim, jf.name, file_pmid, file_doi, file_type))
                 elif isinstance(claim, EdgeClaim):
-                    all_edges.append((claim, jf.name, file_pmid, file_doi))
+                    all_edges.append((claim, jf.name, file_pmid, file_doi, file_type))
         except Exception as exc:
             print_warning(f"Could not parse {jf.name}: {exc}")
 
@@ -484,15 +535,15 @@ def validate_command(process: str | None) -> None:
     ) as progress:
         task = progress.add_task("Validating...", total=total)
 
-        for node, src_file, src_pmid, src_doi in all_nodes:
+        for node, src_file, src_pmid, src_doi, src_type in all_nodes:
             progress.update(task, description=f"[dim]{node.id}[/dim] {node.protein_name}")
-            vn = _validate_node(node, species, protein_cache, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache)
+            vn = _validate_node(node, species, protein_cache, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache, source_type=src_type)
             validated_nodes.append(vn)
             progress.advance(task)
 
-        for edge, src_file, src_pmid, src_doi in all_edges:
+        for edge, src_file, src_pmid, src_doi, src_type in all_edges:
             progress.update(task, description=f"[dim]{edge.id}[/dim] {edge.subject}→{edge.object}")
-            ve = _validate_edge(edge, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache)
+            ve = _validate_edge(edge, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache, source_type=src_type)
             validated_edges.append(ve)
             progress.advance(task)
 
