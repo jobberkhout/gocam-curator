@@ -27,6 +27,13 @@ searches/
 
 # SynGO data files (large binaries — download from syngoportal.org)
 data/syngo/*.xlsx
+# Office temp lock files
+data/~$*
+
+# Large downloaded archives
+*.tar.gz
+*.tar.bz2
+*.zip
 
 # macOS
 .DS_Store
