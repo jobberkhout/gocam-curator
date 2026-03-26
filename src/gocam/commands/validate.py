@@ -21,7 +21,7 @@ from gocam.models.claim import (
     ValidatedNodeClaim,
     ValidationReport,
 )
-from gocam.services.eco import lookup_eco_by_keyword, search_eco_terms, verify_eco
+from gocam.services.eco import match_eco_by_category, search_eco_best, verify_eco
 from gocam.services.pubmed import resolve_doi_from_title, resolve_pmid_from_doi, verify_pmid
 from gocam.services.quickgo import get_protein_annotations, search_go_terms, verify_go_term
 from gocam.services.syngo import get_syngo
@@ -138,33 +138,32 @@ def _validate_evidence(
     )
 
     # ECO code from assay description.
-    # Strategy: keyword lookup first (fast, precise) → OLS4 search fallback.
-    # If neither matches, log a warning so the curator knows to assign manually.
+    # Strategy:
+    #   1. OLS4 semantic search — accepts the top result when its relevance
+    #      score exceeds the threshold in eco.py (_SCORE_THRESHOLD).
+    #   2. Broad category fallback — a single indicator word is enough to
+    #      assign a high-level ECO category even when OLS4 is unavailable.
+    #   3. Neither matched — warn the curator; eco_code stays None.
     if claim.assay_described:
-        eco_id, eco_label_hint = lookup_eco_by_keyword(claim.assay_described)
+        # Step 1: OLS4 semantic search (primary)
+        eco_id, eco_label = search_eco_best(claim.assay_described, client=http)
+
+        if eco_id is None:
+            # Step 2: broad category matching (fallback)
+            eco_id, eco_label = match_eco_by_category(claim.assay_described)
+
         if eco_id:
-            # Keyword matched — verify the ID is still current and get official label
             eco_vr = verify_eco(eco_id, client=http)
-            ev.eco_code = eco_id
-            ev.eco_label = eco_vr.get("official_label") or eco_label_hint
+            ev.eco_code   = eco_id
+            ev.eco_label  = eco_vr.get("official_label") or eco_label
             ev.eco_status = eco_vr.get("status", "NOT_FOUND")
         else:
-            # No keyword match — try OLS4 full-text search as fallback
-            eco_hits = search_eco_terms(claim.assay_described, limit=3, client=http)
-            if eco_hits:
-                best_eco = eco_hits[0]
-                eco_id = best_eco.get("eco_id", "")
-                eco_vr = verify_eco(eco_id, client=http)
-                ev.eco_code = eco_id
-                ev.eco_label = eco_vr.get("official_label") or best_eco.get("label")
-                ev.eco_status = eco_vr.get("status", "NOT_FOUND")
-            else:
-                # Neither matched — warn; eco_code stays None
-                console.print(
-                    f"  [yellow]ECO:[/yellow] no match for assay "
-                    f"'{claim.assay_described[:70]}' (claim {claim.id}) — "
-                    "eco_code unset; assign manually"
-                )
+            # Neither matched — warn; eco_code stays None
+            console.print(
+                f"  [yellow]ECO:[/yellow] no match for assay "
+                f"'{claim.assay_described[:70]}' (claim {claim.id}) — "
+                "eco_code unset; assign manually"
+            )
 
     # PMID resolution — priority order:
     # 1. PMID from the input filename (curator-named, e.g. 20357116.pdf) — ground truth

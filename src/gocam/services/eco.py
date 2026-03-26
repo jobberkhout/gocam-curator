@@ -2,157 +2,190 @@
 
 ECO lookup strategy
 -------------------
-1. `lookup_eco_by_keyword()` checks a curated keyword→ECO table using
-   case-insensitive substring matching (first match wins).  More specific
-   entries are listed before general ones in the table.  All ECO IDs in the
-   table are from the ECO ontology and were verified against EBI OLS4.
+1. Primary  — OLS4 semantic search:
+   POST/GET https://www.ebi.ac.uk/ols4/api/search?q=<assay_text>&ontology=eco&rows=3
+   The top result is accepted when its Solr relevance score exceeds
+   _SCORE_THRESHOLD.  This handles the diverse free-text assay descriptions
+   that extraction produces without requiring an exhaustive keyword table.
 
-2. `search_eco_terms()` falls back to an OLS4 full-text search when no
-   keyword matches.  This covers unusual assay descriptions that are not
-   in the table.
+2. Fallback — broad category matching:
+   A single indicator word in the lowercased assay description is enough to
+   assign a high-level ECO category code.  Categories are checked in order;
+   more specific entries appear first.
 
-3. If neither approach yields a result the caller should flag the claim
-   as having no ECO assignment and warn the curator.
+3. If neither step produces a result, the caller warns the curator.
 """
 
 from __future__ import annotations
 
 import httpx
 
-_OLS_BASE = "https://www.ebi.ac.uk/ols4/api/ontologies/eco/terms"
+_OLS_BASE   = "https://www.ebi.ac.uk/ols4/api/ontologies/eco/terms"
 _OLS_SEARCH = "https://www.ebi.ac.uk/ols4/api/search"
-_TIMEOUT = 15.0
+_TIMEOUT    = 15.0
+
+# Minimum Solr relevance score to trust the OLS4 top result.
+# Scores for a near-exact label match tend to be 10–30+; loose matches are 2–5.
+_SCORE_THRESHOLD = 6.0
 
 # ---------------------------------------------------------------------------
-# Keyword → ECO lookup table
+# Broad category fallback table
 # ---------------------------------------------------------------------------
-# Each entry: (keyword_lowercase, eco_id, eco_label)
-# Rules:
-#  • More specific terms BEFORE less specific ones — first match wins.
-#  • All keywords are matched as substrings of the lowercased assay string.
-#  • ECO IDs sourced from EBI OLS4 / ECO ontology (purl.obolibrary.org/obo).
+# Each entry: (list_of_indicator_words, eco_id, eco_label)
+# Any single indicator word appearing as a substring of the lowercased assay
+# text triggers a match.  More specific categories are listed first.
 # ---------------------------------------------------------------------------
-_ASSAY_ECO_TABLE: list[tuple[str, str, str]] = [
-    # --- Immunoprecipitation family ---
-    ("co-immunoprecipitation", "ECO:0000081", "co-immunoprecipitation evidence used in manual assertion"),
-    ("co immunoprecipitation",  "ECO:0000081", "co-immunoprecipitation evidence used in manual assertion"),
-    ("coimmunoprecipitation",   "ECO:0000081", "co-immunoprecipitation evidence used in manual assertion"),
-    ("co-ip",                   "ECO:0000081", "co-immunoprecipitation evidence used in manual assertion"),
-    ("chromatin immunoprecipitation", "ECO:0000085", "chromatin immunoprecipitation evidence used in manual assertion"),
-    ("chip-seq",                "ECO:0000085", "chromatin immunoprecipitation evidence used in manual assertion"),
-    ("chip assay",              "ECO:0000085", "chromatin immunoprecipitation evidence used in manual assertion"),
-    ("immunoprecipitation",     "ECO:0000078", "immunoprecipitation evidence used in manual assertion"),
-    # --- Pull-down / binding ---
-    ("gst pull",  "ECO:0000075", "protein pull-down assay evidence used in manual assertion"),
-    ("pull-down", "ECO:0000075", "protein pull-down assay evidence used in manual assertion"),
-    ("pull down", "ECO:0000075", "protein pull-down assay evidence used in manual assertion"),
-    ("pulldown",  "ECO:0000075", "protein pull-down assay evidence used in manual assertion"),
-    # --- Yeast two-hybrid ---
-    ("yeast two-hybrid",  "ECO:0000068", "yeast two-hybrid evidence used in manual assertion"),
-    ("yeast 2-hybrid",    "ECO:0000068", "yeast two-hybrid evidence used in manual assertion"),
-    ("yeast two hybrid",  "ECO:0000068", "yeast two-hybrid evidence used in manual assertion"),
-    ("two-hybrid",        "ECO:0000068", "yeast two-hybrid evidence used in manual assertion"),
-    ("2-hybrid",          "ECO:0000068", "yeast two-hybrid evidence used in manual assertion"),
-    ("y2h",               "ECO:0000068", "yeast two-hybrid evidence used in manual assertion"),
-    # --- Western blot / immunoblot ---
-    ("western blot",      "ECO:0000084", "immunoblot evidence used in manual assertion"),
-    ("western blotting",  "ECO:0000084", "immunoblot evidence used in manual assertion"),
-    ("immunoblot",        "ECO:0000084", "immunoblot evidence used in manual assertion"),
-    # --- Gel mobility shift / EMSA ---
-    ("electrophoretic mobility shift", "ECO:0000099", "electrophoretic mobility shift assay evidence used in manual assertion"),
-    ("gel mobility shift",             "ECO:0000099", "electrophoretic mobility shift assay evidence used in manual assertion"),
-    ("gel shift",                      "ECO:0000099", "electrophoretic mobility shift assay evidence used in manual assertion"),
-    ("emsa",                           "ECO:0000099", "electrophoretic mobility shift assay evidence used in manual assertion"),
-    # --- Surface plasmon resonance ---
-    ("surface plasmon resonance", "ECO:0000082", "surface plasmon resonance evidence used in manual assertion"),
-    # Note: bare "spr" is too short to match safely without word boundaries
-    # --- Structural: X-ray / cryo-EM / EM ---
-    ("x-ray crystallography",  "ECO:0000095", "X-ray crystallography evidence used in manual assertion"),
-    ("x ray crystallography",  "ECO:0000095", "X-ray crystallography evidence used in manual assertion"),
-    ("crystallography",        "ECO:0000095", "X-ray crystallography evidence used in manual assertion"),
-    ("cryo-electron microscopy", "ECO:0000623", "cryo-electron microscopy evidence used in manual assertion"),
-    ("cryo-em",                "ECO:0000623", "cryo-electron microscopy evidence used in manual assertion"),
-    ("cryo em",                "ECO:0000623", "cryo-electron microscopy evidence used in manual assertion"),
-    ("cryoem",                 "ECO:0000623", "cryo-electron microscopy evidence used in manual assertion"),
-    ("electron microscopy",    "ECO:0000096", "microscopy evidence used in manual assertion"),
-    # --- NMR ---
-    ("nuclear magnetic resonance", "ECO:0000072", "nuclear magnetic resonance evidence used in manual assertion"),
-    ("nmr spectroscopy",           "ECO:0000072", "nuclear magnetic resonance evidence used in manual assertion"),
-    # --- Enzymatic / in vitro activity ---
-    ("in vitro kinase",         "ECO:0000071", "enzyme assay evidence used in manual assertion"),
-    ("in vitro phosphorylation","ECO:0000071", "enzyme assay evidence used in manual assertion"),
-    ("kinase assay",            "ECO:0000071", "enzyme assay evidence used in manual assertion"),
-    ("kinase activity assay",   "ECO:0000071", "enzyme assay evidence used in manual assertion"),
-    ("enzyme assay",            "ECO:0000071", "enzyme assay evidence used in manual assertion"),
-    ("enzymatic assay",         "ECO:0000071", "enzyme assay evidence used in manual assertion"),
-    # --- Genetic: knockdown before knockout (more specific first) ---
-    ("rnai",         "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("sirna",        "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("shrna",        "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("mirna",        "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("morpholino",   "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("knockdown",    "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("knock-down",   "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("knock down",   "ECO:0000074", "RNA interference evidence used in manual assertion"),
-    ("knockout",     "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    ("knock-out",    "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    ("knock out",    "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    ("loss-of-function", "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    ("loss of function", "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    ("gain-of-function", "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    ("gain of function", "ECO:0000045", "mutant phenotype evidence used in manual assertion"),
-    # --- Rescue / complementation ---
-    ("rescue experiment",  "ECO:0000119", "genetic complementation evidence used in manual assertion"),
-    ("rescue assay",       "ECO:0000119", "genetic complementation evidence used in manual assertion"),
-    ("genetic rescue",     "ECO:0000119", "genetic complementation evidence used in manual assertion"),
-    ("genetic complementation", "ECO:0000119", "genetic complementation evidence used in manual assertion"),
-    # --- Pharmacological ---
-    ("pharmacological inhibition", "ECO:0000120", "pharmacological evidence used in manual assertion"),
-    ("pharmacological treatment",  "ECO:0000120", "pharmacological evidence used in manual assertion"),
-    ("inhibitor treatment",        "ECO:0000120", "pharmacological evidence used in manual assertion"),
-    ("drug treatment",             "ECO:0000120", "pharmacological evidence used in manual assertion"),
-    ("pharmacological",            "ECO:0000120", "pharmacological evidence used in manual assertion"),
-    # --- Microscopy / imaging ---
-    ("immunofluorescence microscopy", "ECO:0000091", "immunofluorescence evidence used in manual assertion"),
-    ("immunofluorescence",            "ECO:0000091", "immunofluorescence evidence used in manual assertion"),
-    ("fluorescence microscopy",       "ECO:0000096", "microscopy evidence used in manual assertion"),
-    ("confocal microscopy",           "ECO:0000096", "microscopy evidence used in manual assertion"),
-    # --- Electrophysiology ---
-    ("electrophysiology",       "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("patch-clamp",             "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("patch clamp",             "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("whole-cell recording",    "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("field recording",         "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("field potential",         "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("miniature excitatory",    "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("miniature inhibitory",    "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("excitatory postsynaptic", "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("inhibitory postsynaptic", "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("mepsc",                   "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("mepsc",                   "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    ("evoked current",          "ECO:0001099", "electrophysiology evidence used in manual assertion"),
-    # --- Surface / trafficking ---
-    ("surface biotinylation",   "ECO:0000462", "cell surface protein biotinylation evidence used in manual assertion"),
-    ("biotinylation assay",     "ECO:0000462", "cell surface protein biotinylation evidence used in manual assertion"),
-    ("internalization assay",   "ECO:0000462", "cell surface protein biotinylation evidence used in manual assertion"),
+_CATEGORY_ECO: list[tuple[list[str], str, str]] = [
+    # Electrophysiology
+    (
+        ["recording", "epsc", "epsp", "current", "capacitance",
+         "patch", "clamp", "stimulus", "stimulati", "field potential",
+         "mepsc", "mipsc", "evoked", "synaptic transmission"],
+        "ECO:0006003",
+        "electrophysiology evidence used in manual assertion",
+    ),
+    # Imaging / microscopy
+    (
+        ["microscop", "imaging", "confocal", "tirf", "fluorescen",
+         "sted", "frap", "live cell", "live-cell", "super-resolution"],
+        "ECO:0005027",
+        "imaging evidence used in manual assertion",
+    ),
+    # In vitro biochemistry
+    (
+        ["in vitro", "cell-free", "recombinant", "reconstitut",
+         "liposome", "purified", "cosediment", "pull-down", "pulldown",
+         "kinase assay", "enzymatic", "biochemical"],
+        "ECO:0000005",
+        "enzyme assay evidence",
+    ),
+    # Genetic loss-of-function
+    (
+        ["knockout", "knock-out", "null mutant", "deletion mutant",
+         "conditional knockout", "loss-of-function", "loss of function"],
+        "ECO:0001091",
+        "loss-of-function mutant phenotype evidence used in manual assertion",
+    ),
+    # Genetic gain-of-function
+    (
+        ["overexpression", "over-expression", "constitutively active",
+         "gain-of-function", "gain of function"],
+        "ECO:0006055",
+        "gain-of-function mutant phenotype evidence used in manual assertion",
+    ),
+    # Genetic (general / other manipulation)
+    (
+        ["genetic manipulation", "mutant", "knockdown", "knock-down",
+         "rnai", "sirna", "shrna", "morpholino"],
+        "ECO:0006054",
+        "genetic manipulation evidence used in manual assertion",
+    ),
+    # Binding / co-purification assays
+    (
+        ["binding assay", "pull-down", "co-ip", "immunoprecip",
+         "cotransfect", "co-transfect", "yeast two-hybrid", "two-hybrid"],
+        "ECO:0000024",
+        "protein binding evidence used in manual assertion",
+    ),
+    # Calcium / second-messenger imaging
+    (
+        ["calcium imaging", "ca2+ imaging", "ca imaging", "uncaging",
+         "fluo-4", "fura-2", "gcamp"],
+        "ECO:0005027",
+        "imaging evidence used in manual assertion",
+    ),
 ]
 
 
-def lookup_eco_by_keyword(assay: str) -> tuple[str | None, str | None]:
-    """Match an assay description against the curated keyword table.
+def match_eco_by_category(assay: str) -> tuple[str | None, str | None]:
+    """Match an assay description against broad category indicator words.
 
-    Returns ``(eco_id, eco_label)`` for the first matching entry, or
-    ``(None, None)`` if no keyword matches.
-
-    Matching is case-insensitive substring search.  The table is ordered so
-    that more specific keywords appear before general ones (first match wins).
+    Returns ``(eco_id, eco_label)`` for the first category whose indicator
+    word appears anywhere in *assay* (case-insensitive), or
+    ``(None, None)`` if no category matches.
     """
     text = assay.lower()
-    for keyword, eco_id, eco_label in _ASSAY_ECO_TABLE:
-        if keyword in text:
+    for indicators, eco_id, eco_label in _CATEGORY_ECO:
+        if any(word in text for word in indicators):
             return eco_id, eco_label
     return None, None
 
+
+# ---------------------------------------------------------------------------
+# OLS4 search (primary)
+# ---------------------------------------------------------------------------
+
+def search_eco_terms(
+    assay_name: str,
+    limit: int = 3,
+    client: httpx.Client | None = None,
+) -> list[dict]:
+    """Search OLS4 for ECO terms matching *assay_name*.
+
+    Returns a list of dicts with keys ``eco_id``, ``label``, ``score``.
+    Results are ordered by OLS4 relevance score (highest first).
+    Returns an empty list on any error or empty input.
+    """
+    if not assay_name.strip():
+        return []
+
+    def _do(c: httpx.Client) -> list[dict]:
+        r = c.get(
+            _OLS_SEARCH,
+            params={
+                "q":         assay_name,
+                "ontology":  "eco",
+                "rows":      limit,
+                "fieldList": "short_form,label,score",
+            },
+            headers={"Accept": "application/json"},
+        )
+        if not r.is_success:
+            return []
+        docs = r.json().get("response", {}).get("docs", [])
+        results = []
+        for d in docs:
+            short = d.get("short_form", "")
+            if not short.startswith("ECO"):
+                continue
+            label = d.get("label", "")
+            if not label:
+                continue
+            results.append({
+                "eco_id": short.replace("_", ":"),
+                "label":  label,
+                "score":  float(d.get("score", 0)),
+            })
+        return results
+
+    try:
+        if client:
+            return _do(client)
+        with httpx.Client(timeout=_TIMEOUT) as c:
+            return _do(c)
+    except Exception:
+        return []
+
+
+def search_eco_best(
+    assay_name: str,
+    client: httpx.Client | None = None,
+) -> tuple[str | None, str | None]:
+    """Return the best OLS4 ECO match for *assay_name* if its score is
+    above *_SCORE_THRESHOLD*, otherwise return ``(None, None)``.
+    """
+    hits = search_eco_terms(assay_name, limit=3, client=client)
+    if not hits:
+        return None, None
+    top = hits[0]
+    if top["score"] >= _SCORE_THRESHOLD:
+        return top["eco_id"], top["label"]
+    return None, None
+
+
+# ---------------------------------------------------------------------------
+# OLS4 term verification (unchanged)
+# ---------------------------------------------------------------------------
 
 def _eco_to_iri(eco_code: str) -> str:
     """Convert 'ECO:0000006' → 'http://purl.obolibrary.org/obo/ECO_0000006'."""
@@ -160,13 +193,7 @@ def _eco_to_iri(eco_code: str) -> str:
 
 
 def verify_eco(eco_code: str, client: httpx.Client | None = None) -> dict:
-    """Query OLS4 for a single ECO code.
-
-    Args:
-        client: optional shared httpx.Client for connection pooling.
-
-    Returns a dict suitable for ECOVerification.model_validate().
-    """
+    """Query OLS4 for a single ECO code and return its status and label."""
     if not eco_code or eco_code.upper() in ("UNKNOWN", ""):
         return {"suggested": eco_code or "UNKNOWN", "status": "SKIPPED"}
 
@@ -178,20 +205,16 @@ def verify_eco(eco_code: str, client: httpx.Client | None = None) -> dict:
             params={"iri": iri},
             headers={"Accept": "application/json"},
         )
-
         r.raise_for_status()
         terms = r.json().get("_embedded", {}).get("terms", [])
-
         if not terms:
             return {"suggested": eco_code, "status": "NOT_FOUND"}
-
         term = terms[0]
-        label: str = term.get("label", "")
+        label: str       = term.get("label", "")
         is_obsolete: bool = term.get("is_obsolete", False)
-
         return {
-            "suggested": eco_code,
-            "status": "OBSOLETE" if is_obsolete else "VERIFIED",
+            "suggested":     eco_code,
+            "status":        "OBSOLETE" if is_obsolete else "VERIFIED",
             "official_label": label,
         }
 
@@ -204,70 +227,3 @@ def verify_eco(eco_code: str, client: httpx.Client | None = None) -> dict:
         return {"suggested": eco_code, "status": "TIMEOUT"}
     except Exception as exc:
         return {"suggested": eco_code, "status": "ERROR", "error": str(exc)}
-
-
-def search_eco_terms(
-    assay_name: str,
-    limit: int = 5,
-    client: httpx.Client | None = None,
-) -> list[dict]:
-    """Search for ECO terms matching an assay description via OLS4.
-
-    Uses OLS4 full-text search against the ECO ontology.
-    Returns a list of dicts with keys: eco_id, label.
-
-    Note: all returned IDs come directly from the ontology database and
-    have been matched by OLS4's own text search — no curated ID table is
-    used, so there is no risk of a semantically wrong but syntactically
-    valid code being returned.
-    """
-    if not assay_name.strip():
-        return []
-
-    def _do(c: httpx.Client) -> list[dict]:
-        # Try exact-label search first for higher precision
-        results = _ols_search(c, assay_name, exact=True, limit=limit)
-        if not results:
-            results = _ols_search(c, assay_name, exact=False, limit=limit)
-        return results
-
-    try:
-        if client:
-            return _do(client)
-        with httpx.Client(timeout=_TIMEOUT) as c:
-            return _do(c)
-    except Exception:
-        return []
-
-
-def _ols_search(
-    c: httpx.Client,
-    query: str,
-    exact: bool,
-    limit: int,
-) -> list[dict]:
-    """Run one OLS4 search query and return parsed ECO results."""
-    params: dict = {
-        "q": query,
-        "ontology": "eco",
-        "rows": limit,
-        "fieldList": "short_form,label",
-    }
-    if exact:
-        params["exact"] = "true"
-
-    try:
-        r = c.get(_OLS_SEARCH, params=params, headers={"Accept": "application/json"})
-        if not r.is_success:
-            return []
-        docs = r.json().get("response", {}).get("docs", [])
-        return [
-            {
-                "eco_id": d.get("short_form", "").replace("_", ":"),
-                "label": d.get("label", ""),
-            }
-            for d in docs
-            if d.get("short_form", "").startswith("ECO") and d.get("label")
-        ]
-    except Exception:
-        return []
