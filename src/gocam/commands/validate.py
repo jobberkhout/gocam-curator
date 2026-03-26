@@ -116,19 +116,25 @@ def _validate_evidence(
     source_doi: str | None = None,
     source_pmid: str | None = None,
     doi_pmid_cache: dict[str, str | None] | None = None,
+    pmid_verify_cache: dict[str, dict] | None = None,
     source_type: str = "text",
 ) -> ValidatedEvidence:
     """Validate the evidence fields of a claim.
 
-    source_file:  which extraction file this claim came from (for traceability).
-    source_pmid:  PMID extracted from the input filename (curator-controlled,
-                  highest-priority fallback).
-    source_doi:   DOI of the source paper; used as last-resort PMID fallback.
-    doi_pmid_cache: shared dict to avoid re-resolving the same DOI repeatedly.
-    source_type:  "primary", "review", or file-type hint from the extraction file.
+    source_file:       which extraction file this claim came from.
+    source_pmid:       PMID from the input filename (curator-controlled, highest priority).
+    source_doi:        DOI of the source paper; used as last-resort PMID fallback.
+    doi_pmid_cache:    shared dict — avoids re-resolving the same DOI→PMID.
+    pmid_verify_cache: shared dict — avoids re-verifying the same PMID against
+                       PubMed.  With 400+ claims often referencing only ~17 unique
+                       PMIDs, without this cache each PMID is verified dozens of
+                       times, quickly triggering PubMed's 429 rate limit.
+    source_type:       "primary", "review", or file-type hint from the extraction file.
     """
     if doi_pmid_cache is None:
         doi_pmid_cache = {}
+    if pmid_verify_cache is None:
+        pmid_verify_cache = {}
 
     ev = ValidatedEvidence(
         figure=claim.figure,
@@ -169,9 +175,15 @@ def _validate_evidence(
     # 1. PMID from the input filename (curator-named, e.g. 20357116.pdf) — ground truth
     # 2. Explicit PMID found in the paper text by the LLM
     # 3. PMID resolved from the paper's DOI (automatic, last resort)
+    def _cached_verify(pmid: str) -> dict:
+        """Call verify_pmid, caching the result so each unique PMID hits PubMed once."""
+        if pmid not in pmid_verify_cache:
+            pmid_verify_cache[pmid] = verify_pmid(pmid)
+        return pmid_verify_cache[pmid]
+
     if source_pmid:
         # Curator named the file with its PMID — ground truth, verify and use directly.
-        pmid_result = verify_pmid(source_pmid)
+        pmid_result = _cached_verify(source_pmid)
         ev.pmid = source_pmid
         ev.pmid_status = pmid_result.get("status", "ERROR")
         ev.pmid_title = pmid_result.get("title")
@@ -179,7 +191,7 @@ def _validate_evidence(
 
     elif claim.pmid_from_text:
         # LLM found a PMID explicitly written in the paper text.
-        pmid_result = verify_pmid(claim.pmid_from_text)
+        pmid_result = _cached_verify(claim.pmid_from_text)
         ev.pmid = claim.pmid_from_text
         ev.pmid_status = pmid_result.get("status", "ERROR")
         ev.pmid_title = pmid_result.get("title")
@@ -196,7 +208,7 @@ def _validate_evidence(
             doi_pmid_cache[source_doi] = resolve_pmid_from_doi(source_doi)
         resolved_pmid = doi_pmid_cache[source_doi]
         if resolved_pmid:
-            pmid_result = verify_pmid(resolved_pmid)
+            pmid_result = _cached_verify(resolved_pmid)
             ev.pmid = resolved_pmid
             ev.pmid_status = "RESOLVED_FROM_DOI"
             ev.pmid_title = pmid_result.get("title")
@@ -217,6 +229,7 @@ def _validate_node(
     source_doi: str | None = None,
     source_pmid: str | None = None,
     doi_pmid_cache: dict[str, str | None] | None = None,
+    pmid_verify_cache: dict[str, dict] | None = None,
     source_type: str = "text",
 ) -> ValidatedNodeClaim:
     """Validate a single node claim against all databases."""
@@ -298,7 +311,7 @@ def _validate_node(
                 )
 
     # Evidence
-    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache, source_type=source_type)
+    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache, pmid_verify_cache=pmid_verify_cache, source_type=source_type)
 
     return ValidatedNodeClaim(
         id=claim.id,
@@ -328,10 +341,11 @@ def _validate_edge(
     source_doi: str | None = None,
     source_pmid: str | None = None,
     doi_pmid_cache: dict[str, str | None] | None = None,
+    pmid_verify_cache: dict[str, dict] | None = None,
     source_type: str = "text",
 ) -> ValidatedEdgeClaim:
     """Validate an edge claim (evidence only — proteins validated via nodes)."""
-    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache, source_type=source_type)
+    evidence = _validate_evidence(claim, http, source_file=source_file, source_doi=source_doi, source_pmid=source_pmid, doi_pmid_cache=doi_pmid_cache, pmid_verify_cache=pmid_verify_cache, source_type=source_type)
 
     return ValidatedEdgeClaim(
         id=claim.id,
@@ -510,6 +524,7 @@ def validate_command(process: str | None) -> None:
 
     total = len(all_nodes) + len(all_edges)
     doi_pmid_cache: dict[str, str | None] = {}
+    pmid_verify_cache: dict[str, dict] = {}   # avoids re-verifying the same PMID N times
     if total == 0:
         print_warning("No claims found in extraction files.")
         raise SystemExit(0)
@@ -536,13 +551,13 @@ def validate_command(process: str | None) -> None:
 
         for node, src_file, src_pmid, src_doi, src_type in all_nodes:
             progress.update(task, description=f"[dim]{node.id}[/dim] {node.protein_name}")
-            vn = _validate_node(node, species, protein_cache, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache, source_type=src_type)
+            vn = _validate_node(node, species, protein_cache, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache, pmid_verify_cache=pmid_verify_cache, source_type=src_type)
             validated_nodes.append(vn)
             progress.advance(task)
 
         for edge, src_file, src_pmid, src_doi, src_type in all_edges:
             progress.update(task, description=f"[dim]{edge.id}[/dim] {edge.subject}→{edge.object}")
-            ve = _validate_edge(edge, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache, source_type=src_type)
+            ve = _validate_edge(edge, http, source_file=src_file, source_doi=src_doi, source_pmid=src_pmid, doi_pmid_cache=doi_pmid_cache, pmid_verify_cache=pmid_verify_cache, source_type=src_type)
             validated_edges.append(ve)
             progress.advance(task)
 

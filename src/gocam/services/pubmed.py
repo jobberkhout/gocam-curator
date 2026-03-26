@@ -87,47 +87,59 @@ def verify_pmid(pmid: str) -> dict:
 
     Returns a dict with keys: pmid, status, title (if found), doi (if found).
     Status is "VERIFIED", "INVALID", or "ERROR".
+
+    Retries up to 3 times with exponential back-off (2 s, 4 s, 8 s) when
+    PubMed responds with 429 Too Many Requests.
     """
     if not pmid or not pmid.strip().isdigit():
         return {"pmid": pmid or "", "status": "INVALID"}
 
     _rate_limit()
-    try:
-        r = httpx.get(
-            f"{_BASE}/esummary.fcgi",
-            params={"db": "pubmed", "id": pmid.strip(), "retmode": "json"},
-            timeout=_TIMEOUT,
-        )
-        r.raise_for_status()
-        data = r.json().get("result", {})
-        entry = data.get(pmid.strip(), {})
 
-        if "error" in entry:
-            return {"pmid": pmid, "status": "INVALID"}
+    _backoff = [2, 4, 8]
+    for attempt in range(4):
+        try:
+            r = httpx.get(
+                f"{_BASE}/esummary.fcgi",
+                params={"db": "pubmed", "id": pmid.strip(), "retmode": "json"},
+                timeout=_TIMEOUT,
+            )
+            if r.status_code == 429:
+                if attempt < len(_backoff):
+                    time.sleep(_backoff[attempt])
+                    continue
+                return {"pmid": pmid, "status": "ERROR", "error": "429 rate-limited after retries"}
 
-        title = entry.get("title", "")
-        doi: str | None = None
+            r.raise_for_status()
+            data  = r.json().get("result", {})
+            entry = data.get(pmid.strip(), {})
 
-        # Try elocationid first (format: "doi: 10.xxxx/xxxxx")
-        eloc = entry.get("elocationid", "")
-        if eloc.lower().startswith("doi:"):
-            doi = eloc.split(":", 1)[1].strip()
+            if "error" in entry:
+                return {"pmid": pmid, "status": "INVALID"}
 
-        # Fallback: check articleids list
-        if not doi:
-            for aid in entry.get("articleids", []):
-                if aid.get("idtype") == "doi":
-                    doi = aid.get("value", "")
-                    break
+            title = entry.get("title", "")
+            doi: str | None = None
 
-        return {
-            "pmid": pmid,
-            "status": "VERIFIED",
-            "title": title,
-            "doi": doi,
-        }
-    except Exception as exc:
-        return {"pmid": pmid, "status": "ERROR", "error": str(exc)}
+            # Try elocationid first (format: "doi: 10.xxxx/xxxxx")
+            eloc = entry.get("elocationid", "")
+            if eloc.lower().startswith("doi:"):
+                doi = eloc.split(":", 1)[1].strip()
+
+            # Fallback: check articleids list
+            if not doi:
+                for aid in entry.get("articleids", []):
+                    if aid.get("idtype") == "doi":
+                        doi = aid.get("value", "")
+                        break
+
+            return {"pmid": pmid, "status": "VERIFIED", "title": title, "doi": doi}
+
+        except httpx.HTTPStatusError:
+            raise
+        except Exception as exc:
+            return {"pmid": pmid, "status": "ERROR", "error": str(exc)}
+
+    return {"pmid": pmid, "status": "ERROR", "error": "max retries exceeded"}
 
 
 def resolve_pmid_from_doi(doi: str) -> str | None:
