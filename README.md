@@ -1,6 +1,6 @@
 # gocam-curator
 
-A Python command-line tool that helps a bioinformatics **curator** build **GO-CAM (Gene Ontology Causal Activity Models)** for synaptic biological processes.
+A Python command-line tool that helps a bioinformatics **curator** build **GO-CAM (Gene Ontology Causal Activity Models)** for biological processes.
 
 The curator works with domain experts (neuroscientists, cell biologists) who provide biological knowledge. This tool assists the **curator** — never the expert — with:
 
