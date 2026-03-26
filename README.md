@@ -2,7 +2,7 @@
 
 A Python command-line tool that helps a bioinformatics **curator** build **GO-CAM (Gene Ontology Causal Activity Models)** for biological processes.
 
-The curator works with domain experts (neuroscientists, cell biologists) who provide biological knowledge. This tool assists the **curator** — never the expert — with:
+The curator works with domain experts (neuroscientists, cell biologists) who provide biological knowledge. This tool assists the **curator** with:
 
 - Extracting biological claims from papers, slide decks, and figures
 - Verifying those claims against live ontology and protein databases
