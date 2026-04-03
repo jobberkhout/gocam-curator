@@ -18,11 +18,14 @@ ECO lookup strategy
 
 from __future__ import annotations
 
+import time
 import httpx
 
 _OLS_BASE   = "https://www.ebi.ac.uk/ols4/api/ontologies/eco/terms"
 _OLS_SEARCH = "https://www.ebi.ac.uk/ols4/api/search"
-_TIMEOUT    = 15.0
+_TIMEOUT    = 120.0
+_RETRIES    = 3
+_RETRY_DELAY = 2.0  # seconds between retries
 
 # Minimum Solr relevance score to trust the OLS4 top result.
 # Scores for a near-exact label match tend to be 10–30+; loose matches are 2–5.
@@ -218,12 +221,17 @@ def verify_eco(eco_code: str, client: httpx.Client | None = None) -> dict:
             "official_label": label,
         }
 
-    try:
-        if client:
-            return _do(client)
-        with httpx.Client(timeout=_TIMEOUT) as c:
-            return _do(c)
-    except httpx.TimeoutException:
-        return {"suggested": eco_code, "status": "TIMEOUT"}
-    except Exception as exc:
-        return {"suggested": eco_code, "status": "ERROR", "error": str(exc)}
+    last_exc: Exception | None = None
+    for attempt in range(_RETRIES):
+        try:
+            if client:
+                return _do(client)
+            with httpx.Client(timeout=_TIMEOUT) as c:
+                return _do(c)
+        except httpx.TimeoutException as exc:
+            last_exc = exc
+            if attempt < _RETRIES - 1:
+                time.sleep(_RETRY_DELAY)
+        except Exception as exc:
+            return {"suggested": eco_code, "status": "ERROR", "error": str(exc)}
+    return {"suggested": eco_code, "status": "TIMEOUT", "error": str(last_exc)}

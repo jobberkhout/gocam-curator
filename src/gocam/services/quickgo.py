@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import time
 import httpx
 
 _QUICKGO_BASE = "https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms"
 _QUICKGO_SEARCH = "https://www.ebi.ac.uk/QuickGO/services/ontology/go/search"
 _QUICKGO_ANNOTATIONS = "https://www.ebi.ac.uk/QuickGO/services/annotation/search"
 _AMIGO_SEARCH = "https://amigo.geneontology.org/amigo/search/ontology"
-_TIMEOUT = 15.0
+_TIMEOUT = 120.0
+_RETRIES = 3
+_RETRY_DELAY = 2.0  # seconds between retries
 
 # QuickGO aspect strings → what we expect in each record field
 _EXPECTED_ASPECTS = {
@@ -67,15 +70,20 @@ def verify_go_term(
 
         return result
 
-    try:
-        if client:
-            return _do(client)
-        with httpx.Client(timeout=_TIMEOUT) as c:
-            return _do(c)
-    except httpx.TimeoutException:
-        return {"suggested": go_id, "status": "TIMEOUT"}
-    except Exception as exc:
-        return {"suggested": go_id, "status": "ERROR", "error": str(exc)}
+    last_exc: Exception | None = None
+    for attempt in range(_RETRIES):
+        try:
+            if client:
+                return _do(client)
+            with httpx.Client(timeout=_TIMEOUT) as c:
+                return _do(c)
+        except httpx.TimeoutException as exc:
+            last_exc = exc
+            if attempt < _RETRIES - 1:
+                time.sleep(_RETRY_DELAY)
+        except Exception as exc:
+            return {"suggested": go_id, "status": "ERROR", "error": str(exc)}
+    return {"suggested": go_id, "status": "TIMEOUT", "error": str(last_exc)}
 
 
 def search_go_terms(

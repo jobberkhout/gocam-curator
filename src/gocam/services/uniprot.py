@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 _UNIPROT_BASE = "https://rest.uniprot.org/uniprotkb/search"
-_TIMEOUT = 15.0
+_TIMEOUT = 120.0
 
 # Common model organisms: lowercase species name → NCBI taxon ID
 _TAXON_MAP: dict[str, str] = {
